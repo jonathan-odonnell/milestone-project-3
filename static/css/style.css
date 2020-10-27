@@ -11,3 +11,12 @@
 .btn-outline-secondary:hover {
   color: #1a1a1a !important;
 }
+
+.btn-primary {
+    border:2px solid #1a1a1a;
+}
+
+.btn-primary:hover {
+    color: #1a1a1a;
+    background-color: #fff
+}
