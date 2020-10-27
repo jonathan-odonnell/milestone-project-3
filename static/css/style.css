@@ -1,0 +1,13 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: #919aa1;
+}
+
+.nav-item .btn {
+  font-size: 1em;
+}
+
+.btn-outline-secondary:active,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:hover {
+  color: #1a1a1a !important;
+}
