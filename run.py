@@ -35,4 +35,9 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
+@app.route("/sign_in")
+def sign_in():
+    return render_template("sign_in.html", page_title="Sign In")
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
