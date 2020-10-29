@@ -25,9 +25,119 @@
   padding: 30px;
 }
 
+/* Footer Start */
+
+.footer-wrapper {
+  background-color: #1a1a1a;
+  padding: 30px 0;
+}
+
+.footer-headings {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+/* Code from https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
+
+.connect {
+  margin-left: calc(25% - 30px);
+}
+
+.footer-links li {
+  color: #fff;
+  list-style: none;
+}
+
+.footer-links li a {
+  color: #fff;
+}
+
+.social-media-icons {
+  padding: 0;
+  font-size: 0;
+  margin: 0.75rem 0;
+}
+
+.social-media-icons li {
+  width: 24.6%;
+}
+
+.social-media-icons li i {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: 0;
+}
+
+/* Code for .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
+
+.social-media-icons li i:hover {
+  transform: scale(1.5);
+}
+
+/* Code for .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
+
+.social-media-icons li i:hover {
+  transform: scale(1.5);
+}
+
+.accordion .card,
+.accordion .card-header {
+  background-color: #1a1a1a;
+  border: none;
+}
+
+.accordion .card-header {
+  padding: 0;
+}
+
+.accordion .btn-link:hover {
+  text-decoration: none;
+}
+
+.btn-link i {
+  margin-right: 20px;
+}
+
+.accordion-links {
+  padding: 0.75rem 60px;
+}
+
+.footer-paragraphs {
+  color: #fff;
+  margin-bottom: 0;
+  margin-top: 0.75rem;
+}
+
+/* Footer end */
+
+/* Media Queries start */
+
 @media (min-width: 768px) {
   form {
     margin: auto;
     max-width: 70%;
   }
+  .footer-wrapper {
+    padding: 30px;
+  }
 }
+
+@media (min-width: 992px) {
+  .footer-headings {
+    margin-bottom: 0.5rem;
+  }
+
+  .social-media-icons {
+    margin: 20px auto 20px 0;
+  }
+
+  .footer-paragraphs {
+    margin-top: 20px;
+  }
+}
+
+/* Media Queries end */
