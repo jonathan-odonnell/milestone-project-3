@@ -1,3 +1,7 @@
+.navbar-dark .navbar-toggler {
+    border: none;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: #919aa1;
 }
