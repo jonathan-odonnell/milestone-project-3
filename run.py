@@ -48,8 +48,28 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
-@app.route("/sign_in")
+@app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = existing_user["first_name"].lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", first_name=session["user"]))
+            else:
+                flash("Incorrect Email Address and/or Password")
+                return redirect(url_for("sign_in"))
+
+        else:
+            flash("Incorrect Email Address and/or Password")
+            return redirect(url_for("sign_in"))
+
     return render_template("sign_in.html", page_title="Sign In")
 
 
