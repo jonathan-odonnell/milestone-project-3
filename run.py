@@ -40,4 +40,9 @@ def sign_in():
     return render_template("sign_in.html", page_title="Sign In")
 
 
+@app.route("/sign_up")
+def sign_up():
+    return render_template("sign_up.html", page_title="Sign Up")
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)

@@ -29,6 +29,16 @@
   padding: 30px;
 }
 
+/* Image from https://unsplash.com/photos/c-lUYtNjqxw */
+
+.sign-up-image {
+    background-image: url('/static/images/sign_up.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top; 
+    height: 100%;
+}
+
 /* Footer Start */
 
 .footer-wrapper {
@@ -123,7 +133,7 @@
 @media (min-width: 768px) {
   form {
     margin: auto;
-    max-width: 70%;
+    width: 80%;
   }
   .footer-wrapper {
     padding: 30px;
