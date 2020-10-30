@@ -103,7 +103,7 @@ def profile(first_name):
     first_name = session["user"]
 
     if session["user"]:
-        return render_template("profile.html", first_name=first_name)
+        return render_template("profile.html", first_name=first_name, page_title="My Account")
 
     return redirect(url_for("sign_in"))
 
