@@ -55,13 +55,9 @@ def sign_in():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = existing_user["first_name"].lower()
-                flash("Welcome, {}".format(
-                    request.form.get("username")))
-                return redirect(url_for(
-                    "profile", first_name=session["user"]))
+                return redirect(url_for("profile", first_name=session["user"]))
             else:
                 flash("Incorrect Email Address and/or Password")
                 return redirect(url_for("sign_in"))
