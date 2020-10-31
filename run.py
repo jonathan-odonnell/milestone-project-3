@@ -112,4 +112,11 @@ def profile(first_name):
     return redirect(url_for("sign_in"))
 
 
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("sign_in"))
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
