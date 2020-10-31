@@ -1,5 +1,5 @@
 .navbar-dark .navbar-toggler {
-    border: none;
+  border: none;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -29,14 +29,19 @@
   padding: 30px;
 }
 
+form {
+    margin: auto;
+  }
+
+
 /* Image from https://unsplash.com/photos/c-lUYtNjqxw */
 
 .sign-up-image {
-    background-image: url('/static/images/sign_up.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top; 
-    height: 100%;
+  background-image: url("/static/images/sign_up.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  height: 100%;
 }
 
 /* Footer Start */
@@ -131,16 +136,14 @@
 /* Media Queries start */
 
 @media (min-width: 768px) {
-  form {
-    margin: auto;
-    width: 80%;
-  }
+
   .footer-wrapper {
     padding: 30px;
   }
 }
 
 @media (min-width: 992px) {
+
   .footer-headings {
     margin-bottom: 0.5rem;
   }
