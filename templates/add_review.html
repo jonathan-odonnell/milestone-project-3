@@ -1,0 +1,255 @@
+{% extends "base.html" %} {% block content %}
+<section>
+  <div class="container content-container">
+    <div class="row no-gutters">
+      <div class="col">
+        <h1 class="text-center headings">{{ page_title }}</h1>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <form class="col-12 col-md-8 offset-md-2">
+        <div class="form-group form-group-overall-ratings form-border">
+          <label class="ratings-label" for="OverallRating"
+            ><h4 class="form-subheadings">Overall Rating</h4></label
+          >
+          <div id="overallRating" class="rating">
+            <input
+              id="overallrating-1"
+              type="radio"
+              name="rating"
+              value="1"
+            /><label for="overallrating-1"><i class="fas fa-star"></i></label>
+            <input
+              id="overallrating-2"
+              type="radio"
+              name="rating"
+              value="2"
+            /><label for="overallrating-2"><i class="fas fa-star"></i></label>
+            <input
+              id="overallrating-3"
+              type="radio"
+              name="rating"
+              value="3"
+            /><label for="overallrating-3"><i class="fas fa-star"></i></label>
+            <input
+              id="overallrating-4"
+              type="radio"
+              name="rating"
+              value="4"
+            /><label for="overallrating-4"><i class="fas fa-star"></i></label>
+            <input
+              id="overallrating-5"
+              type="radio"
+              name="rating"
+              value="5"
+            /><label for="overallrating-5"><i class="fas fa-star"></i></label>
+          </div>
+        </div>
+        <h4 class="form-subheadings feature-ratings-text">Feature Ratings</h4>
+        <div class="row no-gutters">
+          <div class="col-6">
+            <div class="form-group form-group-feature-ratings">
+              <label class="ratings-label" for="performanceRating">Performance</label>
+              <div id="performanceRating" class="rating">
+                <input
+                  id="rating-1"
+                  type="radio"
+                  name="rating"
+                  value="1"
+                /><label for="rating-1"><i class="fas fa-star"></i></label>
+                <input
+                  id="rating-2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                /><label for="rating-2"><i class="fas fa-star"></i></label>
+                <input
+                  id="rating-3"
+                  type="radio"
+                  name="rating"
+                  value="3"
+                /><label for="rating-3"><i class="fas fa-star"></i></label>
+                <input
+                  id="rating-4"
+                  type="radio"
+                  name="rating"
+                  value="4"
+                /><label for="rating-4"><i class="fas fa-star"></i></label>
+                <input
+                  id="rating-5"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                /><label for="rating-5"><i class="fas fa-star"></i></label>
+              </div>
+            </div>
+            <div class="form-group form-group-feature-ratings">
+              <label class="ratings-label"  for="batteryRating">Battery Life</label>
+              <div id="batteryRating" class="rating">
+                <input
+                  id="batteryRating-1"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                /><label for="batteryRating-1"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="batteryRating-2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                /><label for="batteryRating-2"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="batteryRating-3"
+                  type="radio"
+                  name="rating"
+                  value="3"
+                /><label for="batteryRating-3"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="batteryRating-4"
+                  type="radio"
+                  name="rating"
+                  value="4"
+                /><label for="batteryRating-4"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="batteryRating-5"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                /><label for="batteryRating-5"
+                  ><i class="fas fa-star"></i
+                ></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group form-group-feature-ratings">
+              <label class="ratings-label"  for="screenRating">Screen Quality</label>
+              <div id="screenRating" class="rating">
+                <input
+                  id="screenRating-1"
+                  type="radio"
+                  name="rating"
+                  value="1"
+                /><label for="screenRating-1"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="screenRating-2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                /><label for="screenRating-2"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="screenRating-3"
+                  type="radio"
+                  name="rating"
+                  value="3"
+                /><label for="screenRating-3"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="screenRating-4"
+                  type="radio"
+                  name="rating"
+                  value="4"
+                /><label for="screenRating-4"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="screenRating-5"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                /><label for="screenRating-5"
+                  ><i class="fas fa-star"></i
+                ></label>
+              </div>
+            </div>
+            <div class="form-group form-group-feature-ratings">
+              <label class="ratings-label" for="cameraRating">Camera</label>
+              <div id="cameraRating" class="rating">
+                <input
+                  id="cameraRating-1"
+                  type="radio"
+                  name="rating"
+                  value="1"
+                /><label for="cameraRating-1"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="cameraRating-2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                /><label for="cameraRating-2"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="cameraRating-3"
+                  type="radio"
+                  name="rating"
+                  value="3"
+                /><label for="cameraRating-3"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input id="cameraRating-4" type="radio" name="rating" /><label
+                  for="cameraRating-4"
+                  ><i class="fas fa-star"></i
+                ></label>
+                <input
+                  id="cameraRating-5"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                /><label for="cameraRating-5"
+                  ><i class="fas fa-star"></i
+                ></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-border feature-ratings-border"></div>
+        <div class="form-group">
+          <label for="reviewTitle"
+            ><h4 class="form-subheadings">Review Title</h4></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="reviewTitle"
+            name="review"
+            aria-describedby="reviewTitle"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="review"
+            ><h4 class="form-subheadings">Your Review</h4></label
+          >
+          <textarea
+            class="form-control"
+            id="review"
+            name="review"
+            rows="5"
+            aria-describedby="review"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group form-group-button text-center mt-4">
+          <button type="submit" class="btn review-btn">Add Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

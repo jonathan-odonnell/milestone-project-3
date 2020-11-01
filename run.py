@@ -115,4 +115,9 @@ def logout():
     return redirect(url_for("sign_in"))
 
 
+@app.route("/add_review")
+def add_review():
+    return render_template("add_review.html", page_title="Add Review")
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)

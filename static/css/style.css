@@ -1,3 +1,7 @@
+.headings {
+  margin-bottom: 30px;
+}
+
 .navbar-dark .navbar-toggler {
   border: none;
 }
@@ -30,9 +34,8 @@
 }
 
 form {
-    margin: auto;
-  }
-
+  margin: auto;
+}
 
 /* Image from https://unsplash.com/photos/c-lUYtNjqxw */
 
@@ -43,6 +46,95 @@ form {
   background-position: center top;
   height: 100%;
 }
+
+/* Add Review form styling start */
+
+.form-border {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #64a19d;
+}
+
+.feature-ratings-border {
+  margin-top: 10px;
+}
+
+.form-subheadings {
+  text-transform: none;
+  font-size: 1.2em;
+}
+
+.feature-ratings-text {
+  margin-bottom: 20px;
+}
+
+.form-group-overall-ratings {
+  height: 70px;
+  margin-top: 0;
+}
+
+.form-group-feature-ratings {
+  height: 40px;
+}
+
+.form-group-button {
+  margin: 30px 0 0;
+}
+
+.ratings-label {
+  margin-bottom: 0;
+}
+
+.review-btn {
+  color: #fff;
+  background-color: #64a19d;
+  border: 2px solid #64a19d;
+}
+
+.review-btn:hover {
+  color: #64a19d;
+  background-color: #fff;
+}
+
+/* Add Review form styling end */
+
+/* Rating Stars Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
+
+.rating {
+  position: absolute;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  font-size: 0.875rem;
+  width: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  color: #ccc;
+  margin: 5px 0;
+}
+.rating > input:checked ~ label {
+  color: #ffc700;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffc700;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ffc700;
+}
+
+/* Rating Stars End */
 
 /* Footer Start */
 
@@ -136,14 +228,12 @@ form {
 /* Media Queries start */
 
 @media (min-width: 768px) {
-
   .footer-wrapper {
     padding: 30px;
   }
 }
 
 @media (min-width: 992px) {
-
   .footer-headings {
     margin-bottom: 0.5rem;
   }
