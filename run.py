@@ -120,4 +120,20 @@ def add_review():
     return render_template("add_review.html", page_title="Add Review")
 
 
+@app.route("/insert_review", methods=["POST"])
+def insert_review():
+    tasks = mongo.db.reviews
+    tasks.insert_one(
+        {"overall_rating": request.form.get("overall_rating"),
+         "performance_rating": request.form.get("performance_rating"),
+         "battery_rating": request.form.get("battery_rating"),
+         "screen_rating": request.form.get("screen_rating"),
+         "camera_rating": request.form.get("camera_rating"),
+         "review_title": request.form.get("review_title"),
+         "review": request.form.get("review"),
+         "created_by": session["user"]
+         })
+    return redirect(url_for("index"))
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
