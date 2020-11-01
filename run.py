@@ -120,6 +120,11 @@ def add_review():
     return render_template("add_review.html", page_title="Add Review")
 
 
+@app.route("/edit_review")
+def edit_review():
+    return render_template("edit_review.html", page_title="Edit Review")
+
+
 @app.route("/insert_review", methods=["POST"])
 def insert_review():
     tasks = mongo.db.reviews
