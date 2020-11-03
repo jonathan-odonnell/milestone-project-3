@@ -8,7 +8,7 @@
     </div>
     <div class="row no-gutters">
       <form
-        action="{{url_for('insert_review')}}"
+        action="{{url_for('update_review', review_id=review._id)}}"
         method="POST"
         class="col-12 col-md-8 offset-md-2"
       >
@@ -333,9 +333,7 @@
                   value="5"
                 />
                 {% endif %}
-                <label for="screen_rating_5"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="screen_rating_5"><i class="fas fa-star"></i></label>
                 {% if review.screen_rating == 4 %}
                 <input
                   id="screen_rating_4"
@@ -352,9 +350,7 @@
                   value="4"
                 />
                 {% endif %}
-                <label for="screen_rating_4"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="screen_rating_4"><i class="fas fa-star"></i></label>
                 {% if review.screen_rating == 3 %}
                 <input
                   id="screen_rating_3"
@@ -371,9 +367,7 @@
                   value="3"
                 />
                 {% endif %}
-                <label for="screen_rating_3"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="screen_rating_3"><i class="fas fa-star"></i></label>
                 {% if review.screen_rating == 2 %}
                 <input
                   id="screen_rating_2"
@@ -390,9 +384,7 @@
                   value="2"
                 />
                 {% endif %}
-                <label for="screen_rating_2"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="screen_rating_2"><i class="fas fa-star"></i></label>
                 {% if review.screen_rating == 1 %}
                 <input
                   id="screen_rating_1"
@@ -409,9 +401,7 @@
                   value="1"
                 />
                 {% endif %}
-                <label for="screen_rating_1"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="screen_rating_1"><i class="fas fa-star"></i></label>
               </div>
             </div>
             <div class="form-group form-group-feature-ratings">
@@ -433,9 +423,7 @@
                   value="5"
                 />
                 {% endif %}
-                <label for="camera_rating_5"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="camera_rating_5"><i class="fas fa-star"></i></label>
                 {% if review.camera_rating == 4 %}
                 <input
                   id="camera_rating_4"
@@ -452,9 +440,7 @@
                   value="4"
                 />
                 {% endif %}
-                <label for="camera_rating_4"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="camera_rating_4"><i class="fas fa-star"></i></label>
                 {% if review.camera_rating == 3 %}
                 <input
                   id="camera_rating_3"
@@ -471,9 +457,7 @@
                   value="3"
                 />
                 {% endif %}
-                <label for="camera_rating_3"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="camera_rating_3"><i class="fas fa-star"></i></label>
                 {% if review.camera_rating == 2 %}
                 <input
                   id="cameraRating_2"
@@ -490,9 +474,7 @@
                   value="2"
                 />
                 {% endif %}
-                <label for="camera_rating_2"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="camera_rating_2"><i class="fas fa-star"></i></label>
                 {% if review.camera_rating == 1 %}
                 <input
                   id="camera_rating_1"
@@ -509,9 +491,7 @@
                   value="1"
                 />
                 {% endif %}
-                <label for="camera_rating_1"
-                  ><i class="fas fa-star"></i
-                ></label>
+                <label for="camera_rating_1"><i class="fas fa-star"></i></label>
               </div>
             </div>
           </div>

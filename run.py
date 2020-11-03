@@ -144,4 +144,20 @@ def insert_review():
     return redirect(url_for("index"))
 
 
+@app.route("/update_review/<review_id>", methods=["POST"])
+def update_review(review_id):
+    reviews = mongo.db.reviews
+    reviews.update({"_id": ObjectId(review_id)},
+                   {"overall_rating": int(request.form.get("overall_rating")),
+                    "performance_rating": int(request.form.get("performance_rating")),
+                    "battery_rating": int(request.form.get("battery_rating")),
+                    "screen_rating": int(request.form.get("screen_rating")),
+                    "camera_rating": int(request.form.get("camera_rating")),
+                    "review_title": request.form.get("review_title"),
+                    "review": request.form.get("review"),
+                    "created_by": session["user"]
+                    })
+    return redirect(url_for("index"))
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
