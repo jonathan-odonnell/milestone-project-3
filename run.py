@@ -103,7 +103,9 @@ def profile(first_name):
     first_name = session["user"]
 
     if session["user"]:
-        return render_template("profile.html", first_name=first_name, page_title="My Account")
+        reviews = list((mongo.db.reviews.find(
+            {"created_by": session["user"]})))
+        return render_template("profile.html", first_name=first_name, page_title="My Account", reviews=reviews)
 
     return redirect(url_for("sign_in"))
 
