@@ -122,9 +122,10 @@ def add_review():
     return render_template("add_review.html", page_title="Add Review")
 
 
-@app.route("/edit_review")
-def edit_review():
-    return render_template("edit_review.html", page_title="Edit Review")
+@app.route("/edit_review/<review_id>")
+def edit_review(review_id):
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    return render_template("edit_review.html", page_title="Edit Review", review=review)
 
 
 @app.route("/insert_review", methods=["POST"])
