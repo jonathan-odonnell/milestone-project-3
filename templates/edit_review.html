@@ -17,36 +17,91 @@
             ><h4 class="form-subheadings">Overall Rating</h4></label
           >
           <div id="overall_rating" class="rating">
+            {% if review.overall_rating == 5 %}
             <input
               id="overall_rating_5"
               type="radio"
               name="overall_rating"
               value="5"
-            /><label for="overall_rating_5"><i class="fas fa-star"></i></label>
+              checked
+            />
+            {% else %}
+            <input
+              id="overall_rating_5"
+              type="radio"
+              name="overall_rating"
+              value="5"
+            />
+            {% endif %}
+            <label for="overall_rating_5"><i class="fas fa-star"></i></label>
+            {% if review.overall_rating == 4 %}
             <input
               id="overall_rating_4"
               type="radio"
               name="overall_rating"
               value="4"
-            /><label for="overall_rating_4"><i class="fas fa-star"></i></label>
+              checked
+            />
+            {% else %}
+            <input
+              id="overall_rating_4"
+              type="radio"
+              name="overall_rating"
+              value="4"
+            />
+            {% endif %}
+            <label for="overall_rating_4"><i class="fas fa-star"></i></label>
+            {% if review.overall_rating == 3 %}
             <input
               id="overall_rating_3"
               type="radio"
               name="overall_rating"
               value="3"
-            /><label for="overall_rating_3"><i class="fas fa-star"></i></label>
+              checked
+            />
+            {% else %}
+            <input
+              id="overall_rating_3"
+              type="radio"
+              name="overall_rating"
+              value="3"
+            />
+            {% endif %}
+            <label for="overall_rating_3"><i class="fas fa-star"></i></label>
+            {% if review.overall_rating == 2 %}
             <input
               id="overall_rating_2"
               type="radio"
               name="overall_rating"
               value="2"
-            /><label for="overall_rating_2"><i class="fas fa-star"></i></label>
+              checked
+            />
+            {% else %}
+            <input
+              id="overall_rating_2"
+              type="radio"
+              name="overall_rating"
+              value="2"
+            />
+            {% endif %}
+            <label for="overall_rating_2"><i class="fas fa-star"></i></label>
+            {% if review.overall_rating == 1 %}
             <input
               id="overall_rating_1"
               type="radio"
               name="overall_rating"
               value="1"
-            /><label for="overall_rating_1"><i class="fas fa-star"></i></label>
+              checked
+            />
+            {% else %}
+            <input
+              id="overall_rating_1"
+              type="radio"
+              name="overall_rating"
+              value="1"
+            />
+            {% endif %}
+            <label for="overall_rating_1"><i class="fas fa-star"></i></label>
           </div>
         </div>
         <h4 class="form-subheadings feature-ratings-text">Feature Ratings</h4>
@@ -57,44 +112,98 @@
                 >Performance</label
               >
               <div id="performance_rating" class="rating">
+                {% if review.performance_rating == 5 %}
                 <input
                   id="performance_rating_5"
                   type="radio"
                   name="performance_rating"
                   value="5"
-                /><label for="performance_rating_5"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="performance_rating_5"
+                  type="radio"
+                  name="performance_rating"
+                  value="5"
+                />
+                {% endif %}
+                <label for="performance_rating_5"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.performance_rating == 4 %}
                 <input
                   id="performance_rating_4"
                   type="radio"
                   name="performance_rating"
                   value="4"
-                /><label for="performance_rating_4"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="performance_rating_4"
+                  type="radio"
+                  name="performance_rating"
+                  value="4"
+                />
+                {% endif %}
+                <label for="performance_rating_4"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.performance_rating == 3 %}
                 <input
                   id="performance_rating_3"
                   type="radio"
                   name="performance_rating"
                   value="3"
-                /><label for="performance_rating_3"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="performance_rating_3"
+                  type="radio"
+                  name="performance_rating"
+                  value="3"
+                />
+                {% endif %}
+                <label for="performance_rating_3"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.performance_rating == 2 %}
                 <input
                   id="performance_rating_2"
                   type="radio"
                   name="performance_rating"
                   value="2"
-                /><label for="performance_rating_2"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="performance_rating_2"
+                  type="radio"
+                  name="performance_rating"
+                  value="2"
+                />
+                {% endif %}
+                <label for="performance_rating_2"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.performance_rating == 1 %}
                 <input
                   id="performance_rating_1"
                   type="radio"
                   name="performance_rating"
                   value="1"
-                /><label for="performance_rating_1"
+                />
+                {% else %}
+                <input
+                  id="performance_rating_1"
+                  type="radio"
+                  name="performance_rating"
+                  value="1"
+                />
+                {% endif %}
+                <label for="performance_rating_1"
                   ><i class="fas fa-star"></i
                 ></label>
               </div>
@@ -104,44 +213,99 @@
                 >Battery Life</label
               >
               <div id="battery_rating" class="rating">
+                {% if review.battery_rating == 5 %}
                 <input
                   id="battery_rating_5"
                   type="radio"
                   name="battery_rating"
                   value="5"
-                /><label for="battery_rating_5"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="battery_rating_5"
+                  type="radio"
+                  name="battery_rating"
+                  value="5"
+                />
+                {% endif %}
+                <label for="battery_rating_5"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.battery_rating == 4 %}
                 <input
                   id="battery_rating_4"
                   type="radio"
                   name="battery_rating"
                   value="4"
-                /><label for="battery_rating_4"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="battery_rating_4"
+                  type="radio"
+                  name="battery_rating"
+                  value="4"
+                />
+                {% endif %}
+                <label for="battery_rating_4"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.battery_rating == 3 %}
                 <input
                   id="battery_rating_3"
                   type="radio"
                   name="battery_rating"
                   value="3"
-                /><label for="battery_rating_3"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="battery_rating_3"
+                  type="radio"
+                  name="battery_rating"
+                  value="3"
+                />
+                {% endif %}
+                <label for="battery_rating_3"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.battery_rating == 2 %}
                 <input
                   id="battery_rating_2"
                   type="radio"
                   name="battery_rating"
                   value="2"
-                /><label for="battery_rating_2"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="battery_rating_2"
+                  type="radio"
+                  name="battery_rating"
+                  value="2"
+                />
+                {% endif %}
+                <label for="battery_rating_2"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.battery_rating == 1 %}
                 <input
                   id="battery_rating_1"
                   type="radio"
                   name="battery_rating"
                   value="1"
-                /><label for="battery_rating_1"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="battery_rating_1"
+                  type="radio"
+                  name="battery_rating"
+                  value="1"
+                />
+                {% endif %}
+                <label for="battery_rating_1"
                   ><i class="fas fa-star"></i
                 ></label>
               </div>
@@ -153,44 +317,99 @@
                 >Screen Quality</label
               >
               <div id="screen_rating" class="rating">
+                {% if review.screen_rating == 5 %}
                 <input
                   id="screen_rating_5"
                   type="radio"
                   name="screen_rating"
                   value="5"
-                /><label for="screen_rating_5"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="screen_rating_5"
+                  type="radio"
+                  name="screen_rating"
+                  value="5"
+                />
+                {% endif %}
+                <label for="screen_rating_5"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.screen_rating == 4 %}
                 <input
                   id="screen_rating_4"
                   type="radio"
                   name="screen_rating"
                   value="4"
-                /><label for="screen_rating_4"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="screen_rating_4"
+                  type="radio"
+                  name="screen_rating"
+                  value="4"
+                />
+                {% endif %}
+                <label for="screen_rating_4"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.screen_rating == 3 %}
                 <input
                   id="screen_rating_3"
                   type="radio"
                   name="screen_rating"
                   value="3"
-                /><label for="screen_rating_3"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="screen_rating_3"
+                  type="radio"
+                  name="screen_rating"
+                  value="3"
+                />
+                {% endif %}
+                <label for="screen_rating_3"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.screen_rating == 2 %}
                 <input
                   id="screen_rating_2"
                   type="radio"
                   name="screen_rating"
                   value="2"
-                /><label for="screen_rating_2"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="screen_rating_2"
+                  type="radio"
+                  name="screen_rating"
+                  value="2"
+                />
+                {% endif %}
+                <label for="screen_rating_2"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.screen_rating == 1 %}
                 <input
                   id="screen_rating_1"
                   type="radio"
                   name="screen_rating"
                   value="1"
-                /><label for="screen_rating_1"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="screen_rating_1"
+                  type="radio"
+                  name="screen_rating"
+                  value="1"
+                />
+                {% endif %}
+                <label for="screen_rating_1"
                   ><i class="fas fa-star"></i
                 ></label>
               </div>
@@ -198,44 +417,99 @@
             <div class="form-group form-group-feature-ratings">
               <label class="ratings-label" for="camera_rating">Camera</label>
               <div id="camera_rating" class="rating">
+                {% if review.camera_rating == 5 %}
                 <input
                   id="camera_rating_5"
                   type="radio"
                   name="camera_rating"
                   value="5"
-                /><label for="camera_rating_5"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="camera_rating_5"
+                  type="radio"
+                  name="camera_rating"
+                  value="5"
+                />
+                {% endif %}
+                <label for="camera_rating_5"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.camera_rating == 4 %}
                 <input
                   id="camera_rating_4"
                   type="radio"
                   name="camera_rating"
                   value="4"
-                /><label for="camera_rating_4"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="camera_rating_4"
+                  type="radio"
+                  name="camera_rating"
+                  value="4"
+                />
+                {% endif %}
+                <label for="camera_rating_4"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.camera_rating == 3 %}
                 <input
                   id="camera_rating_3"
                   type="radio"
                   name="camera_rating"
                   value="3"
-                /><label for="camera_rating_3"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="camera_rating_3"
+                  type="radio"
+                  name="camera_rating"
+                  value="3"
+                />
+                {% endif %}
+                <label for="camera_rating_3"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.camera_rating == 2 %}
                 <input
                   id="cameraRating_2"
                   type="radio"
                   name="rating"
                   value="2"
-                /><label for="camera_rating_2"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="cameraRating_2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                />
+                {% endif %}
+                <label for="camera_rating_2"
                   ><i class="fas fa-star"></i
                 ></label>
+                {% if review.camera_rating == 1 %}
                 <input
                   id="camera_rating_1"
                   type="radio"
                   name="camera_rating"
                   value="1"
-                /><label for="camera_rating_1"
+                  checked
+                />
+                {% else %}
+                <input
+                  id="camera_rating_1"
+                  type="radio"
+                  name="camera_rating"
+                  value="1"
+                />
+                {% endif %}
+                <label for="camera_rating_1"
                   ><i class="fas fa-star"></i
                 ></label>
               </div>
@@ -252,6 +526,7 @@
             class="form-control"
             id="review_title"
             name="review_title"
+            value="{{review.review_title}}"
             aria-describedby="review_title"
             required
           />
@@ -267,10 +542,12 @@
             rows="5"
             aria-describedby="review"
             required
-          ></textarea>
+          >
+{{review.review}}</textarea
+          >
         </div>
         <div class="form-group form-group-button text-center mt-4">
-          <button type="submit" class="btn review-btn">Add Review</button>
+          <button type="submit" class="btn review-btn">Update Review</button>
         </div>
       </form>
     </div>
