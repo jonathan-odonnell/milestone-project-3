@@ -247,6 +247,11 @@ form {
   color: #fff;
 }
 
+.footer-links li a:hover {
+  color: #64a19d;
+  text-decoration: none;
+}
+
 .social-media-icons {
   padding: 0;
   font-size: 0;
@@ -261,6 +266,10 @@ form {
   font-size: 20px;
   line-height: 1.5;
   color: #fff;
+}
+
+.social-media-icons li i:hover {
+  color: #64a19d;
 }
 
 .list-inline-item:not(:last-child) {
