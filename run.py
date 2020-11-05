@@ -23,6 +23,13 @@ def index():
     return render_template("index.html", page_title="Home")
 
 
+@app.route("/search_results", methods=["GET", "POST"])
+def search_results():
+    search = request.form.get("search")
+    products = list(mongo.db.products.find(({"$text": {"$search": search}})))
+    return render_template("search_results.html", page_title="Search Results", products=products)
+
+
 @app.route("/phones")
 def phones():
     return render_template("phones.html", page_title="Phones")
