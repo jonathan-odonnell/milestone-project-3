@@ -16,7 +16,7 @@
 
   <body>
     <!-- Navbar start. Code is from https://getbootstrap.com/docs/4.5/components/navbar/ -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
       <a class="navbar-brand" href="{{ url_for('index') }}">Navbar</a>
       <button
         class="navbar-toggler"
@@ -74,7 +74,7 @@
           {% else %}
           <li class="nav-item">
             <a
-              class="btn btn-outline-secondary btn-sm"
+              class="btn btn-sm btn-green"
               href="{{ url_for('sign_in') }}"
               >Register / Sign In</a
             >

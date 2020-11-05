@@ -2,23 +2,25 @@
   margin-bottom: 30px;
 }
 
+/* Navbar Start */
+
+.navbar {
+  padding: 1rem;
+}
+
 .navbar-dark .navbar-toggler {
   border: none;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #919aa1;
+  color: #64a19d;
 }
 
 .nav-item .btn {
   font-size: 1em;
 }
 
-.btn-outline-secondary:active,
-.btn-outline-secondary:focus,
-.btn-outline-secondary:hover {
-  color: #1a1a1a !important;
-}
+/* Navbar End */
 
 .btn-primary {
   border: 2px solid #1a1a1a;
