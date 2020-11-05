@@ -32,7 +32,9 @@ def search_results():
 
 @app.route("/phones")
 def phones():
-    return render_template("phones.html", page_title="Phones")
+    products = list(mongo.db.products.find(
+        {"category": "phones"}))
+    return render_template("phones.html", page_title="Phones", products=products)
 
 
 @app.route("/tablets")
