@@ -55,7 +55,7 @@
 /* Image from https://unsplash.com/photos/_XR5rkprHQU */
 
 .jumbotron {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,10 +63,11 @@
   background-image: url("/static/images/hero-image.jpg");
   background-size: cover;
   margin-bottom: 0;
+  margin-top: 4.5rem;
 }
 
 .jumbotron-heading {
-  margin: 4rem 0;
+  margin-bottom: 3rem;
   font-size: 3rem;
   color: #fff;
   line-height: 1.5;
