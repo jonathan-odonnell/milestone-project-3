@@ -22,6 +22,8 @@
 
 /* Navbar End */
 
+/* Buttons Start */
+
 .btn-primary {
   border: 2px solid #1a1a1a;
 }
@@ -30,6 +32,20 @@
   color: #1a1a1a;
   background-color: #fff;
 }
+
+.btn-green {
+  color: #fff;
+  background-color: #64a19d;
+  border: 2px solid #64a19d;
+}
+
+.btn-green:hover {
+  color: #fff;
+  background-color: #548b87;
+  border: 2px solid #548b87;
+}
+
+/* Buttons End */
 
 /* Jumbortron Start */
 
@@ -50,6 +66,7 @@
   margin: 4rem 0;
   font-size: 3rem;
   color: #fff;
+  line-height: 1.5;
 }
 
 .overlay {
@@ -60,16 +77,8 @@
   position: absolute;
 }
 
-.btn-green {
-  color: #fff;
-  background-color: #64a19d;
-  border: 2px solid #64a19d;
-}
-
-.btn-green:hover {
-  color: #fff;
-  background-color: #548b87;
-  border: 2px solid #548b87;
+.search:focus {
+  box-shadow: none;
 }
 
 /* Jumbotron End */
