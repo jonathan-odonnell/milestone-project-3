@@ -46,7 +46,9 @@ def tablets():
 
 @app.route("/laptops")
 def laptops():
-    return render_template("laptops.html", page_title="Laptops")
+    products = list(mongo.db.products.find(
+        {"category": "laptops"}))
+    return render_template("laptops.html", page_title="Laptops", products=products)
 
 
 @app.route("/accessories")
