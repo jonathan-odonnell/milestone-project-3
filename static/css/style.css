@@ -29,6 +29,49 @@
   background-color: #fff;
 }
 
+/* Jumbortron Start */
+
+/* Image from https://unsplash.com/photos/_XR5rkprHQU */
+
+.jumbotron {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url("/static/images/hero-image.jpg");
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  margin: 4rem 0;
+  font-size: 3rem;
+  color: #fff;
+}
+
+.overlay {
+  background-color: #000;
+  opacity: 40%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.btn-green {
+  color: #fff;
+  background-color: #64a19d;
+  border: 2px solid #64a19d;
+}
+
+.btn-green:hover {
+  color: #fff;
+  background-color: #548b87;
+  border: 2px solid #548b87;
+}
+
+/* Jumbotron End */
+
 .content-container {
   padding: 30px;
 }

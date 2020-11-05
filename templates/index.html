@@ -1,11 +1,38 @@
 {% extends "base.html" %} {% block content %}
 <section>
-	<div class="container">
-		<div class="row no-gutters">
-			<div class="col">
-				<h1 class="text-center mt-5 mb-5">{{ page_title }}</h1>
-			</div>
-		</div>
-	</div>
+  <div class="jumbotron">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col">
+          <h1 class="text-center jumbotron-heading">
+            Read reviews for the latest technology products
+          </h1>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-12 col-md-10 col-lg-8 mx-auto">
+          <form>
+            <div class="form-row no-gutters">
+              <div class="col-8 col-xl-9">
+                <input
+                  type="text"
+                  class="form-control h-100"
+                  id="review_search"
+                  placeholder="Enter a product"
+                  aria-describedby="review_search"
+                />
+              </div>
+              <div class="col-4 col-xl-3">
+                <button type="submit" class="btn btn-primary btn-green w-100">
+                  Search Reviews
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}
