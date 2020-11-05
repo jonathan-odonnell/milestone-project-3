@@ -40,7 +40,9 @@
   border: 2px solid #64a19d;
 }
 
-.btn-green:hover {
+.btn-green:hover,
+.btn-green:active,
+.btn-green:focus {
   color: #fff;
   background-color: #548b87;
   border: 2px solid #548b87;
