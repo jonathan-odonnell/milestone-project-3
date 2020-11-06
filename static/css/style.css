@@ -50,6 +50,28 @@
 
 /* Buttons End */
 
+/* Border Start */
+
+.border-bottom {
+  border-bottom: 1px solid #64a19d !important;
+}
+
+/* Border Bottom */
+
+/* Search Results Start */
+
+.product-images {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.media-body a:hover {
+    color: #64a19d;
+}
+
+/* Search Results End */
+
 /* Jumbortron Start */
 
 /* Image from https://unsplash.com/photos/_XR5rkprHQU */
