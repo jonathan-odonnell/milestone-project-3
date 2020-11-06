@@ -63,7 +63,7 @@
   background-image: url("/static/images/hero-image.jpg");
   background-size: cover;
   margin-bottom: 0;
-  margin-top: 4.5rem;
+  margin-top: 70px;
 }
 
 .jumbotron-heading {
@@ -341,6 +341,10 @@ form {
 
   .footer-paragraphs {
     margin-top: 20px;
+  }
+
+  .jumbotron {
+    margin-top: 73px;
   }
 }
 
