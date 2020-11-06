@@ -51,6 +51,12 @@ def laptops():
     return render_template("laptops.html", page_title="Laptops", products=products)
 
 
+@app.route("/review/<product_name>")
+def review(product_name):
+    page_title = product_name + " Review"
+    return render_template("review.html", page_title=page_title)
+
+
 @app.route("/accessories")
 def accessories():
     products = list(mongo.db.products.find(
