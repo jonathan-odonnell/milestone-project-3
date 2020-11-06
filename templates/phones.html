@@ -1,13 +1,54 @@
 {% extends "base.html" %} {% block content %}
 <section>
-  <div class="container">
+  <div class="container content-container">
     <div class="row no-gutters">
-      <div class="col">
+      <div class="col-10 mx-auto">
         <h1 class="text-center headings">{{ page_title }}</h1>
-        {% for product in products %}
-        <p><a href="{{url_for('review', product_name=product.name)}}">{{product.name}}</a></p>
-        <p>{{product.category}}</p>
-        {% endfor %}
+        {% for product in products %} {% if loop.index != products|length %}
+        <div class="row no-gutters border-bottom">
+          <div class="col-12 col-md-4 col-lg-3">
+            <div class="media">
+              <img
+                src="{{product.image_url}}"
+                alt="{{product.image_alt}}"
+                class="product-images rounded-circle mx-auto mt-4 mb-4"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
+            <div class="media-body">
+              <h5 class="mb-3 text-center text-md-left">
+                <a href="{{url_for('review', product_name=product.name)}}"
+                  >{{product.name}}</a
+                >
+              </h5>
+              {{product.description}}
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="row no-gutters">
+          <div class="col-12 col-md-4 col-lg-3">
+            <div class="media">
+              <img
+                src="{{product.image_url}}"
+                alt="{{product.image_alt}}"
+                class="product-images rounded-circle mx-auto mt-4 mb-4"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
+            <div class="media-body">
+              <h5 class="mb-3 text-center text-md-left">
+                <a href="{{url_for('review', product_name=product.name)}}"
+                  >{{product.name}}</a
+                >
+              </h5>
+              {{product.description}}
+            </div>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
       </div>
     </div>
   </div>
