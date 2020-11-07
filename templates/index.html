@@ -1,67 +1,77 @@
 {% extends "base.html" %} {% block content %}
-<section>
-  <div class="jumbotron">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col">
-          <h1 class="text-center jumbotron-heading">
-            Read reviews for the latest technology products
-          </h1>
-        </div>
+<section class="jumbotron">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="col">
+        <h1 class="text-center jumbotron-heading">
+          Read reviews for the latest technology products
+        </h1>
       </div>
-      <div class="row no-gutters">
-        <div class="col-12 col-md-10 col-lg-8 mx-auto">
-          <form action="{{ url_for('search_results') }}" method="post">
-            <div class="form-row no-gutters">
-              <div class="col-8 col-xl-9">
-                <input
-                  type="text"
-                  class="form-control search h-100"
-                  id="search"
-                  name="search"
-                  placeholder="Enter a product"
-                  aria-describedby="search"
-                />
-              </div>
-              <div class="col-4 col-xl-3">
-                <button type="submit" class="btn btn-green w-100">
-                  Search Reviews
-                </button>
-              </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+        <form action="{{ url_for('search_results') }}" method="post">
+          <div class="form-row no-gutters">
+            <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
+              <input
+                type="text"
+                class="form-control search h-100"
+                id="search"
+                name="search"
+                placeholder="Enter a product"
+                aria-describedby="search"
+              />
             </div>
-          </form>
-        </div>
+            <div class="col-12 col-md-4 col-xl-3">
+              <button type="submit" class="btn btn-green w-100">
+                Search Reviews
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="col-12 mt-5 mb-5">
-        <h2 class="text-center subheadings mb-5">Featured</h2>
-        <div class="row no-gutters">
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="card featured-cards mx-4 mb-5 mb-md-0">
-              <img src="static/images/products/iphone_12_pro.jpg" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h5 class="card-title">iPhone 12 Pro</h5>
-              </div>
+</section>
+<section class="container">
+  <div class="row no-gutters">
+    <div class="col-12 mt-5 mb-5">
+      <h2 class="text-center subheadings mb-5">Featured</h2>
+      <div class="row no-gutters">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card featured-cards mx-4 mb-5 mb-md-0">
+            <img
+              src="static/images/products/iphone_12_pro.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">iPhone 12 Pro</h5>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="card featured-cards mx-4">
-              <img src="static/images/products/samsung_galaxy_s20_plus.jpg" class="card-img-top" alt="..." />
-              <div class="card-body text-center">
-                <h5 class="card-title">Samsung Galaxy S20 Plus</h5>
-              </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card featured-cards mx-4">
+            <img
+              src="static/images/products/samsung_galaxy_s20_plus.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">Samsung Galaxy S20 Plus</h5>
             </div>
           </div>
-          <div class="d-none d-lg-block col-lg-4">
-            <div class="card featured-cards mx-4">
-              <img src="static/images/products/oneplus_8t.jpg" class="card-img-top image-bottom" alt="..." />
-              <div class="card-body text-center">
-                <h5 class="card-title">One Plus 8T</h5>
-              </div>
+        </div>
+        <div class="d-none d-lg-block col-lg-4">
+          <div class="card featured-cards mx-4">
+            <img
+              src="static/images/products/oneplus_8t.jpg"
+              class="card-img-top image-bottom"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">One Plus 8T</h5>
             </div>
           </div>
         </div>

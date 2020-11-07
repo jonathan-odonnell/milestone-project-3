@@ -4,7 +4,7 @@
 }
 
 .subheadings {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 /* Navbar Start */
@@ -88,13 +88,14 @@
   position: relative;
   background-image: url("/static/images/hero-image.jpg");
   background-size: cover;
+  background-position: 70% 100%;
   margin-bottom: 0;
-  margin-top: 70px;
+  margin-top: 68px;
 }
 
 .jumbotron-heading {
   margin-bottom: 3rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #fff;
   line-height: 1.5;
 }
@@ -368,6 +369,12 @@ form {
   .footer-wrapper {
     padding: 30px;
   }
+  .jumbotron {
+      background-position: 50% 100%;
+  }
+  .jumbotron-heading {
+    font-size: 3rem;
+  }
 }
 
 @media (min-width: 992px) {
@@ -381,10 +388,6 @@ form {
 
   .footer-paragraphs {
     margin-top: 20px;
-  }
-
-  .jumbotron {
-    margin-top: 73px;
   }
 }
 
