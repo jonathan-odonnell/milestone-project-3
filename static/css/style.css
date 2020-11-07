@@ -3,6 +3,10 @@
   margin-bottom: 1.5rem;
 }
 
+.subheadings {
+    font-size: 2rem;
+}
+
 /* Navbar Start */
 
 .navbar {
@@ -61,13 +65,13 @@
 /* Search Results Start */
 
 .product-images {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .media-body a:hover {
-    color: #64a19d;
+  color: #64a19d;
 }
 
 /* Search Results End */
@@ -115,6 +119,20 @@
 
 form {
   margin: auto;
+}
+
+.featured-cards {
+  height: 23rem;
+}
+
+.card-img-top {
+  height: 18rem;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.image-bottom {
+  object-position: 50% 65%;
 }
 
 /* Image from https://unsplash.com/photos/c-lUYtNjqxw */
