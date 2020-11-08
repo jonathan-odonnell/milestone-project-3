@@ -23,6 +23,14 @@ def index():
     return render_template("index.html", page_title="Home")
 
 
+@app.route("/newsletter", methods=["GET", "POST"])
+def newsletter():
+    mongo.db.newsletter.insert_one(
+        {"email": request.form.get("newsletter_sign_up")})
+    flash("Thanks for signing up")
+    return render_template("index.html", page_title="Home")
+
+
 @app.route("/search_results", methods=["GET", "POST"])
 def search_results():
     search = request.form.get("search")
