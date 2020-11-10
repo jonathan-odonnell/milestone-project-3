@@ -3,8 +3,12 @@
   margin-bottom: 1.5rem;
 }
 
-.subheadings {
+h2 {
   font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
 }
 
 .subheadings i {
@@ -191,6 +195,21 @@ form {
   font-size: 1rem;
 }
 
+.review-images {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.features-table td {
+  padding: 0 0 1.5rem;
+}
+
+.features-table th {
+  min-width: 200px;
+  padding: 0 0 1.5rem; 
+}
+
 /* Progress Bars end */
 
 /* Add Review form styling start */
@@ -231,6 +250,16 @@ form {
   margin-bottom: 0;
 }
 
+.review-buttons {
+  display: block;
+  float: right;
+}
+
+.review-buttons .btn {
+  width: 0.765625rem;
+  padding: 0 1rem;
+}
+
 .review-btn {
   color: #fff;
   background-color: #64a19d;
@@ -240,6 +269,15 @@ form {
 .review-btn:hover {
   color: #64a19d;
   background-color: #fff;
+}
+
+.rating i {
+  margin-right: 0;
+  padding: 0 0.5rem;
+}
+
+.yellow-star {
+  color: #ffc700;
 }
 
 /* Add Review form styling end */

@@ -61,7 +61,18 @@ def laptops():
 
 @app.route("/review/<product_url>")
 def review(product_url):
-    return render_template("review.html", page_title="page_title")
+    product = list((mongo.db.products.find({"url": product_url})))
+    page_title = product[0]["name"] + " Review"
+    reviews = list((mongo.db.reviews.find(
+        {"product": product[0]["name"]})))
+    # https://stackoverflow.com/questions/16920486/average-of-attribute-in-a-list-of-objects
+    ratings = []
+    ratings.append(int(sum(review["overall_rating"] for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["performance_rating"] for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["battery_rating"] for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["screen_rating"] for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["camera_rating"] for review in reviews) / len(reviews)))
+    return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
 
 
 @app.route("/accessories")
