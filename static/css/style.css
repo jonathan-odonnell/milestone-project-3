@@ -6,6 +6,7 @@
 
 .subheadings {
   margin-bottom: 30px;
+  line-height: 1;
 }
 
 h1 {
@@ -191,7 +192,7 @@ form {
 }
 
 .progress-bars {
-  margin-bottom: 21px;
+  margin-bottom: 30px;
 }
 
 .ratings-text {
@@ -309,6 +310,7 @@ form {
 .review-card {
   border: 1px solid #64a19d;
   background: #f7fcfc;
+  margin-bottom: 30px;
 }
 
 /* Add Review form styling end */
