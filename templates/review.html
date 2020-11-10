@@ -14,7 +14,7 @@
   <div class="container content-container">
     <div class="row no-gutters">
       <div class="col-12">
-        <h2 class="text-left my-4">Features</h2>
+        <h2 class="subheadings">Features</h2>
         <table class="table table-borderless features-table mb-0">
           <tbody>
             {% for feature in product[0].features %} {% if loop.index <
@@ -38,7 +38,7 @@
     <div class="container content-container">
       <div class="row no-gutters">
         <div class="col-12">
-          <h2 class="text-left my-4">Reviews</h2>
+          <h2 class="subheadings">Reviews</h2>
           <div class="row no-gutters mb-4">
             <div class="col-12 col-md-4 col-lg-3">
               <p class="ratings-text">Overall Rating</p>
@@ -119,7 +119,7 @@
           {% for review in reviews %} {% if loop.index < reviews|length %}
           <div class="card review-card mb-4">
             <div class="card-body">
-              <h5 class="mb-4">
+              <h3 class="mb-4">
                 {{review.review_title}} {% if review.overall_rating == 1 %}
                 <i class="fas fa-star yellow-star mx-3"></i>
                 {% elif review.overall_rating == 2 %}
@@ -155,7 +155,7 @@
                   ></a>
                 </div>
                 {% endif %}
-              </h5>
+              </h3>
               <p>{{ review.review }}</p>
               <p class="mb-0"><em>Reviewed By: {{review.created_by}}</em></p>
             </div>
@@ -163,7 +163,7 @@
           {% else %}
           <div class="card review-card">
             <div class="card-body">
-              <h5 class="mb-4">
+              <h3 class="mb-4">
                 {{review.review_title}} {% if review.overall_rating == 1 %}
                 <i class="fas fa-star yellow-star mx-3"></i>
                 {% elif review.overall_rating == 2 %}
@@ -199,7 +199,7 @@
                   ></a>
                 </div>
                 {% endif %}
-              </h5>
+              </h3>
               <p>{{ review.review }}</p>
               <p class="mb-0"><em>Reviewed By: {{review.created_by}}</em></p>
             </div>
