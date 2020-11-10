@@ -207,7 +207,27 @@ form {
 
 .features-table th {
   min-width: 200px;
-  padding: 0 0 1.5rem; 
+  padding: 0 0 1.5rem;
+}
+
+.review-img {
+  height: 65vh;
+  min-height: 300px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  margin-top: 70px;
+  position: relative;
+}
+
+.review-heading {
+  color: #fff;
+  font-size: 3rem;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Progress Bars end */

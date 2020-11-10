@@ -1,11 +1,14 @@
 {% extends "base.html" %} {% block content %}
 <section>
-  <div class="container content-container">
-    <div class="row no-gutters">
-      <div class="col">
-        <h1 class="text-center headings">{{ page_title }}</h1>
+  <div class="container-fluid no-gutters px-0">
+    <div class="row">
+      <div class="col-12 review-img" style="background-image: url('{{product[0].hero_image_url}}')">
+      <div class="overlay"></div>
+        <h1 class="text-center review-heading mb-0">{{page_title}}</h1>
       </div>
     </div>
+  </div>
+  <div class="container content-container">
     <div class="row no-gutters">
       <div class="col-12">
         <table class="table table-borderless features-table mb-0">
@@ -121,8 +124,7 @@
               <i class="fas fa-star yellow-star mx-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
-              ><i class="fas fa-star yellow-star mr-3"></i
-              >
+              ><i class="fas fa-star yellow-star mr-3"></i>
               {% else %}
               <i class="fas fa-star yellow-star mx-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
@@ -153,23 +155,19 @@
           <div class="card-body">
             <h5 class="mb-4">
               {{review.review_title}} {% if review.overall_rating == 1 %}
-              <i class="fas fa-star yellow-star mx-3"></i
-              >
+              <i class="fas fa-star yellow-star mx-3"></i>
               {% elif review.overall_rating == 2 %}
               <i class="fas fa-star yellow-star mx-3"></i
-              ><i class="fas fa-star yellow-star mr-3"></i
-              >
+              ><i class="fas fa-star yellow-star mr-3"></i>
               {% elif review.overall_rating == 3 %}
               <i class="fas fa-star yellow-star mx-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
-              ><i class="fas fa-star yellow-star mr-3"></i
-              >
+              ><i class="fas fa-star yellow-star mr-3"></i>
               {% elif review.overall_rating == 4 %}
               <i class="fas fa-star yellow-star mx-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
-              ><i class="fas fa-star yellow-star mr-3"></i
-              >
+              ><i class="fas fa-star yellow-star mr-3"></i>
               {% else %}
               <i class="fas fa-star yellow-star mx-3"></i
               ><i class="fas fa-star yellow-star mr-3"></i
