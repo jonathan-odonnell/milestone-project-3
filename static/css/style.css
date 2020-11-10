@@ -201,13 +201,8 @@ form {
   object-fit: cover;
 }
 
-.features-table td {
-  padding: 0 0 1.5rem;
-}
-
 .features-table th {
   min-width: 200px;
-  padding: 0 0 1.5rem;
 }
 
 .review-img {
@@ -298,6 +293,11 @@ form {
 
 .yellow-star {
   color: #ffc700;
+}
+
+.review-card {
+    border: 1px solid #64a19d;
+    background: #f7fcfc;
 }
 
 /* Add Review form styling end */
