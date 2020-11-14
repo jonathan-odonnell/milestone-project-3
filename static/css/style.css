@@ -192,7 +192,7 @@ form {
 }
 
 .progress-bars {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .ratings-text {
@@ -313,6 +313,10 @@ form {
   margin-bottom: 30px;
 }
 
+.add-review {
+  margin-bottom: 30px;
+}
+
 /* Add Review form styling end */
 
 /* Rating Stars Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
@@ -358,8 +362,7 @@ form {
 /* Image From https://unsplash.com/photos/V4CU3OBsrEk */
 
 .contact-img {
-    background-image: url('/static/images/contact.jpg')
-
+  background-image: url("/static/images/contact.jpg");
 }
 
 .info-paragraph {

@@ -17,8 +17,7 @@
         <h2 class="subheadings">Features</h2>
         <table class="table table-borderless features-table mb-0">
           <tbody>
-            {% for feature in product[0].features %} {% if loop.index <
-            product[0].features|length %}
+            {% for feature in product[0].features %}
             <tr>
               <th scope="row" class="px-0 pt-0 pb-4">{{feature}}</th>
               <td class="px-0 pt-0 pb-4">{{product[0].features[feature]}}</td>
@@ -28,7 +27,7 @@
               <th scope="row" class="px-0 pt-0 pb-0">{{feature}}</th>
               <td class="px-0 pt-0 pb-0">{{product[0].features[feature]}}</td>
             </tr>
-            {% endif %} {% endfor %}
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -116,6 +115,13 @@
               </div>
             </div>
           </div>
+          {% if session.user %}
+          <div class="row no-gutters">
+            <div class="col-12 add-review">
+              <a class="btn btn-sm btn-green" href="{{url_for('add_review')}}">Add Review</a>
+            </div>
+          </div>
+          {% endif %}
           {% for review in reviews %}
           <div class="card review-card">
             <div class="card-body">
@@ -162,11 +168,6 @@
           </div>
         </div>
         {% endfor %}
-        <div class="row no-gutters">
-          <div class="col-12 text-center">
-            <a class="btn btn-green" href="#">Add Review</a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
