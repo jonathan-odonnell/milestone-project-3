@@ -61,8 +61,11 @@ def laptops():
 
 @app.route("/review/<product_url>")
 def review(product_url):
-    product = list((mongo.db.products.find({"url": product_url})))
+    product = list(mongo.db.products.find({"url": product_url}))
     page_title = product[0]["name"] + " Review"
+    session["product"] = product[0]["name"]
+    #https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
+    session["url"] = request.url
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     # https://stackoverflow.com/questions/16920486/average-of-attribute-in-a-list-of-objects
@@ -165,13 +168,10 @@ def logout():
     return redirect(url_for("sign_in"))
 
 
-@app.route("/reviews/add_review/<product_id>", methods=["GET", "POST"])
+@app.route("/reviews/add_review/<product_id>", methods=["POST"])
 def add_review(product_id):
     if request.method == 'POST':
-        reviews = mongo.db.reviews
-        product = mongo.db.products.find_one(
-            {"_id": ObjectId(product_id)}, {"name": 1, "url": 1})
-        reviews.insert_one(
+        mongo.db.reviews.insert_one(
             {"overall_rating": int(request.form.get("overall_rating")),
              "performance_rating": int(request.form.get("performance_rating")),
              "battery_rating": int(request.form.get("battery_rating")),
@@ -180,9 +180,9 @@ def add_review(product_id):
              "review_title": request.form.get("review_title"),
              "review": request.form.get("review"),
              "created_by": session["user"],
-             "product": product["name"]
+             "product": session["product"]
              })
-        return redirect(url_for("review", product_url=product["url"]))
+        return redirect(session["url"])
     else:
         return render_template("add_review.html", page_title="Add Review", product_id=product_id)
 
@@ -204,7 +204,6 @@ def update_review(review_id):
                     "camera_rating": int(request.form.get("camera_rating")),
                     "review_title": request.form.get("review_title"),
                     "review": request.form.get("review"),
-                    "created_by": session["user"]
                     })
     return redirect(url_for("index"))
 
