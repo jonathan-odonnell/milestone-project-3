@@ -27,21 +27,38 @@
         </div>
       </div>
       <div class="col-12 col-lg-8">
-        <div class="form-group text-center mt-lg-3 mb-0">
-          <input type="text" class="form-control mb-4" placeholder="Name" />
-          <input
-            type="email"
-            class="form-control mb-4"
-            placeholder="Email Address"
-          />
-          <textarea
-            type="text"
-            class="form-control mb-4"
-            rows="5"
-            placeholder="Message"
-          ></textarea>
-          <button type="submit" class="btn btn-green">Send Message</button>
-        </div>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <p class="text-center my-5">{{ message }}</p>
+        {% endfor %} {% else %}
+        <form action="{{ url_for('contact') }}" method="post">
+          <div class="form-group text-center mt-lg-3 mb-0">
+            <input
+              type="text"
+              class="form-control mb-4"
+              name="name"
+              placeholder="Name"
+              required
+            />
+            <input
+              type="email"
+              class="form-control mb-4"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+            <textarea
+              type="text"
+              class="form-control mb-4"
+              name="message"
+              rows="5"
+              placeholder="Message"
+              required
+            ></textarea>
+            <button type="submit" class="btn btn-green">Send Message</button>
+          </div>
+        </form>
+        {% endif %} {% endwith %}
       </div>
     </div>
   </div>

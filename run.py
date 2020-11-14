@@ -67,11 +67,16 @@ def review(product_url):
         {"product": product[0]["name"]})))
     # https://stackoverflow.com/questions/16920486/average-of-attribute-in-a-list-of-objects
     ratings = []
-    ratings.append(int(sum(review["overall_rating"] for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["performance_rating"] for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["battery_rating"] for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["screen_rating"] for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["camera_rating"] for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["overall_rating"]
+                           for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["performance_rating"]
+                           for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["battery_rating"]
+                           for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["screen_rating"]
+                           for review in reviews) / len(reviews)))
+    ratings.append(int(sum(review["camera_rating"]
+                           for review in reviews) / len(reviews)))
     return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
 
 
@@ -82,8 +87,12 @@ def accessories():
     return render_template("accessories.html", page_title="Accessories", products=products)
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        mongo.db.contact.insert_one(
+            {"name": request.form.get("name"), "email": request.form.get("email"), "message": request.form.get("message")})
+        flash("Thank you for your message. A member of the team will be in touch shortly.")
     return render_template("contact.html", page_title="Contact Us")
 
 
