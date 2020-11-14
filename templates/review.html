@@ -118,7 +118,7 @@
           {% if session.user %}
           <div class="row no-gutters">
             <div class="col-12 add-review">
-              <a class="btn btn-sm btn-green" href="{{url_for('add_review')}}">Add Review</a>
+              <a class="btn btn-sm btn-green" href="{{url_for('add_review', product_id=product[0]._id)}}">Add Review</a>
             </div>
           </div>
           {% endif %}
@@ -166,8 +166,8 @@
               <p class="mb-0"><em>Reviewed By: {{review.created_by}}</em></p>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
   </div>

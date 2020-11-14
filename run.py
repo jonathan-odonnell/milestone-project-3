@@ -165,31 +165,32 @@ def logout():
     return redirect(url_for("sign_in"))
 
 
-@app.route("/add_review")
-def add_review():
-    return render_template("add_review.html", page_title="Add Review")
+@app.route("/reviews/add_review/<product_id>", methods=["GET", "POST"])
+def add_review(product_id):
+    if request.method == 'POST':
+        reviews = mongo.db.reviews
+        product = mongo.db.products.find_one(
+            {"_id": ObjectId(product_id)}, {"name": 1, "url": 1})
+        reviews.insert_one(
+            {"overall_rating": int(request.form.get("overall_rating")),
+             "performance_rating": int(request.form.get("performance_rating")),
+             "battery_rating": int(request.form.get("battery_rating")),
+             "screen_rating": int(request.form.get("screen_rating")),
+             "camera_rating": int(request.form.get("camera_rating")),
+             "review_title": request.form.get("review_title"),
+             "review": request.form.get("review"),
+             "created_by": session["user"],
+             "product": product["name"]
+             })
+        return redirect(url_for("review", product_url=product["url"]))
+    else:
+        return render_template("add_review.html", page_title="Add Review", product_id=product_id)
 
 
 @app.route("/edit_review/<review_id>")
 def edit_review(review_id):
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
     return render_template("edit_review.html", page_title="Edit Review", review=review)
-
-
-@app.route("/insert_review", methods=["POST"])
-def insert_review():
-    tasks = mongo.db.reviews
-    tasks.insert_one(
-        {"overall_rating": request.form.get("overall_rating"),
-         "performance_rating": request.form.get("performance_rating"),
-         "battery_rating": request.form.get("battery_rating"),
-         "screen_rating": request.form.get("screen_rating"),
-         "camera_rating": request.form.get("camera_rating"),
-         "review_title": request.form.get("review_title"),
-         "review": request.form.get("review"),
-         "created_by": session["user"]
-         })
-    return redirect(url_for("index"))
 
 
 @app.route("/update_review/<review_id>", methods=["POST"])
