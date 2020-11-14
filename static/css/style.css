@@ -353,6 +353,31 @@ form {
 
 /* Rating Stars End */
 
+/* Contact Form Start */
+
+/* Image From https://unsplash.com/photos/V4CU3OBsrEk */
+
+.contact-img {
+    background-image: url('/static/images/contact.jpg')
+
+}
+
+.info-paragraph {
+  padding-left: 50px;
+  margin-bottom: 0;
+}
+
+.info-icons {
+  padding-right: 30px;
+  min-width: 50px;
+}
+
+.info-item-container {
+  padding: 1rem;
+}
+
+/* Contact Form End */
+
 /* Footer Start */
 
 .footer-wrapper {
@@ -480,6 +505,10 @@ form {
 
   .footer-paragraphs {
     margin-top: 20px;
+  }
+
+  .info-item-container {
+    padding: 1.25rem;
   }
 }
 
