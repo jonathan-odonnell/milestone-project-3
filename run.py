@@ -211,12 +211,8 @@ def update_review(review_id):
 
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 def delete_review(review_id):
-    review = mongo.db.reviews.find_one(
-        {"_id": ObjectId(review_id)}, {"product": 1})
-    product = mongo.db.products.find_one(
-        {"name": review["product"]}, {"url": 1})
-    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
-    return redirect(url_for("review", product_url=product["url"]))
+    mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+    return redirect(request.referrer)
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
