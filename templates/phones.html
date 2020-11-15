@@ -2,8 +2,33 @@
 <section>
   <div class="container content-container">
     <div class="row no-gutters">
-      <div class="col-10 mx-auto">
+      <div class="col-12">
         <h1 class="text-center headings">{{ page_title }}</h1>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+        <form action="{{url_for('phones')}}" method="post">
+          <div class="form-row no-gutters">
+            <div class="col-12 col-md-8 col-xl-9 mb-4">
+              <input
+                type="text"
+                class="form-control newsletter-signup h-100"
+                id="search"
+                name="search"
+                placeholder="Enter a product"
+                aria-describedby="search"
+              />
+            </div>
+            <div class="col-12 col-md-4 col-xl-3 mb-4">
+              <button type="submit" class="btn btn-green w-100">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-10 mx-auto">
         {% for product in products %} {% if loop.index != products|length %}
         <div class="row no-gutters border-bottom">
           <div class="col-12 col-md-4 col-lg-3">
