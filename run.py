@@ -62,10 +62,14 @@ def tablets():
     return render_template("tablets.html", page_title="Tablets", products=products)
 
 
-@app.route("/laptops")
+@app.route("/laptops", methods=["GET", "POST"])
 def laptops():
     products = list(mongo.db.products.find(
         {"category": "laptops"}))
+    if request.method == "POST":
+        session["query"] = request.form.get("search")
+        search = session["query"]
+        products = list(mongo.db.products.find(({"$text": {"$search": search}, "category": "laptops"})))
     return render_template("laptops.html", page_title="Laptops", products=products)
 
 
