@@ -47,10 +47,14 @@ def phones():
     return render_template("phones.html", page_title="Phones", products=products)
 
 
-@app.route("/tablets")
+@app.route("/tablets", methods=["GET", "POST"])
 def tablets():
     products = list(mongo.db.products.find(
         {"category": "tablets"}))
+    if request.method == "POST":
+        session["query"] = request.form.get("search")
+        search = session["query"]
+        products = list(mongo.db.products.find(({"$text": {"$search": search}, "category": "tablets"})))
     return render_template("tablets.html", page_title="Tablets", products=products)
 
 
