@@ -64,7 +64,7 @@ def review(product_url):
     product = list(mongo.db.products.find({"url": product_url}))
     page_title = product[0]["name"] + " Review"
     session["product"] = product[0]["name"]
-    #https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
+    # https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
     session["url"] = request.url
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
@@ -187,25 +187,24 @@ def add_review(product_id):
         return render_template("add_review.html", page_title="Add Review", product_id=product_id)
 
 
-@app.route("/edit_review/<review_id>")
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
-    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-    return render_template("edit_review.html", page_title="Edit Review", review=review)
-
-
-@app.route("/update_review/<review_id>", methods=["POST"])
-def update_review(review_id):
-    reviews = mongo.db.reviews
-    reviews.update({"_id": ObjectId(review_id)},
-                   {"overall_rating": int(request.form.get("overall_rating")),
-                    "performance_rating": int(request.form.get("performance_rating")),
-                    "battery_rating": int(request.form.get("battery_rating")),
-                    "screen_rating": int(request.form.get("screen_rating")),
-                    "camera_rating": int(request.form.get("camera_rating")),
-                    "review_title": request.form.get("review_title"),
-                    "review": request.form.get("review"),
-                    })
-    return redirect(url_for("index"))
+    if request.method == 'POST':
+        mongo.db.reviews.update({"_id": ObjectId(review_id)},
+                                {"overall_rating": int(request.form.get("overall_rating")),
+                                 "performance_rating": int(request.form.get("performance_rating")),
+                                 "battery_rating": int(request.form.get("battery_rating")),
+                                 "screen_rating": int(request.form.get("screen_rating")),
+                                 "camera_rating": int(request.form.get("camera_rating")),
+                                 "review_title": request.form.get("review_title"),
+                                 "review": request.form.get("review"),
+                                 "created_by": session["user"],
+                                 "product": session["product"]
+                                 })
+        return redirect(session["url"])
+    else:
+        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+        return render_template("edit_review.html", page_title="Edit Review", review=review)
 
 
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
