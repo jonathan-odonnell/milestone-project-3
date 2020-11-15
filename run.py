@@ -33,7 +33,9 @@ def newsletter():
 
 @app.route("/search_results", methods=["GET", "POST"])
 def search_results():
-    search = request.form.get("search")
+    if request.method == "POST":
+        session["query"] = request.form.get("search")
+    search = session["query"]
     products = list(mongo.db.products.find(({"$text": {"$search": search}})))
     return render_template("search_results.html", page_title="Search Results", products=products)
 

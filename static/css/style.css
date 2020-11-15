@@ -237,6 +237,18 @@ form {
   transform: translate(-50%, -50%);
 }
 
+.back-link {
+    margin-bottom: 30px;
+}
+
+.back-link a:hover {
+   color: #64a19d;
+}
+
+.back-link i {
+    padding-right: 10px;
+}
+
 /* Progress Bars end */
 
 /* Add Review form styling start */
