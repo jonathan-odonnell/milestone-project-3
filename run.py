@@ -97,10 +97,14 @@ def review(product_url):
     return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
 
 
-@app.route("/accessories")
+@app.route("/accessories", methods=["GET", "POST"])
 def accessories():
     products = list(mongo.db.products.find(
         {"category": "accessories"}))
+    if request.method == "POST":
+        session["query"] = request.form.get("search")
+        search = session["query"]
+        products = list(mongo.db.products.find(({"$text": {"$search": search}, "category": "accessories"})))
     return render_template("accessories.html", page_title="Accessories", products=products)
 
 
