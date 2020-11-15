@@ -168,8 +168,8 @@ def logout():
     return redirect(url_for("sign_in"))
 
 
-@app.route("/reviews/add_review/<product_id>", methods=["POST"])
-def add_review(product_id):
+@app.route("/reviews/add_review/", methods=["GET", "POST"])
+def add_review():
     if request.method == 'POST':
         mongo.db.reviews.insert_one(
             {"overall_rating": int(request.form.get("overall_rating")),
@@ -184,7 +184,7 @@ def add_review(product_id):
              })
         return redirect(session["url"])
     else:
-        return render_template("add_review.html", page_title="Add Review", product_id=product_id)
+        return render_template("add_review.html", page_title="Add Review")
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
