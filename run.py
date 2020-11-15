@@ -33,6 +33,7 @@ def newsletter():
 
 @app.route("/search_results", methods=["GET", "POST"])
 def search_results():
+    session["prev"] = "Search Results"
     if request.method == "POST":
         session["query"] = request.form.get("search")
     search = session["query"]
@@ -42,6 +43,7 @@ def search_results():
 
 @app.route("/phones", methods=["GET", "POST"])
 def phones():
+    session["prev"] = "Phones"
     products = list(mongo.db.products.find(
         {"category": "phones"}))
     if request.method == "POST":
@@ -53,6 +55,7 @@ def phones():
 
 @app.route("/tablets", methods=["GET", "POST"])
 def tablets():
+    session["prev"] = "Tablets"
     products = list(mongo.db.products.find(
         {"category": "tablets"}))
     if request.method == "POST":
@@ -64,6 +67,7 @@ def tablets():
 
 @app.route("/laptops", methods=["GET", "POST"])
 def laptops():
+    session["prev"] = "Laptops"
     products = list(mongo.db.products.find(
         {"category": "laptops"}))
     if request.method == "POST":
@@ -99,6 +103,7 @@ def review(product_url):
 
 @app.route("/accessories", methods=["GET", "POST"])
 def accessories():
+    session["prev"] = "Accessories"
     products = list(mongo.db.products.find(
         {"category": "accessories"}))
     if request.method == "POST":
