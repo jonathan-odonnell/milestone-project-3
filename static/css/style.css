@@ -96,6 +96,10 @@ h3 {
   color: #64a19d;
 }
 
+.pagination {
+    justify-content: center;
+}
+
 /* Search Results End */
 
 /* Jumbortron Start */
