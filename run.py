@@ -50,8 +50,8 @@ def search_results():
     return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/phones", methods=["GET", "POST"])
-def phones():
+@app.route("/<category>", methods=["GET", "POST"])
+def category_search(category):
     session["prev"] = "Phones"
     products = list(mongo.db.products.find(
         {"category": "phones"}))
@@ -67,46 +67,7 @@ def phones():
     pagination_products = products[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
-    return render_template("phones.html", page_title="Phones", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
-@app.route("/tablets", methods=["GET", "POST"])
-def tablets():
-    session["prev"] = "Tablets"
-    products = list(mongo.db.products.find(
-        {"category": "tablets"}))
-    if request.method == "POST":
-        session["query"] = request.form.get("search")
-        search = session["query"]
-        products = list(mongo.db.products.find(
-            ({"$text": {"$search": search}, "category": "tablets"})))
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    total = len(products)
-    pagination_products = products[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("tablets.html", page_title="Tablets", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
-@app.route("/laptops", methods=["GET", "POST"])
-def laptops():
-    session["prev"] = "Laptops"
-    products = list(mongo.db.products.find(
-        {"category": "laptops"}))
-    if request.method == "POST":
-        session["query"] = request.form.get("search")
-        search = session["query"]
-        products = list(mongo.db.products.find(
-            ({"$text": {"$search": search}, "category": "laptops"})))
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    total = len(products)
-    pagination_products = products[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("laptops.html", page_title="Laptops", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
+    return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 @app.route("/review/<product_url>")
 def review(product_url):
@@ -130,25 +91,6 @@ def review(product_url):
     ratings.append(int(sum(review["camera_rating"]
                            for review in reviews) / len(reviews)))
     return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
-
-
-@app.route("/accessories", methods=["GET", "POST"])
-def accessories():
-    session["prev"] = "Accessories"
-    products = list(mongo.db.products.find(
-        {"category": "accessories"}))
-    if request.method == "POST":
-        session["query"] = request.form.get("search")
-        search = session["query"]
-        products = list(mongo.db.products.find(
-            ({"$text": {"$search": search}, "category": "accessories"})))
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    total = len(products)
-    pagination_products = products[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("accessories.html", page_title="Accessories", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/contact", methods=["GET", "POST"])
