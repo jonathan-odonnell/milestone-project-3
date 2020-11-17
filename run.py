@@ -18,6 +18,16 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+def paginate_products(products, offset, per_page):
+    return products[offset: offset + per_page]
+
+
+def paginate(products, page, per_page):
+    total = len(products)
+    return Pagination(page=page, per_page=per_page, total=total,
+                      css_framework='bootstrap4')
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -37,16 +47,37 @@ def search_results():
     session["prev"] = "Search Results"
     if request.method == "POST":
         session["query"] = request.form.get("search")
+    products = list(mongo.db.products.find(
+            {"$text": {"$search": session["query"]}}).sort("name", 1))
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
+    return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
+
+@app.route("/sort_by/<criteria>")
+def sort_by(criteria):
     search = session["query"]
+    if criteria == 'a-to-z':
+        products = list(mongo.db.products.find(
+            {"$text": {"$search": search}}).sort("name", 1))
+    elif criteria == 'z-to-a':
+        products = list(mongo.db.products.find(
+            {"$text": {"$search": search}}).sort("name", -1))
+    elif criteria == 'date-added':
+        products = list(mongo.db.products.find({"$text": {"$search": search}}).sort(
+            [("date_added", -1), ("name", 1)]))
+    elif criteria == 'price':
+        products = list(mongo.db.products.find({"$text": {"$search": search}}).sort(
+            [("price", 1), ("name", 1)]))
 
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
 
-    products = list(mongo.db.products.find(({"$text": {"$search": search}})))
-    total = len(products)
-    pagination_products = products[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
     return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
@@ -68,6 +99,7 @@ def category_search(category):
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
     return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
 
 @app.route("/review/<product_url>")
 def review(product_url):

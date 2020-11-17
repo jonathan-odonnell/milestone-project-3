@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+      <div class="col-12 col-md-10 col-lg-8 col-lg-10 mx-auto">
         <form action="{{url_for('search_results')}}" method="post">
           <div class="form-row no-gutters">
             <div class="col-12 col-md-8 col-xl-9 mb-4">
@@ -28,7 +28,23 @@
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-10 mx-auto">
+      <div class="col-12 col-md-10 mx-auto mb-4">
+        <a class="btn btn-sm btn-secondary" href="{{url_for('sort_by', criteria='a-to-z')}}" role="button">
+          <i class="fas fa-sort-alpha-down"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('sort_by', criteria='z-to-a')}}" role="button">
+          <i class="fas fa-sort-alpha-up"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('sort_by', criteria='date-added')}}" role="button">
+          <i class="far fa-calendar-alt"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('sort_by', criteria='price')}}" role="button">
+          <i class="fas fa-pound-sign"></i>
+        </a>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 col-md-10 mx-auto">
         {% for product in products %} {% if loop.index != products|length %}
         <div class="row no-gutters border-bottom">
           <div class="col-12 col-md-4 col-lg-3">
@@ -73,8 +89,7 @@
             </div>
           </div>
         </div>
-        {% endif %} {% endfor %}
-        {{ pagination.links }}
+        {% endif %} {% endfor %} {{ pagination.links }}
       </div>
     </div>
   </div>
