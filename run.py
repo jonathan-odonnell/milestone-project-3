@@ -42,11 +42,10 @@ def newsletter():
     return render_template("index.html", page_title="Home")
 
 
-@app.route("/search_results", methods=["GET", "POST"])
+@app.route("/search_results")
 def search_results():
     session["prev"] = "Search Results"
-    if request.method == "POST":
-        session["query"] = request.form.get("search")
+    session["query"] = request.args.get("search")
     products = list(mongo.db.products.find(
         {"$text": {"$search": session["query"]}}).sort("name", 1))
     page, per_page, offset = get_page_args(page_parameter='page',
@@ -59,18 +58,17 @@ def search_results():
 
 @app.route("/search_results/sort_by/<criteria>")
 def sort_by(criteria):
-    search = session["query"]
     if criteria == 'a-to-z':
         products = list(mongo.db.products.find(
-            {"$text": {"$search": search}}).sort("name", 1))
+            {"$text": {"$search": session["query"]}}).sort("name", 1))
     elif criteria == 'z-to-a':
         products = list(mongo.db.products.find(
-            {"$text": {"$search": search}}).sort("name", -1))
+            {"$text": {"$search": session["query"]}}).sort("name", -1))
     elif criteria == 'date-added':
-        products = list(mongo.db.products.find({"$text": {"$search": search}}).sort(
+        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
             [("date_added", -1), ("name", 1)]))
     elif criteria == 'price':
-        products = list(mongo.db.products.find({"$text": {"$search": search}}).sort(
+        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
             [("price", 1), ("name", 1)]))
 
     page, per_page, offset = get_page_args(page_parameter='page',
