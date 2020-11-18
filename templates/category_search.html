@@ -8,7 +8,7 @@
     </div>
     <div class="row no-gutters">
       <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <form action="{{ url_for('category_search', category='phones') }}" method="post">
+        <form action="{{ url_for('category_search', category='phones') }}" method="GET">
           <div class="form-row no-gutters">
             <div class="col-12 col-md-8 col-xl-9 mb-4">
               <input
@@ -25,6 +25,22 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 col-md-10 mx-auto mb-4">
+        <a class="btn btn-sm btn-secondary" href="{{url_for('category_sort_by', category=page_title, criteria='a-to-z')}}" role="button">
+          <i class="fas fa-sort-alpha-down"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('category_sort_by', category=page_title, criteria='z-to-a')}}" role="button">
+          <i class="fas fa-sort-alpha-up"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('category_sort_by', category=page_title, criteria='date-added')}}" role="button">
+          <i class="far fa-calendar-alt"></i>
+        </a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('category_sort_by', category=page_title, criteria='price')}}" role="button">
+          <i class="fas fa-pound-sign"></i>
+        </a>
       </div>
     </div>
     <div class="row no-gutters">

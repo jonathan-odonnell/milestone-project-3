@@ -48,7 +48,7 @@ def search_results():
     if request.method == "POST":
         session["query"] = request.form.get("search")
     products = list(mongo.db.products.find(
-            {"$text": {"$search": session["query"]}}).sort("name", 1))
+        {"$text": {"$search": session["query"]}}).sort("name", 1))
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
     pagination_products = paginate_products(products, offset, per_page)
@@ -57,7 +57,7 @@ def search_results():
     return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/sort_by/<criteria>")
+@app.route("/search_results/sort_by/<criteria>")
 def sort_by(criteria):
     search = session["query"]
     if criteria == 'a-to-z':
@@ -81,23 +81,62 @@ def sort_by(criteria):
     return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/<category>", methods=["GET", "POST"])
+@app.route("/<category>")
 def category_search(category):
-    session["prev"] = "Phones"
-    products = list(mongo.db.products.find(
-        {"category": "phones"}))
-    if request.method == "POST":
-        session["query"] = request.form.get("search")
-        search = session["query"]
+    session["prev"] = category.capitalize()
+    search = request.args.get("search")
+    if search:
+        session["query"] = search
         products = list(mongo.db.products.find(
-            ({"$text": {"$search": search}, "category": "phones"})))
+            ({"$text": {"$search": session["query"]}, "category": category})))
+
+    else:
+        session["query"] = None
+        products = list(mongo.db.products.find({"category": category}))
 
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
-    total = len(products)
-    pagination_products = products[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
+    return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
+
+@app.route("/<category>/sort_by/<criteria>")
+def category_sort_by(category, criteria):
+    if session["query"]:
+        if criteria == 'a-to-z':
+            products = list(mongo.db.products.find(
+                {"$text": {"$search": session["query"]}, "category": category}).sort("name", 1))
+        elif criteria == 'z-to-a':
+            products = list(mongo.db.products.find(
+                {"$text": {"$search": session["query"]}, "category": category}).sort("name", -1))
+        elif criteria == 'date-added':
+            products = list(mongo.db.products.find({"$text": {"$search": session["query"]}, "category": category}).sort(
+                [("date_added", -1), ("name", 1)]))
+        elif criteria == 'price':
+            products = list(mongo.db.products.find({"$text": {"$search": session["query"]}, "category": category}).sort(
+                [("price", 1), ("name", 1)]))
+
+    else:
+        if criteria == 'a-to-z':
+            products = list(mongo.db.products.find(
+                {"category": category}).sort("name", 1))
+        elif criteria == 'z-to-a':
+            products = list(mongo.db.products.find(
+                {"category": category}).sort("name", -1))
+        elif criteria == 'date-added':
+            products = list(mongo.db.products.find({"category": category}).sort(
+                [("date_added", -1), ("name", 1)]))
+        elif criteria == 'price':
+            products = list(mongo.db.products.find({"category": category}).sort(
+                [("price", 1), ("name", 1)]))
+
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
     return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
