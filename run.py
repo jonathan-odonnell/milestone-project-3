@@ -28,6 +28,64 @@ def paginate(products, page, per_page):
                       css_framework='bootstrap4')
 
 
+def getPriceRange(category, value):
+    if category == "phones":
+        if value == 1:
+            query = {"$gte": 0, "$lte": 500}
+            return query
+        elif value == 2:
+            query = {"$gte": 500, "$lte": 750}
+            return query
+        elif value == 3:
+            query = {"$gte": 750, "$lte": 1000}
+            return query
+        elif value == 4:
+            query = {"$gte": 1000}
+            return query
+    if category == "tablets":
+        if value == 1:
+            query = {"$gte": 0, "$lte": 500}
+            return query
+        elif value == 2:
+            query = {"$gte": 500, "$lte": 750}
+            return query
+        elif value == 3:
+            query = {"$gte": 750, "$lte": 1000}
+            return query
+        elif value == 4:
+            query = {"$gte": 1000}
+            return query
+    if category == "laptops":
+        if value == 1:
+            query = {"$gte": 0, "$lte": 750}
+            return query
+        elif value == 2:
+            query = {"$gte": 750, "$lte": 1000}
+            return query
+        elif value == 3:
+            query = {"$gte": 1000, "$lte": 1250}
+            return query
+        elif value == 4:
+            query = {"$gte": 1250, "$lte": 1500}
+            return query
+        elif value == 5:
+            query = {"$gte": 1500}
+            return query
+    if category == "accessories":
+        if value == 1:
+            query = {"$gte": 0, "$lte": 200}
+            return query
+        elif value == 2:
+            query = {"$gte": 200, "$lte": 300}
+            return query
+        elif value == 3:
+            query = {"$gte": 300, "$lte": 400}
+            return query
+        elif value == 4:
+            query = {"$gte": 400}
+            return query
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -83,6 +141,7 @@ def sort_by(criteria):
 def category_search(category):
     session["prev"] = category.capitalize()
     search = request.args.get("search")
+    filters = list(mongo.db.categories.find({"name": category}))
     if search:
         session["query"] = search
         products = list(mongo.db.products.find(
@@ -97,7 +156,7 @@ def category_search(category):
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("category_search.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/<category>/sort_by/<criteria>")
@@ -136,6 +195,33 @@ def category_sort_by(category, criteria):
     pagination = paginate(products, page, per_page)
 
     return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
+
+@app.route("/<category>/filter", methods=["GET", "POST"])
+def filter(category):
+    filters = list(mongo.db.categories.find({"name": category}))
+    # https://stackoverflow.com/questions/26717113/query-to-filter-multiple-elements-from-the-array-in-results
+    # https://stackoverflow.com/questions/53344797/how-create-an-array-with-checkboxes-in-flask
+    brands = request.args.getlist("selected-brands")
+    price = request.args.get("selected-prices")
+    if price and not brands:
+        price = int(price)
+        products = list(mongo.db.products.find({"price": getPriceRange(category, price),
+                                            "category": category}))
+
+    elif brands and not price:
+        products = list(mongo.db.products.find({"brand": {"$in": brands}, "category": category}))
+
+    else:
+        price = int(price)
+        products = list(mongo.db.products.find({"brand": {"$in": brands}, "price": getPriceRange(category, price),
+                                            "category": category}))
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
+    return render_template("category_search.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination, selected_brands=brands, selected_price=price)
 
 
 @app.route("/review/<product_url>")
