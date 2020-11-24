@@ -100,8 +100,8 @@ def newsletter():
     return render_template("index.html", page_title="Home")
 
 
-@app.route("/search_results")
-def search_results():
+@app.route("/reviews")
+def reviews():
     session["prev"] = "Search Results"
     session["query"] = request.args.get("search")
     products = list(mongo.db.products.find(
@@ -111,7 +111,29 @@ def search_results():
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
+
+@app.route("/reviews/<category>")
+def category_reviews(category):
+    session["prev"] = category.capitalize()
+    search = request.args.get("search")
+    filters = list(mongo.db.categories.find({"name": category}))
+    if search:
+        session["query"] = search
+        products = list(mongo.db.products.find(
+            ({"$text": {"$search": session["query"]}, "category": category})))
+
+    else:
+        session["query"] = None
+        products = list(mongo.db.products.find({"category": category}))
+
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
+    return render_template("category_reviews.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/search_results/sort_by/<criteria>")
@@ -134,29 +156,7 @@ def sort_by(criteria):
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("search_results.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
-@app.route("/<category>")
-def category_search(category):
-    session["prev"] = category.capitalize()
-    search = request.args.get("search")
-    filters = list(mongo.db.categories.find({"name": category}))
-    if search:
-        session["query"] = search
-        products = list(mongo.db.products.find(
-            ({"$text": {"$search": session["query"]}, "category": category})))
-
-    else:
-        session["query"] = None
-        products = list(mongo.db.products.find({"category": category}))
-
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-
-    return render_template("category_search.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/<category>/sort_by/<criteria>")
@@ -194,10 +194,10 @@ def category_sort_by(category, criteria):
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("category_search.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("category_reviews.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/<category>/filter", methods=["GET", "POST"])
+@app.route("/reviews/<category>/filter")
 def filter(category):
     filters = list(mongo.db.categories.find({"name": category}))
     # https://stackoverflow.com/questions/26717113/query-to-filter-multiple-elements-from-the-array-in-results
@@ -207,21 +207,22 @@ def filter(category):
     if price and not brands:
         price = int(price)
         products = list(mongo.db.products.find({"price": getPriceRange(category, price),
-                                            "category": category}))
+                                                "category": category}))
 
     elif brands and not price:
-        products = list(mongo.db.products.find({"brand": {"$in": brands}, "category": category}))
+        products = list(mongo.db.products.find(
+            {"brand": {"$in": brands}, "category": category}))
 
     else:
         price = int(price)
         products = list(mongo.db.products.find({"brand": {"$in": brands}, "price": getPriceRange(category, price),
-                                            "category": category}))
+                                                "category": category}))
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("category_search.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination, selected_brands=brands, selected_price=price)
+    return render_template("category_reviews.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination, selected_brands=brands, selected_price=price)
 
 
 @app.route("/review/<product_url>")

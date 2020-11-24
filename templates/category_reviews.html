@@ -8,7 +8,7 @@
     </div>
     <div class="row no-gutters">
       <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <form action="{{ url_for('category_search', category='phones') }}" method="GET">
+        <form action="{{ url_for('category_reviews', category=page_title) }}" method="GET">
           <div class="form-row no-gutters">
             <div class="col-12 col-md-8 col-xl-9 mb-4">
               <input type="text" class="form-control newsletter-signup h-100" id="search" name="search"
