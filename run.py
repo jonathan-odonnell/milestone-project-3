@@ -28,6 +28,21 @@ def paginate(products, page, per_page):
                       css_framework='bootstrap4')
 
 
+def sortItems(sort):
+    if sort == "a-to-z":
+        sortQuery = {"name": 1}
+        return sortQuery
+    elif sort == "z-to-a":
+        sortQuery = {"name": -1}
+        return sortQuery
+    elif sort == "date-added":
+        sortQuery = {"date": -1, "name": 1}
+        return sortQuery
+    elif sort == "price":
+        sortQuery = {"price": -1, "name": 1}
+        return sortQuery
+
+
 def getPriceRange(category, value):
     if category == "phones":
         if value == 1:
@@ -119,21 +134,48 @@ def category_reviews(category):
     session["prev"] = category.capitalize()
     search = request.args.get("search")
     filters = list(mongo.db.categories.find({"name": category}))
-    if search:
-        session["query"] = search
-        products = list(mongo.db.products.find(
-            ({"$text": {"$search": session["query"]}, "category": category})))
+    brands = request.args.get("brands")
+    price = request.args.get("price")
+    sortBy = request.args.get("sort")
+    query = []
 
-    else:
-        session["query"] = None
-        products = list(mongo.db.products.find({"category": category}))
+    if search:
+        query.append(
+            {"$match": {"$text": {"$search": search}, "category": category}})
+
+    elif not search:
+        query.append(
+            {"$match": {"category": category}})
+
+    if sortBy:
+        sortQuery = sortItems(sortBy)
+        query.append({"$sort": sortQuery})
+
+    elif not sortBy:
+        query.append({"$sort": {"name": 1}})
+
+    if brands:
+        brands = brands.split(",")
+
+        if len(brands) == 1:
+            query[0]["$match"]["brand"] = brands[0]
+
+        else:
+            query[0]["$match"]["brand"] = {"$in": brands}
+
+    if price:
+        price = int(price)
+        price_Query = getPriceRange(category, price)
+        query[0]["$match"]["price"] = price_Query
+
+    products = list(mongo.db.products.aggregate(query))
 
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("category_reviews.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("category_reviews.html", page_title=category, filters=filters, selected_brands=brands, selected_price=price, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/search_results/sort_by/<criteria>")
@@ -159,73 +201,7 @@ def sort_by(criteria):
     return render_template("reviews.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/<category>/sort_by/<criteria>")
-def category_sort_by(category, criteria):
-    if session["query"]:
-        if criteria == 'a-to-z':
-            products = list(mongo.db.products.find(
-                {"$text": {"$search": session["query"]}, "category": category}).sort("name", 1))
-        elif criteria == 'z-to-a':
-            products = list(mongo.db.products.find(
-                {"$text": {"$search": session["query"]}, "category": category}).sort("name", -1))
-        elif criteria == 'date-added':
-            products = list(mongo.db.products.find({"$text": {"$search": session["query"]}, "category": category}).sort(
-                [("date_added", -1), ("name", 1)]))
-        elif criteria == 'price':
-            products = list(mongo.db.products.find({"$text": {"$search": session["query"]}, "category": category}).sort(
-                [("price", 1), ("name", 1)]))
-
-    else:
-        if criteria == 'a-to-z':
-            products = list(mongo.db.products.find(
-                {"category": category}).sort("name", 1))
-        elif criteria == 'z-to-a':
-            products = list(mongo.db.products.find(
-                {"category": category}).sort("name", -1))
-        elif criteria == 'date-added':
-            products = list(mongo.db.products.find({"category": category}).sort(
-                [("date_added", -1), ("name", 1)]))
-        elif criteria == 'price':
-            products = list(mongo.db.products.find({"category": category}).sort(
-                [("price", 1), ("name", 1)]))
-
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-
-    return render_template("category_reviews.html", page_title=category, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
-@app.route("/reviews/<category>/filter")
-def filter(category):
-    filters = list(mongo.db.categories.find({"name": category}))
-    # https://stackoverflow.com/questions/26717113/query-to-filter-multiple-elements-from-the-array-in-results
-    # https://stackoverflow.com/questions/53344797/how-create-an-array-with-checkboxes-in-flask
-    brands = request.args.getlist("selected-brands")
-    price = request.args.get("selected-prices")
-    if price and not brands:
-        price = int(price)
-        products = list(mongo.db.products.find({"price": getPriceRange(category, price),
-                                                "category": category}))
-
-    elif brands and not price:
-        products = list(mongo.db.products.find(
-            {"brand": {"$in": brands}, "category": category}))
-
-    else:
-        price = int(price)
-        products = list(mongo.db.products.find({"brand": {"$in": brands}, "price": getPriceRange(category, price),
-                                                "category": category}))
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-
-    return render_template("category_reviews.html", page_title=category, filters=filters, products=pagination_products, page=page, per_page=per_page, pagination=pagination, selected_brands=brands, selected_price=price)
-
-
-@app.route("/review/<product_url>")
+@ app.route("/review/<product_url>")
 def review(product_url):
     product = list(mongo.db.products.find({"url": product_url}))
     page_title = product[0]["name"] + " Review"
@@ -249,7 +225,7 @@ def review(product_url):
     return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
 
 
-@app.route("/contact", methods=["GET", "POST"])
+@ app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
         mongo.db.contact.insert_one(
@@ -258,7 +234,7 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
-@app.route("/sign_in", methods=["GET", "POST"])
+@ app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
@@ -279,7 +255,7 @@ def sign_in():
     return render_template("sign_in.html", page_title="Sign In")
 
 
-@app.route("/sign_up", methods=["GET", "POST"])
+@ app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
@@ -308,7 +284,7 @@ def sign_up():
     return render_template("sign_up.html", page_title="Sign Up")
 
 
-@app.route("/profile/<first_name>", methods=["GET", "POST"])
+@ app.route("/profile/<first_name>", methods=["GET", "POST"])
 def profile(first_name):
     first_name = session["user"]
 
@@ -320,14 +296,14 @@ def profile(first_name):
     return redirect(url_for("sign_in"))
 
 
-@app.route("/logout")
+@ app.route("/logout")
 def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("sign_in"))
 
 
-@app.route("/reviews/add_review/", methods=["GET", "POST"])
+@ app.route("/reviews/add_review/", methods=["GET", "POST"])
 def add_review():
     if request.method == 'POST':
         mongo.db.reviews.insert_one(
@@ -346,7 +322,7 @@ def add_review():
         return render_template("add_review.html", page_title="Add Review")
 
 
-@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     if request.method == 'POST':
         mongo.db.reviews.update({"_id": ObjectId(review_id)},
@@ -366,7 +342,7 @@ def edit_review(review_id):
         return render_template("edit_review.html", page_title="Edit Review", review=review)
 
 
-@app.route("/delete_review/<review_id>", methods=["GET", "POST"])
+@ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 def delete_review(review_id):
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
     return redirect(request.referrer)

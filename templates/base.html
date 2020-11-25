@@ -302,5 +302,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
     <script src="{{url_for('static', filename='js/scripts.js')}}">
     </script>
+    {% block postloadjs %}
+    {% endblock %}
   </body>
 </html>

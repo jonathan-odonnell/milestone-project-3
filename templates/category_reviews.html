@@ -8,11 +8,20 @@
     </div>
     <div class="row no-gutters">
       <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <form action="{{ url_for('category_reviews', category=page_title) }}" method="GET">
+        <form
+          action="{{ url_for('category_reviews', category=page_title) }}"
+          method="GET"
+        >
           <div class="form-row no-gutters">
             <div class="col-12 col-md-8 col-xl-9 mb-4">
-              <input type="text" class="form-control newsletter-signup h-100" id="search" name="search"
-                placeholder="Enter a product" aria-describedby="search" />
+              <input
+                type="text"
+                class="form-control newsletter-signup h-100"
+                id="search"
+                name="search"
+                placeholder="Enter a product"
+                aria-describedby="search"
+              />
             </div>
             <div class="col-12 col-md-4 col-xl-3 mb-4">
               <button type="submit" class="btn btn-green w-100">Search</button>
@@ -22,83 +31,119 @@
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 col-lg-9 ml-auto mb-4">
-        <a class="btn btn-sm btn-secondary"
-          href="{{url_for('category_sort_by', category=page_title, criteria='a-to-z')}}" role="button">
+      <div id="sort" class="col-12 col-lg-9 ml-auto mb-4">
+        <button class="btn btn-sm btn-secondary" value="a-to-z" role="button">
           <i class="fas fa-sort-alpha-down"></i>
-        </a>
-        <a class="btn btn-sm btn-secondary"
-          href="{{url_for('category_sort_by', category=page_title, criteria='z-to-a')}}" role="button">
+        </button>
+        <button class="btn btn-sm btn-secondary" value="z-to-a" role="button">
           <i class="fas fa-sort-alpha-up"></i>
-        </a>
-        <a class="btn btn-sm btn-secondary"
-          href="{{url_for('category_sort_by', category=page_title, criteria='date-added')}}" role="button">
+        </button>
+        <button
+          class="btn btn-sm btn-secondary"
+          value="date-added"
+          role="button"
+        >
           <i class="far fa-calendar-alt"></i>
-        </a>
-        <a class="btn btn-sm btn-secondary"
-          href="{{url_for('category_sort_by', category=page_title, criteria='price')}}" role="button">
+        </button>
+        <button class="btn btn-sm btn-secondary" value="price" role="button">
           <i class="fas fa-pound-sign"></i>
-        </a>
+        </button>
       </div>
     </div>
     <div class="row no-gutters">
       <div class="col-12 col-lg-3">
-        <form action="{{url_for('filter', category=page_title)}}" method="GET" class="content-container">
+        <div class="content-container py-0">
           <div class="form-group mb-4">
             <h3 class="text-capitalize mb-3">Brand</h3>
             {% for brand in filters[0].brands %}
             <div class="custom-control custom-checkbox mb-2">
-              {% if brand in selected_brands %}<input type="checkbox" class="custom-control-input"
-                id="brand{{loop.index}}" value="{{brand}}" name="selected-brands" checked />
-              {% else %}
-              <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}"
-                name="selected-brands" />
-              {% endif %}
+              {% if selected_brands %} {% if brand in selected_brands %}
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="brand{{loop.index}}"
+                value="{{brand}}"
+                name="brands"
+                checked
+              />
+              {% endif %}{% endif %}
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="brand{{loop.index}}"
+                value="{{brand}}"
+                name="brands"
+              />
               {% if brand != "hp" %}
-              <label class="custom-control-label" for="brand{{loop.index}}">{{brand.capitalize()}}</label>
+              <label class="custom-control-label" for="brand{{loop.index}}"
+                >{{brand.capitalize()}}</label
+              >
               {% else %}
               <!--Title code is from https://stackoverflow.com/questions/1549641/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-->
-              <label class="custom-control-label" for="brand{{loop.index}}">{{brand.title()}}</label>
+              <label class="custom-control-label" for="brand{{loop.index}}"
+                >{{brand.title()}}</label
+              >
               {% endif %}
             </div>
             {% endfor %}
           </div>
           <div class="form-group mb-4">
-            <h3 class="text-capitalize mb-3">Price</h3>
+            <h3 class="text-capitalize mb-3">Prices</h3>
             {% for price in filters[0].prices %}
             <div class="custom-control custom-radio mb-2">
-              {% if selected_price == loop.index %}
-              <input type="radio" class="custom-control-input" id="price{{loop.index}}" value="{{loop.index}}"
-                name="selected-prices" checked>
-              {% else %}
-              <input type="radio" class="custom-control-input" id="price{{loop.index}}" value="{{loop.index}}"
-                name="selected-prices">
-              {% endif %}
-              <label class="custom-control-label" for="price{{loop.index}}">{{price.capitalize()}}</label>
+              {% if selected_price %} {% if loop.index == selected_price %}
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="price{{loop.index}}"
+                value="{{loop.index}}"
+                name="price"
+                checked
+              />
+              {% endif %}{% endif %}
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="price{{loop.index}}"
+                value="{{loop.index}}"
+                name="price"
+              />
+              <label class="custom-control-label" for="price{{loop.index}}"
+                >{{price.capitalize()}}</label
+              >
             </div>
-            {% endfor%}
+            {% endfor %}
           </div>
-          <button type="submit" class="btn btn-sm btn-green w-100 mb-4">
+          <button id="filter" class="btn btn-sm btn-green w-100 mb-4">
             Apply
           </button>
-          <a href="#" class="btn btn-sm btn-green w-100">
+          <button
+            id="clear-filters"
+            class="btn btn-sm btn-green w-100"
+            role="button"
+          >
             Clear filters
-          </a>
-        </form>
+          </button>
+        </div>
       </div>
       <div class="col-12 col-lg-9">
         {% for product in products %} {% if loop.index != products|length %}
         <div class="row no-gutters border-bottom">
           <div class="col-12 col-md-4 col-lg-3">
             <div class="media">
-              <img src="{{product.image_url}}" alt="{{product.image_alt}}"
-                class="product-images rounded-circle mx-auto mt-4 mb-4" />
+              <img
+                src="{{product.image_url}}"
+                alt="{{product.image_alt}}"
+                class="product-images rounded-circle mx-auto mt-4 mb-4"
+              />
             </div>
           </div>
           <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
             <div class="media-body">
               <h3 class="mb-3 text-center text-md-left">
-                <a href="{{url_for('review', product_url=product.url)}}">{{product.name}}</a>
+                <a href="{{url_for('review', product_url=product.url)}}"
+                  >{{product.name}}</a
+                >
               </h3>
               {{product.description}}
             </div>
@@ -108,14 +153,19 @@
         <div class="row no-gutters">
           <div class="col-12 col-md-4 col-lg-3">
             <div class="media">
-              <img src="{{product.image_url}}" alt="{{product.image_alt}}"
-                class="product-images rounded-circle mx-auto mt-4 mb-4" />
+              <img
+                src="{{product.image_url}}"
+                alt="{{product.image_alt}}"
+                class="product-images rounded-circle mx-auto mt-4 mb-4"
+              />
             </div>
           </div>
           <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
             <div class="media-body">
               <h3 class="mb-3 text-center text-md-left">
-                <a href="{{url_for('review', product_url=product.url)}}">{{product.name}}</a>
+                <a href="{{url_for('review', product_url=product.url)}}"
+                  >{{product.name}}</a
+                >
               </h3>
               {{product.description}}
             </div>
@@ -126,4 +176,6 @@
     </div>
   </div>
 </section>
+{% endblock %} {% block postloadjs %}
+<script src="{{url_for('static', filename='js/sort-by.js')}}"></script>
 {% endblock %}
