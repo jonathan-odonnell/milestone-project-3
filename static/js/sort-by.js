@@ -10,17 +10,19 @@ $("#sort")
 $("#filter").on("click", function () {
   let currentUrl = new URL(window.location);
   let selectedBrands = [];
-  $("input[name='brands']:checked").each(function (i) {
+  $("input[name='brands']:checked").each(function () {
     selectedBrands.push($(this).val());
   });
   let brands = selectedBrands.join(",");
   if (brands) {
     currentUrl.searchParams.set("brands", brands);
+  } else {
+    currentUrl.searchParams.delete("brands");
   }
   let price = $("input:radio:checked").val();
   if (price) {
     currentUrl.searchParams.set("price", price);
-  }
+  } 
   window.location.replace(currentUrl);
 });
 
