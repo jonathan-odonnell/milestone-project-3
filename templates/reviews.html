@@ -38,8 +38,7 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") ==
-            "z-to-a" %}
+            {% if request.args.get("sort") == "z-to-a" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="z-to-a"
@@ -58,8 +57,7 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") ==
-            "date-added" %}
+            {% if request.args.get("sort") == "date-added" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="date-added"
@@ -78,8 +76,7 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") ==
-            "price" %}
+            {% if request.args.get("sort") == "price" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="price"
@@ -103,17 +100,13 @@
     <div class="row no-gutters">
       <div class="col-12 col-lg-3">
         <div class="content-container py-0">
-          {% if page_title.lower() == "phones" %}
-            {% include 'includes/phones.html' %}
-          {% elif page_title.lower() == "tablets" %}
-            {% include 'includes/tablets.html' %}
-          {% elif page_title.lower() == "laptops" %}
-            {% include 'includes/laptops.html' %}
-          {% elif page_title.lower() == "accessories" %}
-            {% include 'includes/accessories.html' %}
-          {% else %} 
-            {% include 'includes/search.html'  %}
-          {% endif %}
+          {% if page_title.lower() == "phones" %} {% include
+          'includes/phones.html' %} {% elif page_title.lower() == "tablets" %}
+          {% include 'includes/tablets.html' %} {% elif page_title.lower() ==
+          "laptops" %} {% include 'includes/laptops.html' %} {% elif
+          page_title.lower() == "accessories" %} {% include
+          'includes/accessories.html' %} {% else %} {% include
+          'includes/search.html' %} {% endif %}
           <button id="filter" class="btn btn-sm btn-green w-100 mb-4">
             Apply
           </button>
@@ -171,8 +164,11 @@
             </div>
           </div>
         </div>
-        {% endif %} {% endfor %} {{ pagination.links }}
+        {% endif %} {% endfor %}
       </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 col-md-8 offset-md-4">{{ pagination.links }}</div>
     </div>
   </div>
 </section>
