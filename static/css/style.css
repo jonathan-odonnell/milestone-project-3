@@ -97,7 +97,7 @@ h3 {
 }
 
 .pagination {
-    justify-content: center;
+  justify-content: center;
 }
 
 /* Search Results End */
@@ -138,6 +138,14 @@ h3 {
 }
 
 /* Jumbotron End */
+
+/* Reviews Pages Start */
+
+.sort-active {
+  background-color: #e6e6e6;
+}
+
+/* Reviews Pages End */
 
 .content-container {
   padding: 30px;
@@ -242,15 +250,15 @@ form {
 }
 
 .back-link {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .back-link a:hover {
-   color: #64a19d;
+  color: #64a19d;
 }
 
 .back-link i {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 /* Progress Bars end */

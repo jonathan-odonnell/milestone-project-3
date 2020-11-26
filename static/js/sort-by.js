@@ -1,11 +1,9 @@
-$("#sort")
-  .children(".btn")
-  .on("click", function () {
-    let currentUrl = new URL(window.location);
-    let sort = $(this).val();
-    currentUrl.searchParams.set("sort", sort);
-    window.location.replace(currentUrl);
-  });
+$("#sort button").on("click", function () {
+  let currentUrl = new URL(window.location);
+  let sort = $(this).val();
+  currentUrl.searchParams.set("sort", sort);
+  window.location.replace(currentUrl);
+});
 
 $("#filter").on("click", function () {
   let currentUrl = new URL(window.location);
@@ -22,7 +20,7 @@ $("#filter").on("click", function () {
   let price = $("input:radio:checked").val();
   if (price) {
     currentUrl.searchParams.set("price", price);
-  } 
+  }
   window.location.replace(currentUrl);
 });
 
