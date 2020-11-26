@@ -38,7 +38,8 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") == "z-to-a" %}
+            {% if request.args.get("sort") ==
+            "z-to-a" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="z-to-a"
@@ -57,7 +58,8 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") == "date-added" %}
+            {% if request.args.get("sort") ==
+            "date-added" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="date-added"
@@ -76,7 +78,8 @@
             {% endif %}
           </li>
           <li class="list-group-item p-0">
-            {% if request.args.get("sort") == "price" %}
+            {% if request.args.get("sort") ==
+            "price" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
               value="price"
@@ -100,288 +103,17 @@
     <div class="row no-gutters">
       <div class="col-12 col-lg-3">
         <div class="content-container py-0">
-          <div class="form-group mb-4">
-            <h3 class="text-capitalize mb-3">Brand</h3>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "amazon" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand1"
-                value="amazon"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand1"
-                value="amazon"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand1">Amazon</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "apple" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand2"
-                value="apple"
-                name="brands"
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand2"
-                value="apple"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand2">Apple</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "dell" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand3"
-                value="dell"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand3"
-                value="dell"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand3">Dell</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "google" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand4"
-                value="google"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand4"
-                value="google"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand4">Google</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "hp" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand5"
-                value="hp"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand5"
-                value="hp"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand5"
-                >Hewlett Packard</label
-              >
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "microsoft" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand6"
-                value="microsoft"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand6"
-                value="microsoft"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand6">Microsoft</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "oneplus" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand6"
-                value="oneplus"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand6"
-                value="oneplus"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand6">OnePlus</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-              {% if selected_brands %}{% if "samsung" in selected_brands %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand7"
-                value="samsung"
-                name="brands"
-                checked
-              />
-              {% endif %}{% else %}
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="brand7"
-                value="samsung"
-                name="brands"
-              />
-              {% endif %}
-              <label class="custom-control-label" for="brand7">Samsung</label>
-            </div>
-          </div>
-          <div class="form-group mb-4">
-            <h3 class="text-capitalize mb-3">Prices</h3>
-            <div class="custom-control custom-radio mb-2">
-              {% if selected_price %}{% if selected_price == 1 %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price1"
-                value="1"
-                name="price"
-                checked
-              />
-              {% endif %}{% endif %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price1"
-                value="1"
-                name="price"
-              />
-              <label class="custom-control-label" for="price1"
-                >Under £250</label
-              >
-            </div>
-            <div class="custom-control custom-radio mb-2">
-              {% if selected_price %}{% if selected_price == 2 %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price2"
-                value="2"
-                name="price"
-                checked
-              />
-              {% endif %}{% endif %}<input
-                type="radio"
-                class="custom-control-input"
-                id="price2"
-                value="1"
-                name="price"
-              />
-              <label class="custom-control-label" for="price2"
-                >£250 - £500</label
-              >
-            </div>
-            <div class="custom-control custom-radio mb-2">
-              {% if selected_price %}{% if selected_price == 3 %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price3"
-                value="3"
-                name="price"
-                checked
-              />
-              {% endif %}{% endif %}<input
-                type="radio"
-                class="custom-control-input"
-                id="price3"
-                value="3"
-                name="price"
-              />
-              <label class="custom-control-label" for="price3"
-                >£500 - £750</label
-              >
-            </div>
-            <div class="custom-control custom-radio mb-2">
-              {% if selected_price %}{% if selected_price == 4 %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price4"
-                value="4"
-                name="price"
-                checked
-              />
-              {% endif %}{% endif %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price4"
-                value="4"
-                name="price"
-              />
-              <label class="custom-control-label" for="price4"
-                >£750 - £1000</label
-              >
-            </div>
-            <div class="custom-control custom-radio mb-2">
-              {% if selected_price %}{% if selected_price == 5 %}
-              <input
-                type="radio"
-                class="custom-control-input"
-                id="price5"
-                value="5"
-                name="price"
-                checked
-              />
-              {% endif %}{% endif %}<input
-                type="radio"
-                class="custom-control-input"
-                id="price5"
-                value="5"
-                name="price"
-              />
-              <label class="custom-control-label" for="price5"
-                >Over £1000</label
-              >
-            </div>
-          </div>
+          {% if page_title.lower() == "phones" %}
+            {% include 'includes/phones.html' %}
+          {% elif page_title.lower() == "tablets" %}
+            {% include 'includes/tablets.html' %}
+          {% elif page_title.lower() == "laptops" %}
+            {% include 'includes/laptops.html' %}
+          {% elif page_title.lower() == "accessories" %}
+            {% include 'includes/accessories.html' %}
+          {% else %} 
+            {% include 'includes/search.html'  %}
+          {% endif %}
           <button id="filter" class="btn btn-sm btn-green w-100 mb-4">
             Apply
           </button>

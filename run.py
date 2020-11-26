@@ -178,9 +178,9 @@ def reviews():
 
 @app.route("/reviews/<category>")
 def category_reviews(category):
+    page_title = category.capitalize()
     session["prev"] = category.capitalize()
     search = request.args.get("search")
-    filters = list(mongo.db.categories.find({"name": category}))
     brands = request.args.get("brands")
     price = request.args.get("price")
     sortBy = request.args.get("sort")
@@ -222,7 +222,7 @@ def category_reviews(category):
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("category_reviews.html", page_title=category, filters=filters, selected_brands=brands, selected_price=price, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title=page_title, selected_brands=brands, selected_price=price, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @ app.route("/review/<product_url>")
