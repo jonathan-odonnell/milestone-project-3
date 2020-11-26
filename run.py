@@ -176,29 +176,6 @@ def reviews():
     return render_template("reviews.html", page_title="Reviews", selected_price=price, selected_brands=brands, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
-@app.route("/reviews/sort_by/<criteria>")
-def sort_by(criteria):
-    if criteria == 'a-to-z':
-        products = list(mongo.db.products.find(
-            {"$text": {"$search": session["query"]}}).sort("name", 1))
-    elif criteria == 'z-to-a':
-        products = list(mongo.db.products.find(
-            {"$text": {"$search": session["query"]}}).sort("name", -1))
-    elif criteria == 'date-added':
-        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
-            [("date_added", -1), ("name", 1)]))
-    elif criteria == 'price':
-        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
-            [("price", 1), ("name", 1)]))
-
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-
-    return render_template("reviews.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
 @app.route("/reviews/<category>")
 def category_reviews(category):
     session["prev"] = category.capitalize()

@@ -7,56 +7,94 @@
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <form action="{{ url_for('reviews') }}" method="GET">
-          <div class="form-row no-gutters">
-            <div class="col-12 col-md-8 col-xl-9 mb-4">
-              <input
-                type="text"
-                class="form-control newsletter-signup h-100"
-                id="search"
-                name="search"
-                placeholder="Enter a product"
-                aria-describedby="search"
-              />
-            </div>
-            <div class="col-12 col-md-4 col-xl-3 mb-4">
-              <button type="submit" class="btn btn-green w-100">Search</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-12 col-md-10 mx-auto mb-4">
-        <a
-          class="btn btn-sm btn-secondary"
-          href="{{url_for('sort_by', criteria='a-to-z')}}"
-          role="button"
-        >
-          <i class="fas fa-sort-alpha-down"></i>
-        </a>
-        <a
-          class="btn btn-sm btn-secondary"
-          href="{{url_for('sort_by', criteria='z-to-a')}}"
-          role="button"
-        >
-          <i class="fas fa-sort-alpha-up"></i>
-        </a>
-        <a
-          class="btn btn-sm btn-secondary"
-          href="{{url_for('sort_by', criteria='date-added')}}"
-          role="button"
-        >
-          <i class="far fa-calendar-alt"></i>
-        </a>
-        <a
-          class="btn btn-sm btn-secondary"
-          href="{{url_for('sort_by', criteria='price')}}"
-          role="button"
-        >
-          <i class="fas fa-pound-sign"></i>
-        </a>
+      <div class="col-12 mb-4">
+        <ul id="sort" class="list-group list-group-horizontal float-right">
+          <li class="list-group-item p-0">
+            {% if request.args.get("sort") %} {% if request.args.get("sort") ==
+            "a-to-z" %}
+            <button
+              class="btn btn-sm btn-secondary sort-active"
+              value="a-to-z"
+              role="button"
+            >
+              <i class="fas fa-sort-alpha-down"></i>
+            </button>
+            {% else %}
+            <button
+              class="btn btn-sm btn-secondary"
+              value="a-to-z"
+              role="button"
+            >
+              <i class="fas fa-sort-alpha-down"></i>
+            </button>
+            {% endif %} {% else %}
+            <button
+              class="btn btn-sm btn-secondary sort-active"
+              value="a-to-z"
+              role="button"
+            >
+              <i class="fas fa-sort-alpha-down"></i>
+            </button>
+            {% endif %}
+          </li>
+          <li class="list-group-item p-0">
+            {% if request.args.get("sort") == "z-to-a" %}
+            <button
+              class="btn btn-sm btn-secondary sort-active"
+              value="z-to-a"
+              role="button"
+            >
+              <i class="fas fa-sort-alpha-up"></i>
+            </button>
+            {% else %}
+            <button
+              class="btn btn-sm btn-secondary"
+              value="z-to-a"
+              role="button"
+            >
+              <i class="fas fa-sort-alpha-up"></i>
+            </button>
+            {% endif %}
+          </li>
+          <li class="list-group-item p-0">
+            {% if request.args.get("sort") == "date-added" %}
+            <button
+              class="btn btn-sm btn-secondary sort-active"
+              value="date-added"
+              role="button"
+            >
+              <i class="fas fa-calendar-alt"></i>
+            </button>
+            {% else %}
+            <button
+              class="btn btn-sm btn-secondary"
+              value="date-added"
+              role="button"
+            >
+              <i class="fas fa-calendar-alt"></i>
+            </button>
+            {% endif %}
+          </li>
+          <li class="list-group-item p-0">
+            {% if request.args.get("sort") == "price" %}
+            <button
+              class="btn btn-sm btn-secondary sort-active"
+              value="price"
+              role="button"
+            >
+              <i class="fas fa-pound-sign"></i>
+            </button>
+            {% else %}
+            <button
+              class="btn btn-sm btn-secondary"
+              value="price"
+              role="button"
+            >
+              <i class="fas fa-pound-sign"></i>
+            </button>
+            {% endif %}
+          </li>
+        </ul>
       </div>
     </div>
     <div class="row no-gutters">
