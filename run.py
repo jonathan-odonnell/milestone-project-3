@@ -99,6 +99,22 @@ def getPriceRange(category, value):
         elif value == 4:
             query = {"$gte": 400}
             return query
+    if category == "all":
+        if value == 1:
+            query = {"$gte": 0, "$lte": 250}
+            return query
+        elif value == 2:
+            query = {"$gte": 250, "$lte": 500}
+            return query
+        elif value == 3:
+            query = {"$gte": 500, "$lte": 750}
+            return query
+        elif value == 4:
+            query = {"$gte": 750, "$lte": 1000}
+            return query
+        elif value == 5:
+            query = {"$gte": 1000}
+            return query
 
 
 @app.route("/")
@@ -117,10 +133,64 @@ def newsletter():
 
 @app.route("/reviews")
 def reviews():
-    session["prev"] = "Search Results"
-    session["query"] = request.args.get("search")
-    products = list(mongo.db.products.find(
-        {"$text": {"$search": session["query"]}}).sort("name", 1))
+    session["prev"] = "Reviews"
+    search = request.args.get("search")
+    brands = request.args.get("brands")
+    price = request.args.get("price")
+    sortBy = request.args.get("sort")
+    query = []
+
+    if search:
+        query.append(
+            {"$match": {"$text": {"$search": search}}})
+
+    if sortBy:
+        sortQuery = sortItems(sortBy)
+        query.append({"$sort": sortQuery})
+
+    elif not sortBy:
+        query.append({"$sort": {"name": 1}})
+
+    if brands:
+        brands = brands.split(",")
+
+        if len(brands) == 1:
+            query[0]["$match"]["brand"] = brands[0]
+
+        else:
+            query[0]["$match"]["brand"] = {"$in": brands}
+
+    if price:
+        price = int(price)
+        price_Query = getPriceRange("all", price)
+        query[0]["$match"]["price"] = price_Query
+
+    products = list(mongo.db.products.aggregate(query))
+    print(query)
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page', per_page=4)
+    pagination_products = paginate_products(products, offset, per_page)
+    pagination = paginate(products, page, per_page)
+
+    return render_template("reviews.html", page_title="Reviews", selected_price=price, selected_brands=brands, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+
+
+@app.route("/reviews/sort_by/<criteria>")
+def sort_by(criteria):
+    if criteria == 'a-to-z':
+        products = list(mongo.db.products.find(
+            {"$text": {"$search": session["query"]}}).sort("name", 1))
+    elif criteria == 'z-to-a':
+        products = list(mongo.db.products.find(
+            {"$text": {"$search": session["query"]}}).sort("name", -1))
+    elif criteria == 'date-added':
+        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
+            [("date_added", -1), ("name", 1)]))
+    elif criteria == 'price':
+        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
+            [("price", 1), ("name", 1)]))
+
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page', per_page=4)
     pagination_products = paginate_products(products, offset, per_page)
@@ -170,35 +240,12 @@ def category_reviews(category):
 
     products = list(mongo.db.products.aggregate(query))
 
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page', per_page=4)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
     return render_template("category_reviews.html", page_title=category, filters=filters, selected_brands=brands, selected_price=price, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
-
-
-@app.route("/search_results/sort_by/<criteria>")
-def sort_by(criteria):
-    if criteria == 'a-to-z':
-        products = list(mongo.db.products.find(
-            {"$text": {"$search": session["query"]}}).sort("name", 1))
-    elif criteria == 'z-to-a':
-        products = list(mongo.db.products.find(
-            {"$text": {"$search": session["query"]}}).sort("name", -1))
-    elif criteria == 'date-added':
-        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
-            [("date_added", -1), ("name", 1)]))
-    elif criteria == 'price':
-        products = list(mongo.db.products.find({"$text": {"$search": session["query"]}}).sort(
-            [("price", 1), ("name", 1)]))
-
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page', per_page=4)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-
-    return render_template("reviews.html", page_title="Search Results", products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @ app.route("/review/<product_url>")
