@@ -135,14 +135,20 @@ def newsletter():
 def reviews():
     session["prev"] = "Reviews"
     search = request.args.get("search")
+    categories = request.args.get("categories")
     brands = request.args.get("brands")
     price = request.args.get("price")
     sortBy = request.args.get("sort")
     query = []
 
     if search:
-        query.append(
-            {"$match": {"$text": {"$search": search}}})
+        if categories:
+            categories = categories.split(",")
+            query.append(
+                {"$match": {"$text": {"$search": search}, "category": {"$in": categories}}})
+        else:
+            query.append(
+                {"$match": {"$text": {"$search": search}}})
 
     if sortBy:
         sortQuery = sortItems(sortBy)
@@ -153,12 +159,7 @@ def reviews():
 
     if brands:
         brands = brands.split(",")
-
-        if len(brands) == 1:
-            query[0]["$match"]["brand"] = brands[0]
-
-        else:
-            query[0]["$match"]["brand"] = {"$in": brands}
+        query[0]["$match"]["brand"] = {"$in": brands}
 
     if price:
         price = int(price)
@@ -173,7 +174,7 @@ def reviews():
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    return render_template("reviews.html", page_title="Reviews", selected_price=price, selected_brands=brands, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title="Reviews", selected_categories=categories, selected_price=price, selected_brands=brands, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/reviews/<category>")

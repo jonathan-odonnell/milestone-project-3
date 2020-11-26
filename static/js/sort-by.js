@@ -7,7 +7,17 @@ $("#sort button").on("click", function () {
 
 $("#filter").on("click", function () {
   let currentUrl = new URL(window.location);
+  let selectedCategories = [];
   let selectedBrands = [];
+  $("input[name='categories']:checked").each(function () {
+    selectedCategories.push($(this).val());
+  });
+  let categories = selectedCategories.join(",");
+  if (categories) {
+    currentUrl.searchParams.set("categories", categories);
+  } else {
+    currentUrl.searchParams.delete("categories");
+  }
   $("input[name='brands']:checked").each(function () {
     selectedBrands.push($(this).val());
   });
@@ -21,12 +31,14 @@ $("#filter").on("click", function () {
   if (price) {
     currentUrl.searchParams.set("price", price);
   }
+  currentUrl.searchParams.delete("page");
   window.location.replace(currentUrl);
 });
 
 $("#clear-filters").on("click", function () {
   let currentUrl = new URL(window.location);
-  currentUrl.searchParams.delete("price");
+  currentUrl.searchParams.delete("categories");
   currentUrl.searchParams.delete("brands");
+  currentUrl.searchParams.delete("price");
   window.location.replace(currentUrl);
 });

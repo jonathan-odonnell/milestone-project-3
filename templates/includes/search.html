@@ -1,4 +1,122 @@
 <div class="form-group mb-4">
+  <div class="form-group mb-4">
+    <h3 class="text-capitalize mb-3">Product Type</h3>
+    <div class="custom-control custom-checkbox mb-2">
+    {% if selected_categories %}{% if "phones" in selected_categories %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category1"
+      value="phones"
+      name="categories"
+      checked
+    />
+    {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category1"
+      value="phones"
+      name="categories"
+    />
+    {% endif %} {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category1"
+      value="phones"
+      name="categories"
+    />
+    {% endif %}
+    <label class="custom-control-label" for="category1">Phones</label>
+  </div>
+  <div class="custom-control custom-checkbox mb-2">
+    {% if selected_categories %}{% if "tablets" in selected_categories %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category2"
+      value="tablets"
+      name="categories"
+    />
+    {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category2"
+      value="tablets"
+      name="categories"
+    />
+    {% endif %} {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category2"
+      value="tablets"
+      name="categories"
+    />
+    {% endif %}
+    <label class="custom-control-label" for="category2">Tablets</label>
+  </div>
+  <div class="custom-control custom-checkbox mb-2">
+    {% if selected_brands %}{% if "dell" in selected_brands %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category3"
+      value="laptops"
+      name="categories"
+      checked
+    />
+    {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category3"
+      value="laptops"
+      name="categories"
+    />
+    {% endif %} {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category3"
+      value="laptops"
+      name="categories"
+    />
+    {% endif %}
+    <label class="custom-control-label" for="brand3">Laptops</label>
+  </div>
+  <div class="custom-control custom-checkbox mb-2">
+    {% if selected_brands %}{% if "google" in selected_brands %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category4"
+      value="accessories"
+      name="categories"
+      checked
+    />
+    {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category4"
+      value="accessories"
+      name="categories"
+    />
+    {% endif %} {% else %}
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      id="category4"
+      value="accessories"
+      name="categories"
+    />
+    {% endif %}
+    <label class="custom-control-label" for="brand4">Accessories</label>
+  </div>
+  </div>
   <h3 class="text-capitalize mb-3">Brand</h3>
   <div class="custom-control custom-checkbox mb-2">
     {% if selected_brands %}{% if "amazon" in selected_brands %}
@@ -18,8 +136,7 @@
       value="amazon"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -47,8 +164,7 @@
       value="apple"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -77,8 +193,7 @@
       value="dell"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -107,8 +222,7 @@
       value="google"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -137,8 +251,7 @@
       value="hp"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -167,8 +280,7 @@
       value="microsoft"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
@@ -197,8 +309,7 @@
       value="oneplus"
       name="brands"
     />
-    {% endif %}
-    {% else %}
+    {% endif %} {% else %}
     <input
       type="checkbox"
       class="custom-control-input"
