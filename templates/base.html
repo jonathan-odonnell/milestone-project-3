@@ -5,84 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="Description" content="Enter your description here" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
     <title>Tech Reviews | {{ page_title }}</title>
   </head>
 
   <body>
     <!-- Navbar start. Code is from https://getbootstrap.com/docs/4.5/components/navbar/ -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-      <a class="navbar-brand" href="{{ url_for('index') }}">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('index') }}"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Reviews
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{{ url_for('category_reviews', category='phones') }}">Phones</a>
-              <a class="dropdown-item" href="{{ url_for('category_reviews', category='tablets') }}"
-                >Tablets</a
-              >
-              <a class="dropdown-item" href="{{ url_for('category_reviews', category='laptops') }}"
-                >Laptops</a
-              >
-              <a class="dropdown-item" href="{{ url_for('category_reviews', category='accessories') }}"
-                >Accessories</a
-              >
+    <header class="container-fluid p-0">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form
+            class="d-flex flex-fill search pr-5"
+            action="{{ url_for('reviews') }}"
+            method="GET"
+          >
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control no-box-shadow"
+                id="search"
+                name="search"
+                placeholder="Search reviews by product name or brand"
+              />
+              <div class="input-group-append">
+                <div class="input-group-text p-0">
+                  <button class="btn btn-green py-0 px-3 w-100 h-100" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
-          </li>
-          {% if session.user %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('profile', first_name=session['user']) }}">My Account</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a
-              class="btn btn-sm btn-green"
-              href="{{ url_for('sign_in') }}"
-              >Register / Sign In</a
-            >
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('index') }}"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Reviews
+              </a>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <a
+                  class="dropdown-item"
+                  href="{{ url_for('category_reviews', category='phones') }}"
+                  >Phones</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="{{ url_for('category_reviews', category='tablets') }}"
+                  >Tablets</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="{{ url_for('category_reviews', category='laptops') }}"
+                  >Laptops</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="{{ url_for('category_reviews', category='accessories') }}"
+                  >Accessories</a
+                >
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link text-white"
+                href="#"
+                id="user-options"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="text-center">
+                  <div><i class="fas fa-user fa-lg"></i></div>
+                </div>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right border-0"
+                aria-labelledby="user-options"
+              >
+                {% if session.user %}
+                <a
+                  href="{{ url_for('profile', first_name=session['user']) }}"
+                  class="dropdown-item"
+                  >My Account</a
+                >
+                <a href="{{ url_for('logout') }}" class="dropdown-item"
+                  >Logout</a
+                >
+                {% else %}
+                <a href="{{ url_for('sign_up') }}" class="dropdown-item"
+                  >Register</a
+                >
+                <a href="{{ url_for('sign_in') }}" class="dropdown-item"
+                  >Login</a
+                >
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <!-- Navbar end -->
     {% block content %} {% endblock %}
     <footer>
@@ -95,20 +159,32 @@
               <div class="col-6">
                 <ul class="list-group footer-links">
                   <li>
-                    <a href="{{ url_for('category_reviews', category='phones') }}">Phones</a>
+                    <a
+                      href="{{ url_for('category_reviews', category='phones') }}"
+                      >Phones</a
+                    >
                   </li>
                   <li>
-                    <a href="{{ url_for('category_reviews', category='tablets') }}">Tablets</a>
+                    <a
+                      href="{{ url_for('category_reviews', category='tablets') }}"
+                      >Tablets</a
+                    >
                   </li>
                   <li>
-                    <a href="{{ url_for('category_reviews', category='laptops') }}">Laptops</a>
+                    <a
+                      href="{{ url_for('category_reviews', category='laptops') }}"
+                      >Laptops</a
+                    >
                   </li>
                 </ul>
               </div>
               <div class="col-6">
                 <ul class="list-group footer-links">
                   <li>
-                    <a href="{{ url_for('category_reviews', category='accessories') }}">Accessories</a>
+                    <a
+                      href="{{ url_for('category_reviews', category='accessories') }}"
+                      >Accessories</a
+                    >
                   </li>
                   <li><a href="#">My Account</a></li>
                   <li>
@@ -186,20 +262,32 @@
                     <div class="col-6">
                       <ul class="list-group footer-links">
                         <li>
-                          <a href="{{ url_for('category_reviews', category='phones') }}">Phones</a>
+                          <a
+                            href="{{ url_for('category_reviews', category='phones') }}"
+                            >Phones</a
+                          >
                         </li>
                         <li>
-                          <a href="{{ url_for('category_reviews', category='tablets') }}">Tablets</a>
+                          <a
+                            href="{{ url_for('category_reviews', category='tablets') }}"
+                            >Tablets</a
+                          >
                         </li>
                         <li>
-                          <a href="{{ url_for('category_reviews', category='laptops') }}">Laptops</a>
+                          <a
+                            href="{{ url_for('category_reviews', category='laptops') }}"
+                            >Laptops</a
+                          >
                         </li>
                       </ul>
                     </div>
                     <div class="col-6">
                       <ul class="list-group footer-links">
                         <li>
-                          <a href="{{ url_for('category_reviews', category='accessories') }}">Accessories</a>
+                          <a
+                            href="{{ url_for('category_reviews', category='accessories') }}"
+                            >Accessories</a
+                          >
                         </li>
                         <li><a href="#">My Account</a></li>
                         <li>
@@ -300,9 +388,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
-    <script src="{{url_for('static', filename='js/scripts.js')}}">
-    </script>
-    {% block postloadjs %}
-    {% endblock %}
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    {% block postloadjs %} {% endblock %}
   </body>
 </html>
