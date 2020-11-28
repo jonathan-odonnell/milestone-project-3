@@ -6,9 +6,23 @@
         <h1 class="text-center headings">{{ page_title }}</h1>
       </div>
     </div>
+    <hr class="mt-0" />
     <div class="row no-gutters">
-      <div class="col-12 mb-4">
-        <ul id="sort" class="list-group list-group-horizontal float-right">
+      <div class="col-12 col-9 mb-3 mb-lg-0">
+        <button
+          class="d-lg-none btn btn-sm btn-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseFilters"
+          aria-expanded="false"
+          aria-controls="collapseFilters"
+        >
+          Filters
+        </button>
+        <ul
+          id="sort"
+          class="list-group list-group-horizontal float-right mb-lg-3"
+        >
           <li class="list-group-item p-0">
             {% if request.args.get("sort") %} {% if request.args.get("sort") ==
             "a-to-z" %}
@@ -96,10 +110,8 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="row no-gutters">
       <div class="col-12 col-lg-3">
-        <div class="content-container py-0">
+        <div id="collapseFilters" class="pr-lg-5 mb-3 mb-0-lg collapse">
           {% if page_title.lower() == "phones" %} {% include
           'includes/phones.html' %} {% elif page_title.lower() == "tablets" %}
           {% include 'includes/tablets.html' %} {% elif page_title.lower() ==
@@ -120,55 +132,47 @@
         </div>
       </div>
       <div class="col-12 col-lg-9">
-        {% for product in products %} {% if loop.index != products|length %}
-        <div class="row no-gutters border-bottom">
-          <div class="col-12 col-md-4 col-lg-3">
-            <div class="media">
+        <div class="row">
+          {% for product in products %}
+          <div class="col-6 col-lg-4">
+            <div class="card border-0">
               <img
+                class="card-img-top"
                 src="{{product.image_url}}"
                 alt="{{product.image_alt}}"
-                class="product-images rounded-circle mx-auto mt-4 mb-4"
               />
-            </div>
-          </div>
-          <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
-            <div class="media-body">
-              <h3 class="mb-3 text-center text-md-left">
-                <a href="{{url_for('review', product_url=product.url)}}"
-                  >{{product.name}}</a
+              <div class="card-body pb-2">
+                <h5 class="card-title mb-2">
+                  <a href="{{url_for('review', product_url=product.url)}}"
+                    >{{product.name}}</a
+                  >
+                </h5>
+                <p class="card-text mb-2">£{{ product.price }}</p>
+                {% if product.overall_rating %}
+                <small class="text-muted"
+                  ><i class="fas fa-star mr-1"></i>{{ product.overall_rating }}
+                  / 5</small
                 >
-              </h3>
-              {{product.description}}
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
+              </div>
             </div>
           </div>
+          {% if loop.index < products|length%} {% if loop.index %2 == 0 %}
+          <div class="col-12 d-lg-none">
+            <hr class="pb-2" />
+          </div>
+          {% endif %} {% if loop.index %3 == 0 %}
+          <div class="col-12 d-none d-lg-block">
+            <hr class="pb-2" />
+          </div>
+          {% endif %} {% endif%} {% endfor %}
         </div>
-        {% else %}
-        <div class="row no-gutters">
-          <div class="col-12 col-md-4 col-lg-3">
-            <div class="media">
-              <img
-                src="{{product.image_url}}"
-                alt="{{product.image_alt}}"
-                class="product-images rounded-circle mx-auto mt-4 mb-4"
-              />
-            </div>
-          </div>
-          <div class="col-12 col-md-8 col-lg-9 align-self-center mb-4 mb-md-0">
-            <div class="media-body">
-              <h3 class="mb-3 text-center text-md-left">
-                <a href="{{url_for('review', product_url=product.url)}}"
-                  >{{product.name}}</a
-                >
-              </h3>
-              {{product.description}}
-            </div>
-          </div>
+        <div class="row no-gutters mt-3">
+          <div class="col-12">{{ pagination.links }}</div>
         </div>
-        {% endif %} {% endfor %}
       </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-12 col-md-8 offset-md-4">{{ pagination.links }}</div>
     </div>
   </div>
 </section>

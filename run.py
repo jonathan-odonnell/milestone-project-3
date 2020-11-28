@@ -174,7 +174,7 @@ def reviews():
         products = None
 
     page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page', per_page=4)
+        page_parameter='page', per_page_parameter='per_page', per_page=6)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
@@ -223,7 +223,7 @@ def category_reviews(category):
     products = list(mongo.db.products.aggregate(query))
 
     page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page', per_page=4)
+        page_parameter='page', per_page_parameter='per_page', per_page=6)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
