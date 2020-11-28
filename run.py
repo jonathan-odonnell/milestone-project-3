@@ -36,7 +36,7 @@ def sortItems(sort):
         sortQuery = {"name": -1}
         return sortQuery
     elif sort == "date-added":
-        sortQuery = {"date": -1, "name": 1}
+        sortQuery = {"date_added": -1, "name": 1}
         return sortQuery
     elif sort == "price":
         sortQuery = {"price": -1, "name": 1}
@@ -146,28 +146,32 @@ def reviews():
             categories = categories.split(",")
             query.append(
                 {"$match": {"$text": {"$search": search}, "category": {"$in": categories}}})
-        else:
+
+        if not categories:
             query.append(
                 {"$match": {"$text": {"$search": search}}})
 
-    if sortBy:
-        sortQuery = sortItems(sortBy)
-        query.append({"$sort": sortQuery})
+        if sortBy:
+            sortQuery = sortItems(sortBy)
+            query.append({"$sort": sortQuery})
 
-    elif not sortBy:
-        query.append({"$sort": {"name": 1}})
+        if not sortBy:
+            query.append({"$sort": {"name": 1}})
 
-    if brands:
-        brands = brands.split(",")
-        query[0]["$match"]["brand"] = {"$in": brands}
+        if brands:
+            brands = brands.split(",")
+            query[0]["$match"]["brand"] = {"$in": brands}
 
-    if price:
-        price = int(price)
-        price_Query = getPriceRange("all", price)
-        query[0]["$match"]["price"] = price_Query
+        if price:
+            price = int(price)
+            price_Query = getPriceRange("all", price)
+            query[0]["$match"]["price"] = price_Query
 
-    products = list(mongo.db.products.aggregate(query))
-    print(query)
+    if query:
+        products = list(mongo.db.products.aggregate(query))
+
+    else:
+        products = None
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=4)
