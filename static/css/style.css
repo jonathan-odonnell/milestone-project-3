@@ -210,11 +210,53 @@ form {
   height: 100%;
 }
 
-/* Progress Bars start */
+/* Review details start */
+
+.review-heading {
+  color: #fff;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.review-images {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.review-img {
+  height: 65vh;
+  min-height: 300px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  margin-top: 70px;
+  position: relative;
+}
+
+.back-link {
+  margin-bottom: 30px;
+}
+
+.back-link a:hover {
+  color: #64a19d;
+}
+
+.back-link i {
+  padding-right: 10px;
+}
+
+.features-table th {
+  min-width: 200px;
+}
 
 .progress {
   margin-bottom: 15px;
-  height: 0.5rem;
+  height: 0.5em;
+  background-color: #c0c0c0;
 }
 
 .progress-bar {
@@ -238,48 +280,7 @@ form {
   font-size: 1rem;
 }
 
-.review-images {
-  height: 200px;
-  width: 200px;
-  object-fit: cover;
-}
-
-.features-table th {
-  min-width: 200px;
-}
-
-.review-img {
-  height: 65vh;
-  min-height: 300px;
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
-  margin-top: 70px;
-  position: relative;
-}
-
-.review-heading {
-  color: #fff;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.back-link {
-  margin-bottom: 30px;
-}
-
-.back-link a:hover {
-  color: #64a19d;
-}
-
-.back-link i {
-  padding-right: 10px;
-}
-
-/* Progress Bars end */
+/* Review details end */
 
 /* Add Review form styling start */
 
@@ -319,25 +320,8 @@ form {
   margin-bottom: 0;
 }
 
-.review-buttons {
-  display: block;
-  float: right;
-}
-
-.review-buttons .btn {
-  width: 0.765625rem;
+.btn-review {
   padding: 0 1rem;
-}
-
-.review-btn {
-  color: #fff;
-  background-color: #64a19d;
-  border: 2px solid #64a19d;
-}
-
-.review-btn:hover {
-  color: #64a19d;
-  background-color: #fff;
 }
 
 .rating i {

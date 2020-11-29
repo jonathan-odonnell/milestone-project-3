@@ -1,136 +1,269 @@
 {% extends "base.html" %} {% block content %}
 <section class="container-fluid no-gutters px-0">
-	<div class="row no-gutters">
-		<div class="col-12 review-img" style="background-image: url('{{product[0].hero_image_url}}')">
-			<div class="overlay"></div>
-			<h1 class="text-center review-heading mb-0">{{page_title}}</h1>
-		</div>
-	</div>
+  <div class="row no-gutters">
+    <div
+      class="col-12 review-img"
+      style="background-image: url('{{product[0].hero_image_url}}')"
+    >
+      <div class="overlay"></div>
+      <h1 class="text-center review-heading mb-0">{{page_title}}</h1>
+    </div>
+  </div>
 </section>
 <section class="container content-container">
-	<div class="row no-gutters">
-		<div class="col-12 back-link">
-			<a href="{{request.referrer}}"><i class="fas fa-chevron-left"></i>Back to {{session["prev"]}}</a>
-		</div>
-	</div>
-	<div class="row no-gutters">
-		<div class="col-12">
-			<h2 class="subheadings">Features</h2>
-			<table class="table table-borderless features-table mb-0">
-				<tbody>
-					{% for feature in product[0].features %}
-					<tr>
-						<th scope="row" class="px-0 pt-0 pb-4">{{feature}}</th>
-						<td class="px-0 pt-0 pb-4">{{product[0].features[feature]}}</td>
-					</tr>
-					{% else %}
-					<tr>
-						<th scope="row" class="px-0 pt-0 pb-0">{{feature}}</th>
-						<td class="px-0 pt-0 pb-0">{{product[0].features[feature]}}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
+  <div class="row no-gutters">
+    <div class="col-12 back-link">
+      <a href="{{request.referrer}}"
+        ><i class="fas fa-chevron-left"></i>Back to {{session["prev"]}}</a
+      >
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-12">
+      <h2 class="subheadings">Features</h2>
+      <table class="table table-borderless features-table mb-0">
+        <tbody>
+          {% for feature in product[0].features %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">{{feature}}</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].features[feature]}}</td>
+          </tr>
+          {% else %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-0">{{feature}}</th>
+            <td class="px-0 pt-0 pb-0">{{product[0].features[feature]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 <section class="wrapper-grey">
-	<div class="container content-container">
-		<div class="row no-gutters">
-			<div class="col-12">
-				<h2 class="subheadings">Reviews</h2>
-				<div class="row no-gutters progress-bars">
-					<div class="col-12 col-md-4 col-lg-3">
-						<p class="ratings-text">Overall Rating</p>
-					</div>
-					<div class="col-12 col-md-8 col-lg-9">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: calc({{ ratings[0] }} * 20%)"
-								aria-valuenow="calc({{ ratings[0] }} * 20)" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-md-4 col-lg-3">
-						<p class="ratings-text">Performance</p>
-					</div>
-					<div class="col-12 col-md-8 col-lg-9">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: calc({{ ratings[1] }} * 20%)"
-								aria-valuenow="calc({{ ratings[1] }} * 20)" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-md-4 col-lg-3">
-						<p class="ratings-text">Battery Life</p>
-					</div>
-					<div class="col-12 col-md-8 col-lg-9">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: calc({{ ratings[2] }} * 20%)"
-								aria-valuenow="calc({{ ratings[2] }} * 20)" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-md-4 col-lg-3">
-						<p class="ratings-text">Screen</p>
-					</div>
-					<div class="col-12 col-md-8 col-lg-9">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: calc({{ ratings[3] }} * 20%)"
-								aria-valuenow="calc({{ ratings[3] }} * 20)" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-md-4 col-lg-3">
-						<p class="ratings-text">Camera</p>
-					</div>
-					<div class="col-12 col-md-8 col-lg-9">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: calc({{ ratings[4] }} * 20%)"
-								aria-valuenow="calc({{ ratings[4] }} * 20)" aria-valuemin="0" aria-valuemax="100">
-							</div>
-						</div>
-					</div>
-				</div>
-				{% if session.user %}
-				<div class="row no-gutters">
-					<div class="col-12 add-review">
-						<a class="btn btn-sm btn-green" href="{{url_for('add_review', product_id=product[0]._id)}}">Add
-							Review</a>
-					</div>
-				</div>
-				{% endif %}
-				{% for review in reviews %}
-				<div class="card review-card">
-					<div class="card-body">
-						<h3 class="mb-4">
-							{{review.review_title}} {% if review.overall_rating == 1 %}
-							<i class="fas fa-star yellow-star mx-3"></i>
-							{% elif review.overall_rating == 2 %}
-							<i class="fas fa-star yellow-star mx-3"></i><i class="fas fa-star yellow-star mr-3"></i>
-							{% elif review.overall_rating == 3 %}
-							<i class="fas fa-star yellow-star mx-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas fa-star yellow-star mr-3"></i>
-							{% elif review.overall_rating == 4 %}
-							<i class="fas fa-star yellow-star mx-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas fa-star yellow-star mr-3"></i>
-							{% else %}
-							<i class="fas fa-star yellow-star mx-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas fa-star yellow-star mr-3"></i><i class="fas yellow-star fa-star"></i>
-							{% endif %} {% if session.user|lower == review.created_by|lower
-                %}
-							<div class="review-buttons">
-								<a class="btn"
-									href="{{url_for('edit_review', review_id=review._id)}}"><i class="far fa-edit"></i></a>
-								<a class="btn"
-									href="{{url_for('delete_review', review_id=review._id)}}"><i class="fas fa-trash"></i></a>
-							</div>
-							{% endif %}
-						</h3>
-						<p>{{ review.review }}</p>
-						<p class="mb-0"><em>Reviewed By: {{review.created_by}}</em></p>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</section>
+  <div class="container content-container">
+    <div class="row no-gutters">
+      <div class="col-12">
+        <h2 class="subheadings">Reviews</h2>
+        <div class="row no-gutters">
+          <div class="col-12 col-md-6 pr-md-4 pr-lg-0">
+            <div class="row no-gutters progress-bars">
+              <div class="col-12 col-lg-3">
+                <p class="ratings-text">Overall Rating</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings.overall }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings.overall }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-3">
+                <p class="ratings-text">Performance</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings.performance  }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings.performance  }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-3">
+                <p class="ratings-text">Battery Life</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings.battery }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings.battery }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-3">
+                <p class="ratings-text">Screen</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings.screen }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings.screen }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-3">
+                <p class="ratings-text">Camera</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings.camera }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings,camera }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <hr class="d-md-none" />
+          </div>
+          <div class="col-12 col-md-6 pl-md-4 pl-lg-0">
+            <div class="row no-gutters progress-bars">
+              <div class="col-12 col-lg-2 offset-lg-1">
+                <p class="ratings-text">5 Stars</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings['5_stars'] }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings['5_stars'] }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 offset-lg-1">
+                <p class="ratings-text">4 Stars</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings['4_stars']  }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings['4_stars'] }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 offset-lg-1">
+                <p class="ratings-text">3 Stars</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings['3_stars'] }} * 20%)"
+                    aria-valuenow="{{ product[0].ratings['3_stars'] }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 offset-lg-1">
+                <p class="ratings-text">2 Stars</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings['2_stars'] }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings['2_stars']}} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 offset-lg-1">
+                <p class="ratings-text">1 Star</p>
+              </div>
+              <div class="col-12 col-lg-9">
+                <div class="progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: calc({{ product[0].ratings['1_stars'] }} * 20%)"
+                    aria-valuenow="calc({{ product[0].ratings['1_stars'] }} * 20)"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if session.user %}
+        <div class="row no-gutters">
+          <div class="col-12 add-review">
+            <a
+              class="btn btn-sm btn-green"
+              href="{{url_for('add_review', product_id=product[0]._id)}}"
+              >Add Review</a
+            >
+          </div>
+        </div>
+        {% endif %} {% for review in reviews %}
+        <div class="card review-card">
+          <div class="card-body">
+            <div class="d-block d-md-inline-block">
+              <h3 class="mb-2">{{review.review_title}}</h3>
+            </div>
+            <div class="d-inline-block mb-2">
+              {% if review.overall_rating == 1 %}
+              <i class="fas fa-star yellow-star ml-1"></i>
+              {% elif review.overall_rating == 2 %}
+              <i class="fas fa-star yellow-star mx-1"></i
+              ><i class="fas fa-star yellow-star"></i>
+              {% elif review.overall_rating == 3 %}
+              <i class="fas fa-star yellow-star mx-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas fa-star yellow-star"></i>
+              {% elif review.overall_rating == 4 %}
+              <i class="fas fa-star yellow-star mx-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas fa-star yellow-star"></i>
+              {% else %}
+              <i class="fas fa-star yellow-star mx-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas fa-star yellow-star mr-1"></i
+              ><i class="fas yellow-star fa-star"></i> {% endif %}
+            </div>
+            {% if session.user|lower == review.created_by|lower %}
+            <div class="float-right">
+              <a
+                class="btn btn-review"
+                href="{{url_for('edit_review', review_id=review._id)}}"
+                ><i class="far fa-edit"></i
+              ></a>
+              <a
+                class="btn btn-review"
+                href="{{url_for('delete_review', review_id=review._id)}}"
+                ><i class="fas fa-trash"></i
+              ></a>
+            </div>
+            {% endif %}
+            <p class="mb-2 text-justify">{{ review.review }}</p>
+            <small>Reviewed by {{review.created_by}} on September 1st 2020</small>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 {% endblock %}
