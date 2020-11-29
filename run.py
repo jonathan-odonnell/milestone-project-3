@@ -173,12 +173,17 @@ def reviews():
     else:
         products = None
 
+    total = len(products)
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=6)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
+    record_numbers = pagination.info[48:53]
+    pagination_info = "Displaying {} of {} reviews found for".format(
+        record_numbers, total)
 
-    return render_template("reviews.html", page_title="Reviews", selected_categories=categories, selected_price=price, selected_brands=brands, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title="Reviews", selected_categories=categories, selected_price=price, selected_brands=brands, products=pagination_products, search=search, pagination_info=pagination_info, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/reviews/<category>")
@@ -222,12 +227,17 @@ def category_reviews(category):
 
     products = list(mongo.db.products.aggregate(query))
 
+    total = len(products)
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=6)
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
+    record_numbers = pagination.info[48:53]
+    pagination_info = "Displaying {} of {} reviews".format(
+        record_numbers, total)
 
-    return render_template("reviews.html", page_title=page_title, selected_brands=brands, selected_price=price, products=pagination_products, page=page, per_page=per_page, pagination=pagination)
+    return render_template("reviews.html", page_title=page_title, selected_brands=brands, selected_price=price, products=pagination_products, pagination_info=pagination_info, total=total, page=page, per_page=per_page, pagination=pagination)
 
 
 @ app.route("/review/<product_url>")

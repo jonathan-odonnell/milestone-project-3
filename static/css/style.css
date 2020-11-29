@@ -21,10 +21,18 @@ h3 {
   font-size: 1rem;
 }
 
+strong {
+  font-weight: 800;
+}
+
 .subheadings i {
   color: #1a1a1a;
   font-size: 2rem;
   margin-bottom: 30px;
+}
+
+.text-white {
+  color: #fff;
 }
 
 /* Text Styling End */
@@ -86,10 +94,8 @@ h3 {
 
 /* Search Results Start */
 
-.product-images {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
+.card-img-top {
+  height: 10rem !important;
 }
 
 .media-body a:hover {
@@ -98,6 +104,10 @@ h3 {
 
 .pagination {
   justify-content: center;
+}
+
+#collapseFilters .btn {
+  width: 100%;
 }
 
 /* Search Results End */
@@ -515,6 +525,12 @@ form {
   .jumbotron-heading {
     font-size: 3rem;
   }
+  .card-img-top {
+    height: 16rem !important;
+  }
+  #collapseFilters .btn {
+    width: 150px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -536,6 +552,12 @@ form {
 
   .info-item-container {
     padding: 1.25rem;
+  }
+  .collapse:not(.show) {
+    display: block;
+  }
+  #collapseFilters .btn {
+    width: 100%;
   }
 }
 

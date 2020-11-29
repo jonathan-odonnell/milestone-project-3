@@ -6,24 +6,11 @@
         <h1 class="text-center headings">{{ page_title }}</h1>
       </div>
     </div>
-    <hr class="mt-0" />
+    <hr class="mt-0 mb-4" />
     <div class="row no-gutters">
-      <div class="col-12 col-9 mb-3 mb-lg-0">
-        <button
-          class="d-lg-none btn btn-sm btn-primary"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseFilters"
-          aria-expanded="false"
-          aria-controls="collapseFilters"
-        >
-          Filters
-        </button>
-        <ul
-          id="sort"
-          class="list-group list-group-horizontal float-right mb-lg-3"
-        >
-          <li class="list-group-item p-0">
+      <div class="col-12 d-lg-none">
+        <ul id="sort" class="d-block list-group list-group-horizontal mb-lg-3">
+          <li class="list-group-item float-left p-0">
             {% if request.args.get("sort") %} {% if request.args.get("sort") ==
             "a-to-z" %}
             <button
@@ -51,7 +38,7 @@
             </button>
             {% endif %}
           </li>
-          <li class="list-group-item p-0">
+          <li class="list-group-item float-left p-0">
             {% if request.args.get("sort") == "z-to-a" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
@@ -70,7 +57,7 @@
             </button>
             {% endif %}
           </li>
-          <li class="list-group-item p-0">
+          <li class="list-group-item float-left p-0">
             {% if request.args.get("sort") == "date-added" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
@@ -89,7 +76,7 @@
             </button>
             {% endif %}
           </li>
-          <li class="list-group-item p-0">
+          <li class="list-group-item float-left p-0">
             {% if request.args.get("sort") == "price" %}
             <button
               class="btn btn-sm btn-secondary sort-active"
@@ -109,29 +96,151 @@
             {% endif %}
           </li>
         </ul>
-      </div>
-      <div class="col-12 col-lg-3">
-        <div id="collapseFilters" class="pr-lg-5 mb-3 mb-0-lg collapse">
-          {% if page_title.lower() == "phones" %} {% include
-          'includes/phones.html' %} {% elif page_title.lower() == "tablets" %}
-          {% include 'includes/tablets.html' %} {% elif page_title.lower() ==
-          "laptops" %} {% include 'includes/laptops.html' %} {% elif
-          page_title.lower() == "accessories" %} {% include
-          'includes/accessories.html' %} {% else %} {% include
-          'includes/search.html' %} {% endif %}
-          <button id="filter" class="btn btn-sm btn-green w-100 mb-4">
-            Apply
-          </button>
+        <div class="text-right">
           <button
-            id="clear-filters"
-            class="btn btn-sm btn-green w-100"
-            role="button"
+            class="d-lg-none btn btn-sm btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapseFilters"
+            aria-expanded="false"
+            aria-controls="collapseFilters"
           >
-            Clear filters
+            Filters
           </button>
         </div>
       </div>
+      <div class="col-12 col-lg-3">
+        <div id="collapseFilters" class="collapse pr-lg-5 mt-4 mt-lg-0">
+          <div class="form-row">
+            {% if page_title.lower() == "phones" %} {% include
+            'includes/phones.html' %} {% elif page_title.lower() == "tablets" %}
+            {% include 'includes/tablets.html' %} {% elif page_title.lower() ==
+            "laptops" %} {% include 'includes/laptops.html' %} {% elif
+            page_title.lower() == "accessories" %} {% include
+            'includes/accessories.html' %} {% else %} {% include
+            'includes/search.html' %} {% endif %}
+            <div
+              class="col-12 col-md-6 col-lg-12 px-4 px-md-0 mb-4 mb-md-0 mb-lg-4"
+            >
+              <button id="filter" class="btn btn-sm btn-green">Apply</button>
+            </div>
+            <div class="col-12 col-md-6 col-lg-12 px-4 px-md-0">
+              <button
+                id="clear-filters"
+                class="btn btn-sm btn-green"
+                role="button"
+              >
+                Clear filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-lg-none">
+        <p class="my-4">
+          {{ pagination_info }} {% if search %}<strong>"{{search}}"</strong>{%
+          endif %}
+        </p>
+      </div>
       <div class="col-12 col-lg-9">
+        <div class="row no-gutters">
+          <div class="d-none d-lg-block col-lg-12">
+            <p class="w-lg-50 d-inline-block my-2">
+              {{ pagination_info }} {% if search
+              %}<strong>"{{search}}"</strong>{% endif %}
+            </p>
+            <ul
+              id="sort"
+              class="list-group list-group-horizontal float-right mb-4"
+            >
+              <li class="list-group-item p-0">
+                {% if request.args.get("sort") %} {% if request.args.get("sort")
+                == "a-to-z" %}
+                <button
+                  class="btn btn-sm btn-secondary sort-active"
+                  value="a-to-z"
+                  role="button"
+                >
+                  <i class="fas fa-sort-alpha-down"></i>
+                </button>
+                {% else %}
+                <button
+                  class="btn btn-sm btn-secondary"
+                  value="a-to-z"
+                  role="button"
+                >
+                  <i class="fas fa-sort-alpha-down"></i>
+                </button>
+                {% endif %} {% else %}
+                <button
+                  class="btn btn-sm btn-secondary sort-active"
+                  value="a-to-z"
+                  role="button"
+                >
+                  <i class="fas fa-sort-alpha-down"></i>
+                </button>
+                {% endif %}
+              </li>
+              <li class="list-group-item p-0">
+                {% if request.args.get("sort") == "z-to-a" %}
+                <button
+                  class="btn btn-sm btn-secondary sort-active"
+                  value="z-to-a"
+                  role="button"
+                >
+                  <i class="fas fa-sort-alpha-up"></i>
+                </button>
+                {% else %}
+                <button
+                  class="btn btn-sm btn-secondary"
+                  value="z-to-a"
+                  role="button"
+                >
+                  <i class="fas fa-sort-alpha-up"></i>
+                </button>
+                {% endif %}
+              </li>
+              <li class="list-group-item p-0">
+                {% if request.args.get("sort") == "date-added" %}
+                <button
+                  class="btn btn-sm btn-secondary sort-active"
+                  value="date-added"
+                  role="button"
+                >
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+                {% else %}
+                <button
+                  class="btn btn-sm btn-secondary"
+                  value="date-added"
+                  role="button"
+                >
+                  <i class="fas fa-calendar-alt"></i>
+                </button>
+                {% endif %}
+              </li>
+              <li class="list-group-item p-0">
+                {% if request.args.get("sort") == "price" %}
+                <button
+                  class="btn btn-sm btn-secondary sort-active"
+                  value="price"
+                  role="button"
+                >
+                  <i class="fas fa-pound-sign"></i>
+                </button>
+                {% else %}
+                <button
+                  class="btn btn-sm btn-secondary"
+                  value="price"
+                  role="button"
+                >
+                  <i class="fas fa-pound-sign"></i>
+                </button>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="row">
           {% for product in products %}
           <div class="col-6 col-lg-4">
