@@ -55,6 +55,14 @@ strong {
   font-size: 1em;
 }
 
+.search .form-control {
+  height: 2.5rem;
+}
+
+.no-box-shadow:focus {
+  box-shadow: none;
+}
+
 /* Navbar End */
 
 /* Buttons Start */
