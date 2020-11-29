@@ -240,28 +240,16 @@ def category_reviews(category):
     return render_template("reviews.html", page_title=page_title, selected_brands=brands, selected_price=price, products=pagination_products, pagination_info=pagination_info, total=total, page=page, per_page=per_page, pagination=pagination)
 
 
-@ app.route("/review/<product_url>")
-def review(product_url):
-    product = list(mongo.db.products.find({"url": product_url}))
+@ app.route("/review_details/<product_id>")
+def review_details(product_id):
+    product = list(mongo.db.products.find({"_id": ObjectId(product_id)}))
     page_title = product[0]["name"] + " Review"
     session["product"] = product[0]["name"]
     # https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
     session["url"] = request.url
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
-    # https://stackoverflow.com/questions/16920486/average-of-attribute-in-a-list-of-objects
-    ratings = []
-    ratings.append(int(sum(review["overall_rating"]
-                           for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["performance_rating"]
-                           for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["battery_rating"]
-                           for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["screen_rating"]
-                           for review in reviews) / len(reviews)))
-    ratings.append(int(sum(review["camera_rating"]
-                           for review in reviews) / len(reviews)))
-    return render_template("review.html", page_title=page_title, product=product, reviews=reviews, ratings=ratings)
+    return render_template("review.html", page_title=page_title, product=product, reviews=reviews)
 
 
 @ app.route("/contact", methods=["GET", "POST"])
