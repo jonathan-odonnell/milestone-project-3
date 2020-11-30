@@ -1,0 +1,74 @@
+{% extends "base.html" %} {% block content %}
+<div class="container content-container">
+  <!--Heading Start-->
+  <div class="row no-gutters">
+    <div class="col-12">
+      <h1 class="text-center headings">{{ page_title }}</h1>
+    </div>
+  </div>
+  <hr class="mt-0" />
+  <!--Heading End-->
+  <div class="row no-gutters">
+    <div class="col-12 mb-3">
+      <div class="d-inline-block text-left">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Sort By
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Name (A - Z)</a>
+            <a class="dropdown-item" href="#">Name (Z - A)</a>
+            <a class="dropdown-item" href="#">Category (A - Z)</a>
+            <a class="dropdown-item" href="#">Category (Z - A)</a>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block float-right">
+        <button class="btn btn-secondary">
+          <i class="fas fa-plus pr-1"></i>Add Product
+        </button>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table">
+        <thead class="table-green">
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td>{{product.name.title()}}</td>
+            <td>{{product.category.capitalize()}}</td>
+            <td>
+              <button class="btn btn-sm">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-sm">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row no-gutters mt-3">
+    <div class="col-12">{{ pagination.links }}</div>
+  </div>
+</div>
+{% endblock %}

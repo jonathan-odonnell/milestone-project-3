@@ -383,6 +383,15 @@ form {
 
 /* Rating Stars End */
 
+/* Product Management Start */
+
+.table-green {
+  background-color: #64a19d;
+  color: #ffffff;
+}
+
+/* Product Management End */
+
 /* Contact Form Start */
 
 /* Image From https://unsplash.com/photos/V4CU3OBsrEk */

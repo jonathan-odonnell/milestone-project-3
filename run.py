@@ -306,6 +306,7 @@ def sign_in():
                                    request.form.get("password")):
                 session["user"] = existing_user["first_name"] + \
                     " " + existing_user["last_name"]
+                session["user_type"] = existing_user["user_type"]
                 return redirect(url_for("profile", first_name=session["user"]))
             else:
                 flash("Incorrect Email Address and/or Password")
@@ -349,17 +350,17 @@ def sign_up():
     return render_template("sign_up.html", page_title="Sign Up")
 
 
-@ app.route("/profile/<first_name>", methods=["GET", "POST"])
-def profile(first_name):
+@ app.route("/product_management", methods=["GET", "POST"])
+def product_management():
     first_name = session["user"]
 
-    if session["user"]:
-        reviews = list((mongo.db.reviews.find(
-            {"created_by": session["user"]})))
-        return render_template("profile.html", first_name=first_name,
-                               page_title="My Account", reviews=reviews)
-
-    return redirect(url_for("sign_in"))
+    if session["user_type"] == "admin":
+        products = list(mongo.db.products.find().sort('name', 1))
+        page, per_page, offset = get_page_args(
+            page_parameter='page', per_page_parameter='per_page', per_page=10)
+        pagination_products = paginate_products(products, offset, per_page)
+        pagination = paginate(products, page, per_page)
+    return render_template("product_management.html", page_title="Product Management", products=pagination_products, pagination=pagination)
 
 
 @ app.route("/logout")
