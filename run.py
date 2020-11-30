@@ -304,7 +304,8 @@ def sign_in():
         if existing_user:
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
-                session["user"] = existing_user["first_name"].lower()
+                session["user"] = existing_user["first_name"] + \
+                    " " + existing_user["last_name"]
                 return redirect(url_for("profile", first_name=session["user"]))
             else:
                 flash("Incorrect Email Address and/or Password")
@@ -339,7 +340,9 @@ def sign_up():
         }
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = request.form.get("first_name").lower()
+        session["user"] = request.form.get(
+            "first_name") + " " + request.form.get(
+            "last_name")
         flash("Registration Successful!")
         return redirect(url_for("profile", first_name=session["user"]))
 
@@ -386,8 +389,9 @@ def add_review():
         return render_template("add_review.html", page_title="Add Review")
 
 
-@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
+    print(session['user'])
     if request.method == 'POST':
         mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
             'overall_rating': int(request.form.get('overall_rating')),
