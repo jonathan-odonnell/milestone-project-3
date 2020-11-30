@@ -418,4 +418,11 @@ def delete_review(review_id):
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
     return redirect(request.referrer)
 
+
+@ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
+def delete_product(product_id):
+    mongo.db.products.delete_one({"_id": ObjectId(product_id)})
+    return redirect(url_for('product_management'))
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
