@@ -307,7 +307,7 @@ def sign_in():
                 session["user"] = existing_user["first_name"] + \
                     " " + existing_user["last_name"]
                 session["user_type"] = existing_user["user_type"]
-                return redirect(url_for("profile", first_name=session["user"]))
+                return redirect(url_for("index"))
             else:
                 flash("Incorrect Email Address and/or Password")
                 return redirect(url_for("sign_in"))
@@ -417,6 +417,5 @@ def edit_review(review_id):
 def delete_review(review_id):
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
     return redirect(request.referrer)
-
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
