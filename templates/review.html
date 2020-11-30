@@ -258,10 +258,10 @@
             </div>
             {% endif %}
             <p class="mb-2 text-justify">{{ review.review }}</p>
-            <small>Reviewed by {{review.created_by}} on September 1st 2020</small>
+            <small>Reviewed by {{review.created_by}} on {{dates[loop.index -1]}}</small>
           </div>
-          {% endfor %}
         </div>
+          {% endfor %}
       </div>
     </div>
   </div>

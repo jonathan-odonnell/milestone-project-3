@@ -1,9 +1,11 @@
 import os
-from flask import Flask, flash, render_template, redirect, request, session, url_for
+from flask import (Flask, flash, render_template,
+                   redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -24,8 +26,12 @@ def paginate_products(products, offset, per_page):
 
 def paginate(products, page, per_page):
     total = len(products)
-    return Pagination(page=page, per_page=per_page, total=total,
-                      css_framework='bootstrap4')
+    return Pagination(
+        page=page,
+        per_page=per_page,
+        total=total,
+        css_framework='bootstrap4'
+    )
 
 
 def sortItems(sort):
@@ -144,8 +150,8 @@ def reviews():
     if search:
         if categories:
             categories = categories.split(",")
-            query.append(
-                {"$match": {"$text": {"$search": search}, "category": {"$in": categories}}})
+            query.append({'$match': {'$text': {'$search': search},
+                                     'category': {'$in': categories}}})
 
         if not categories:
             query.append(
@@ -183,7 +189,19 @@ def reviews():
     pagination_info = "Displaying {} of {} reviews found for".format(
         record_numbers, total)
 
-    return render_template("reviews.html", page_title="Reviews", selected_categories=categories, selected_price=price, selected_brands=brands, products=pagination_products, search=search, pagination_info=pagination_info, page=page, per_page=per_page, pagination=pagination)
+    return render_template(
+        'reviews.html',
+        page_title='Reviews',
+        selected_categories=categories,
+        selected_price=price,
+        selected_brands=brands,
+        products=pagination_products,
+        search=search,
+        pagination_info=pagination_info,
+        page=page,
+        per_page=per_page,
+        pagination=pagination,
+    )
 
 
 @app.route("/reviews/<category>")
@@ -237,7 +255,18 @@ def category_reviews(category):
     pagination_info = "Displaying {} of {} reviews".format(
         record_numbers, total)
 
-    return render_template("reviews.html", page_title=page_title, selected_brands=brands, selected_price=price, products=pagination_products, pagination_info=pagination_info, total=total, page=page, per_page=per_page, pagination=pagination)
+    return render_template(
+        "reviews.html",
+        page_title=page_title,
+        selected_brands=brands,
+        selected_price=price,
+        products=pagination_products,
+        pagination_info=pagination_info,
+        total=total,
+        page=page,
+        per_page=per_page,
+        pagination=pagination
+    )
 
 
 @ app.route("/review_details/<product_id>")
@@ -249,15 +278,20 @@ def review_details(product_id):
     session["url"] = request.url
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
-    return render_template("review.html", page_title=page_title, product=product, reviews=reviews)
+    dates = []
+    for review in reviews:
+        dates.append(review["date_added"].strftime("%d %B %Y"))
+    return render_template("review.html", page_title=page_title,
+                           product=product, reviews=reviews, dates=dates)
 
 
 @ app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        mongo.db.contact.insert_one(
-            {"name": request.form.get("name"), "email": request.form.get("email"), "message": request.form.get("message")})
-        flash("Thank you for your message. A member of the team will be in touch shortly.")
+        mongo.db.contact.insert_one({'name': request.form.get('name'),
+                                     'email': request.form.get('email'),
+                                     'message': request.form.get('message')})
+        flash('Thank you for your message. A member of the team will be in touch shortly.')
     return render_template("contact.html", page_title="Contact Us")
 
 
@@ -268,7 +302,8 @@ def sign_in():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            if check_password_hash(existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
                 session["user"] = existing_user["first_name"].lower()
                 return redirect(url_for("profile", first_name=session["user"]))
             else:
@@ -292,9 +327,9 @@ def sign_up():
             flash("Email already registered")
             return redirect(url_for("sign_up"))
 
-        if request.form.get("password") != request.form.get("confirm_password"):
-            flash("Passwords do not match")
-            return redirect(url_for("sign_up"))
+        if request.form.get('password') != request.form.get('confirm_password'):
+            flash('Passwords do not match')
+            return redirect(url_for('sign_up'))
 
         sign_up = {
             "first_name": request.form.get("first_name").lower(),
@@ -318,7 +353,8 @@ def profile(first_name):
     if session["user"]:
         reviews = list((mongo.db.reviews.find(
             {"created_by": session["user"]})))
-        return render_template("profile.html", first_name=first_name, page_title="My Account", reviews=reviews)
+        return render_template("profile.html", first_name=first_name,
+                               page_title="My Account", reviews=reviews)
 
     return redirect(url_for("sign_in"))
 
@@ -333,40 +369,43 @@ def logout():
 @ app.route("/reviews/add_review/", methods=["GET", "POST"])
 def add_review():
     if request.method == 'POST':
-        mongo.db.reviews.insert_one(
-            {"overall_rating": int(request.form.get("overall_rating")),
-             "performance_rating": int(request.form.get("performance_rating")),
-             "battery_rating": int(request.form.get("battery_rating")),
-             "screen_rating": int(request.form.get("screen_rating")),
-             "camera_rating": int(request.form.get("camera_rating")),
-             "review_title": request.form.get("review_title"),
-             "review": request.form.get("review"),
-             "created_by": session["user"],
-             "product": session["product"]
-             })
+        mongo.db.reviews.insert_one({
+            'overall_rating': int(request.form.get('overall_rating')),
+            'performance_rating': int(request.form.get('performance_rating')),
+            'battery_rating': int(request.form.get('battery_rating')),
+            'screen_rating': int(request.form.get('screen_rating')),
+            'camera_rating': int(request.form.get('camera_rating')),
+            'review_title': request.form.get('review_title'),
+            'review': request.form.get('review'),
+            'date_added': datetime.datetime.now(),
+            'created_by': session['user'],
+            'product': session['product'],
+        })
         return redirect(session["url"])
     else:
         return render_template("add_review.html", page_title="Add Review")
 
 
-@ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     if request.method == 'POST':
-        mongo.db.reviews.update({"_id": ObjectId(review_id)},
-                                {"overall_rating": int(request.form.get("overall_rating")),
-                                 "performance_rating": int(request.form.get("performance_rating")),
-                                 "battery_rating": int(request.form.get("battery_rating")),
-                                 "screen_rating": int(request.form.get("screen_rating")),
-                                 "camera_rating": int(request.form.get("camera_rating")),
-                                 "review_title": request.form.get("review_title"),
-                                 "review": request.form.get("review"),
-                                 "created_by": session["user"],
-                                 "product": session["product"]
-                                 })
-        return redirect(session["url"])
+        mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
+            'overall_rating': int(request.form.get('overall_rating')),
+            'performance_rating': int(request.form.get('performance_rating')),
+            'battery_rating': int(request.form.get('battery_rating')),
+            'screen_rating': int(request.form.get('screen_rating')),
+            'camera_rating': int(request.form.get('camera_rating')),
+            'review_title': request.form.get('review_title'),
+            'review': request.form.get('review'),
+            'date_added': datetime.datetime.now(),
+            'created_by': session['user'],
+            'product': session['product'],
+        })
+        return redirect(session['url'])
     else:
-        review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
-        return render_template("edit_review.html", page_title="Edit Review", review=review)
+        review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
+        return render_template('edit_review.html', page_title='Edit Review',
+                               review=review)
 
 
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
