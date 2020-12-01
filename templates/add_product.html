@@ -1,0 +1,209 @@
+{% extends "base.html" %} {% block content %}
+<div class="container content-container">
+  <div class="row no-gutters">
+    <div class="col-12">
+      <h1 class="text-center headings">{{page_title}}</h1>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+      <form action="{{url_for('add_product')}}" method="POST">
+        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              id="home-tab"
+              data-toggle="tab"
+              href="#home"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              >Product Details</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="profile-tab"
+              data-toggle="tab"
+              href="#profile"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              >Features</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div
+            class="tab-pane fade show active"
+            id="home"
+            role="tabpanel"
+            aria-labelledby="home-tab"
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Enter product name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select
+                class="custom-select"
+                id="category"
+                name="category"
+                required
+              >
+                <option selected disabled>Select a category</option>
+                <option value="phones">Phones</option>
+                <option value="tablets">Tablets</option>
+                <option value="laptops">Laptops</option>
+                <option value="accessories">Accessories</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <div class="input-group-prepend">
+                <span class="input-group-text">£</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  placeholder="Enter product price"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <input
+                type="text"
+                class="form-control"
+                name="brand"
+                placeholder="Enter product brand"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Image URL</label>
+              <input
+                type="text"
+                class="form-control"
+                name="image-url"
+                placeholder="Enter product image URL"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image-description">Image Description</label>
+              <input
+                type="text"
+                class="form-control"
+                name="image-alt"
+                placeholder="Enter image description"
+                required
+              />
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            <div class="form-group">
+              <label for="colours">Colours</label>
+              <input
+                type="text"
+                class="form-control"
+                id="colours"
+                name="colours"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="capacity">Capacity</label>
+              <input
+                type="text"
+                class="form-control"
+                id="capacity"
+                name="capacity"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="display">Display</label>
+              <input
+                type="text"
+                class="form-control"
+                id="display"
+                name="display"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="processor_memory_graphics">Processor, Memory and Graphics</label>
+              <input
+                type="text"
+                class="form-control"
+                id="processor_memory_graphics"
+                name="processor_memory_graphics"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="camera_video">Camera and Video</label>
+              <input
+                type="text"
+                class="form-control"
+                id="camera_video"
+                name="camera_video"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="battery">Battery Life</label>
+              <input
+                type="text"
+                class="form-control"
+                id="battery"
+                name="battery"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="connectivity">Connectivity</label>
+              <input
+                type="text"
+                class="form-control"
+                id="connectivity"
+                name="connectivity"
+                placeholder="Enter feature details"
+              />
+            </div>
+            <div class="form-group">
+              <label for="additional_features">Additional Features</label>
+              <input
+                type="text"
+                class="form-control"
+                id="additional_features"
+                name="additional_features"
+                placeholder="Enter feature details"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group text-center mt-4">
+          <button class="btn btn-green">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

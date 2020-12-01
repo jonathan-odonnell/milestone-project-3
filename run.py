@@ -419,6 +419,43 @@ def delete_review(review_id):
     return redirect(request.referrer)
 
 
+@ app.route("/add_product", methods=["GET", "POST"])
+def add_product():
+
+    if request.method == "POST":
+        product = {
+            "name": request.form.get('name'),
+            "category": request.form.get('category'),
+            "price": int(request.form.get('price')),
+            "brand": request.form.get('brand'),
+            "image_url": request.form.get('image-url'),
+            "image_alt": request.form.get('image-alt'),
+            "date_added": datetime.datetime.now(),
+            "colours": request.form.get('colours'),
+            "capacity": request.form.get('capacity'),
+            "display": request.form.get('display'),
+            "processor, memory and graphics": request.form.get('processor_memory_graphics'),
+            "camera and video": request.form.get('camera_video'),
+            "battery life": request.form.get('battery'),
+            "connectivity": request.form.get('connectivity'),
+            "additional features": request.form.get('additional_features'),
+        }
+
+        keys = list(product.keys())
+
+        for key in keys:
+            if product[key] == "":
+                del product[key]
+
+        print(product)
+
+        mongo.db.products.insert_one(product)
+
+        return redirect(url_for('product_management'))
+
+    return render_template('add_product.html', page_title='Add Product')
+
+
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
 def delete_product(product_id):
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
