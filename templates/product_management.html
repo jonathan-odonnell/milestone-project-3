@@ -52,7 +52,10 @@
             <td>{{product.name.title()}}</td>
             <td>{{product.category.capitalize()}}</td>
             <td>
-              <a class="btn btn-sm">
+              <a
+                class="btn btn-sm"
+                href="{{url_for('edit_product', product_id=product._id)}}"
+              >
                 <i class="fas fa-edit"></i>
               </a>
             </td>

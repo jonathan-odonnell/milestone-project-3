@@ -456,6 +456,43 @@ def add_product():
     return render_template('add_product.html', page_title='Add Product')
 
 
+@ app.route("/edit_product/<product_id>", methods=["GET", "POST"])
+def edit_product(product_id):
+    if request.method == "POST":
+        product = {
+            "name": request.form.get('name'),
+            "category": request.form.get('category'),
+            "price": int(request.form.get('price')),
+            "brand": request.form.get('brand'),
+            "image_url": request.form.get('image-url'),
+            "image_alt": request.form.get('image-alt'),
+            "colours": request.form.get('colours'),
+            "capacity": request.form.get('capacity'),
+            "display": request.form.get('display'),
+            "processor_memory_graphics": request.form.get('processor_memory_graphics'),
+            "camera_video": request.form.get('camera_video'),
+            "battery": request.form.get('battery'),
+            "connectivity": request.form.get('connectivity'),
+            "additional_features": request.form.get('additional_features'),
+        }
+        keys = list(product.keys())
+        for key in keys:
+            if product[key] == "":
+                del product[key]
+        mongo.db.products.update_one(
+            {'_id': ObjectId(product_id)}, {"$set": product})
+        return redirect(url_for('product_management'))
+    else:
+        product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
+        categories = mongo.db.categories.find()
+        return render_template(
+            'edit_product.html',
+            page_title='Edit Product',
+            categories=categories,
+            product=product
+        )
+
+
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
 def delete_product(product_id):
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
