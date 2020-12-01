@@ -554,9 +554,11 @@ form {
   .info-item-container {
     padding: 1.25rem;
   }
+  
   .collapse:not(.show) {
     display: block;
   }
+
   #collapseFilters .btn {
     width: 100%;
   }
