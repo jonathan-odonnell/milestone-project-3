@@ -23,17 +23,60 @@
       <h2 class="subheadings">Features</h2>
       <table class="table table-borderless features-table mb-0">
         <tbody>
-          {% for feature in product[0].features %}
+          {% if product[0].colours %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">{{feature}}</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].features[feature]}}</td>
+            <th scope="row" class="px-0 pt-0 pb-3">Colours</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].colours}}</td>
           </tr>
-          {% else %}
+          {% endif %}
+          {% if product[0].price %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-0">{{feature}}</th>
-            <td class="px-0 pt-0 pb-0">{{product[0].features[feature]}}</td>
+            <th scope="row" class="px-0 pt-0 pb-3">Price</th>
+            <td class="px-0 pt-0 pb-3">From £{{product[0].price}}</td>
           </tr>
-          {% endfor %}
+          {% endif %}
+          {% if product[0].display %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Display</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].display}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].display %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Display</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].display}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].processor_memory_graphics %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Processor, Memory and Graphics</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].processor_memory_graphics}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].camera_video %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Camera and Video</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].camera_video}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].battery %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Battery Life</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].battery}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].connectivity %}
+          <tr>
+            <th scope="row" class="px-0 pt-0 pb-3">Connectivity</th>
+            <td class="px-0 pt-0 pb-3">{{product[0].connectivity}}</td>
+          </tr>
+          {% endif %}
+          {% if product[0].additional_features %}
+          <tr>
+            <th scope="row" class="p-0">Additional Features</th>
+            <td class="p-0">{{product[0].additional_features}}</td>
+          </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>
