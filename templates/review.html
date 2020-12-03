@@ -1,90 +1,81 @@
 {% extends "base.html" %} {% block content %}
-<section class="container-fluid no-gutters px-0">
-  <div class="row no-gutters">
-    <div
-      class="col-12 review-img"
-      style="background-image: url('{{product[0].hero_image_url}}')"
-    >
-      <div class="overlay"></div>
-      <h1 class="text-center review-heading mb-0">{{page_title}}</h1>
-    </div>
-  </div>
-</section>
-<section class="container content-container">
-  <div class="row no-gutters">
+<section class="container content-container-top">
+<div class="row no-gutters py-3">
     <div class="col-12 back-link">
       <a href="{{request.referrer}}"
         ><i class="fas fa-chevron-left"></i>Back to {{session["prev"]}}</a
       >
     </div>
   </div>
-  <div class="row no-gutters">
+<div class="row no-gutters">
     <div class="col-12">
-      <h2 class="subheadings">Features</h2>
-      <table class="table table-borderless features-table mb-0">
+        <h1 class="text-center mb-3">{{product[0].name}}</h1>
+    </div>
+</div>
+  <div class="row no-gutters">
+      <div class="col-12 col-lg-6 pb-5 pb-lg-0 pr-lg-5">
+        <img class="img-fluid" src="{{product[0].image_url}}" alt="">
+      </div>
+     <div class="col-12 col-lg-6 pl-lg-5">
+        <table class="table table-borderless features-table mb-0">
         <tbody>
           {% if product[0].colours %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Colours</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].colours}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Colours</th>
+            <td class="p-0 pb-3">{{product[0].colours}}</td>
           </tr>
           {% endif %}
           {% if product[0].price %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Price</th>
-            <td class="px-0 pt-0 pb-3">From £{{product[0].price}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Price</th>
+            <td class="p-0 pb-3">From £{{product[0].price}}</td>
           </tr>
           {% endif %}
           {% if product[0].display %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Display</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].display}}</td>
-          </tr>
-          {% endif %}
-          {% if product[0].display %}
-          <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Display</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].display}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Display</th>
+            <td class="p-0 pb-3">{{product[0].display}}</td>
           </tr>
           {% endif %}
           {% if product[0].processor_memory_graphics %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Processor, Memory and Graphics</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].processor_memory_graphics}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Processor, Memory and Graphics</th>
+            <td class="p-0 pb-3">{{product[0].processor_memory_graphics}}</td>
           </tr>
           {% endif %}
           {% if product[0].camera_video %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Camera and Video</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].camera_video}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Camera and Video</th>
+            <td class="p-0 pb-3">{{product[0].camera_video}}</td>
           </tr>
           {% endif %}
           {% if product[0].battery %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Battery Life</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].battery}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Battery Life</th>
+            <td class="p-0 pb-3">{{product[0].battery}}</td>
           </tr>
           {% endif %}
           {% if product[0].connectivity %}
           <tr>
-            <th scope="row" class="px-0 pt-0 pb-3">Connectivity</th>
-            <td class="px-0 pt-0 pb-3">{{product[0].connectivity}}</td>
+            <th scope="row" class="p-0 pb-3 pr-3">Connectivity</th>
+            <td class="p-0 pb-3">{{product[0].connectivity}}</td>
           </tr>
           {% endif %}
           {% if product[0].additional_features %}
           <tr>
-            <th scope="row" class="p-0">Additional Features</th>
-            <td class="p-0">{{product[0].additional_features}}</td>
+            <th scope="row" class="p-0 pb-5 pr-3">Additional Features</th>
+            <td class="p-0 pb-5">{{product[0].additional_features}}</td>
           </tr>
           {% endif %}
         </tbody>
-      </table>
+        </table>
     </div>
   </div>
 </section>
 <section class="wrapper-grey">
   <div class="container content-container">
     <div class="row no-gutters">
+    </div>
       <div class="col-12">
         <h2 class="subheadings">Reviews</h2>
         <div class="row no-gutters">
@@ -143,8 +134,8 @@
                   <div
                     class="progress-bar"
                     role="progressbar"
-                    style="width: calc({{ product[0].screen_rating }} * 20%)"
-                    aria-valuenow="calc({{ product[0].screen_rating }} * 20)"
+                    style="width: calc({{ product[0].quality_rating }} * 20%)"
+                    aria-valuenow="calc({{ product[0].quality_rating }} * 20)"
                     aria-valuemin="0"
                     aria-valuemax="100"
                   ></div>
@@ -158,8 +149,8 @@
                   <div
                     class="progress-bar"
                     role="progressbar"
-                    style="width: calc({{ product[0].camera_rating }} * 20%)"
-                    aria-valuenow="calc({{ product[0].camera_rating }} * 20)"
+                    style="width: calc({{ product[0].price_rating }} * 20%)"
+                    aria-valuenow="calc({{ product[0].price_rating }} * 20)"
                     aria-valuemin="0"
                     aria-valuemax="100"
                   ></div>
