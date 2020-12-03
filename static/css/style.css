@@ -4,6 +4,10 @@
   margin: 70px 0 30px;
 }
 
+.content-container-top {
+  padding: 70px 30px 0;
+}
+
 .subheadings {
   margin-bottom: 30px;
   line-height: 1;
@@ -18,6 +22,10 @@ h2 {
 }
 
 h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
   font-size: 1rem;
 }
 
@@ -34,7 +42,6 @@ strong {
 .text-white {
   color: #fff;
 }
-
 /* Text Styling End */
 
 /* Navbar Start */
@@ -212,35 +219,6 @@ form {
 
 /* Review details start */
 
-.review-heading {
-  color: #fff;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.review-images {
-  height: 200px;
-  width: 200px;
-  object-fit: cover;
-}
-
-.review-img {
-  height: 65vh;
-  min-height: 300px;
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
-  margin-top: 70px;
-  position: relative;
-}
-
-.back-link {
-  margin-bottom: 30px;
-}
-
 .back-link a:hover {
   color: #64a19d;
 }
@@ -249,12 +227,18 @@ form {
   padding-right: 10px;
 }
 
-.features-table th {
-  min-width: 200px;
+.product-img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.features {
+  padding: 30px 0;
 }
 
 .progress {
-  margin-bottom: 15px;
+  margin-bottom: 0.5rem;
   height: 0.5em;
   background-color: #c0c0c0;
 }
@@ -267,9 +251,13 @@ form {
   margin-bottom: 15px;
 }
 
-.ratings-text {
-  margin-bottom: 9px;
-  line-height: 1;
+.add-review {
+  margin-bottom: 30px;
+}
+
+.review-card {
+  background: #f7fcfc;
+  margin-bottom: 30px;
 }
 
 .card-text {
@@ -331,16 +319,6 @@ form {
 
 .yellow-star {
   color: #ffc700;
-}
-
-.review-card {
-  border: 1px solid #64a19d;
-  background: #f7fcfc;
-  margin-bottom: 30px;
-}
-
-.add-review {
-  margin-bottom: 30px;
 }
 
 /* Add Review form styling end */
@@ -532,11 +510,25 @@ form {
   #collapseFilters .btn {
     width: 150px;
   }
+  .features-table th {
+    min-width: 200px;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 
 @media (min-width: 992px) {
+  .progress {
+    margin: 0.4375rem 0;
+  }
+
   .headings {
     margin: 73px 0 30px;
+  }
+
+  .content-container-top {
+    padding: 73px 30px 0;
   }
 
   .footer-headings {
@@ -554,13 +546,17 @@ form {
   .info-item-container {
     padding: 1.25rem;
   }
-  
+
   .collapse:not(.show) {
     display: block;
   }
 
   #collapseFilters .btn {
     width: 100%;
+  }
+  .features {
+    padding-top: 0;
+    padding-bottom: calc(30px - 1.5rem);
   }
 }
 
