@@ -12,7 +12,7 @@
       <img class="product-img" src="{{product[0].image_url}}" alt="" />
     </div>
     <div class="col-12 col-lg-6 pr-lg-5 features">
-      <h3 class="subheadings">{{product[0].name}}</h3>
+      <h2 class="subheadings product-headings">{{product[0].name}}</h2>
       <table class="table table-borderless features-table mb-0">
         <tbody>
           {% if product[0].colours %}
@@ -67,7 +67,7 @@
   <div class="container content-container">
     <div class="row no-gutters"></div>
     <div class="col-12">
-      <h3 class="subheadings">Reviews</h3>
+      <h2 class="subheadings product-headings">Reviews</h2>
       <div class="row no-gutters">
         <div class="col-12 col-md-6 pr-md-4 pr-lg-0">
           <div class="row no-gutters progress-bars">
@@ -243,7 +243,7 @@
       <div class="card review-card">
         <div class="card-body">
           <div class="d-block d-md-inline-block">
-            <h4 class="mb-2">{{review.review_title}}</h4>
+            <h3 class="mb-2">{{review.review_title}}</h3>
           </div>
           <div class="d-inline-block mb-2">
             {% if review.overall_rating == 1 %}

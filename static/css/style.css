@@ -22,10 +22,6 @@ h2 {
 }
 
 h3 {
-  font-size: 1.2rem;
-}
-
-h4 {
   font-size: 1rem;
 }
 
@@ -42,6 +38,11 @@ strong {
 .text-white {
   color: #fff;
 }
+
+.product-headings {
+  font-size: 1.2rem;
+}
+
 /* Text Styling End */
 
 /* Navbar Start */
@@ -234,7 +235,8 @@ form {
 }
 
 .features {
-  padding: 30px 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .progress {
@@ -248,7 +250,7 @@ form {
 }
 
 .progress-bars {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .add-review {
@@ -495,6 +497,9 @@ form {
 /* Media Queries start */
 
 @media (min-width: 768px) {
+  .product-headings {
+    font-size: 1.5rem;
+  }
   .footer-wrapper {
     padding: 30px;
   }
@@ -512,9 +517,6 @@ form {
   }
   .features-table th {
     min-width: 200px;
-  }
-  h3 {
-    font-size: 1.5rem;
   }
 }
 
@@ -556,7 +558,6 @@ form {
   }
   .features {
     padding-top: 0;
-    padding-bottom: calc(30px - 1.5rem);
   }
 }
 
