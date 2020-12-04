@@ -123,6 +123,38 @@ def getPriceRange(category, value):
             return query
 
 
+def recalculate_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
+    rating = ((productRating * totalProductRatings) -
+              oldUserRating + float(newUserRating)) / totalProductRatings
+    return rating
+
+
+def add_star_rating(star_rating, prev_ratings, new_ratings):
+    if star_rating == 1:
+        new_ratings['one_star'] = prev_ratings[0]['one_star'] + 1
+    if star_rating == 2:
+        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] + 1
+    if star_rating == 3:
+        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] + 1
+    if star_rating == 4:
+        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] + 1
+    if star_rating == 5:
+        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] + 1
+
+
+def remove_star_rating(star_rating, prev_ratings, new_ratings):
+    if star_rating == 1:
+        new_ratings['one_star'] = prev_ratings[0]['one_star'] - 1
+    if star_rating == 2:
+        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] - 1
+    if star_rating == 3:
+        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] - 1
+    if star_rating == 4:
+        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] - 1
+    if star_rating == 5:
+        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -392,23 +424,50 @@ def add_review():
 
 @ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
-    print(session['user'])
     if request.method == 'POST':
+        product_count = mongo.db.reviews.count({"product": session['product']})
+
+        product_ratings = list(mongo.db.products.find({"name": session['product']}, {"overall_rating": 1, "performance_rating": 1, "battery_rating": 1,
+                                                                                     "price_rating": 1, "quality_rating": 1, "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1, "five_stars": 1, "_id": 0}))
+
+        user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)}, {
+                            "overall_rating": 1, "performance_rating": 1, "battery_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}))
+
         mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
             'overall_rating': int(request.form.get('overall_rating')),
             'performance_rating': int(request.form.get('performance_rating')),
             'battery_rating': int(request.form.get('battery_rating')),
-            'screen_rating': int(request.form.get('screen_rating')),
-            'camera_rating': int(request.form.get('camera_rating')),
+            'quality_rating': int(request.form.get('screen_rating')),
+            'price_rating': int(request.form.get('camera_rating')),
             'review_title': request.form.get('review_title'),
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
             'created_by': session['user'],
             'product': session['product'],
         })
+
+        new_ratings = {
+            'overall_rating': recalculate_rating(product_ratings[0]['overall_rating'], user_ratings[0]['overall_rating'], request.form.get('overall_rating'), product_count),
+            'performance_rating': recalculate_rating(product_ratings[0]['performance_rating'], user_ratings[0]['performance_rating'], request.form.get('performance_rating'), product_count),
+            'battery_rating': recalculate_rating(product_ratings[0]['battery_rating'], user_ratings[0]['battery_rating'], request.form.get('battery_rating'), product_count),
+            'price_rating': recalculate_rating(product_ratings[0]['price_rating'], user_ratings[0]['price_rating'], request.form.get('screen_rating'), product_count),
+            'quality_rating': recalculate_rating(product_ratings[0]['quality_rating'], user_ratings[0]['quality_rating'], request.form.get('camera_rating'), product_count),
+        }
+
+        if (int(request.form.get('overall_rating')) != user_ratings[0]['overall_rating']):
+            add_star_rating(int(request.form.get('overall_rating')),
+                            product_ratings, new_ratings)
+            remove_star_rating(
+                user_ratings[0]['overall_rating'], product_ratings, new_ratings)
+
+        mongo.db.products.update_one(
+            {'name': session['product']}, {"$set": new_ratings})
+
         return redirect(session['url'])
+
     else:
         review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
+
         return render_template('edit_review.html', page_title='Edit Review',
                                review=review)
 
