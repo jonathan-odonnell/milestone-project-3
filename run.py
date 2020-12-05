@@ -123,6 +123,12 @@ def getPriceRange(category, value):
             return query
 
 
+def calculate_rating(productRating, newUserRating, totalProductRatings):
+    rating = ((productRating * totalProductRatings) +
+              float(newUserRating)) / totalProductRatings
+    return rating
+
+
 def recalculate_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
     rating = ((productRating * totalProductRatings) -
               oldUserRating + float(newUserRating)) / totalProductRatings
@@ -417,6 +423,36 @@ def add_review():
             'created_by': session['user'],
             'product': session['product'],
         })
+
+        product_count = mongo.db.reviews.count({"product": session['product']})
+
+        product_ratings = list(mongo.db.products.find({"name": session
+        ['product']}, {"overall_rating": 1, "performance_rating": 1,
+        "battery_rating": 1, "price_rating": 1, "quality_rating": 1,
+        "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
+        "five_stars": 1, "_id": 0}))
+
+        new_ratings = {
+            'overall_rating': calculate_rating(product_ratings[0]
+            ['overall_rating'], request.form.get('overall_rating'),
+            product_count - 1), 'performance_rating': calculate_rating
+            (product_ratings[0]['performance_rating'], request.form.get
+            ('performance_rating'), product_count - 1), 'battery_rating':
+            calculate_rating(product_ratings[0]['battery_rating'],
+            request.form.get('battery_rating'), product_count - 1),
+            'price_rating': calculate_rating(product_ratings[0]['price_rating'],
+            request.form.get('screen_rating'), product_count - 1),
+            'quality_rating': calculate_rating(product_ratings[0]
+            ['quality_rating'], request.form.get('camera_rating'),
+            product_count - 1),
+        }
+
+        add_star_rating(int(request.form.get('overall_rating')),
+                        product_ratings, new_ratings)
+
+        mongo.db.products.update_one(
+            {'name': session['product']}, {"$set": new_ratings})
+
         return redirect(session["url"])
     else:
         return render_template("add_review.html", page_title="Add Review")
@@ -447,11 +483,11 @@ def edit_review(review_id):
         })
 
         new_ratings = {
-            'overall_rating': recalculate_rating(product_ratings[0]['overall_rating'], user_ratings[0]['overall_rating'], request.form.get('overall_rating'), product_count),
-            'performance_rating': recalculate_rating(product_ratings[0]['performance_rating'], user_ratings[0]['performance_rating'], request.form.get('performance_rating'), product_count),
-            'battery_rating': recalculate_rating(product_ratings[0]['battery_rating'], user_ratings[0]['battery_rating'], request.form.get('battery_rating'), product_count),
-            'price_rating': recalculate_rating(product_ratings[0]['price_rating'], user_ratings[0]['price_rating'], request.form.get('screen_rating'), product_count),
-            'quality_rating': recalculate_rating(product_ratings[0]['quality_rating'], user_ratings[0]['quality_rating'], request.form.get('camera_rating'), product_count),
+            'overall_rating': calculate_rating(product_ratings[0]['overall_rating'], user_ratings[0]['overall_rating'], request.form.get('overall_rating'), product_count),
+            'performance_rating': calculate_rating(product_ratings[0]['performance_rating'], user_ratings[0]['performance_rating'], request.form.get('performance_rating'), product_count),
+            'battery_rating': calculate_rating(product_ratings[0]['battery_rating'], user_ratings[0]['battery_rating'], request.form.get('battery_rating'), product_count),
+            'price_rating': calculate_rating(product_ratings[0]['price_rating'], user_ratings[0]['price_rating'], request.form.get('screen_rating'), product_count),
+            'quality_rating': calculate_rating(product_ratings[0]['quality_rating'], user_ratings[0]['quality_rating'], request.form.get('camera_rating'), product_count),
         }
 
         if (int(request.form.get('overall_rating')) != user_ratings[0]['overall_rating']):
