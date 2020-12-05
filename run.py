@@ -437,7 +437,7 @@ def add_review():
             ['overall_rating'], request.form.get('overall_rating'),
             product_count - 1), 'performance_rating': calculate_rating
             (product_ratings[0]['performance_rating'], request.form.get
-            ('performance_rating'), product_count - 1), 'battery_rating':
+            ('performance_rating'), product_count - 1), 'usability_rating':
             calculate_rating(product_ratings[0]['usability_rating'],
             request.form.get('usability_rating'), product_count - 1),
             'price_rating': calculate_rating(product_ratings[0]['price_rating'],
