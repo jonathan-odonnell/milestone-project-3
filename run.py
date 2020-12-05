@@ -414,9 +414,9 @@ def add_review():
         mongo.db.reviews.insert_one({
             'overall_rating': int(request.form.get('overall_rating')),
             'performance_rating': int(request.form.get('performance_rating')),
-            'battery_rating': int(request.form.get('battery_rating')),
-            'quality_rating': int(request.form.get('screen_rating')),
-            'price_rating': int(request.form.get('camera_rating')),
+            'usability_rating': int(request.form.get('usability_rating')),
+            'quality_rating': int(request.form.get('quality_rating')),
+            'price_rating': int(request.form.get('price_rating')),
             'review_title': request.form.get('review_title'),
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
@@ -428,7 +428,7 @@ def add_review():
 
         product_ratings = list(mongo.db.products.find({"name": session
         ['product']}, {"overall_rating": 1, "performance_rating": 1,
-        "battery_rating": 1, "price_rating": 1, "quality_rating": 1,
+        "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
 
@@ -438,12 +438,12 @@ def add_review():
             product_count - 1), 'performance_rating': calculate_rating
             (product_ratings[0]['performance_rating'], request.form.get
             ('performance_rating'), product_count - 1), 'battery_rating':
-            calculate_rating(product_ratings[0]['battery_rating'],
-            request.form.get('battery_rating'), product_count - 1),
+            calculate_rating(product_ratings[0]['usability_rating'],
+            request.form.get('usability_rating'), product_count - 1),
             'price_rating': calculate_rating(product_ratings[0]['price_rating'],
-            request.form.get('screen_rating'), product_count - 1),
+            request.form.get('price_rating'), product_count - 1),
             'quality_rating': calculate_rating(product_ratings[0]
-            ['quality_rating'], request.form.get('camera_rating'),
+            ['quality_rating'], request.form.get('quality_rating'),
             product_count - 1),
         }
 

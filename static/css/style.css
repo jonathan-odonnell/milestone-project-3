@@ -272,25 +272,15 @@ form {
 
 /* Review details end */
 
-/* Add Review form styling start */
-
-.form-border {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #64a19d;
-}
-
-.feature-ratings-border {
-  margin-top: 10px;
-}
+/* Review form styling start */
 
 .form-subheadings {
   text-transform: none;
   font-size: 1.2em;
 }
 
-.feature-ratings-text {
-  margin-bottom: 20px;
+.form-divider {
+    margin: 0 0 20px;
 }
 
 .form-group-overall-ratings {
@@ -298,34 +288,33 @@ form {
   margin-top: 0;
 }
 
-.form-group-feature-ratings {
-  height: 40px;
+.feature-ratings {
+  margin-bottom: 10px;
 }
 
-.form-group-button {
-  margin: 30px 0 0;
+.form-group-feature-ratings {
+  height: 40px;
 }
 
 .ratings-label {
   margin-bottom: 0;
 }
 
-.btn-review {
-  padding: 0 1rem;
-}
-
-.rating i {
-  margin-right: 0;
-  padding: 0 0.5rem;
+.feature-ratings-text {
+  margin-bottom: 20px;
 }
 
 .yellow-star {
   color: #ffc700;
 }
 
-/* Add Review form styling end */
+.form-group-button {
+  margin: 30px 0 0;
+}
 
-/* Rating Stars Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
+/* Review form styling end */
+
+/* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
 
 .rating {
   position: absolute;
@@ -361,7 +350,7 @@ form {
   color: #ffc700;
 }
 
-/* Rating Stars End */
+/* Rating Stars Radio Buttons End */
 
 /* Product Management Start */
 
