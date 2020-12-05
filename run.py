@@ -123,14 +123,14 @@ def getPriceRange(category, value):
             return query
 
 
-def calculate_rating(productRating, newUserRating, totalProductRatings):
+def add_rating(productRating, newUserRating, totalProductRatings):
     rating = ((productRating * (totalProductRatings - 1)) +
               float(newUserRating)) / totalProductRatings
     rating = round(rating, 1)
     return rating
 
 
-def recalculate_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
+def edit_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
     rating = ((productRating * totalProductRatings) -
               oldUserRating + float(newUserRating)) / totalProductRatings
     rating = round(rating, 1)
@@ -442,16 +442,16 @@ def add_review():
         "five_stars": 1, "_id": 0}))
 
         new_ratings = {
-            'overall_rating': calculate_rating(product_ratings[0]
+            'overall_rating': add_rating(product_ratings[0]
             ['overall_rating'], request.form.get('overall_rating'),
-            product_count), 'performance_rating': calculate_rating
+            product_count), 'performance_rating': add_rating
             (product_ratings[0]['performance_rating'], request.form.get
             ('performance_rating'), product_count), 'usability_rating':
-            calculate_rating(product_ratings[0]['usability_rating'],
+            add_rating(product_ratings[0]['usability_rating'],
             request.form.get('usability_rating'), product_count),
-            'price_rating': calculate_rating(product_ratings[0]['price_rating'],
+            'price_rating': add_rating(product_ratings[0]['price_rating'],
             request.form.get('price_rating'), product_count),
-            'quality_rating': calculate_rating(product_ratings[0]
+            'quality_rating': add_rating(product_ratings[0]
             ['quality_rating'], request.form.get('quality_rating'),
             product_count),
         }
@@ -496,19 +496,19 @@ def edit_review(review_id):
         })
 
         new_ratings = {
-            'overall_rating': recalculate_rating(product_ratings[0]
+            'overall_rating': edit_rating(product_ratings[0]
             ['overall_rating'], user_ratings[0]['overall_rating'],
             request.form.get('overall_rating'), product_count),
-            'performance_rating': recalculate_rating(product_ratings[0]
+            'performance_rating': edit_rating(product_ratings[0]
             ['performance_rating'], user_ratings[0]['performance_rating'],
             request.form.get('performance_rating'), product_count),
-            'usability_rating': recalculate_rating(product_ratings[0]
+            'usability_rating': edit_rating(product_ratings[0]
             ['usability_rating'], user_ratings[0]['usability_rating'],
             request.form.get('usability_rating'), product_count),
-            'price_rating': recalculate_rating(product_ratings[0]
+            'price_rating': edit_rating(product_ratings[0]
             ['price_rating'], user_ratings[0]['price_rating'], 
             request.form.get('price_rating'), product_count),
-            'quality_rating': recalculate_rating(product_ratings[0]
+            'quality_rating': edit_rating(product_ratings[0]
             ['quality_rating'], user_ratings[0]['quality_rating'],
             request.form.get('quality_rating'), product_count),
         }
