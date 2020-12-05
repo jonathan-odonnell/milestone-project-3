@@ -124,7 +124,7 @@ def getPriceRange(category, value):
 
 
 def calculate_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * totalProductRatings) +
+    rating = ((productRating * (totalProductRatings - 1)) +
               float(newUserRating)) / totalProductRatings
     rating = round(rating, 1)
     return rating
@@ -437,16 +437,16 @@ def add_review():
         new_ratings = {
             'overall_rating': calculate_rating(product_ratings[0]
             ['overall_rating'], request.form.get('overall_rating'),
-            product_count - 1), 'performance_rating': calculate_rating
+            product_count), 'performance_rating': calculate_rating
             (product_ratings[0]['performance_rating'], request.form.get
-            ('performance_rating'), product_count - 1), 'usability_rating':
+            ('performance_rating'), product_count), 'usability_rating':
             calculate_rating(product_ratings[0]['usability_rating'],
-            request.form.get('usability_rating'), product_count - 1),
+            request.form.get('usability_rating'), product_count),
             'price_rating': calculate_rating(product_ratings[0]['price_rating'],
-            request.form.get('price_rating'), product_count - 1),
+            request.form.get('price_rating'), product_count),
             'quality_rating': calculate_rating(product_ratings[0]
             ['quality_rating'], request.form.get('quality_rating'),
-            product_count - 1),
+            product_count),
         }
 
         add_star_rating(int(request.form.get('overall_rating')),
