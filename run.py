@@ -126,12 +126,14 @@ def getPriceRange(category, value):
 def calculate_rating(productRating, newUserRating, totalProductRatings):
     rating = ((productRating * totalProductRatings) +
               float(newUserRating)) / totalProductRatings
+    rating = round(rating, 1)
     return rating
 
 
 def recalculate_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
     rating = ((productRating * totalProductRatings) -
               oldUserRating + float(newUserRating)) / totalProductRatings
+    rating = round(rating, 1)
     return rating
 
 
