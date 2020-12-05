@@ -137,6 +137,13 @@ def recalculate_rating(productRating, oldUserRating, newUserRating, totalProduct
     return rating
 
 
+def delete_rating(productRating, newUserRating, totalProductRatings):
+    rating = ((productRating * (totalProductRatings + 1)) -
+              float(newUserRating)) / totalProductRatings
+    rating = round(rating, 1)
+    return rating
+
+
 def add_star_rating(star_rating, prev_ratings, new_ratings):
     if star_rating == 1:
         new_ratings['one_star'] = prev_ratings[0]['one_star'] + 1
@@ -531,28 +538,28 @@ def delete_review(review_id):
 
     product_ratings = list(mongo.db.products.find({"name": session
     ['product']}, {"overall_rating": 1, "performance_rating": 1,
-    "battery_rating": 1, "price_rating": 1, "quality_rating": 1,
+    "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
     "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
     "five_stars": 1, "_id": 0}))
 
     user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-    {"overall_rating": 1, "performance_rating": 1, "battery_rating": 1,
+    {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1,
     "price_rating": 1, "quality_rating": 1, "_id": 0}))
 
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
     new_ratings = {
-            'overall_rating': recalculate_rating(product_ratings[0]
+            'overall_rating': delete_rating(product_ratings[0]
             ['overall_rating'], user_ratings[0]['overall_rating'],
-            0, product_count), 'performance_rating': recalculate_rating
+            product_count), 'performance_rating': delete_rating
             (product_ratings[0]['performance_rating'], user_ratings[0]
-            ['performance_rating'], 0, product_count), 'battery_rating':
-            recalculate_rating(product_ratings[0]['battery_rating'],
-            user_ratings[0]['battery_rating'], 0, product_count), 
-            'price_rating': recalculate_rating(product_ratings[0]
-            ['price_rating'], user_ratings[0]['price_rating'], 0, 
-            product_count), 'quality_rating': recalculate_rating(product_ratings
-            [0]['quality_rating'], user_ratings[0]['quality_rating'], 0, 
+            ['performance_rating'], product_count), 'usability_rating':
+            delete_rating(product_ratings[0]['usability_rating'],
+            user_ratings[0]['usability_rating'], product_count), 
+            'price_rating': delete_rating(product_ratings[0]
+            ['price_rating'], user_ratings[0]['price_rating'], 
+            product_count), 'quality_rating': delete_rating(product_ratings
+            [0]['quality_rating'], user_ratings[0]['quality_rating'], 
             product_count),
         }
 
