@@ -465,20 +465,20 @@ def edit_review(review_id):
 
         product_ratings = list(mongo.db.products.find({"name": session
         ['product']}, {"overall_rating": 1, "performance_rating": 1,
-        "battery_rating": 1, "price_rating": 1, "quality_rating": 1,
+        "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
 
         user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-        {"overall_rating": 1, "performance_rating": 1, "battery_rating": 1,
+        {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1,
         "price_rating": 1, "quality_rating": 1, "_id": 0}))
 
         mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
             'overall_rating': int(request.form.get('overall_rating')),
             'performance_rating': int(request.form.get('performance_rating')),
-            'battery_rating': int(request.form.get('battery_rating')),
-            'quality_rating': int(request.form.get('screen_rating')),
-            'price_rating': int(request.form.get('camera_rating')),
+            'usability_rating': int(request.form.get('usability_rating')),
+            'quality_rating': int(request.form.get('quality_rating')),
+            'price_rating': int(request.form.get('price_rating')),
             'review_title': request.form.get('review_title'),
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
@@ -493,15 +493,15 @@ def edit_review(review_id):
             'performance_rating': recalculate_rating(product_ratings[0]
             ['performance_rating'], user_ratings[0]['performance_rating'],
             request.form.get('performance_rating'), product_count),
-            'battery_rating': recalculate_rating(product_ratings[0]
-            ['battery_rating'], user_ratings[0]['battery_rating'],
-            request.form.get('battery_rating'), product_count),
+            'usability_rating': recalculate_rating(product_ratings[0]
+            ['usability_rating'], user_ratings[0]['usability_rating'],
+            request.form.get('usability_rating'), product_count),
             'price_rating': recalculate_rating(product_ratings[0]
             ['price_rating'], user_ratings[0]['price_rating'], 
-            request.form.get('screen_rating'), product_count),
+            request.form.get('price_rating'), product_count),
             'quality_rating': recalculate_rating(product_ratings[0]
             ['quality_rating'], user_ratings[0]['quality_rating'],
-            request.form.get('camera_rating'), product_count),
+            request.form.get('quality_rating'), product_count),
         }
 
         if (int(request.form.get('overall_rating')) != user_ratings[0]['overall_rating']):
