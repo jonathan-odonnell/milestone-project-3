@@ -98,6 +98,10 @@ strong {
   border: 2px solid #548b87;
 }
 
+.form-btn {
+    min-width: 165px;
+}
+
 /* Buttons End */
 
 /* Border Start */
