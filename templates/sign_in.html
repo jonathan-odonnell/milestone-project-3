@@ -8,18 +8,6 @@
       </div>
     </div>
     <!-- Heading end -->
-    <!-- Alert start. Code is from https://getbootstrap.com/docs/4.5/components/alerts/ and https://bootswatch.com/lux/-->
-    <div class="row no-gutters">
-      <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for
-        message in messages %}
-        <div class="alert alert-primary text-center" role="alert">
-          {{ message }}
-        </div>
-        {% endfor %} {% endif %} {% endwith %}
-      </div>
-    </div>
-    <!--Alert end -->
     <!-- Sign in form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
     <div class="row no-gutters">
       <form
