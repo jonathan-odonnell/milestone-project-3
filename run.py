@@ -20,6 +20,15 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+current_product = ""
+
+
+current_search = {}
+
+
+previous_urls = []
+
+
 def paginate_products(products, offset, per_page):
     return products[offset: offset + per_page]
 
@@ -170,6 +179,17 @@ def remove_star_rating(star_rating, prev_ratings, new_ratings):
         new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
 
 
+@app.before_request
+def save_url():
+    #https://stackoverflow.com/questions/18891373/url-history-in-flask-application
+    # https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
+    if (len(previous_urls) == 3):
+        del previous_urls[0]
+        previous_urls.append(request.url)
+    else:
+        previous_urls.append(request.url)
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -186,7 +206,8 @@ def newsletter():
 
 @app.route("/reviews")
 def reviews():
-    session["prev"] = "Reviews"
+    current_search["type"] = "Reviews"
+    current_search["url"] = request.url
     search = request.args.get("search")
     categories = request.args.get("categories")
     brands = request.args.get("brands")
@@ -254,7 +275,8 @@ def reviews():
 @app.route("/reviews/<category>")
 def category_reviews(category):
     page_title = category.capitalize()
-    session["prev"] = category.capitalize()
+    current_search["type"] = category.capitalize()
+    current_search["url"] = request.url
     search = request.args.get("search")
     brands = request.args.get("brands")
     price = request.args.get("price")
@@ -320,16 +342,19 @@ def category_reviews(category):
 def review_details(product_id):
     product = list(mongo.db.products.find({"_id": ObjectId(product_id)}))
     page_title = product[0]["name"] + " Review"
-    session["product"] = product[0]["name"]
-    # https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
-    session["url"] = request.url
+    global current_product
+    current_product = product[0]["name"]
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     dates = []
     for review in reviews:
         dates.append(review["date_added"].strftime("%d %B %Y"))
-    return render_template("review.html", page_title=page_title,
-                           product=product, reviews=reviews, dates=dates)
+    return render_template("review.html", 
+        page_title=page_title, 
+        current_search=current_search, 
+        product=product, 
+        reviews=reviews, 
+        dates=dates)
 
 
 @ app.route("/contact", methods=["GET", "POST"])
@@ -354,7 +379,7 @@ def sign_in():
                 session["user"] = existing_user["first_name"] + \
                     " " + existing_user["last_name"]
                 session["user_type"] = existing_user["user_type"]
-                return redirect(url_for("index"))
+                return redirect(previous_urls[0])
             else:
                 flash("Incorrect Email Address and/or Password")
                 return redirect(url_for("sign_in"))
@@ -430,13 +455,12 @@ def add_review():
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
             'created_by': session['user'],
-            'product': session['product'],
+            'product': current_product,
         })
 
-        product_count = mongo.db.reviews.count({"product": session['product']})
+        product_count = mongo.db.reviews.count({"product": current_product})
 
-        product_ratings = list(mongo.db.products.find({"name": session
-        ['product']}, {"overall_rating": 1, "performance_rating": 1,
+        product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
         "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
@@ -460,9 +484,9 @@ def add_review():
                         product_ratings, new_ratings)
 
         mongo.db.products.update_one(
-            {'name': session['product']}, {"$set": new_ratings})
+            {'name': current_product}, {"$set": new_ratings})
 
-        return redirect(session["url"])
+        return redirect(previous_urls[0])
     else:
         return render_template("add_review.html", page_title="Add Review")
 
@@ -470,10 +494,9 @@ def add_review():
 @ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     if request.method == 'POST':
-        product_count = mongo.db.reviews.count({"product": session['product']})
+        product_count = mongo.db.reviews.count({"product": current_product})
 
-        product_ratings = list(mongo.db.products.find({"name": session
-        ['product']}, {"overall_rating": 1, "performance_rating": 1,
+        product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
         "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
@@ -492,7 +515,7 @@ def edit_review(review_id):
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
             'created_by': session['user'],
-            'product': session['product'],
+            'product': current_product,
         })
 
         new_ratings = {
@@ -520,9 +543,9 @@ def edit_review(review_id):
                 user_ratings[0]['overall_rating'], product_ratings, new_ratings)
 
         mongo.db.products.update_one(
-            {'name': session['product']}, {"$set": new_ratings})
+            {'name': current_product}, {"$set": new_ratings})
 
-        return redirect(session['url'])
+        return redirect(previous_urls[0])
 
     else:
         review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
@@ -534,10 +557,9 @@ def edit_review(review_id):
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 def delete_review(review_id):
 
-    product_count = mongo.db.reviews.count({"product": session['product']})
+    product_count = mongo.db.reviews.count({"product": current_product})
 
-    product_ratings = list(mongo.db.products.find({"name": session
-    ['product']}, {"overall_rating": 1, "performance_rating": 1,
+    product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
     "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
     "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
     "five_stars": 1, "_id": 0}))
@@ -567,9 +589,9 @@ def delete_review(review_id):
                 user_ratings[0]['overall_rating'], product_ratings, new_ratings)
 
     mongo.db.products.update_one(
-            {'name': session['product']}, {"$set": new_ratings})
+            {'name': current_product}, {"$set": new_ratings})
 
-    return redirect(request.referrer)
+    return redirect(previous_urls[0])
 
 
 @ app.route("/add_product", methods=["GET", "POST"])
