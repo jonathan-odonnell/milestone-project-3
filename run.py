@@ -200,7 +200,7 @@ def index():
 def newsletter():
     mongo.db.newsletter.insert_one(
         {"email": request.form.get("newsletter_sign_up")})
-    flash("Thanks for signing up")
+    flash("Thanks for signing up to our newsletter", "info")
     return render_template("index.html", page_title="Home")
 
 
