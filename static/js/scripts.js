@@ -19,3 +19,5 @@ $(document).ready(function () {
         .addClass("fa-plus");
     });
 });
+
+$('.toast').toast('show');
