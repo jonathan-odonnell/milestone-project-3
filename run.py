@@ -379,6 +379,7 @@ def sign_in():
                 session["user"] = existing_user["first_name"] + \
                     " " + existing_user["last_name"]
                 session["user_type"] = existing_user["user_type"]
+                flash("Login Successful", "success")
                 return redirect(previous_urls[0])
             else:
                 flash("Incorrect Email Address and/or Password", "error")
@@ -417,7 +418,7 @@ def sign_up():
             "first_name") + " " + request.form.get(
             "last_name")
         flash("Registration Successful!", "success")
-        return redirect(url_for("profile", first_name=session["user"]))
+        return redirect(previous_urls[0])
 
     return render_template("sign_up.html", page_title="Sign Up")
 
@@ -439,7 +440,7 @@ def product_management():
 
 @ app.route("/logout")
 def logout():
-    flash("You have been logged out", "success")
+    flash("Logout Successful", "success")
     session.pop("user")
     return redirect(request.referrer)
 
