@@ -381,11 +381,11 @@ def sign_in():
                 session["user_type"] = existing_user["user_type"]
                 return redirect(previous_urls[0])
             else:
-                flash("Incorrect Email Address and/or Password")
+                flash("Incorrect Email Address and/or Password", "error")
                 return redirect(url_for("sign_in"))
 
         else:
-            flash("Incorrect Email Address and/or Password")
+            flash("Incorrect Email Address and/or Password", "error")
             return redirect(url_for("sign_in"))
 
     return render_template("sign_in.html", page_title="Sign In")
@@ -398,11 +398,11 @@ def sign_up():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("Email already registered")
+            flash("Email already registered", "error")
             return redirect(url_for("sign_up"))
 
         if request.form.get('password') != request.form.get('confirm_password'):
-            flash('Passwords do not match')
+            flash("Passwords do not match", "error")
             return redirect(url_for('sign_up'))
 
         sign_up = {
@@ -416,7 +416,7 @@ def sign_up():
         session["user"] = request.form.get(
             "first_name") + " " + request.form.get(
             "last_name")
-        flash("Registration Successful!")
+        flash("Registration Successful!", "success")
         return redirect(url_for("profile", first_name=session["user"]))
 
     return render_template("sign_up.html", page_title="Sign Up")
@@ -424,22 +424,24 @@ def sign_up():
 
 @ app.route("/product_management", methods=["GET", "POST"])
 def product_management():
-    first_name = session["user"]
-
     if session["user_type"] == "admin":
         products = list(mongo.db.products.find().sort('name', 1))
         page, per_page, offset = get_page_args(
             page_parameter='page', per_page_parameter='per_page', per_page=10)
         pagination_products = paginate_products(products, offset, per_page)
         pagination = paginate(products, page, per_page)
-    return render_template("product_management.html", page_title="Product Management", products=pagination_products, pagination=pagination)
+        return render_template("product_management.html", page_title="Product Management", products=pagination_products, pagination=pagination)
+
+    else:
+        flash("You do not have permission to view this page", "error")
+        return redirect(request.referrer)
 
 
 @ app.route("/logout")
 def logout():
-    flash("You have been logged out")
+    flash("You have been logged out", "success")
     session.pop("user")
-    return redirect(url_for("sign_in"))
+    return redirect(request.referrer)
 
 
 @ app.route("/reviews/add_review/", methods=["GET", "POST"])
@@ -596,37 +598,41 @@ def delete_review(review_id):
 
 @ app.route("/add_product", methods=["GET", "POST"])
 def add_product():
-
     if request.method == "POST":
-        product = {
-            "name": request.form.get('name'),
-            "category": request.form.get('category'),
-            "price": int(request.form.get('price')),
-            "brand": request.form.get('brand'),
-            "image_url": request.form.get('image-url'),
-            "image_alt": request.form.get('image-alt'),
-            "date_added": datetime.datetime.now(),
-            "colours": request.form.get('colours'),
-            "capacity": request.form.get('capacity'),
-            "display": request.form.get('display'),
-            "processor, memory and graphics": request.form.get('processor_memory_graphics'),
-            "camera and video": request.form.get('camera_video'),
-            "battery life": request.form.get('battery'),
-            "connectivity": request.form.get('connectivity'),
-            "additional features": request.form.get('additional_features'),
-        }
+        if session["user_type"] == "admin":
+            product = {
+                "name": request.form.get('name'),
+                "category": request.form.get('category'),
+                "price": int(request.form.get('price')),
+                "brand": request.form.get('brand'),
+                "image_url": request.form.get('image-url'),
+                "image_alt": request.form.get('image-alt'),
+                "date_added": datetime.datetime.now(),
+                "colours": request.form.get('colours'),
+                "capacity": request.form.get('capacity'),
+                "display": request.form.get('display'),
+                "processor, memory and graphics": request.form.get('processor_memory_graphics'),
+                "camera and video": request.form.get('camera_video'),
+                "battery life": request.form.get('battery'),
+                "connectivity": request.form.get('connectivity'),
+                "additional features": request.form.get('additional_features'),
+            }
 
-        keys = list(product.keys())
+            keys = list(product.keys())
 
-        for key in keys:
-            if product[key] == "":
-                del product[key]
+            for key in keys:
+                if product[key] == "":
+                    del product[key]
 
-        print(product)
+            print(product)
 
-        mongo.db.products.insert_one(product)
+            mongo.db.products.insert_one(product)
 
-        return redirect(url_for('product_management'))
+            return redirect(url_for('product_management'))
+
+        else:
+            flash("You do not have permission to view this page", "error")
+            return redirect(request.referrer)
 
     return render_template('add_product.html', page_title='Add Product')
 
@@ -634,29 +640,35 @@ def add_product():
 @ app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 def edit_product(product_id):
     if request.method == "POST":
-        product = {
-            "name": request.form.get('name'),
-            "category": request.form.get('category'),
-            "price": int(request.form.get('price')),
-            "brand": request.form.get('brand'),
-            "image_url": request.form.get('image-url'),
-            "image_alt": request.form.get('image-alt'),
-            "colours": request.form.get('colours'),
-            "capacity": request.form.get('capacity'),
-            "display": request.form.get('display'),
-            "processor_memory_graphics": request.form.get('processor_memory_graphics'),
-            "camera_video": request.form.get('camera_video'),
-            "battery": request.form.get('battery'),
-            "connectivity": request.form.get('connectivity'),
-            "additional_features": request.form.get('additional_features'),
-        }
-        keys = list(product.keys())
-        for key in keys:
-            if product[key] == "":
-                del product[key]
-        mongo.db.products.update_one(
-            {'_id': ObjectId(product_id)}, {"$set": product})
-        return redirect(url_for('product_management'))
+        if session["user_type"] == "admin":
+            product = {
+                "name": request.form.get('name'),
+                "category": request.form.get('category'),
+                "price": int(request.form.get('price')),
+                "brand": request.form.get('brand'),
+                "image_url": request.form.get('image-url'),
+                "image_alt": request.form.get('image-alt'),
+                "colours": request.form.get('colours'),
+                "capacity": request.form.get('capacity'),
+                "display": request.form.get('display'),
+                "processor_memory_graphics": request.form.get('processor_memory_graphics'),
+                "camera_video": request.form.get('camera_video'),
+                "battery": request.form.get('battery'),
+                "connectivity": request.form.get('connectivity'),
+                "additional_features": request.form.get('additional_features'),
+            }
+            keys = list(product.keys())
+            for key in keys:
+                if product[key] == "":
+                    del product[key]
+            mongo.db.products.update_one(
+                {'_id': ObjectId(product_id)}, {"$set": product})
+            return redirect(url_for('product_management'))
+
+        else:
+            flash("You do not have permission to view this page", "error")
+            return redirect(request.referrer)
+
     else:
         product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
         categories = mongo.db.categories.find()
@@ -670,8 +682,13 @@ def edit_product(product_id):
 
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
 def delete_product(product_id):
-    mongo.db.products.delete_one({"_id": ObjectId(product_id)})
-    return redirect(url_for('product_management'))
+    if session["user_type"] == "admin":
+        mongo.db.products.delete_one({"_id": ObjectId(product_id)})
+        return redirect(url_for('product_management'))
+
+    else:
+        flash("You do not have permission to view this page", "error")
+        return redirect(request.referrer)
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
