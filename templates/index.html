@@ -14,14 +14,8 @@
         <form action="{{ url_for('reviews') }}" method="GET">
           <div class="form-row no-gutters">
             <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
-              <input
-                type="text"
-                class="form-control search h-100"
-                id="search"
-                name="search"
-                placeholder="Enter a product"
-                aria-describedby="search"
-              />
+              <input type="text" class="form-control search h-100" id="search" name="search"
+                placeholder="Enter a product" aria-describedby="search" />
             </div>
             <div class="col-12 col-md-4 col-xl-3">
               <button type="submit" class="btn btn-green w-100">
@@ -41,11 +35,7 @@
       <div class="row no-gutters">
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card featured-cards mx-4 mb-5 mb-md-0">
-            <img
-              src="static/images/products/phones/iphone_12_pro.jpg"
-              class="card-img-top"
-              alt="..."
-            />
+            <img src="static/images/products/phones/iphone_12_pro.jpg" class="card-img-top" alt="..." />
             <div class="card-body text-center">
               <h3 class="card-title">iPhone 12 Pro</h3>
             </div>
@@ -53,11 +43,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card featured-cards mx-4">
-            <img
-              src="static/images/products/phones/samsung_galaxy_s20_plus.jpg"
-              class="card-img-top"
-              alt="..."
-            />
+            <img src="static/images/products/phones/samsung_galaxy_s20_plus.jpg" class="card-img-top" alt="..." />
             <div class="card-body text-center">
               <h3 class="card-title">Samsung Galaxy S20 Plus</h3>
             </div>
@@ -65,11 +51,7 @@
         </div>
         <div class="d-none d-lg-block col-lg-4">
           <div class="card featured-cards mx-4">
-            <img
-              src="static/images/products/phones/oneplus_8t.jpg"
-              class="card-img-top image-bottom"
-              alt="..."
-            />
+            <img src="static/images/products/phones/oneplus_8t.jpg" class="card-img-top image-bottom" alt="..." />
             <div class="card-body text-center">
               <h3 class="card-title">One Plus 8T</h3>
             </div>
@@ -83,36 +65,25 @@
   <div class="container content-container">
     <div class="row no-gutters">
       <div class="col-12 my-5">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for
-        message in messages %}
-        <h2 id="response_message" class="text-center my-5">{{ message }}</h2>
-      </div>
-      {% endfor %} {% else %}
-      <div class="col-12 text-center subheadings">
-        <i class="fas fa-paper-plane mb-4"></i>
-        <h2 class="mb-4">Subscribe to our newsletter!</h2>
-      </div>
-      <div class="col-12 col-md-10 col-lg-8 mx-auto mb-4">
-        <!--Code from https://stackoverflow.com/questions/35843675/link-to-a-specific-location-in-a-flask-template-->
-        <form action="{{ url_for('newsletter', _anchor='response_message') }}" method="post">
-          <div class="form-row no-gutters">
-            <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
-              <input
-                type="email"
-                class="form-control newsletter-signup h-100"
-                id="newsletter_sign_up"
-                name="newsletter_sign_up"
-                placeholder="Enter your email"
-                aria-describedby="newsletter_sign_up"
-              />
+        <div class="col-12 text-center subheadings">
+          <i class="fas fa-paper-plane mb-4"></i>
+          <h2 class="mb-4">Subscribe to our newsletter!</h2>
+        </div>
+        <div class="col-12 col-md-10 col-lg-8 mx-auto mb-4">
+          <!--Code from https://stackoverflow.com/questions/35843675/link-to-a-specific-location-in-a-flask-template-->
+          <form action="{{ url_for('newsletter', _anchor='newsletter_sign_up') }}" method="post">
+            <div class="form-row no-gutters">
+              <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
+                <input type="email" class="form-control newsletter-signup h-100" id="newsletter_sign_up"
+                  name="newsletter_sign_up" placeholder="Enter your email" aria-describedby="newsletter_sign_up" />
+              </div>
+              <div class="col-12 col-md-4 col-xl-3">
+                <button type="submit" class="btn btn-green w-100">Sign Up</button>
+              </div>
             </div>
-            <div class="col-12 col-md-4 col-xl-3">
-              <button type="submit" class="btn btn-green w-100">Sign Up</button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-      {% endif %} {% endwith %}
     </div>
   </div>
 </section>
