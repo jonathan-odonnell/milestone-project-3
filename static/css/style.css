@@ -222,8 +222,19 @@ form {
   margin: auto;
 }
 
-.featured-cards {
-  height: 23rem;
+
+/* Home Page Start */ 
+
+.slick-slide {
+    height: 250px;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #1a1a1a;
+}
+
+.product-card {
+    margin-bottom: 30px;
 }
 
 .card-img-top {
@@ -258,6 +269,8 @@ form {
   background-position: center top;
   height: 100%;
 }
+
+/* Home Page End */
 
 /* Review details start */
 
@@ -527,6 +540,9 @@ form {
 /* Media Queries start */
 
 @media (min-width: 768px) {
+  .slick-slide {
+    height: 350px;
+  }
   .product-headings {
     font-size: 1.5rem;
   }

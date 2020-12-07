@@ -3,27 +3,10 @@
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters">
-      <div class="col">
-        <h1 class="text-center jumbotron-heading">
+      <div class="col text-center">
+        <h1 class="jumbotron-heading">
           Read reviews for the latest technology products
         </h1>
-      </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <form action="{{ url_for('reviews') }}" method="GET">
-          <div class="form-row no-gutters">
-            <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
-              <input type="text" class="form-control search h-100" id="search" name="search"
-                placeholder="Enter a product" aria-describedby="search" />
-            </div>
-            <div class="col-12 col-md-4 col-xl-3">
-              <button type="submit" class="btn btn-green w-100">
-                Search Reviews
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   </div>
@@ -32,32 +15,45 @@
   <div class="row no-gutters">
     <div class="col-12">
       <h2 class="text-center subheadings">Featured</h2>
-      <div class="row no-gutters">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card featured-cards mx-4 mb-5 mb-md-0">
-            <img src="static/images/products/phones/iphone_12_pro.jpg" class="card-img-top" alt="..." />
+        <div id="product-cards">
+          <div class="card mx-4 product-card">
+          <a href="{{url_for('review_details', product_id='5fa437c00ec6d08852adcf05')}}">
+            <img src="static/images/products/phones/iphone_12_pro.jpg" class="card-img-top" alt="Image of iPhone 12 Pro" /></a>
             <div class="card-body text-center">
               <h3 class="card-title">iPhone 12 Pro</h3>
             </div>
           </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card featured-cards mx-4">
-            <img src="static/images/products/phones/samsung_galaxy_s20_plus.jpg" class="card-img-top" alt="..." />
+          <div class="card mx-4 product-card">
+            <a href="{{url_for('review_details', product_id='5fa5baf3ba9e52d69f473427')}}"><img src="static/images/products/tablets/surface_pro_7.jpg" class="card-img-top" alt="Image of Surface Pro 7" /></a>
+            <div class="card-body text-center">
+              <h3 class="card-title">Surface Pro 7</h3>
+            </div>
+          </div>
+          <div class="card mx-4 product-card">
+            <a href="{{url_for('review_details', product_id='5fa438800ec6d08852adcf09')}}"><img src="static/images/products/accessories/apple_watch_series_6.jpg" class="card-img-top image-bottom" alt="Image of Apple Watch Series 6" /></a>
+            <div class="card-body text-center">
+              <h3 class="card-title">Apple Watch Series 6</h3>
+            </div>
+          </div>
+          <div class="card mx-4 product-card">
+            <a href="{{url_for('review_details', product_id='5fac7111574ee350dcde0535')}}"><img src="static/images/products/laptops/macbook-air.jpg" class="card-img-top" alt="Image of Macbook Air" /></a>
+            <div class="card-body text-center">
+              <h3 class="card-title">MacBook Air</h3>
+            </div>
+          </div>
+          <div class="card mx-4 product-card">
+            <a href="{{url_for('review_details', product_id='5fa5d1daba9e52d69f47342c')}}"><img src="static/images/products/phones/samsung_galaxy_s20_plus.jpg" class="card-img-top" alt="Image of Samsung Galaxy S20 Plus" /></a>
             <div class="card-body text-center">
               <h3 class="card-title">Samsung Galaxy S20 Plus</h3>
             </div>
           </div>
-        </div>
-        <div class="d-none d-lg-block col-lg-4">
-          <div class="card featured-cards mx-4">
-            <img src="static/images/products/phones/oneplus_8t.jpg" class="card-img-top image-bottom" alt="..." />
+          <div class="card mx-4 product-card">
+            <a href="{{url_for('review_details', product_id='5fac76dd574ee350dcde053b')}}"><img src="static/images/products/accessories/google-nest.jpg" class="card-img-top image-bottom" alt="Image of Google Nest Mini" /></a>
             <div class="card-body text-center">
-              <h3 class="card-title">One Plus 8T</h3>
+              <h3 class="card-title">Google Nest Mini</h3>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -87,4 +83,9 @@
     </div>
   </div>
 </section>
+{% endblock %}
+{% block postloadjs %}
+<script src="/static/js/slick.min.js"></script>
+<script src="/static/js/carousel.js">
+</script>
 {% endblock %}
