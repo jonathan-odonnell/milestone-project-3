@@ -1,6 +1,6 @@
 // Configures slick carousel. Code is from https://kenwheeler.github.io/slick/
 $(document).ready(function () {
-    $('#product-cards').slick({
+    $('#featured-products').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
