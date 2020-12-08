@@ -45,22 +45,22 @@ def paginate(products, page, per_page):
 
 def sortItems(sort):
     if sort == "a-to-z":
-        sortQuery = {"name": 1}
+        sortQuery = [("name", 1)]
         return sortQuery
     elif sort == "z-to-a":
-        sortQuery = {"name": -1}
+        sortQuery = [("name", -1)]
         return sortQuery
     elif sort == "date-added":
-        sortQuery = {"date_added": -1, "name": 1}
+        sortQuery = [("date_added", -1), ("name", 1)]
         return sortQuery
     elif sort == "price":
-        sortQuery = {"price": -1, "name": 1}
+        sortQuery = [("price", -1), ("name", 1)]
         return sortQuery
     elif sort == "cat_asc":
-        sortQuery = {"category": 1}
+        sortQuery = [("category", 1)]
         return sortQuery
     elif sort == "cat_desc":
-        sortQuery = {"category": -1}
+        sortQuery = [("category", -1)]
         return sortQuery
 
 
@@ -287,38 +287,38 @@ def category_reviews(category):
     brands = request.args.get("brands")
     price = request.args.get("price")
     sortBy = request.args.get("sort")
-    query = []
+    query = {}
+    order_by = []
 
     if search:
-        query.append(
-            {"$match": {"$text": {"$search": search}, "category": category}})
+        query["$text"] = {"$search": search}
+        query["category"] = category
 
     elif not search:
-        query.append(
-            {"$match": {"category": category}})
+        query["category"] = category
 
     if sortBy:
         sortQuery = sortItems(sortBy)
-        query.append({"$sort": sortQuery})
+        order_by = sortQuery
 
     elif not sortBy:
-        query.append({"$sort": {"name": 1}})
+        order_by = [("name", 1)]
 
     if brands:
         brands = brands.split(",")
 
         if len(brands) == 1:
-            query[0]["$match"]["brand"] = brands[0]
+            query["brand"] = brands[0]
 
         else:
-            query[0]["$match"]["brand"] = {"$in": brands}
+            query["brand"] = {"$in": brands}
 
     if price:
         price = int(price)
         price_Query = getPriceRange(category, price)
-        query[0]["$match"]["price"] = price_Query
+        query["price"] = price_Query
 
-    products = list(mongo.db.products.aggregate(query))
+    products = list(mongo.db.products.find(query).sort(order_by))
 
     total = len(products)
 
