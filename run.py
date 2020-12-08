@@ -297,8 +297,7 @@ def category_reviews(category):
         query["category"] = category
 
     if sortBy:
-        sortQuery = sortItems(sortBy)
-        order_by = sortQuery
+        order_by = sortItems(sortBy)
 
     elif not sortBy:
         order_by = [("name", 1)]
