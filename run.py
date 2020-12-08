@@ -433,8 +433,8 @@ def product_management():
     if session["user_type"] == "admin":
         sort_by = request.args.get("sort")
 
-        if (sort_by != None):
-            products = list(mongo.db.products.find({"$query": {}, "$orderby": sortItems(sort_by)}))
+        if sort_by:
+            products = list(mongo.db.products.find().sort(sortItems(sort_by)))
 
         else:
             products = list(mongo.db.products.find().sort('name', 1))
