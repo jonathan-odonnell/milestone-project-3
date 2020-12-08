@@ -421,6 +421,10 @@ form {
 
 .contact-img {
   background-image: url("/static/images/contact.jpg");
+  height: 60vh;
+  max-height: 400px;
+  background-size: cover;
+  background-position: center center;
 }
 
 .info-paragraph {
