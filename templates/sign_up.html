@@ -76,6 +76,14 @@
                 required
               />
             </div>
+            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+            <div class="form-group d-none">
+                <input
+                    type="hidden"
+                    name="next"
+                    value="{{request.referrer}}"
+                />
+            </div>
             <p class="text-center mt-4">
               Already have an account?
               <a href="{{url_for('sign_in')}}">Login here</a>

@@ -384,7 +384,7 @@ def sign_in():
                     " " + existing_user["last_name"]
                 session["user_type"] = existing_user["user_type"]
                 flash("Login Successful", "success")
-                return redirect(previous_urls[0])
+                return redirect(request.form.get("next"))
             else:
                 flash("Incorrect Email Address and/or Password", "error")
                 return redirect(url_for("sign_in"))
@@ -422,7 +422,7 @@ def sign_up():
             "first_name") + " " + request.form.get(
             "last_name")
         flash("Registration Successful!", "success")
-        return redirect(previous_urls[0])
+        return redirect(request.form.get("next"))
 
     return render_template("sign_up.html", page_title="Sign Up")
 
