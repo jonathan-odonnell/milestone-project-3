@@ -45,34 +45,6 @@ strong {
 
 /* Text Styling End */
 
-/* Navbar Start */
-
-.navbar {
-  padding: 1rem;
-}
-
-.navbar-dark .navbar-toggler {
-  border: none;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: #64a19d;
-}
-
-.nav-item .btn {
-  font-size: 1em;
-}
-
-.search .form-control {
-  height: 2.5rem;
-}
-
-.no-box-shadow:focus {
-  box-shadow: none;
-}
-
-/* Navbar End */
-
 /* Buttons Start */
 
 .btn-primary {
@@ -148,6 +120,34 @@ strong {
 }
 
 /* Border Bottom */
+
+/* Navbar Start */
+
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-dark .navbar-toggler {
+  border: none;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #64a19d;
+}
+
+.search .form-control {
+  height: 2.5rem;
+}
+
+.no-box-shadow:focus {
+  box-shadow: none;
+}
+
+.navbar .dropdown-menu {
+    top: 55px;
+}
+
+/* Navbar End */
 
 /* Search Results Start */
 
