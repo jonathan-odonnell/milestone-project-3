@@ -219,36 +219,35 @@ def reviews():
     brands = request.args.get("brands")
     price = request.args.get("price")
     sortBy = request.args.get("sort")
-    query = []
+    query = {}
+    order_by = []
 
     if search:
         if categories:
             categories = categories.split(",")
-            query.append({'$match': {'$text': {'$search': search},
-                                     'category': {'$in': categories}}})
+            query['$text'] = {'$search': search},
+            query['category'] = {'$in': categories}
 
         if not categories:
-            query.append(
-                {"$match": {"$text": {"$search": search}}})
+            query["$text"] = {"$search": search}
 
         if sortBy:
-            sortQuery = sortItems(sortBy)
-            query.append({"$sort": sortQuery})
+            order_by = sortItems(sortBy)
 
         if not sortBy:
-            query.append({"$sort": {"name": 1}})
+            order_by = [("name", 1)]
 
         if brands:
             brands = brands.split(",")
-            query[0]["$match"]["brand"] = {"$in": brands}
+            query["brand"] = {"$in": brands}
 
         if price:
             price = int(price)
             price_Query = getPriceRange("all", price)
-            query[0]["$match"]["price"] = price_Query
+            query["price"] = price_Query
 
     if query:
-        products = list(mongo.db.products.aggregate(query))
+        products = list(mongo.db.products.find(query).sort(order_by))
 
     else:
         products = None
