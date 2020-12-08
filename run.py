@@ -56,6 +56,12 @@ def sortItems(sort):
     elif sort == "price":
         sortQuery = {"price": -1, "name": 1}
         return sortQuery
+    elif sort == "cat_asc":
+        sortQuery = {"category": 1}
+        return sortQuery
+    elif sort == "cat_desc":
+        sortQuery = {"category": -1}
+        return sortQuery
 
 
 def getPriceRange(category, value):
@@ -426,7 +432,14 @@ def sign_up():
 @ app.route("/product_management", methods=["GET", "POST"])
 def product_management():
     if session["user_type"] == "admin":
-        products = list(mongo.db.products.find().sort('name', 1))
+        sort_by = request.args.get("sort")
+
+        if (sort_by != None):
+            products = list(mongo.db.products.find({"$query": {}, "$orderby": sortItems(sort_by)}))
+
+        else:
+            products = list(mongo.db.products.find().sort('name', 1))
+
         page, per_page, offset = get_page_args(
             page_parameter='page', per_page_parameter='per_page', per_page=10)
         pagination_products = paginate_products(products, offset, per_page)
