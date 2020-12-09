@@ -23,9 +23,6 @@ mongo = PyMongo(app)
 current_product = ""
 
 
-current_search = {}
-
-
 previous_urls = []
 
 
@@ -212,8 +209,6 @@ def newsletter():
 
 @app.route("/reviews")
 def reviews():
-    current_search["type"] = "Reviews"
-    current_search["url"] = request.url
     search = request.args.get("search")
     categories = request.args.get("categories")
     brands = request.args.get("brands")
@@ -280,8 +275,6 @@ def reviews():
 @app.route("/reviews/<category>")
 def category_reviews(category):
     page_title = category.capitalize()
-    current_search["type"] = category.capitalize()
-    current_search["url"] = request.url
     search = request.args.get("search")
     brands = request.args.get("brands")
     price = request.args.get("price")
@@ -355,7 +348,6 @@ def review_details(product_id):
         dates.append(review["date_added"].strftime("%d %B %Y"))
     return render_template("review.html", 
         page_title=page_title, 
-        current_search=current_search, 
         product=product, 
         reviews=reviews, 
         dates=dates)

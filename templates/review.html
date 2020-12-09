@@ -2,8 +2,8 @@
 <section class="container content-container-top">
   <div class="row no-gutters">
     <div class="col-12 py-3">
-      <a href="{{current_search['url']}}"
-        ><i class="fas fa-chevron-left pr-2"></i>Back to {{current_search['type']}}</a
+      <a id="current_search" href="{{current_search['url']}}"
+        ><i class="fas fa-chevron-left pr-2"></i>Back to </a
       >
     </div>
   </div>
@@ -342,4 +342,14 @@
     </div>
   </div>
 </section>
+{% endblock %}
+{% block postloadjs %}
+ <script> 
+    $(document).ready(function() {
+        let html = $('#current_search').html()
+        html += localStorage.getItem("search") 
+        let url = localStorage.getItem("search_url")
+        $('#current_search').html(html).attr("href", url);
+    })
+  </script>
 {% endblock %}
