@@ -20,12 +20,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-current_product = ""
-
-
-previous_urls = []
-
-
 def paginate_products(products, offset, per_page):
     return products[offset: offset + per_page]
 
@@ -136,8 +130,8 @@ def getPriceRange(category, value):
 
 
 def add_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * (totalProductRatings - 1)) +
-              float(newUserRating)) / totalProductRatings
+    rating = ((productRating * totalProductRatings) +
+              float(newUserRating)) / (totalProductRatings + 1)
     rating = round(rating, 1)
     return rating
 
@@ -180,17 +174,6 @@ def remove_star_rating(star_rating, prev_ratings, new_ratings):
         new_ratings['four_stars'] = prev_ratings[0]['four_stars'] - 1
     if star_rating == 5:
         new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
-
-
-@app.before_request
-def save_url():
-    #https://stackoverflow.com/questions/18891373/url-history-in-flask-application
-    # https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url/15975041#15975041
-    if (len(previous_urls) == 3):
-        del previous_urls[0]
-        previous_urls.append(request.url)
-    else:
-        previous_urls.append(request.url)
 
 
 @app.route("/")
@@ -451,22 +434,9 @@ def logout():
 @ app.route("/reviews/add_review/", methods=["GET", "POST"])
 def add_review():
     if request.method == 'POST':
-        mongo.db.reviews.insert_one({
-            'overall_rating': int(request.form.get('overall_rating')),
-            'performance_rating': int(request.form.get('performance_rating')),
-            'usability_rating': int(request.form.get('usability_rating')),
-            'quality_rating': int(request.form.get('quality_rating')),
-            'price_rating': int(request.form.get('price_rating')),
-            'review_title': request.form.get('review_title'),
-            'review': request.form.get('review'),
-            'date_added': datetime.datetime.now(),
-            'created_by': session['user'],
-            'product': current_product,
-        })
+        product_count = mongo.db.reviews.count({"product": request.form.get('product')})
 
-        product_count = mongo.db.reviews.count({"product": current_product})
-
-        product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
+        product_ratings = list(mongo.db.products.find({"name": request.form.get('product')}, {"overall_rating": 1, "performance_rating": 1,
         "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
@@ -490,9 +460,22 @@ def add_review():
                         product_ratings, new_ratings)
 
         mongo.db.products.update_one(
-            {'name': current_product}, {"$set": new_ratings})
+            {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        return redirect(previous_urls[0])
+        mongo.db.reviews.insert_one({
+            'overall_rating': int(request.form.get('overall_rating')),
+            'performance_rating': int(request.form.get('performance_rating')),
+            'usability_rating': int(request.form.get('usability_rating')),
+            'quality_rating': int(request.form.get('quality_rating')),
+            'price_rating': int(request.form.get('price_rating')),
+            'review_title': request.form.get('review_title'),
+            'review': request.form.get('review'),
+            'date_added': datetime.datetime.now(),
+            'created_by': session['user'],
+            'product': request.form.get('product'),
+        })
+
+        return redirect(request.form.get('next'))
     else:
         return render_template("add_review.html", page_title="Add Review")
 
