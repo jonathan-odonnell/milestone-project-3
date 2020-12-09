@@ -322,8 +322,7 @@ def category_reviews(category):
 def review_details(product_id):
     product = list(mongo.db.products.find({"_id": ObjectId(product_id)}))
     page_title = product[0]["name"] + " Review"
-    global current_product
-    current_product = product[0]["name"]
+    current_user = session['user']['first_name'] + " " + session['user']['last_name']
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     dates = []
@@ -333,7 +332,8 @@ def review_details(product_id):
         page_title=page_title, 
         product=product, 
         reviews=reviews, 
-        dates=dates)
+        dates=dates,
+        current_user=current_user)
 
 
 @ app.route("/contact", methods=["GET", "POST"])
@@ -355,9 +355,12 @@ def sign_in():
         if existing_user:
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
-                session["user"] = existing_user["first_name"] + \
-                    " " + existing_user["last_name"]
-                session["user_type"] = existing_user["user_type"]
+                session["user"] = {
+                    "first_name": existing_user["first_name"],
+                    "last_name": existing_user["last_name"],
+                    "email": existing_user["email"],
+                    "user_type": existing_user["user_type"]
+                }
                 flash("Login Successful", "success")
                 return redirect(request.form.get("next"))
             else:
@@ -393,9 +396,17 @@ def sign_up():
         }
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = request.form.get(
-            "first_name") + " " + request.form.get(
-            "last_name")
+        session["user"] = {
+            "first_name": request.form.get(
+            "first_name"),
+            "last_name": request.form.get(
+            "first_name"),
+            "email": request.form.get(
+            "email"),
+            "user_type": request.form.get(
+            "user_type")
+        }
+
         flash("Registration Successful!", "success")
         return redirect(request.form.get("next"))
 
@@ -404,7 +415,7 @@ def sign_up():
 
 @ app.route("/product_management", methods=["GET", "POST"])
 def product_management():
-    if session["user_type"] == "admin":
+    if session["user"]["user_type"] == "admin":
         sort_by = request.args.get("sort")
 
         if sort_by:
@@ -471,7 +482,7 @@ def add_review():
             'review_title': request.form.get('review_title'),
             'review': request.form.get('review'),
             'date_added': datetime.datetime.now(),
-            'created_by': session['user'],
+            'created_by': session['user']['first_name'] + " " + session['user']['last_name'],
             'product': request.form.get('product'),
         })
 
@@ -583,7 +594,7 @@ def delete_review(review_id):
 @ app.route("/add_product", methods=["GET", "POST"])
 def add_product():
     if request.method == "POST":
-        if session["user_type"] == "admin":
+        if session["user"]["user_type"] == "admin":
             product = {
                 "name": request.form.get('name'),
                 "category": request.form.get('category'),
@@ -624,7 +635,7 @@ def add_product():
 @ app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 def edit_product(product_id):
     if request.method == "POST":
-        if session["user_type"] == "admin":
+        if session["user"]["user_type"] == "admin":
             product = {
                 "name": request.form.get('name'),
                 "category": request.form.get('category'),
@@ -666,7 +677,7 @@ def edit_product(product_id):
 
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
 def delete_product(product_id):
-    if session["user_type"] == "admin":
+    if session["user"]["user_type"] == "admin":
         mongo.db.products.delete_one({"_id": ObjectId(product_id)})
         return redirect(url_for('product_management'))
 

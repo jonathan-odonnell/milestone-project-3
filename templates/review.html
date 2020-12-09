@@ -229,7 +229,7 @@
           </div>
         </div>
       </div>
-      {% if session.user %}
+      {% if session.user.email %}
       <div class="row no-gutters">
         <div class="col-12 add-review">
           <a
@@ -316,7 +316,7 @@
             ><i class="fas fa-star yellow-star mr-1"></i
             ><i class="fas yellow-star fa-star"></i> {% endif %}
           </div>
-          {% if session.user|lower == review.created_by|lower %}
+          {% if current_user == review.created_by %}
           <div class="float-right">
             <a
               class="btn btn-review"
