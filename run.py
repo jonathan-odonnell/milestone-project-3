@@ -563,41 +563,40 @@ def edit_review(review_id):
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 def delete_review(review_id):
 
-    product_count = mongo.db.reviews.count({"product": current_product})
+    user_ratings = mongo.db.reviews.find({"_id": ObjectId(review_id)},
+    {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0})
 
-    product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
+    product_ratings = mongo.db.products.find({"name": user_ratings['product']}, {"overall_rating": 1, "performance_rating": 1,
     "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
     "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
-    "five_stars": 1, "_id": 0}))
+    "five_stars": 1, "_id": 0})
 
-    user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-    {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1,
-    "price_rating": 1, "quality_rating": 1, "_id": 0}))
+    product_count = mongo.db.reviews.count({"name": user_ratings['product']})
 
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
     new_ratings = {
-            'overall_rating': delete_rating(product_ratings[0]
-            ['overall_rating'], user_ratings[0]['overall_rating'],
+            'overall_rating': delete_rating(product_ratings
+            ['overall_rating'], user_ratings['overall_rating'],
             product_count), 'performance_rating': delete_rating
-            (product_ratings[0]['performance_rating'], user_ratings[0]
+            (product_ratings['performance_rating'], user_ratings
             ['performance_rating'], product_count), 'usability_rating':
-            delete_rating(product_ratings[0]['usability_rating'],
-            user_ratings[0]['usability_rating'], product_count), 
-            'price_rating': delete_rating(product_ratings[0]
+            delete_rating(product_ratings['usability_rating'],
+            user_ratings['usability_rating'], product_count), 
+            'price_rating': delete_rating(product_ratings
             ['price_rating'], user_ratings[0]['price_rating'], 
             product_count), 'quality_rating': delete_rating(product_ratings
-            [0]['quality_rating'], user_ratings[0]['quality_rating'], 
-            product_count),
+            ['quality_rating'], user_ratings['quality_rating'], 
+            product_count)
         }
 
     remove_star_rating(
-                user_ratings[0]['overall_rating'], product_ratings, new_ratings)
+                user_ratings['overall_rating'], product_ratings, new_ratings)
 
     mongo.db.products.update_one(
             {'name': current_product}, {"$set": new_ratings})
 
-    return redirect(previous_urls[0])
+    return redirect(request.referrer)
 
 
 @ app.route("/add_product", methods=["GET", "POST"])
