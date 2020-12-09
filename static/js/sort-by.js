@@ -44,6 +44,9 @@ $("#clear-filters").on("click", function () {
 });
 
 $(document).ready(function () {
-    localStorage.setItem("search", $('h1').html())
-    localStorage.setItem("search_url", String(window.location))
+    localStorage.clear()
+    if ($('h1').html() == "Reviews") {
+        localStorage.setItem("search", $('h1').html())
+        localStorage.setItem("search_url", String(window.location))
+    }
 })
