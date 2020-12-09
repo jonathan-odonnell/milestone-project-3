@@ -350,6 +350,7 @@
         html += localStorage.getItem("search") 
         let url = localStorage.getItem("search_url")
         $('#current_search').html(html).attr("href", url);
+        localStorage.setItem("product", $('h2').html())
     })
   </script>
 {% endblock %}
