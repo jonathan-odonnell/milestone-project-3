@@ -528,6 +528,14 @@
 {{review.review}}</textarea
           >
         </div>
+        <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+        <div class="form-group d-none">
+            <input
+                type="hidden"
+                name="next"
+                value="{{ request.referrer }}"
+            />
+        </div>
         <div class="form-group form-group-button text-center mt-4">
           <button type="submit" class="btn btn-green">Update Review</button>
         </div>
