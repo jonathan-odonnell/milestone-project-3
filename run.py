@@ -190,84 +190,25 @@ def newsletter():
     return render_template("index.html", page_title="Home")
 
 
-@app.route("/reviews")
-def reviews():
-    search = request.args.get("search")
-    categories = request.args.get("categories")
-    brands = request.args.get("brands")
-    price = request.args.get("price")
-    sortBy = request.args.get("sort")
-    query = {}
-    order_by = []
-
-    if search:
-        if categories:
-            categories = categories.split(",")
-            query['$text'] = {'$search': search},
-            query['category'] = {'$in': categories}
-
-        if not categories:
-            query["$text"] = {"$search": search}
-
-        if sortBy:
-            order_by = sortItems(sortBy)
-
-        if not sortBy:
-            order_by = [("name", 1)]
-
-        if brands:
-            brands = brands.split(",")
-            query["brand"] = {"$in": brands}
-
-        if price:
-            price = int(price)
-            price_Query = getPriceRange("all", price)
-            query["price"] = price_Query
-
-    if query:
-        products = list(mongo.db.products.find(query).sort(order_by))
-
-    else:
-        products = None
-
-    total = len(products)
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page', per_page=6)
-    pagination_products = paginate_products(products, offset, per_page)
-    pagination = paginate(products, page, per_page)
-    record_numbers = pagination.info[48:53]
-    pagination_info = "Displaying {} of {} reviews found for".format(
-        record_numbers, total)
-
-    return render_template(
-        'reviews.html',
-        page_title='Reviews',
-        selected_categories=categories,
-        selected_price=price,
-        selected_brands=brands,
-        products=pagination_products,
-        search=search,
-        pagination_info=pagination_info,
-        page=page,
-        per_page=per_page,
-        pagination=pagination,
-    )
-
-
+@app.route('/reviews')
 @app.route("/reviews/<category>")
-def category_reviews(category):
-    page_title = category.capitalize()
+def reviews(category="all"):
     search = request.args.get("search")
     brands = request.args.get("brands")
     price = request.args.get("price")
     sortBy = request.args.get("sort")
     query = {}
     order_by = []
+    page_title = "Reviews"
+
+    if category != "all":
+        page_title = category.capitalize()
 
     if search:
         query["$text"] = {"$search": search}
-        query["category"] = category
+
+        if category != "all":
+            query["category"] = category
 
     elif not search:
         query["category"] = category
@@ -291,6 +232,8 @@ def category_reviews(category):
         price = int(price)
         price_Query = getPriceRange(category, price)
         query["price"] = price_Query
+
+    print(query)
 
     products = list(mongo.db.products.find(query).sort(order_by))
 
