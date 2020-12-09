@@ -500,29 +500,15 @@ def add_review():
 @ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 def edit_review(review_id):
     if request.method == 'POST':
-        product_count = mongo.db.reviews.count({"product": current_product})
+        user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
+        {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}))
 
         product_ratings = list(mongo.db.products.find({"name": current_product}, {"overall_rating": 1, "performance_rating": 1,
         "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}))
 
-        user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-        {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1,
-        "price_rating": 1, "quality_rating": 1, "_id": 0}))
-
-        mongo.db.reviews.update({'_id': ObjectId(review_id)}, {
-            'overall_rating': int(request.form.get('overall_rating')),
-            'performance_rating': int(request.form.get('performance_rating')),
-            'usability_rating': int(request.form.get('usability_rating')),
-            'quality_rating': int(request.form.get('quality_rating')),
-            'price_rating': int(request.form.get('price_rating')),
-            'review_title': request.form.get('review_title'),
-            'review': request.form.get('review'),
-            'date_added': datetime.datetime.now(),
-            'created_by': session['user'],
-            'product': current_product,
-        })
+        product_count = mongo.db.reviews.count({"product": user_ratings[0]['product']})
 
         new_ratings = {
             'overall_rating': edit_rating(product_ratings[0]
@@ -548,10 +534,23 @@ def edit_review(review_id):
             remove_star_rating(
                 user_ratings[0]['overall_rating'], product_ratings, new_ratings)
 
+        mongo.db.reviews.update_one({'_id': ObjectId(review_id)}, {"$set": {
+            'overall_rating': int(request.form.get('overall_rating')),
+            'performance_rating': int(request.form.get('performance_rating')),
+            'usability_rating': int(request.form.get('usability_rating')),
+            'quality_rating': int(request.form.get('quality_rating')),
+            'price_rating': int(request.form.get('price_rating')),
+            'review_title': request.form.get('review_title'),
+            'review': request.form.get('review'),
+            'date_added': datetime.datetime.now(),
+            'created_by': session['user'],
+            'product': current_product,
+        }})
+
         mongo.db.products.update_one(
             {'name': current_product}, {"$set": new_ratings})
 
-        return redirect(previous_urls[0])
+        return redirect(request.form.get('next'))
 
     else:
         review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
@@ -562,7 +561,6 @@ def edit_review(review_id):
 
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 def delete_review(review_id):
-
     user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
     {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}))
 
