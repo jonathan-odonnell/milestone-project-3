@@ -534,6 +534,9 @@ def edit_review(review_id):
             remove_star_rating(
                 user_ratings[0]['overall_rating'], product_ratings, new_ratings)
 
+        mongo.db.products.update_one(
+            {'name': current_product}, {"$set": new_ratings})
+        
         mongo.db.reviews.update_one({'_id': ObjectId(review_id)}, {"$set": {
             'overall_rating': int(request.form.get('overall_rating')),
             'performance_rating': int(request.form.get('performance_rating')),
@@ -546,9 +549,6 @@ def edit_review(review_id):
             'created_by': session['user'],
             'product': current_product,
         }})
-
-        mongo.db.products.update_one(
-            {'name': current_product}, {"$set": new_ratings})
 
         return redirect(request.form.get('next'))
 
@@ -571,8 +571,6 @@ def delete_review(review_id):
 
     product_count = mongo.db.reviews.count_documents({"product": user_ratings[0]['product']})
 
-    mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
-
     new_ratings = {
             'overall_rating': delete_rating(product_ratings[0]
             ['overall_rating'], user_ratings[0]['overall_rating'],
@@ -593,6 +591,8 @@ def delete_review(review_id):
 
     mongo.db.products.update_one(
             {'name': current_product}, {"$set": new_ratings})
+
+    mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
     return redirect(request.referrer)
 
