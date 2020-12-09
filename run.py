@@ -439,7 +439,7 @@ def product_management():
 def logout():
     flash("Logout Successful", "success")
     session.pop("user")
-    return redirect(request.referrer)
+    return redirect(url_for('sign_in'))
 
 
 @ app.route("/reviews/add_review/", methods=["GET", "POST"])
