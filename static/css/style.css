@@ -268,14 +268,16 @@ strong {
 }
 
 .product-img {
-    max-height: 400px;
-    object-fit: cover;
-    width: 100%;
+    height: 20rem;
 }
 
 .features {
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+.progress-bars {
+    margin-bottom: 30px;
 }
 
 .progress {
@@ -288,7 +290,8 @@ strong {
     background-color: #64a19d;
 }
 
-.progress-bars {
+.ratings-divider {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 

@@ -285,6 +285,7 @@ def review_details(product_id):
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     dates = []
+    total_reviews = product[0]['one_star'] + product[0]['two_stars'] + product[0]['three_stars'] + product[0]['four_stars'] + product[0]['five_stars']
     for review in reviews:
         dates.append(review["date_added"].strftime("%d %B %Y"))
     return render_template("review_details.html", 
@@ -292,6 +293,7 @@ def review_details(product_id):
         product=product, 
         reviews=reviews, 
         dates=dates,
+        total_reviews=total_reviews,
         current_user=current_user)
 
 
