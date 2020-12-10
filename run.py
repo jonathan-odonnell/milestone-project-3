@@ -279,13 +279,15 @@ def reviews(category="all"):
 def review_details(product_id):
     product = list(mongo.db.products.find({"_id": ObjectId(product_id)}))
     page_title = product[0]["name"] + " Review"
-    current_user = session['user']['first_name'] + " " + session['user']['last_name']
+    current_user = None
+    if "user" in session:
+        current_user = session['user']['first_name'] + " " + session['user']['last_name']
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     dates = []
     for review in reviews:
         dates.append(review["date_added"].strftime("%d %B %Y"))
-    return render_template("review.html", 
+    return render_template("review_details.html", 
         page_title=page_title, 
         product=product, 
         reviews=reviews, 
