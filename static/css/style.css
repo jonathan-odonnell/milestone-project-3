@@ -121,6 +121,18 @@ strong {
 
 /* Border Bottom */
 
+/* Content Containers and Wrappers */
+
+.content-container {
+    padding: 30px;
+}
+
+.wrapper-grey {
+    background-color: #f7fcfc;
+}
+
+/* Content Containers and Wrappers */
+
 /* Navbar Start */
 
 .navbar {
@@ -148,14 +160,6 @@ strong {
 }
 
 /* Navbar End */
-
-/* Content Containers and Wrappers Start */
-
-.wrapper-grey {
-    background-color: #f7fcfc;
-}
-
-/* Content Containers and Wrappers End */
 
 /* Home Page Start */
 
@@ -201,7 +205,7 @@ strong {
     margin-bottom: 30px;
 }
 
-.featured-img {
+.featured-img, .card-img {
     height: 10rem;
     width: 100%;
     object-fit: cover;
@@ -227,47 +231,31 @@ strong {
 
 /* Home Page End */
 
-.search:focus {
-    box-shadow: none;
+/* Reviews Start */
+
+#collapseFilters .btn {
+    width: 100%;
 }
 
-
-/* Search Results Start */
-
-.card-img-top {
-    height: 10rem !important;
+.sort-active {
+    background-color: #e6e6e6;
 }
 
-.media-body a:hover {
-    color: #64a19d;
+.card-img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.product-img {
+    height: 12rem;
 }
 
 .pagination {
     justify-content: center;
 }
 
-#collapseFilters .btn {
-    width: 100%;
-}
-
-/* Search Results End */
-
-/* Reviews Pages Start */
-
-.sort-active {
-    background-color: #e6e6e6;
-}
-
-/* Reviews Pages End */
-
-.content-container {
-    padding: 30px;
-}
-
-form {
-    margin: auto;
-}
-
+/* Reviews End */
 
 /* Review details start */
 
