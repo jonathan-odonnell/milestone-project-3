@@ -628,4 +628,12 @@ def delete_product(product_id):
     return redirect(url_for('product_management'))
 
 
+"""
+Redirects the user back to the home page if the HTTP request returns a 404 page not found error is returned. Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+"""
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect(url_for('index'))
+
+
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
