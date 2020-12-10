@@ -1,4 +1,5 @@
 import os
+from functools import wraps
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -174,6 +175,15 @@ def remove_star_rating(star_rating, prev_ratings, new_ratings):
         new_ratings['four_stars'] = prev_ratings[0]['four_stars'] - 1
     if star_rating == 5:
         new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
+
+# https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user' not in session:
+            return redirect(url_for('sign_in'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
@@ -357,6 +367,7 @@ def sign_up():
 
 
 @ app.route("/product_management", methods=["GET", "POST"])
+@login_required
 def product_management():
     if session["user"]["user_type"] == "admin":
         sort_by = request.args.get("sort")
@@ -386,6 +397,7 @@ def logout():
 
 
 @ app.route("/reviews/add_review/", methods=["GET", "POST"])
+@login_required
 def add_review():
     if request.method == 'POST':
         product_count = mongo.db.reviews.count({"product": request.form.get('product')})
@@ -435,6 +447,7 @@ def add_review():
 
 
 @ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@login_required
 def edit_review(review_id):
     if request.method == 'POST':
         user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
@@ -497,6 +510,7 @@ def edit_review(review_id):
 
 
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
+@login_required
 def delete_review(review_id):
     user_ratings = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
     {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}))
@@ -535,6 +549,7 @@ def delete_review(review_id):
 
 
 @ app.route("/add_product", methods=["GET", "POST"])
+@login_required
 def add_product():
     if request.method == "POST":
         if session["user"]["user_type"] == "admin":
@@ -576,6 +591,7 @@ def add_product():
 
 
 @ app.route("/edit_product/<product_id>", methods=["GET", "POST"])
+@login_required
 def edit_product(product_id):
     if request.method == "POST":
         if session["user"]["user_type"] == "admin":
@@ -619,6 +635,7 @@ def edit_product(product_id):
 
 
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
+@login_required
 def delete_product(product_id):
     if session["user"]["user_type"] == "admin":
         mongo.db.products.delete_one({"_id": ObjectId(product_id)})
