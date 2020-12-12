@@ -209,11 +209,15 @@ strong {
     margin-bottom: 30px;
 }
 
-.featured-img, .card-img {
+.card-img {
     height: 10rem;
     width: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.featured-text {
+    font-size: 0.875rem;
 }
 
 .newsletter-signup,
@@ -538,6 +542,9 @@ strong {
     .slick-slide {
         height: 23rem;
     }
+    .featured-text {
+        font-size: 1rem;
+    }
     .product-headings {
         font-size: 1.5rem;
     }
@@ -547,7 +554,7 @@ strong {
     .jumbotron-heading {
         font-size: 3rem;
     }
-    .featured-img {
+    .card-img {
         height: 16rem !important;
     }
     #collapseFilters .btn {

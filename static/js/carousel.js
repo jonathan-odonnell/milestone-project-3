@@ -11,6 +11,15 @@ $(document).ready(function () {
                 breakpoint: 992,
                 settings: {
                     slidesToShow: 2,
+
+                }
+            },
+        {
+                breakpoint: 776,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 2,
+
                 }
             }]
     });
