@@ -64,227 +64,241 @@
 </section>
 <section class="wrapper-grey">
     <div class="container content-container">
-        <div class="row no-gutters"></div>
-        <div class="col-12">
-            <h2 class="subheadings product-headings">Reviews</h2>
-            <div class="row no-gutters">
-                <div class="col-12 col-md-6 pr-md-4 pr-lg-0">
-                    <div class="row no-gutters progress-bars">
-                        <div class="col-12 col-lg-3">
-                            <p class="mb-2">Overall Rating</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].overall_rating }} * 20%)"
-                                    aria-valuenow="calc({{ product[0].overall_rating }} * 20)" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h2 class="subheadings product-headings">Reviews</h2>
+                <div class="row no-gutters">
+                    <div class="col-12 col-md-6 pr-md-4 pr-lg-0">
+                        <div class="row no-gutters progress-bars">
+                            <div class="col-12 col-lg-3">
+                                <p class="mb-2">Overall Rating</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].overall_rating }} * 20%)"
+                                        aria-valuenow="calc({{ product[0].overall_rating }} * 20)" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <p class="mb-2">Performance</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].performance_rating  }} * 20%)"
+                                        aria-valuenow="calc({{ product[0].performance_rating  }} * 20)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <p class="mb-2">Quality</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].quality_rating }} * 20%)"
+                                        aria-valuenow="calc({{ product[0].quality_rating }} * 20)" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <p class="mb-2">Usability</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].usability_rating }} * 20%)"
+                                        aria-valuenow="calc({{ product[0].usability_rating }} * 20)" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <p class="mb-2 mb-lg-0">Value for Money</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].price_rating }} * 20%)"
+                                        aria-valuenow="calc({{ product[0].price_rating }} * 20)" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3">
-                            <p class="mb-2">Performance</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].performance_rating  }} * 20%)"
-                                    aria-valuenow="calc({{ product[0].performance_rating  }} * 20)" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
+                        <hr class="d-md-none ratings-divider" />
+                    </div>
+                    <div class="col-12 col-md-6 pl-md-4 pl-lg-0">
+                        <div class="row no-gutters progress-bars">
+                            <div class="col-12 col-lg-2 offset-lg-1">
+                                <p class="mb-2">5 Stars</p>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <p class="mb-2">Quality</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].quality_rating }} * 20%)"
-                                    aria-valuenow="calc({{ product[0].quality_rating }} * 20)" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].five_stars / total_reviews }} * 100%)"
+                                        aria-valuenow="calc({{ product[0].five_stars / total_reviews }} * 100)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <p class="mb-2">Usability</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].usability_rating }} * 20%)"
-                                    aria-valuenow="calc({{ product[0].usability_rating }} * 20)" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
+                            <div class="col-12 col-lg-2 offset-lg-1">
+                                <p class="mb-2">4 Stars</p>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <p class="mb-2 mb-lg-0">Value for Money</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].price_rating }} * 20%)"
-                                    aria-valuenow="calc({{ product[0].price_rating }} * 20)" aria-valuemin="0"
-                                    aria-valuemax="100"></div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].four_stars  / total_reviews }} * 100%)"
+                                        aria-valuenow="calc({{ product[0].four_stars  / total_reviews }} * 100)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2 offset-lg-1">
+                                <p class="mb-2">3 Stars</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].three_stars  / total_reviews }} * 100%)"
+                                        aria-valuenow="{{ product[0].three_stars  / total_reviews }} * 100)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2 offset-lg-1">
+                                <p class="mb-2">2 Stars</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].two_stars  / total_reviews }} * 100%)"
+                                        aria-valuenow="calc({{ product[0].two_stars  / total_reviews }} * 100)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-2 offset-lg-1">
+                                <p class="mb-2 mb-lg-0">1 Star</p>
+                            </div>
+                            <div class="col-12 col-lg-9">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: calc({{ product[0].one_star  / total_reviews }} * 100%)"
+                                        aria-valuenow="calc({{ product[0].one_star  / total_reviews }} * 100)"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <hr class="d-md-none ratings-divider" />
-                </div>
-                <div class="col-12 col-md-6 pl-md-4 pl-lg-0">
-                    <div class="row no-gutters progress-bars">
-                        <div class="col-12 col-lg-2 offset-lg-1">
-                            <p class="mb-2">5 Stars</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].five_stars / total_reviews }} * 100%)"
-                                    aria-valuenow="calc({{ product[0].five_stars / total_reviews }} * 100)"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2 offset-lg-1">
-                            <p class="mb-2">4 Stars</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].four_stars  / total_reviews }} * 100%)"
-                                    aria-valuenow="calc({{ product[0].four_stars  / total_reviews }} * 100)"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2 offset-lg-1">
-                            <p class="mb-2">3 Stars</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].three_stars  / total_reviews }} * 100%)"
-                                    aria-valuenow="{{ product[0].three_stars  / total_reviews }} * 100)"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2 offset-lg-1">
-                            <p class="mb-2">2 Stars</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].two_stars  / total_reviews }} * 100%)"
-                                    aria-valuenow="calc({{ product[0].two_stars  / total_reviews }} * 100)"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2 offset-lg-1">
-                            <p class="mb-2 mb-lg-0">1 Star</p>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar"
-                                    style="width: calc({{ product[0].one_star  / total_reviews }} * 100%)"
-                                    aria-valuenow="calc({{ product[0].one_star  / total_reviews }} * 100)"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% if current_user.email %}
-            <div class="row no-gutters">
-                <div class="col-12 add-review">
-                    <a class="btn btn-sm btn-green" href="{{url_for('add_review', product_id=product[0]._id)}}">Add
-                        Review</a>
                 </div>
             </div>
-            {% endif %} {% for review in reviews %} {% if loop.index < reviews|length %}
-            <div class="card review-card">
-                <div class="card-body">
-                    <div class="d-block d-md-inline-block">
-                        <h4 class="review-title mb-2">
-                            {{review.review_title}}</h4>
-                        <div class="mb-2">
-                            {% if review.overall_rating == 1 %}
-                            <i class="fas fa-star yellow-star"></i>
-                            {% elif review.overall_rating == 2 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                            {% elif review.overall_rating == 3 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star"></i>
-                            {% elif review.overall_rating == 4 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                            {% else %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas yellow-star fa-star"></i> {% endif %}
+        </div>
+        {% if current_user.email %}
+        <div class="row no-gutters">
+            <div class="col-12 add-review">
+                <a class="btn btn-sm btn-green" href="{{url_for('add_review', product_id=product[0]._id)}}">Add
+                    Review</a>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row no-gutters">
+            <div class="col-12">
+                <hr class="mb-4 mt-0">
+                {% for review in reviews %} {% if loop.index < reviews|length %}
+                <div class="card review-card border-0">
+                    <div class="card-body p-0">
+                        <div class="d-block d-md-inline-block">
+                            <h4 class="review-title mb-2">
+                                {{review.review_title}}</h4>
+                            <div class="mb-2">
+                                {% if review.overall_rating == 1 %}
+                                <i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 2 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 3 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 4 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% else %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    {% if current_user|lower == review.created_by|lower %}
-                    <div class="float-right">
-                        <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
-                                class="far fa-edit"></i></a>
-                        <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
-                                class="fas fa-trash"></i></a>
-                    </div>
-                    {% endif %}
-                    <p class="mb-2">{{ review.review }}</p>
-                    <p><small>Reviewed by {{review.created_by}} on {{dates[loop.index
+                        {% if current_user|lower == review.created_by|lower %}
+                        <div class="float-right">
+                            <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
+                                    class="far fa-edit"></i></a>
+                            <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
+                                    class="fas fa-trash"></i></a>
+                        </div>
+                        {% endif %}
+                        <p class="mb-2">{{ review.review }}</p>
+                        <p><small>Reviewed by {{review.created_by}} on {{dates[loop.index
             -1]}}</small></p>
-                    <div id="{{review._id}}" class="row no-gutters">
-                        <div class="col-6 text-center mb-0">
-                            <small><button class="btn btn-sm upvote py-0"><i
-                                        class="far fa-thumbs-up"></i></button><span>{{review.up_vote}}</span></small>
-                        </div>
-                        <div class="col-6 text-center mb-0">
-                            <small><button class="btn btn-sm downvote py-0"><i
-                                        class="far fa-thumbs-down"></i></button><span>{{review.down_vote}}</span></small>
+                        <div id="{{review._id}}" class="row no-gutters">
+                            <div class="col-6 text-center mb-0">
+                                <small><button class="btn btn-sm upvote py-0"><i
+                                            class="far fa-thumbs-up"></i></button><span>{{review.up_vote}}</span></small>
+                            </div>
+                            <div class="col-6 text-center mb-0">
+                                <small><button class="btn btn-sm downvote py-0"><i
+                                            class="far fa-thumbs-down"></i></button><span>{{review.down_vote}}</span></small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="card review-card mb-0">
-                <div class="card-body">
-                    <div class="d-block d-md-inline-block">
-                        <h4 class="review-title mb-2">
-                            {{review.review_title}}
-                        </h4>
-                        <div class="mb-2">
-                            {% if review.overall_rating == 1 %}
-                            <i class="fas fa-star yellow-star mr-1"></i>
-                            {% elif review.overall_rating == 2 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                            {% elif review.overall_rating == 3 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star"></i>
-                            {% elif review.overall_rating == 4 %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                            {% else %}
-                            <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star mr-1"></i><i
-                                class="fas yellow-star fa-star"></i> {% endif %}
+                <hr class="my-4">
+                {% else %}
+                <div class="card review-card border-0">
+                    <div class="card-body p-0">
+                        <div class="d-block d-md-inline-block">
+                            <h4 class="review-title mb-2">
+                                {{review.review_title}}
+                            </h4>
+                            <div class="mb-2">
+                                {% if review.overall_rating == 1 %}
+                                <i class="fas fa-star yellow-star mr-1"></i>
+                                {% elif review.overall_rating == 2 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 3 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 4 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% else %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    {% if current_user == review.created_by %}
-                    <div class="float-right">
-                        <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
-                                class="far fa-edit"></i></a>
-                        <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
-                                class="fas fa-trash"></i></a>
-                    </div>
-                    {% endif %}
-                    <p class="mb-2">{{ review.review }}</p>
-                    <p class="mb-3"><small>Reviewed by {{review.created_by}} on {{dates[loop.index
+                        {% if current_user == review.created_by %}
+                        <div class="float-right">
+                            <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
+                                    class="far fa-edit"></i></a>
+                            <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
+                                    class="fas fa-trash"></i></a>
+                        </div>
+                        {% endif %}
+                        <p class="mb-2">{{ review.review }}</p>
+                        <p class="mb-3"><small>Reviewed by {{review.created_by}} on {{dates[loop.index
             -1]}}</small></p>
-                    <div id="{{review._id}}" class="row no-gutters">
-                        <div class="col-6 text-center">
-                            <small><button class="btn btn-sm upvote py-0"><i
-                                        class="far fa-thumbs-up"></i></button><span>{{review.up_vote}}</span></small>
-                        </div>
-                        <div class="col-6 text-center">
-                            <small><button class="btn btn-sm downvote py-0"><i
-                                        class="far fa-thumbs-down"></i></button><span>{{review.down_vote}}</span></small>
+                        <div id="{{review._id}}" class="row no-gutters">
+                            <div class="col-6 text-center">
+                                <small><button class="btn btn-sm upvote py-0"><i
+                                            class="far fa-thumbs-up"></i></button><span>{{review.up_vote}}</span></small>
+                            </div>
+                            <div class="col-6 text-center">
+                                <small><button class="btn btn-sm downvote py-0"><i
+                                            class="far fa-thumbs-down"></i></button><span>{{review.down_vote}}</span></small>
 
+                            </div>
                         </div>
                     </div>
                 </div>
