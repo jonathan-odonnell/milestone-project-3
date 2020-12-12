@@ -232,8 +232,8 @@ section {
     font-size: 0.875rem;
 }
 
-.newsletter-signup,
-.newsletter-signup:focus {
+.newsletter,
+.newsletter:focus {
     border: 2px solid #64a19d;
 }
 

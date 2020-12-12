@@ -14,7 +14,7 @@ $(document).ready(function () {
 
                 }
             },
-        {
+            {
                 breakpoint: 776,
                 settings: {
                     arrows: false,
@@ -22,5 +22,14 @@ $(document).ready(function () {
 
                 }
             }]
+    });
+});
+
+$('#newsletter-submit').on('click', function (e) {
+    e.preventDefault()
+    let email = $("input[name='email']").val()
+    $.post("/newsletter", { "email": email }).done(function () {
+        $('#newsletter-heading').html('<h2 class="text-capitalize">Thanks for signing up to our newsletter</h2>')
+        $('#newsletter-heading').siblings('.col-12').remove()
     });
 });

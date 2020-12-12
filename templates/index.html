@@ -62,20 +62,20 @@
   <div class="container content-container">
     <div class="row no-gutters">
       <div class="col-12 my-5">
-        <div class="col-12 text-center subheadings">
+        <div id="newsletter-heading" class="text-center subheadings">
           <i class="fas fa-paper-plane mb-4"></i>
           <h2 class="mb-4">Subscribe to our newsletter!</h2>
         </div>
         <div class="col-12 col-md-10 col-lg-8 mx-auto mb-4">
           <!--Code from https://stackoverflow.com/questions/35843675/link-to-a-specific-location-in-a-flask-template-->
-          <form action="{{ url_for('newsletter', _anchor='newsletter_sign_up') }}" method="post">
+          <form>
             <div class="form-row no-gutters">
               <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
-                <input type="email" class="form-control newsletter-signup no-box-shadow h-100" id="newsletter_sign_up"
-                  name="newsletter_sign_up" placeholder="Enter your email" aria-describedby="newsletter_sign_up" />
+                <input type="email" class="form-control newsletter no-box-shadow h-100"
+                  name="email" placeholder="Enter your email"/>
               </div>
               <div class="col-12 col-md-4 col-xl-3">
-                <button type="submit" class="btn btn-green w-100">Sign Up</button>
+                <button id="newsletter-submit" type="submit" class="btn btn-green w-100">Sign Up</button>
               </div>
             </div>
           </form>
@@ -87,6 +87,5 @@
 {% endblock %}
 {% block postloadjs %}
 <script src="/static/js/slick.min.js"></script>
-<script src="/static/js/carousel.js">
-</script>
+<script src="/static/js/index.js"></script>
 {% endblock %}
