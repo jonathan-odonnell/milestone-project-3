@@ -251,11 +251,11 @@
                 alt="{{product.image_alt}}"
               />
               <div class="card-body pb-2">
-                <h3 class="card-title mb-2">
+                <h4 class="card-title mb-2">
                   <a href="{{url_for('review_details', product_id=product._id)}}"
                     >{{product.name}}</a
                   >
-                </h3>
+                </h4>
                 <p class="card-text mb-2">£{{ product.price }}</p>
                 {% if product.overall_rating %}
                 <small class="text-muted"
