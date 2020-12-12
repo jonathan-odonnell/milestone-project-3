@@ -1,59 +1,36 @@
 {% extends "base.html" %} {% block content %}
-<section>
-  <!-- Heading start -->
-  <div class="container content-container">
-    <div class="row no-gutters">
-      <div class="col">
-        <h1 class="text-center headings">{{ page_title }}</h1>
-      </div>
-    </div>
-    <!-- Heading end -->
-    <!-- Sign in form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
-    <div class="row no-gutters">
-      <form
-        class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"
-        method="POST"
-        action="{{ url_for('sign_in') }}"
-      >
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            aria-describedby="email"
-            required
-          />
-        </div>
-        <div class="form-group mt-4">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
-            required
-          />
-        </div>
-        <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-        <div class="form-group d-none">
-            <input
-                type="hidden"
-                name="next"
-                value="{{ request.referrer }}"
-            />
-        </div>
-        <p class="text-center mt-4">
-          New customer? You can register for an account
-          <a href="{{url_for('sign_up')}}">here.</a>
-        </p>
-        <div class="form-group text-center mt-4">
-          <button type="submit" class="btn btn-primary">Sign In</button>
-        </div>
-      </form>
-    </div>
-    <!-- Sign in form end -->
-  </div>
-</section>
+    <section class="container content-container-top d-flex align-items-center">
+            <!-- Sign in form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
+            <div class="row no-gutters w-100 my-5">
+                <div class="col-12">
+                    <div class="sign-in-container mx-md-auto my-3 p-3 border">
+                        <h3 class="text-center my-3">{{ page_title }}</h3>
+                        <form method="POST" action="{{ url_for('sign_in') }}">
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    aria-describedby="email" required />
+                            </div>
+                            <div class="form-group mt-4">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required />
+                            </div>
+                            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+                            <div class="form-group d-none">
+                                <input type="hidden" name="next" value="{{ request.referrer }}" />
+                            </div>
+                            <p class="text-center mt-4">
+                                New customer? <br>You can sign up for an account
+                                <a href="{{url_for('sign_up')}}">here.</a>
+                            </p>
+                            <div class="form-group my-3 text-center">
+                                <button type="submit" class="btn btn-green">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sign in form end -->
+            </div>
+    </section>
 {% endblock %}
