@@ -375,7 +375,8 @@ def sign_up():
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "user_type": "standard"
         }
         mongo.db.users.insert_one(sign_up)
 
