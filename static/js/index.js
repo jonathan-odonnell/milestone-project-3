@@ -29,7 +29,8 @@ $('#newsletter-submit').on('click', function (e) {
     e.preventDefault()
     let email = $("input[name='email']").val()
     $.post("/newsletter", { "email": email }).done(function () {
-        $('#newsletter-heading').html('<h2 class="text-capitalize">Thanks for signing up to our newsletter</h2>')
+        $('#newsletter-heading').html('<p class="lead">Thanks for signing up to our newsletter</h2>')
         $('#newsletter-heading').siblings('.col-12').remove()
+        $('#newsletter-heading').removeClass('subheadings').addClass('my-5')
     });
 });

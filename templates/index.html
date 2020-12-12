@@ -1,88 +1,100 @@
 {% extends "base.html" %} {% block content %}
-<section class="jumbotron">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="col text-right text-md-center">
-        <h1 class="jumbotron-heading">
-          Find reviews for the latest technology products
-        </h1>
-        <a class="btn btn-green" href="{{url_for('sign_up')}}" role="button">Get Started</a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="container content-container">
-  <div class="row no-gutters">
-    <div class="col-12">
-      <h2 class="text-center subheadings">Featured</h2>
-        <div id="featured-products">
-          <div class="card mx-2 mx-md-4 featured-card">
-          <a href="{{url_for('review_details', product_id='5fa437c00ec6d08852adcf05')}}">
-            <img src="static/images/products/phones/iphone_12_pro.jpg" class="card-img" alt="Image of iPhone 12 Pro" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">iPhone 12 Pro</h4>
-            </div>
-          </div>
-          <div class="card mx-2 mx-md-4 featured-card">
-            <a href="{{url_for('review_details', product_id='5fa5baf3ba9e52d69f473427')}}"><img src="static/images/products/tablets/surface_pro_7.jpg" class="card-img" alt="Image of Surface Pro 7" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">Surface Pro 7</h4>
-            </div>
-          </div>
-          <div class="card mx-2 mx-md-4 featured-card">
-            <a href="{{url_for('review_details', product_id='5fa438800ec6d08852adcf09')}}"><img src="static/images/products/accessories/apple_watch_series_6.jpg" class="card-img" alt="Image of Apple Watch Series 6" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">Apple Watch Series 6</h4>
-            </div>
-          </div>
-          <div class="card mx-2 mx-md-4 featured-card">
-            <a href="{{url_for('review_details', product_id='5fac7111574ee350dcde0535')}}"><img src="static/images/products/laptops/macbook-air.jpg" class="card-img" alt="Image of Macbook Air" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">MacBook Air</h4>
-            </div>
-          </div>
-          <div class="card mx-2 mx-md-4 featured-card">
-            <a href="{{url_for('review_details', product_id='5fa5d1daba9e52d69f47342c')}}"><img src="static/images/products/phones/samsung_galaxy_s20_plus.jpg" class="card-img" alt="Image of Samsung Galaxy S20 Plus" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">Samsung Galaxy S20 Plus</h4>
-            </div>
-          </div>
-          <div class="card mx-2 mx-md-4 featured-card">
-            <a href="{{url_for('review_details', product_id='5fac76dd574ee350dcde053b')}}"><img src="static/images/products/accessories/google-nest.jpg" class="card-img" alt="Image of Google Nest Mini" /></a>
-            <div class="card-body text-center">
-              <h4 class="card-title featured-text">Google Nest Mini</h4>
-            </div>
-          </div>
+<section class="container-fluid px-0">
+        <div class="row no-gutters">
+            <div class="col hero-image">
+                <div class="overlay"></div>
+                <div class="jumbotron text-right text-md-center">
+                        <h1 class="jumbotron-heading">
+                            Find reviews for the latest technology products
+                        </h1>
+                        <a class="btn btn-green" href="{{url_for('sign_up')}}" role="button">Get Started</a>
+                    </div>
         </div>
     </div>
-  </div>
-</section>
-<section class="wrapper-grey">
-  <div class="container content-container">
-    <div class="row no-gutters">
-      <div class="col-12 my-5">
-        <div id="newsletter-heading" class="text-center subheadings">
-          <i class="fas fa-paper-plane mb-4"></i>
-          <h2 class="mb-4">Subscribe to our newsletter!</h2>
-        </div>
-        <div class="col-12 col-md-10 col-lg-8 mx-auto mb-4">
-          <!--Code from https://stackoverflow.com/questions/35843675/link-to-a-specific-location-in-a-flask-template-->
-          <form>
-            <div class="form-row no-gutters">
-              <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
-                <input type="email" class="form-control newsletter no-box-shadow h-100"
-                  name="email" placeholder="Enter your email"/>
-              </div>
-              <div class="col-12 col-md-4 col-xl-3">
-                <button id="newsletter-submit" type="submit" class="btn btn-green w-100">Sign Up</button>
-              </div>
+    <div class="container content-container">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h2 class="text-center subheadings">Featured</h2>
+                <div id="featured-products">
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fa437c00ec6d08852adcf05')}}">
+                            <img src="static/images/products/phones/iphone_12_pro.jpg" class="card-img"
+                                alt="Image of iPhone 12 Pro" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">iPhone 12 Pro</h4>
+                        </div>
+                    </div>
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fa5baf3ba9e52d69f473427')}}"><img
+                                src="static/images/products/tablets/surface_pro_7.jpg" class="card-img"
+                                alt="Image of Surface Pro 7" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">Surface Pro 7</h4>
+                        </div>
+                    </div>
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fa438800ec6d08852adcf09')}}"><img
+                                src="static/images/products/accessories/apple_watch_series_6.jpg" class="card-img"
+                                alt="Image of Apple Watch Series 6" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">Apple Watch Series 6</h4>
+                        </div>
+                    </div>
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fac7111574ee350dcde0535')}}"><img
+                                src="static/images/products/laptops/macbook-air.jpg" class="card-img"
+                                alt="Image of Macbook Air" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">MacBook Air</h4>
+                        </div>
+                    </div>
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fa5d1daba9e52d69f47342c')}}"><img
+                                src="static/images/products/phones/samsung_galaxy_s20_plus.jpg" class="card-img"
+                                alt="Image of Samsung Galaxy S20 Plus" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">Samsung Galaxy S20 Plus</h4>
+                        </div>
+                    </div>
+                    <div class="card mx-2 mx-md-4 featured-card">
+                        <a href="{{url_for('review_details', product_id='5fac76dd574ee350dcde053b')}}"><img
+                                src="static/images/products/accessories/google-nest.jpg" class="card-img"
+                                alt="Image of Google Nest Mini" /></a>
+                        <div class="card-body text-center">
+                            <h4 class="card-title featured-text">Google Nest Mini</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
+    <div class="wrapper-grey">
+        <div class="container content-container">
+            <div class="row no-gutters">
+                <div class="col-12 my-5">
+                    <div id="newsletter-heading" class="text-center subheadings">
+                        <i class="fas fa-paper-plane mb-4"></i>
+                        <h2 class="mb-4">Subscribe to our newsletter!</h2>
+                    </div>
+                    <div class="col-12 col-md-10 col-lg-8 mx-auto mb-4">
+                        <!--Code from https://stackoverflow.com/questions/35843675/link-to-a-specific-location-in-a-flask-template-->
+                        <form>
+                            <div class="form-row no-gutters">
+                                <div class="col-12 col-md-8 col-xl-9 mb-4 mb-md-0">
+                                    <input type="email" class="form-control newsletter no-box-shadow h-100" name="email"
+                                        placeholder="Enter your email" />
+                                </div>
+                                <div class="col-12 col-md-4 col-xl-3">
+                                    <button id="newsletter-submit" type="submit" class="btn btn-green w-100">Sign
+                                        Up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
 {% block postloadjs %}

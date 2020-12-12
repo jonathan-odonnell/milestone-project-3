@@ -181,7 +181,7 @@ section {
 
 /* Image from https://unsplash.com/photos/_XR5rkprHQU */
 
-.jumbotron {
+.hero-image {
     height: 90vh;
     display: flex;
     align-items: center;
@@ -191,13 +191,7 @@ section {
     background-size: cover;
     background-position: 70% 60%;
     margin-bottom: 0;
-    margin-top: 68px;
-}
-
-.jumbotron-heading {
-    margin-bottom: 3rem;
-    color: #fff;
-    line-height: 1.5;
+    margin-top: 80px;
 }
 
 .overlay {
@@ -206,6 +200,17 @@ section {
     height: 100%;
     width: 100%;
     position: absolute;
+}
+
+.jumbotron {
+    background-color: transparent;
+    z-index: 1;
+}
+
+.jumbotron-heading {
+    margin-bottom: 3rem;
+    color: #fff;
+    line-height: 1.5;
 }
 
 .slick-slide {
