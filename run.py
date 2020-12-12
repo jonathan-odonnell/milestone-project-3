@@ -1,6 +1,6 @@
 import os
 from functools import wraps
-from flask import (Flask, flash, render_template,
+from flask import (Flask, flash, jsonify, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
@@ -296,6 +296,29 @@ def review_details(product_id):
         total_reviews=total_reviews,
         current_user=current_user)
 
+@app.route("/up_vote", methods=["GET", "POST"])
+def up_vote():
+    #https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
+    #https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
+    review_id = review_id = request.form.get('review_id')
+    mongo.db.reviews.update_one(
+        {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
+    up_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
+    {"up_vote": 1, "_id": 0}))
+
+    return jsonify({"up_vote": up_vote[0]['up_vote'], "success": True})
+
+@app.route("/down_vote", methods=["GET", "POST"])
+def down_vote():
+    #https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
+    #https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
+    review_id = request.form.get('review_id')
+    mongo.db.reviews.update_one(
+        {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
+    down_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
+    {"down_vote": 1, "_id": 0}))
+
+    return jsonify({"down_vote": down_vote[0]['down_vote'], "success": True})
 
 @ app.route("/contact", methods=["GET", "POST"])
 def contact():

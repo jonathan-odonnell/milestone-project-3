@@ -22,6 +22,10 @@ h2 {
 }
 
 h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
     font-size: 1rem;
 }
 
@@ -37,10 +41,6 @@ strong {
 
 .text-white {
     color: #fff;
-}
-
-.product-headings {
-    font-size: 1.2rem;
 }
 
 /* Text Styling End */
@@ -277,7 +277,7 @@ strong {
 
 .features {
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: calc(30px - 1rem);
 }
 
 .progress-bars {
@@ -308,8 +308,8 @@ strong {
     margin-bottom: 30px;
 }
 
-.card-text {
-    margin-bottom: 30px;
+.review-title {
+    line-height: 1.5;
 }
 
 .btn-sm i {
@@ -560,6 +560,10 @@ strong {
 }
 
 @media(min-width: 992px) {
+   .progress-bars {
+        margin-bottom: calc(30px - 0.5rem);
+    }
+
     .progress {
         margin: 0.4375rem 0;
     }
