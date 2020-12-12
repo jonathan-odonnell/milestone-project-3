@@ -390,6 +390,10 @@ def sign_up():
             "user_type")
         }
 
+        if request.form.get("newsletter_signup") == "on":
+            mongo.db.newsletter.insert_one(
+                {"email": request.form.get("email")})
+
         flash("Registration Successful!", "success")
         return redirect(request.form.get("next"))
 

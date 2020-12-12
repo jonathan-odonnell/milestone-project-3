@@ -1,101 +1,69 @@
 {% extends "base.html" %} {% block content %}
-<section>
-  <!-- Heading start -->
-  <div class="row no-gutters">
-    <div class="d-none d-lg-block col-lg-4">
-      <div class="sign-up-image"></div>
-    </div>
-    <div class="col col-lg-8">
-      <div class="container content-container">
-        <!-- Heading start -->
-        <div class="row no-gutters">
-          <div class="col-12">
-            <h1 class="text-center headings">{{ page_title }}</h1>
-          </div>
+<section class="container-fluid content-container-top px-0">
+    <!-- Heading start -->
+    <div class="row no-gutters">
+        <div class="d-none d-lg-block col-lg-4">
+            <div class="sign-up-image"></div>
         </div>
-        <!-- Heading end -->
-        <!-- Sign up form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
-        <div class="row no-gutters">
-          <form
-            class="col-12 col-md-10 offset-md-1"
-            method="POST"
-            action="{{ url_for('sign_up') }}"
-          >
-            <div class="form-group">
-              <label for="first_name">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="first_name"
-                name="first_name"
-                aria-describedby="first_name"
-                required
-              />
+        <div class="col col-lg-8">
+            <div class="container content-container">
+                <!-- Heading start -->
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <h1 class="text-center subheadings">{{ page_title }}</h1>
+                    </div>
+                </div>
+                <!-- Heading end -->
+                <!-- Sign up form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
+                <div class="row no-gutters">
+                    <form class="col-12 col-md-10 offset-md-1" method="POST" action="{{ url_for('sign_up') }}">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name"
+                                aria-describedby="first_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                aria-describedby="last_name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
+                                required />
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password"
+                                aria-describedby="password" required />
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                                aria-describedby="confirm_password" required />
+                        </div>
+                        <div class="form-group mt-4">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="newsletter-signup" name="newsletter_signup" checked>
+                                <label class="custom-control-label" for="newsletter-signup">Subscribe to our newsletter</label>
+                            </div>
+                        </div>
+                        <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+                        <div class="form-group d-none">
+                            <input type="hidden" name="next" value="{{request.referrer}}" />
+                        </div>
+                        <p class="text-center mt-4">
+                            Already have an account?
+                            <a href="{{url_for('sign_in')}}">Login here</a>
+                        </p>
+                        <div class="form-group text-center mt-4 mb-0">
+                            <button type="submit" class="btn btn-green">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Sign up form end -->
             </div>
-            <div class="form-group">
-              <label for="last_name">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="last_name"
-                name="last_name"
-                aria-describedby="last_name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                aria-describedby="email"
-                required
-              />
-            </div>
-            <div class="form-group mt-4">
-              <label for="password">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                name="password"
-                id="password"
-                aria-describedby="password"
-                required
-              />
-            </div>
-            <div class="form-group mt-4">
-              <label for="confirm_password">Confirm Password</label>
-              <input
-                type="password"
-                class="form-control"
-                name="confirm_password"
-                id="confirm_password"
-                aria-describedby="confirm_password"
-                required
-              />
-            </div>
-            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-            <div class="form-group d-none">
-                <input
-                    type="hidden"
-                    name="next"
-                    value="{{request.referrer}}"
-                />
-            </div>
-            <p class="text-center mt-4">
-              Already have an account?
-              <a href="{{url_for('sign_in')}}">Login here</a>
-            </p>
-            <div class="form-group text-center mt-4 mb-0">
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-            </div>
-          </form>
         </div>
-        <!-- Sign up form end -->
-      </div>
     </div>
-  </div>
 </section>
 {% endblock %}
