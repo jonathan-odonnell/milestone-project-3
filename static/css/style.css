@@ -1,4 +1,4 @@
-/* text Styling Start */
+/* Text Styling Start */
 
 .headings {
     margin: 70px 0 30px;
@@ -88,6 +88,170 @@ section {
 
 /* Buttons End */
 
+/* Borders Start */
+
+.border-bottom {
+    border-bottom: 1px solid #64a19d !important;
+}
+
+/* Borders Bottom */
+
+/* Content Containers and Wrappers */
+
+.content-container {
+    padding: 30px;
+}
+
+.wrapper-grey {
+    background-color: #f7fcfc;
+}
+
+/* Content Containers and Wrappers */
+
+/* Cards Start */
+
+.card-img {
+    height: 10rem;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Cards End */
+
+/* Forms Start */
+
+.form-subheadings {
+    text-transform: none;
+    font-size: 1.2em;
+}
+
+.form-divider {
+    margin: 0 0 20px;
+}
+
+.form-group-overall-ratings {
+    height: 70px;
+    margin-top: 0;
+}
+
+.feature-ratings {
+    margin-bottom: 10px;
+}
+
+.form-group-feature-ratings {
+    height: 40px;
+}
+
+.ratings-label {
+    margin-bottom: 0;
+}
+
+.feature-ratings-text {
+    margin-bottom: 20px;
+}
+
+.yellow-star {
+    color: #ffc700;
+}
+
+.form-group-button {
+    margin: 30px 0 0;
+}
+
+.custom-switch:checked~.custom-control-label::before {
+    border-color: #64a19d;
+    background-color: #64a19d;
+}
+
+/* Forms End */
+
+/* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
+
+.rating {
+    position: absolute;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    font-size: 0.875rem;
+    width: 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    color: #ccc;
+    margin: 5px 0;
+}
+.rating > input:checked ~ label {
+    color: #ffc700;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ffc700;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ffc700;
+}
+
+/* Rating Stars Radio Buttons End */
+
+/* Navbar Start */
+
+.navbar {
+    padding: 1rem;
+}
+
+.navbar-dark .navbar-toggler {
+    border: none;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #64a19d;
+}
+
+.navbar-brand img {
+    height: 3rem;
+}
+
+.search .form-control {
+    height: 2.5rem;
+}
+
+.no-box-shadow:focus {
+    box-shadow: none;
+}
+
+.navbar-nav .nav-link {
+    outline: none;
+}
+
+.navbar .dropdown-menu {
+    background-color: #1a1a1a;
+    border: none;
+    font-size: .785rem;
+    text-transform: uppercase;
+}
+
+.navbar .dropdown-item {
+    color: #64a19d;
+}
+
+.navbar .dropdown-item:hover {
+    color: #fff;
+    background-color: inherit;
+}
+
+/* Navbar End */
+
 /* Toast Start */
 
 .message-container {
@@ -124,58 +288,6 @@ section {
     background-color: #fff;
 }
 /* Toast End */
-
-/* Border Start */
-
-.border-bottom {
-    border-bottom: 1px solid #64a19d !important;
-}
-
-/* Border Bottom */
-
-/* Content Containers and Wrappers */
-
-.content-container {
-    padding: 30px;
-}
-
-.wrapper-grey {
-    background-color: #f7fcfc;
-}
-
-/* Content Containers and Wrappers */
-
-/* Navbar Start */
-
-.navbar {
-    padding: 1rem;
-}
-
-.navbar-dark .navbar-toggler {
-    border: none;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: #64a19d;
-}
-
-.navbar-brand img {
-    height: 3rem;
-}
-
-.search .form-control {
-    height: 2.5rem;
-}
-
-.no-box-shadow:focus {
-    box-shadow: none;
-}
-
-.navbar .dropdown-menu {
-    top: 55px;
-}
-
-/* Navbar End */
 
 /* Home Page Start */
 
@@ -224,13 +336,6 @@ section {
 
 .featured-card {
     margin-bottom: 30px;
-}
-
-.card-img {
-    height: 10rem;
-    width: 100%;
-    object-fit: cover;
-    object-position: center center;
 }
 
 .featured-text {
@@ -284,7 +389,7 @@ section {
 
 /* Reviews End */
 
-/* Review details start */
+/* Review Details Start */
 
 .back-link a:hover {
     color: #64a19d;
@@ -338,101 +443,7 @@ section {
     font-size: 1rem;
 }
 
-/* Review details end */
-
-/* Forms start */
-
-.form-subheadings {
-    text-transform: none;
-    font-size: 1.2em;
-}
-
-.form-divider {
-    margin: 0 0 20px;
-}
-
-.form-group-overall-ratings {
-    height: 70px;
-    margin-top: 0;
-}
-
-.feature-ratings {
-    margin-bottom: 10px;
-}
-
-.form-group-feature-ratings {
-    height: 40px;
-}
-
-.ratings-label {
-    margin-bottom: 0;
-}
-
-.feature-ratings-text {
-    margin-bottom: 20px;
-}
-
-.yellow-star {
-    color: #ffc700;
-}
-
-.form-group-button {
-    margin: 30px 0 0;
-}
-
-.custom-switch:checked~.custom-control-label::before {
-    border-color: #64a19d;
-    background-color: #64a19d;
-}
-
-/* Forms end */
-
-/* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
-
-.rating {
-    position: absolute;
-}
-
-.rating input {
-    display: none;
-}
-
-.rating:not(:checked) > label {
-    float: right;
-    font-size: 0.875rem;
-    width: 1.5rem;
-    overflow: hidden;
-    cursor: pointer;
-    color: #ccc;
-    margin: 5px 0;
-}
-.rating > input:checked ~ label {
-    color: #ffc700;
-}
-
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-    color: #ffc700;
-}
-
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-    color: #ffc700;
-}
-
-/* Rating Stars Radio Buttons End */
-
-/* Product Management Start */
-
-.table-green {
-    background-color: #64a19d;
-    color: #ffffff;
-}
-
-/* Product Management End */
+/* Review Details End */
 
 /* Contact Form Start */
 
@@ -468,6 +479,15 @@ section {
 }
 
 /* Contact Form End */
+
+/* Product Management Start */
+
+.table-green {
+    background-color: #64a19d;
+    color: #ffffff;
+}
+
+/* Product Management End */
 
 /* Footer Start */
 
@@ -567,11 +587,14 @@ section {
 
 /* Footer end */
 
-/* Media Queries start */
+/* Media Queries Start */
 
 @media(min-width: 768px) {
-    .sign-in-container {
-        width: 400px;
+    .card-img {
+        height: 16rem !important;
+    }
+    .jumbotron-heading {
+        font-size: 3rem;
     }
     .slick-slide {
         height: 23rem;
@@ -579,65 +602,68 @@ section {
     .featured-text {
         font-size: 1rem;
     }
-    .product-headings {
-        font-size: 1.5rem;
-    }
-    .footer-wrapper {
-        padding: 30px;
-    }
-    .jumbotron-heading {
-        font-size: 3rem;
-    }
-    .card-img {
-        height: 16rem !important;
-    }
     #collapseFilters .btn {
         width: 150px;
     }
     .features-table th {
         min-width: 200px;
     }
+    .sign-in-container {
+        width: 400px;
+    }
+    .product-headings {
+        font-size: 1.5rem;
+    }
+    .footer-wrapper {
+        padding: 30px;
+    }
 }
 
 @media(min-width: 992px) {
-   .progress-bars {
-        margin-bottom: calc(30px - 0.5rem);
-    }
-
-    .progress {
-        margin: 0.4375rem 0;
-    }
-
     .headings {
         margin: 73px 0 30px;
     }
-
-    .footer-headings {
-        margin-bottom: 0.5rem;
+    .navbar .dropdown-menu {
+        top: 58px;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.15);
     }
-
-    .social-media-icons {
-        margin: 20px auto 20px 0;
+    .navbar .dropdown-item {
+        font-size: .765625rem;
+        text-transform: none;
+        color: #1a1a1a;
     }
-
-    .footer-paragraphs {
-        margin-top: 20px;
+    .navbar .dropdown-item:hover {
+        color: #fff;
+        background-color: #1a1a1a;
     }
-
-    .info-item-container {
-        padding: 1.25rem;
+    .progress-bars {
+        margin-bottom: calc(30px - 0.5rem);
     }
-
+    .progress {
+        margin: 0.4375rem 0;
+    }
     .collapse:not(.show) {
         display: block;
     }
-
     #collapseFilters .btn {
         width: 100%;
     }
     .features {
         padding-top: 0;
     }
+    .info-item-container {
+        padding: 1.25rem;
+    }
+    .footer-headings {
+        margin-bottom: 0.5rem;
+    }
+    .social-media-icons {
+        margin: 20px auto 20px 0;
+    }
+    .footer-paragraphs {
+        margin-top: 20px;
+    }
 }
 
-/* Media Queries end */
+/* Media Queries End */
