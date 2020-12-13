@@ -1,16 +1,11 @@
 /* Text Styling Start */
 
+.headings-top {
+    margin: 80px 0 30px;
+}
+
 .headings {
-    margin: 70px 0 30px;
-}
-
-.content-container-top {
-    padding: 80px 30px 0;
-}
-
-.subheadings {
     margin-bottom: 30px;
-    line-height: 1;
 }
 
 h1 {
@@ -33,14 +28,10 @@ strong {
     font-weight: 800;
 }
 
-.subheadings i {
+.headings i {
     color: #1a1a1a;
     font-size: 2rem;
     margin-bottom: 30px;
-}
-
-.text-white {
-    color: #fff;
 }
 
 a, a:hover {
@@ -97,6 +88,10 @@ section {
 /* Borders Bottom */
 
 /* Content Containers and Wrappers */
+
+.content-container-top {
+    padding: 80px 30px 0;
+}
 
 .content-container {
     padding: 30px;
@@ -620,9 +615,6 @@ section {
 }
 
 @media(min-width: 992px) {
-    .headings {
-        margin: 73px 0 30px;
-    }
     .navbar .dropdown-menu {
         top: 58px;
         background-color: #fff;
