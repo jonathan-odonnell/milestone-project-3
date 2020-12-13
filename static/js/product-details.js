@@ -6,7 +6,7 @@ $(document).ready(function () {
             localStorage.setItem('product', $('h2').html())
         }
     })
-    $('.upvote').on('click', function (e) {
+    $('.upvote').on('click', function () {
         let review_id = $(this).closest('.row').attr('id')
         $.post("/up_vote", { "review_id": review_id }).done(function (data) {
             $("#" + review_id).find('.upvote i').removeClass('far').addClass('fas')
@@ -15,7 +15,7 @@ $(document).ready(function () {
             $("#" + review_id).find('.upvote').prop('disabled', true)
         })
     });
-    $('.downvote').on('click', function (e) {
+    $('.downvote').on('click', function () {
         let review_id = $(this).closest('.row').attr('id')
         $.post("/down_vote", { "review_id": review_id }).done(function (data) {
             $("#" + review_id).find('.downvote i').removeClass('far').addClass('fas')
