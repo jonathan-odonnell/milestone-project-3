@@ -244,6 +244,8 @@ section {
 
 /* Home Page End */
 
+/* Sign Up Page Start
+
 /* Image from https://unsplash.com/photos/c-lUYtNjqxw */
 
 .sign-up-image {
@@ -253,6 +255,8 @@ section {
     background-position: center top;
     height: 100%;
 }
+
+/* Sign Up Page End */
 
 /* Reviews Start */
 
@@ -336,7 +340,7 @@ section {
 
 /* Review details end */
 
-/* Review form styling start */
+/* Forms start */
 
 .form-subheadings {
     text-transform: none;
@@ -376,7 +380,12 @@ section {
     margin: 30px 0 0;
 }
 
-/* Review form styling end */
+.custom-switch:checked~.custom-control-label::before {
+    border-color: #64a19d;
+    background-color: #64a19d;
+}
+
+/* Forms end */
 
 /* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
 

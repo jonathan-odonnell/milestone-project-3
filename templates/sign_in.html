@@ -15,21 +15,20 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required />
                             </div>
-                            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-                            <div class="form-group d-none">
-                                <input type="hidden" name="next" value="{{ request.referrer }}" />
+                            <div class="form-group my-4 text-center">
+                                <button type="submit" class="btn btn-green">Sign In</button>
                             </div>
                             <p class="text-center mt-4">
                                 New customer? <br>You can sign up for an account
                                 <a href="{{url_for('sign_up')}}">here.</a>
                             </p>
-                            <div class="form-group my-3 text-center">
-                                <button type="submit" class="btn btn-green">Sign In</button>
+                            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+                            <div class="form-group d-none">
+                                <input type="hidden" name="next" value="{{ request.referrer }}" />
                             </div>
                         </form>
                     </div>
                 </div>
-
                 <!-- Sign in form end -->
             </div>
     </section>

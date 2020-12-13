@@ -44,20 +44,22 @@
                         </div>
                         <div class="form-group mt-4">
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="newsletter-signup" name="newsletter_signup" checked>
-                                <label class="custom-control-label" for="newsletter-signup">Subscribe to our newsletter</label>
+                                <input type="checkbox" class="custom-control-input custom-switch" id="newsletter-signup"
+                                    name="newsletter_signup" checked>
+                                <label class="custom-control-label" for="newsletter-signup">Subscribe to our
+                                    newsletter</label>
                             </div>
+                        </div>
+                        <div class="form-group text-center mt-4 mb-0">
+                            <button type="submit" class="btn btn-green">Sign Up</button>
+                            <p class="text-center mt-4">
+                                Already have an account? Sign in 
+                                <a href="{{url_for('sign_in')}}">here</a>
+                            </p>
                         </div>
                         <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
                         <div class="form-group d-none">
                             <input type="hidden" name="next" value="{{request.referrer}}" />
-                        </div>
-                        <p class="text-center mt-4">
-                            Already have an account?
-                            <a href="{{url_for('sign_in')}}">Login here</a>
-                        </p>
-                        <div class="form-group text-center mt-4 mb-0">
-                            <button type="submit" class="btn btn-green">Sign Up</button>
                         </div>
                     </form>
                 </div>
