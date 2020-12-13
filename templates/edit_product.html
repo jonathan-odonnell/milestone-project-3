@@ -18,6 +18,7 @@
                 name="name"
                 value="{{product.name}}"
                 placeholder="Enter product name"
+                aria-describedby="name"
                 required
               />
             </div>
@@ -27,6 +28,7 @@
                 class="custom-select"
                 id="category"
                 name="category"
+                aria-describedby="category"
                 required
               >
                 {% for category in categories %}{% if category.name ==
@@ -55,6 +57,7 @@
                   name="price"
                   value="{{product.price}}"
                   placeholder="Enter product price"
+                  aria-describedby="price"
                   required
                 />
               </div>
@@ -68,6 +71,7 @@
                 name="brand"
                 value="{{product.brand}}"
                 placeholder="Enter product brand"
+                aria-describedby="brand"
                 required
               />
             </div>
@@ -80,6 +84,7 @@
                 name="image-url"
                 value="{{product.image_url}}"
                 placeholder="Enter product image URL"
+                aria-describedby="image"
                 required
               />
             </div>
@@ -92,11 +97,12 @@
                 name="image-alt"
                 value="{{product.image_alt}}"
                 placeholder="Enter image description"
+                aria-describedby="image-description"
                 required
               />
             </div>
             <div class="form-group form-group-button text-center">
-          <button class="btn btn-green form-btn" type="button">Next</button>
+          <button class="btn btn-green" type="button">Next</button>
         </div>
           </div>
           <div id="product-features" class="d-none">
@@ -109,6 +115,7 @@
                 name="colours"
                 value="{{product.colours}}"
                 placeholder="Enter feature details"
+                aria-describedby="colours"
               />
             </div>
             <div class="form-group">
@@ -120,6 +127,7 @@
                 name="capacity"
                 value="{{product.capacity}}"
                 placeholder="Enter feature details"
+                aria-describedby="capacity"
               />
             </div>
             <div class="form-group">
@@ -131,6 +139,7 @@
                 name="display"
                 value="{{product.display}}"
                 placeholder="Enter feature details"
+                aria-describedby="display"
               />
             </div>
             <div class="form-group">
@@ -140,21 +149,23 @@
               <input
                 type="text"
                 class="form-control"
-                id="processor_memory_graphics"
-                name="processor_memory_graphics"
+                id="processor-memory-graphics"
+                name="processor-memory-graphics"
                 value="{{product.processor_memory_graphics}}"
                 placeholder="Enter feature details"
+                aria-describedby="process-memory-graphics"
               />
             </div>
             <div class="form-group">
-              <label for="camera_video">Camera and Video</label>
+              <label for="camera-video">Camera and Video</label>
               <input
                 type="text"
                 class="form-control"
-                id="camera_video"
-                name="camera_video"
+                id="camera-video"
+                name="camera-video"
                 value="{{product.camera_video}}"
                 placeholder="Enter feature details"
+                aria-describedby="camera-video"
               />
             </div>
             <div class="form-group">
@@ -166,6 +177,7 @@
                 name="battery"
                 value="{{product.battery}}"
                 placeholder="Enter feature details"
+                aria-describedby="battery"
               />
             </div>
             <div class="form-group">
@@ -177,6 +189,7 @@
                 name="connectivity"
                 value="{{product.connectivity}}"
                 placeholder="Enter feature details"
+                aria-describedby="connectivity"
               />
             </div>
             <div class="form-group">
@@ -184,10 +197,11 @@
               <input
                 type="text"
                 class="form-control"
-                id="additional_features"
-                name="additional_features"
+                id="additional-features"
+                name="additional-features"
                 value="{{product.additional_features}}"
                 placeholder="Enter feature details"
+                aria-describedby="additional-features"
               />
             </div>
         <div class="form-group form-group-button text-center">

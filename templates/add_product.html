@@ -17,6 +17,7 @@
                 id="name"
                 name="name"
                 placeholder="Enter product name"
+                aria-describedby="name"
                 required
               />
             </div>
@@ -27,6 +28,7 @@
                 class="custom-select"
                 id="category"
                 name="category"
+                aria-describedby="category"
                 required
               >
                 <option selected disabled value="">Select a category</option>
@@ -49,6 +51,7 @@
                   id="price"
                   name="price"
                   placeholder="Enter product price"
+                  aria-describedby="price"
                   required
                 />
               </div>
@@ -61,6 +64,7 @@
                 id="brand"
                 name="brand"
                 placeholder="Enter product brand"
+                aria-describedby="brand"
                 required
               />
             </div>
@@ -72,6 +76,7 @@
                 id="image"
                 name="image-url"
                 placeholder="Enter product image URL"
+                aria-describedby="image"
                 required
               />
             </div>
@@ -83,11 +88,12 @@
                 id="image-description"
                 name="image-alt"
                 placeholder="Enter image description"
+                aria-describedby="image-description"
                 required
               />
             </div>
             <div class="form-group form-group-button text-center">
-          <button class="btn btn-green form-btn" type="button">Next</button>
+          <button class="btn btn-green" type="button">Next</button>
         </div>
           </div>
           <div id="product-features" class="d-none">
@@ -99,6 +105,7 @@
                 id="colours"
                 name="colours"
                 placeholder="Enter feature details"
+                aria-describedby="colours"
               />
             </div>
             <div class="form-group">
@@ -109,6 +116,7 @@
                 id="capacity"
                 name="capacity"
                 placeholder="Enter feature details"
+                aria-describedby="capacity"
               />
             </div>
             <div class="form-group">
@@ -119,26 +127,29 @@
                 id="display"
                 name="display"
                 placeholder="Enter feature details"
+                aria-describedby="display"
               />
             </div>
             <div class="form-group">
-              <label for="processor_memory_graphics">Processor, Memory and Graphics</label>
+              <label for="processor-memory-graphics">Processor, Memory and Graphics</label>
               <input
                 type="text"
                 class="form-control"
-                id="processor_memory_graphics"
-                name="processor_memory_graphics"
+                id="processor-memory-graphics"
+                name="processor-memory-graphics"
                 placeholder="Enter feature details"
+                aria-describedby="process-memory-graphics"
               />
             </div>
             <div class="form-group">
-              <label for="camera_video">Camera and Video</label>
+              <label for="camera-video">Camera and Video</label>
               <input
                 type="text"
                 class="form-control"
-                id="camera_video"
-                name="camera_video"
+                id="camera-video"
+                name="camera-video"
                 placeholder="Enter feature details"
+                aria-describedby="camera-video"
               />
             </div>
             <div class="form-group">
@@ -149,6 +160,7 @@
                 id="battery"
                 name="battery"
                 placeholder="Enter feature details"
+                aria-describedby="battery"
               />
             </div>
             <div class="form-group">
@@ -159,16 +171,18 @@
                 id="connectivity"
                 name="connectivity"
                 placeholder="Enter feature details"
+                aria-describedby="connectivity"
               />
             </div>
             <div class="form-group">
-              <label for="additional_features">Additional Features</label>
+              <label for="additional-features">Additional Features</label>
               <input
                 type="text"
                 class="form-control"
-                id="additional_features"
-                name="additional_features"
+                id="additional-features"
+                name="additional-features"
                 placeholder="Enter feature details"
+                aria-describedby="additional-features"
               />
             </div>
         <div class="form-group form-group-button text-center">

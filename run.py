@@ -595,10 +595,10 @@ def add_product():
             "capacity": request.form.get('capacity'),
             "display": request.form.get('display'),
             "processor, memory and graphics": request.form.get('processor_memory_graphics'),
-            "camera and video": request.form.get('camera_video'),
+            "camera and video": request.form.get('camera-video'),
             "battery life": request.form.get('battery'),
             "connectivity": request.form.get('connectivity'),
-            "additional features": request.form.get('additional_features'),
+            "additional features": request.form.get('additional-features'),
         }
 
         keys = list(product.keys())
@@ -627,11 +627,11 @@ def edit_product(product_id):
             "image_alt": request.form.get('image-alt'),                "colours": request.form.get('colours'),
             "capacity": request.form.get('capacity'),
             "display": request.form.get('display'),
-            "processor_memory_graphics": request.form.get('processor_memory_graphics'),
-            "camera_video": request.form.get('camera_video'),
+            "processor_memory_graphics": request.form.get('processor-memory-graphics'),
+            "camera_video": request.form.get('camera-video'),
             "battery": request.form.get('battery'),
             "connectivity": request.form.get('connectivity'),
-            "additional_features": request.form.get('additional_features'),
+            "additional_features": request.form.get('additional-features'),
         }
         keys = list(product.keys())
         for key in keys:
