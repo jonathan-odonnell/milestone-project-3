@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 $('#product-details').find('.btn').on('click', function () {
     // Code is from https://stackoverflow.com/questions/7386817/html5-form-checkvalidity-method-not-found and https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity
-    if ($('form')[1].reportValidity() == false) {
+    if ($('form')[2].reportValidity() == false) {
         return
     } else {
         $('#product-details').addClass('d-none')
