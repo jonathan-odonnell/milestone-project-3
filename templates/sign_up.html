@@ -16,8 +16,8 @@
                 <!-- Heading end -->
                 <!-- Sign up form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
                 <div class="row no-gutters">
-                    <form class="col-12 col-md-10 offset-md-1" method="POST" action="{{ url_for('sign_up') }}"
-                        novalidate>
+                    <form class="col-12 col-md-10 offset-md-1 needs-validation" method="POST"
+                        action="{{ url_for('sign_up') }}" novalidate>
                         <div class="form-group">
                             <label for="first_name">First Name</label>
                             <input type="text" class="form-control" id="first_name" name="first_name"
@@ -79,16 +79,42 @@
 {% block postloadjs %}
 <script>
     $('input').on('change', function () {
-        if ($(this).is(":valid")) {
-            if ($(this).attr('id') === 'password-confirm' && $(this).val() !== $('#password').val()) {
+        if ($(this).attr('id') === 'confirm-password') {
+            if ($(this).val() === $('#password').val()) {
+                $(this).removeClass('is-invalid').addClass('is-valid')
+            } else {
                 $(this).removeClass('is-valid').addClass('is-invalid')
-            } else if ($(this).attr('id') === 'password' && $(this).val() !== $('#password').val()) {
-                $(this).removeClass('is-valid').addClass('is-invalid')
+            }
+        }
+        else if ($(this).is(":valid")) {
+            if ($(this).attr('id') === 'password' && $('#confirm-password').val() === "") {
+                $(this).removeClass('is-invalid').addClass('is-valid')
+            } else if ($(this).attr('id') === 'password' && $('#confirm-password').val() !== "") {
+                $(this).removeClass('is-invalid').addClass('is-valid')
+                if ($(this).val() === $('#confirm-password').val()) {
+                    $('#confirm-password').removeClass('is-invalid').addClass('is-valid')
+                } else {
+                    $('#confirm-password').removeClass('is-valid').addClass('is-invalid')
+                }
             } else {
                 $(this).removeClass('is-invalid').addClass('is-valid')
             }
         } else {
-            $(this).removeClass('is-valid').addClass('is-invalid')
+            if ($(this).attr('id') === 'password' && $('#confirm-password').val() === "") {
+                $(this).removeClass('is-valid').addClass('is-invalid')
+            } else if ($(this).attr('id') === 'password' && $('#confirm-password').val() !== "") {
+                $(this).removeClass('is-valid').addClass('is-invalid')
+                $('#confirm-password').removeClass('is-valid').addClass('is-invalid')
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid')
+            }
+        }
+    })
+
+    $('.needs-validation').submit(function(e) {
+        if ($(this)[0].checkValidity() === false) {
+            e.preventDefault()
+            $(this).addClass('was-validated')
         }
     })
 </script>
