@@ -367,10 +367,6 @@ def sign_up():
             flash("Email already registered", "error")
             return redirect(url_for("sign_up"))
 
-        if request.form.get('password') != request.form.get('confirm_password'):
-            flash("Passwords do not match", "error")
-            return redirect(url_for('sign_up'))
-
         sign_up = {
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
