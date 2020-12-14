@@ -82,9 +82,11 @@
         if ($(this).attr('id') === 'confirm-password') {
             if ($(this).val() === $('#password').val()) {
                 $(this).removeClass('is-invalid').addClass('is-valid')
+                // https://codepen.io/diegoleme/pen/surIK
                 $(this)[0].setCustomValidity("")
             } else {
                 $(this).removeClass('is-valid').addClass('is-invalid')
+                // https://codepen.io/diegoleme/pen/surIK
                 $(this)[0].setCustomValidity("Passwords Don't Match")
             }
         }
