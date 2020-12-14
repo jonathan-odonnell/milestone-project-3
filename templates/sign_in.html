@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="sign-in-container mx-md-auto my-3 p-3 border">
                         <h3 class="text-center my-3">{{ page_title }}</h3>
-                        <form method="POST" action="{{ url_for('sign_in') }}" novalidate>
+                        <form method="POST" class="needs-validation" action="{{ url_for('sign_in') }}" novalidate>
                             <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
                             <div class="form-group">
                                 <label for="email">Email address</label>
@@ -42,6 +42,12 @@
             $(this).removeClass('is-invalid').addClass('is-valid')
         } else {
             $(this).removeClass('is-valid').addClass('is-invalid')
+        }
+    })
+    $('.needs-validation').submit(function(e) {
+        if ($(this)[0].checkValidity() === false) {
+            e.preventDefault()
+            $(this).addClass('was-validated').removeClass('needs-validation')
         }
     })
 </script>
