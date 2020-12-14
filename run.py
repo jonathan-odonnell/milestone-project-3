@@ -3,12 +3,14 @@ from functools import wraps
 from flask import (Flask, flash, jsonify, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from flask_paginate import Pagination, get_page_args
+from flask_paginate import get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 if os.path.exists("env.py"):
     import env
+
+from utils import paginate_products, paginate, get_price_range, add_rating,edit_rating, delete_rating, add_star_rating, remove_star_rating, sort_items
 
 app = Flask(__name__)
 
@@ -17,164 +19,7 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-
 mongo = PyMongo(app)
-
-
-def paginate_products(products, offset, per_page):
-    return products[offset: offset + per_page]
-
-
-def paginate(products, page, per_page):
-    total = len(products)
-    return Pagination(
-        page=page,
-        per_page=per_page,
-        total=total,
-        css_framework='bootstrap4'
-    )
-
-
-def sortItems(sort):
-    if sort == "a-to-z":
-        sortQuery = [("name", 1)]
-        return sortQuery
-    elif sort == "z-to-a":
-        sortQuery = [("name", -1)]
-        return sortQuery
-    elif sort == "date-added":
-        sortQuery = [("date_added", -1), ("name", 1)]
-        return sortQuery
-    elif sort == "price":
-        sortQuery = [("price", -1), ("name", 1)]
-        return sortQuery
-    elif sort == "cat_asc":
-        sortQuery = [("category", 1)]
-        return sortQuery
-    elif sort == "cat_desc":
-        sortQuery = [("category", -1)]
-        return sortQuery
-
-
-def getPriceRange(category, value):
-    if category == "phones":
-        if value == 1:
-            query = {"$gte": 0, "$lte": 500}
-            return query
-        elif value == 2:
-            query = {"$gte": 500, "$lte": 750}
-            return query
-        elif value == 3:
-            query = {"$gte": 750, "$lte": 1000}
-            return query
-        elif value == 4:
-            query = {"$gte": 1000}
-            return query
-    if category == "tablets":
-        if value == 1:
-            query = {"$gte": 0, "$lte": 500}
-            return query
-        elif value == 2:
-            query = {"$gte": 500, "$lte": 750}
-            return query
-        elif value == 3:
-            query = {"$gte": 750, "$lte": 1000}
-            return query
-        elif value == 4:
-            query = {"$gte": 1000}
-            return query
-    if category == "laptops":
-        if value == 1:
-            query = {"$gte": 0, "$lte": 750}
-            return query
-        elif value == 2:
-            query = {"$gte": 750, "$lte": 1000}
-            return query
-        elif value == 3:
-            query = {"$gte": 1000, "$lte": 1250}
-            return query
-        elif value == 4:
-            query = {"$gte": 1250, "$lte": 1500}
-            return query
-        elif value == 5:
-            query = {"$gte": 1500}
-            return query
-    if category == "accessories":
-        if value == 1:
-            query = {"$gte": 0, "$lte": 200}
-            return query
-        elif value == 2:
-            query = {"$gte": 200, "$lte": 300}
-            return query
-        elif value == 3:
-            query = {"$gte": 300, "$lte": 400}
-            return query
-        elif value == 4:
-            query = {"$gte": 400}
-            return query
-    if category == "all":
-        if value == 1:
-            query = {"$gte": 0, "$lte": 250}
-            return query
-        elif value == 2:
-            query = {"$gte": 250, "$lte": 500}
-            return query
-        elif value == 3:
-            query = {"$gte": 500, "$lte": 750}
-            return query
-        elif value == 4:
-            query = {"$gte": 750, "$lte": 1000}
-            return query
-        elif value == 5:
-            query = {"$gte": 1000}
-            return query
-
-
-def add_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * totalProductRatings) +
-              float(newUserRating)) / (totalProductRatings + 1)
-    rating = round(rating, 1)
-    return rating
-
-
-def edit_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
-    rating = ((productRating * totalProductRatings) -
-              oldUserRating + float(newUserRating)) / totalProductRatings
-    rating = round(rating, 1)
-    return rating
-
-
-def delete_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * (totalProductRatings + 1)) -
-              float(newUserRating)) / totalProductRatings
-    rating = round(rating, 1)
-    return rating
-
-
-def add_star_rating(star_rating, prev_ratings, new_ratings):
-    if star_rating == 1:
-        new_ratings['one_star'] = prev_ratings[0]['one_star'] + 1
-    if star_rating == 2:
-        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] + 1
-    if star_rating == 3:
-        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] + 1
-    if star_rating == 4:
-        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] + 1
-    if star_rating == 5:
-        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] + 1
-
-
-def remove_star_rating(star_rating, prev_ratings, new_ratings):
-    if star_rating == 1:
-        new_ratings['one_star'] = prev_ratings[0]['one_star'] - 1
-    if star_rating == 2:
-        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] - 1
-    if star_rating == 3:
-        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] - 1
-    if star_rating == 4:
-        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] - 1
-    if star_rating == 5:
-        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
 
 # https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
 def login_required(f):
@@ -227,14 +72,13 @@ def reviews(category="all"):
         query["category"] = category
 
     if sortBy:
-        order_by = sortItems(sortBy)
+        order_by = sort_items(sortBy)
 
     elif not sortBy:
         order_by = [("name", 1)]
 
     if brands:
         brands = brands.split(",")
-
         if len(brands) == 1:
             query["brand"] = brands[0]
 
@@ -243,7 +87,7 @@ def reviews(category="all"):
 
     if price:
         price = int(price)
-        price_Query = getPriceRange(category, price)
+        price_Query = get_price_range(category, price)
         query["price"] = price_Query
 
     print(query)
@@ -403,7 +247,7 @@ def product_management():
     sort_by = request.args.get("sort")
 
     if sort_by:
-        products = list(mongo.db.products.find().sort(sortItems(sort_by)))
+        products = list(mongo.db.products.find().sort(sort_items(sort_by)))
 
     else:
         products = list(mongo.db.products.find().sort('name', 1))
@@ -598,7 +442,7 @@ def add_product():
         }
 
         keys = list(product.keys())
-
+        # this part does something
         for key in keys:
             if product[key] == "":
                 del product[key]
@@ -655,11 +499,13 @@ def delete_product(product_id):
     return redirect(url_for('product_management'))
 
 
-"""
-Redirects the user back to the home page if the HTTP request returns a 404 page not found error is returned. Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
-"""
 @app.errorhandler(404)
 def page_not_found(e):
+    """
+    Redirects the user back to the home page 
+    if the HTTP request returns a 404 page not found error is returned.
+    Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    """
     return redirect(url_for('index'))
 
 
