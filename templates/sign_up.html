@@ -42,7 +42,6 @@
                             <div class="invalid-feedback mt-3">Password must be between 8 and 30 characters and contain
                                 at least one uppercase, one lowercase letter and one number</div>
                         </div>
-                        <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
                         <div class="form-group mt-4">
                             <label for="confirm-password">Confirm Password</label>
                             <input type="password" class="form-control" name="confirm_password" id="confirm-password"
@@ -81,10 +80,10 @@
 <script>
     $('input').on('change', function () {
         if ($(this).is(":valid")) {
-            if ($(this).attr('id') === 'password-confirm' && $(this).val() === $('#password').val()) {
-                $(this).removeClass('is-invalid').addClass('is-valid')
-            } else if ($(this).attr('id') === 'password' && $(this).val() === $('#password').val()) {
-                $(this).removeClass('is-invalid').addClass('is-valid')
+            if ($(this).attr('id') === 'password-confirm' && $(this).val() !== $('#password').val()) {
+                $(this).removeClass('is-valid').addClass('is-invalid')
+            } else if ($(this).attr('id') === 'password' && $(this).val() !== $('#password').val()) {
+                $(this).removeClass('is-valid').addClass('is-invalid')
             } else {
                 $(this).removeClass('is-invalid').addClass('is-valid')
             }
