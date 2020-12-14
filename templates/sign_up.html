@@ -82,8 +82,10 @@
         if ($(this).attr('id') === 'confirm-password') {
             if ($(this).val() === $('#password').val()) {
                 $(this).removeClass('is-invalid').addClass('is-valid')
+                $(this)[0].setCustomValidity("")
             } else {
                 $(this).removeClass('is-valid').addClass('is-invalid')
+                $(this)[0].setCustomValidity("Passwords Don't Match")
             }
         }
         else if ($(this).is(":valid")) {
