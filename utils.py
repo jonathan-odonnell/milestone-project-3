@@ -30,19 +30,19 @@ def get_price_range(category, value):
                 }, "tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
                 "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
                 }, "laptops": {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750,
-                "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4: {"$gte": 
-                1250, "$lte": 1500}, 5: {"$gte": 1500}}, "accessories": {1: 
-                {"$gte": 0, "$lte": 200}, 2: {"$gte": 200, "$lte": 300}, 3: 
-                {"$gte": 300, "$lte": 400}, 4: {"$gte": 400}}, "all": {1: 
+                "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4: {"$gte":
+                1250, "$lte": 1500}, 5: {"$gte": 1500}}, "accessories": {1:
+                {"$gte": 0, "$lte": 200}, 2: {"$gte": 200, "$lte": 300}, 3:
+                {"$gte": 300, "$lte": 400}, 4: {"$gte": 400}}, "all": {1:
                 {"$gte": 0, "$lte": 250}, 2: {"$gte": 250, "$lte": 500}, 3:
-                {"$gte": 500, "$lte": 750}, 4: {"$gte": 750, "$lte": 1000}, 5: 
+                {"$gte": 500, "$lte": 750}, 4: {"$gte": 750, "$lte": 1000}, 5:
                 {"$gte": 1000}}}
     return price_file[category][value]
 
 
-def add_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * totalProductRatings) +
-              float(newUserRating)) / (totalProductRatings + 1)
+def calculate_rating(average, total, new_rating, prev_rating, new_total):
+    rating = ((average * total) + prev_rating +
+              float(new_rating)) / new_total
     rating = round(rating, 1)
     return rating
 
@@ -59,20 +59,57 @@ def user_ratings_query():
     query = {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
     return query
 
-
-def edit_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
-    rating = ((productRating * totalProductRatings) -
-              oldUserRating + float(newUserRating)) / totalProductRatings
-    rating = round(rating, 1)
+def add_ratings(product_ratings, product_count, form):
+    rating = {'overall_rating': calculate_rating(product_ratings[0]
+        ['overall_rating'], product_count, 0, int(form['overall_rating']),
+        product_count + 1), 'performance_rating': calculate_rating
+        (product_ratings[0]['performance_rating'], product_count, 0, int(form
+        ['performance_rating']), product_count + 1), 'usability_rating':
+        calculate_rating(product_ratings[0]['usability_rating'], 
+        product_count, 0, int(form['usability_rating']), product_count + 1), 
+        'price_rating': calculate_rating(product_ratings[0]
+        ['price_rating'], product_count, 0, int(form['price_rating']),
+        product_count + 1), 'quality_rating': calculate_rating
+        (product_ratings[0] ['quality_rating'], product_count, 0, int(form
+        ['quality_rating']), product_count + 1)
+    }
     return rating
 
-
-def delete_rating(productRating, newUserRating, totalProductRatings):
-    rating = ((productRating * (totalProductRatings + 1)) -
-              float(newUserRating)) / totalProductRatings
-    rating = round(rating, 1)
+def edit_ratings(user_ratings, product_ratings, product_count, form):
+    rating = {
+        'overall_rating': calculate_rating(product_ratings[0]
+        ['overall_rating'], product_count, user_ratings[0]['overall_rating'],
+        form['overall_rating'], product_count + 1), 'performance_rating': 
+        calculate_rating (product_ratings[0]['performance_rating'], 
+        product_count, user_ratings[0]['performance_rating'], form
+        ['performance_rating'], product_count + 1), 'usability_rating':
+        calculate_rating(product_ratings[0]['usability_rating'], 
+        product_count, user_ratings[0]['usability_rating'], form
+        ['usability_rating'], product_count + 1), 'price_rating':
+        calculate_rating(product_ratings[0]['price_rating'], product_count, 
+        user_ratings[0]['price_rating'], form['price_rating'],
+        product_count + 1), 'quality_rating': calculate_rating
+        (product_ratings[0]['quality_rating'], product_count, user_ratings
+        [0]['quality_rating'], form ['quality_rating'], product_count + 1)
+    }
     return rating
 
+def delete_ratings(user_ratings, product_ratings, product_count, form):
+    rating = {
+        'overall_rating': calculate_rating(product_ratings[0]
+        ['overall_rating'], product_count, user_ratings[0]['overall_rating'], 0,
+        product_count - 1), 'performance_rating': calculate_rating
+        (product_ratings[0]['performance_rating'], product_count, user_ratings
+        [0]['performance_rating'], 0, product_count - 1), 'usability_rating':
+        calculate_rating(product_ratings[0]['usability_rating'], 
+        product_count, user_ratings[0]['usability_rating'], 0, product_count - 
+        1),'price_rating': calculate_rating(product_ratings[0]
+        ['price_rating'], product_count, user_ratings[0]['price_rating'], 0,
+        product_count - 1), 'quality_rating': calculate_rating(product_ratings
+        [0]['quality_rating'], product_count, user_ratings[0]['quality_rating'],
+         0, product_count - 1)
+    }
+    return rating
 
 def star_rating(new_rating=None, prev_rating=None):
     add_file = {

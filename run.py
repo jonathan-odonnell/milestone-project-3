@@ -10,7 +10,8 @@ import datetime
 if os.path.exists("env.py"):
     import env
 
-from utils import paginate_products, paginate, get_price_range, add_rating,edit_rating, delete_rating, star_rating, sort_items, product_ratings_query, user_ratings_query
+from utils import (paginate_products, paginate, get_price_range, sort_items, product_ratings_query,
+                   user_ratings_query, add_ratings, edit_ratings, delete_ratings, star_rating)
 
 app = Flask(__name__)
 
@@ -22,6 +23,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 # https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -124,44 +127,50 @@ def review_details(product_id):
     page_title = product[0]["name"] + " Review"
     current_user = None
     if "user" in session:
-        current_user = session['user']['first_name'] + " " + session['user']['last_name']
+        current_user = session['user']['first_name'] + \
+            " " + session['user']['last_name']
     reviews = list((mongo.db.reviews.find(
         {"product": product[0]["name"]})))
     dates = []
-    total_reviews = product[0]['one_star'] + product[0]['two_stars'] + product[0]['three_stars'] + product[0]['four_stars'] + product[0]['five_stars']
+    total_reviews = product[0]['one_star'] + product[0]['two_stars'] + \
+        product[0]['three_stars'] + \
+        product[0]['four_stars'] + product[0]['five_stars']
     for review in reviews:
         dates.append(review["date_added"].strftime("%d %B %Y"))
-    return render_template("review_details.html", 
-        page_title=page_title, 
-        product=product, 
-        reviews=reviews, 
-        dates=dates,
-        total_reviews=total_reviews,
-        current_user=current_user)
+    return render_template("review_details.html",
+                           page_title=page_title,
+                           product=product,
+                           reviews=reviews,
+                           dates=dates,
+                           total_reviews=total_reviews,
+                           current_user=current_user)
+
 
 @app.route("/up_vote", methods=["GET", "POST"])
 def up_vote():
-    #https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
-    #https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
+    # https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
+    # https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
     review_id = review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
     up_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-    {"up_vote": 1, "_id": 0}))
+                                         {"up_vote": 1, "_id": 0}))
 
     return jsonify({"up_vote": up_vote[0]['up_vote'], "success": True})
 
+
 @app.route("/down_vote", methods=["GET", "POST"])
 def down_vote():
-    #https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
-    #https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
+    # https://stackoverflow.com/questions/36620864/passing-variables-from-flask-back-to-ajax
+    # https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
     review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
     down_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-    {"down_vote": 1, "_id": 0}))
+                                           {"down_vote": 1, "_id": 0}))
 
     return jsonify({"down_vote": down_vote[0]['down_vote'], "success": True})
+
 
 @ app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -222,13 +231,13 @@ def sign_up():
 
         session["user"] = {
             "first_name": request.form.get(
-            "first_name"),
+                "first_name"),
             "last_name": request.form.get(
-            "first_name"),
+                "first_name"),
             "email": request.form.get(
-            "email"),
+                "email"),
             "user_type": request.form.get(
-            "user_type")
+                "user_type")
         }
 
         if request.form.get("newsletter_signup") == "on":
@@ -271,42 +280,30 @@ def logout():
 @login_required
 def add_review():
     if request.method == 'POST':
-        product_count = mongo.db.reviews.count({"product": request.form.get('product')})
+        product_count = mongo.db.reviews.count(
+            {"product": request.form.get('product')})
 
-        product_ratings = list(mongo.db.products.find({"name": request.form.get('product')}, product_ratings_query()))
+        product_ratings = list(mongo.db.products.find(
+            {"name": request.form.get('product')}, product_ratings_query()))
 
-        new_ratings = {
-            'overall_rating': add_rating(product_ratings[0]
-            ['overall_rating'], request.form.get('overall_rating'),
-            product_count), 'performance_rating': add_rating
-            (product_ratings[0]['performance_rating'], request.form.get
-            ('performance_rating'), product_count), 'usability_rating':
-            add_rating(product_ratings[0]['usability_rating'],
-            request.form.get('usability_rating'), product_count),
-            'price_rating': add_rating(product_ratings[0]['price_rating'],
-            request.form.get('price_rating'), product_count),
-            'quality_rating': add_rating(product_ratings[0]
-            ['quality_rating'], request.form.get('quality_rating'),
-            product_count),
-        }
+        form = request.form.to_dict()
+
+        new_ratings = add_ratings(product_ratings, product_count, form)
 
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        mongo.db.products.update_one({'name': request.form.get('product')}, star_rating(new_rating=int(request.form.get('overall_rating'))))
+        mongo.db.products.update_one({'name': request.form.get('product')}, 
+        star_rating(
+            new_rating=int(request.form.get('overall_rating'))))
 
-        mongo.db.reviews.insert_one({
-            'overall_rating': int(request.form.get('overall_rating')),
-            'performance_rating': int(request.form.get('performance_rating')),
-            'usability_rating': int(request.form.get('usability_rating')),
-            'quality_rating': int(request.form.get('quality_rating')),
-            'price_rating': int(request.form.get('price_rating')),
-            'review_title': request.form.get('review_title'),
-            'review': request.form.get('review'),
-            'date_added': datetime.datetime.now(),
-            'created_by': session['user']['first_name'] + " " + session['user']['last_name'],
-            'product': request.form.get('product'),
-        })
+        review = request.form.to_dict()
+
+        review['date_added'] = datetime.datetime.now()
+        review['created_by'] = session['user']['first_name'] + \
+            " " + session['user']['last_name']
+
+        mongo.db.reviews.insert_one(review)
 
         return redirect(request.form.get('next'))
     else:
@@ -317,46 +314,35 @@ def add_review():
 @login_required
 def edit_review(review_id):
     if request.method == 'POST':
-        user_ratings = list(mongo.db.reviews.find({'_id': ObjectId(review_id)}, user_ratings_query()))
+        user_ratings = list(mongo.db.reviews.find(
+            {'_id': ObjectId(review_id)}, user_ratings_query()))
 
-        product_ratings = list(mongo.db.products.find({"name": user_ratings[0]['product']}, product_ratings_query()))
+        product_ratings = list(mongo.db.products.find(
+            {"name": user_ratings[0]['product']}, product_ratings_query()))
 
-        product_count = mongo.db.reviews.count({"product": user_ratings[0]['product']})
+        product_count = mongo.db.reviews.count(
+            {"product": user_ratings[0]['product']})
 
-        new_ratings = {
-            'overall_rating': edit_rating(product_ratings[0]
-            ['overall_rating'], user_ratings[0]['overall_rating'],
-            request.form.get('overall_rating'), product_count),
-            'performance_rating': edit_rating(product_ratings[0]
-            ['performance_rating'], user_ratings[0]['performance_rating'],
-            request.form.get('performance_rating'), product_count),
-            'usability_rating': edit_rating(product_ratings[0]
-            ['usability_rating'], user_ratings[0]['usability_rating'],
-            request.form.get('usability_rating'), product_count),
-            'price_rating': edit_rating(product_ratings[0]
-            ['price_rating'], user_ratings[0]['price_rating'], 
-            request.form.get('price_rating'), product_count),
-            'quality_rating': edit_rating(product_ratings[0]
-            ['quality_rating'], user_ratings[0]['quality_rating'],
-            request.form.get('quality_rating'), product_count),
-        }
+        form = request.form.to_dict()
+
+        new_ratings = edit_ratings(
+            user_ratings, product_ratings, product_count, form)
 
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        if (int(request.form.get('overall_rating')) != user_ratings[0]['overall_rating']):
-            mongo.db.products.update_one({"_id": review_id}, star_rating(request.form.get('overall_rating'), user_ratings[0]['overall_review']))
-        
-        mongo.db.reviews.update_one({'_id': ObjectId(review_id)}, {"$set": {
-            'overall_rating': int(request.form.get('overall_rating')),
-            'performance_rating': int(request.form.get('performance_rating')),
-            'usability_rating': int(request.form.get('usability_rating')),
-            'quality_rating': int(request.form.get('quality_rating')),
-            'price_rating': int(request.form.get('price_rating')),
-            'review_title': request.form.get('review_title'),
-            'review': request.form.get('review'),
-            'date_added': datetime.datetime.now(),
-        }})
+        if (int(request.form.get('overall_rating')) != user_ratings[0]
+        ['overall_rating']):
+            mongo.db.products.update_one({"_id": review_id}, star_rating(
+                request.form.get('overall_rating'), user_ratings[0]
+                ['overall_review']))
+
+        review = request.form.to_dict()
+
+        review['date_added'] = datetime.datetime.now()
+
+        mongo.db.reviews.update_one(
+            {'_id': ObjectId(review_id)}, {"$set": review})
 
         return redirect(request.form.get('next'))
 
@@ -370,31 +356,26 @@ def edit_review(review_id):
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def delete_review(review_id):
-    user_ratings = list(mongo.db.reviews.find({'_id': ObjectId(review_id)}, user_ratings_query()))
+    user_ratings = list(mongo.db.reviews.find(
+        {'_id': ObjectId(review_id)}, user_ratings_query()))
 
-    product_ratings = list(mongo.db.products.find({"name": user_ratings[0]['product']}, product_ratings_query()))
+    product_ratings = list(mongo.db.products.find(
+        {"name": user_ratings[0]['product']}, product_ratings_query()))
 
-    product_count = mongo.db.reviews.count_documents({"product": user_ratings[0]['product']})
+    product_count = mongo.db.reviews.count_documents(
+        {"product": user_ratings[0]['product']})
 
-    new_ratings = {
-            'overall_rating': delete_rating(product_ratings[0]
-            ['overall_rating'], user_ratings[0]['overall_rating'],
-            product_count), 'performance_rating': delete_rating
-            (product_ratings[0]['performance_rating'], user_ratings[0]
-            ['performance_rating'], product_count), 'usability_rating':
-            delete_rating(product_ratings[0]['usability_rating'],
-            user_ratings[0]['usability_rating'], product_count), 
-            'price_rating': delete_rating(product_ratings
-            [0]['price_rating'], user_ratings[0]['price_rating'], 
-            product_count), 'quality_rating': delete_rating(product_ratings[0]
-            ['quality_rating'], user_ratings[0]['quality_rating'], 
-            product_count)
-        }
+    form = request.form.to_dict()
+
+    new_ratings = delete_ratings(
+        user_ratings, product_ratings, product_count, form)
 
     mongo.db.products.update_one(
-            {'name': request.form.get('product')}, {"$set": new_ratings})
+        {'name': request.form.get('product')}, {"$set": new_ratings})
 
-    mongo.db.products.update_one({"name": user_ratings[0]['product']}, star_rating(prev_rating=user_ratings[0]['overall_rating']))
+    mongo.db.products.update_one({"name": user_ratings[0]['product']},
+    star_rating(
+        prev_rating=user_ratings[0]['overall_rating']))
 
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
