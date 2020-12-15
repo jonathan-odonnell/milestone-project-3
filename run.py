@@ -154,7 +154,7 @@ def up_vote():
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
     up_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
-                                         {"up_vote": 1, "_id": 0})
+                                        {"up_vote": 1, "_id": 0})
 
     return jsonify({"up_vote": up_vote['up_vote'], "success": True})
 
@@ -167,7 +167,7 @@ def down_vote():
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
     down_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
-                                           {"down_vote": 1, "_id": 0})
+                                          {"down_vote": 1, "_id": 0})
 
     return jsonify({"down_vote": down_vote['down_vote'], "success": True})
 
@@ -269,8 +269,8 @@ def add_review():
         product_count = mongo.db.reviews.count(
             {"product": request.form.get('product')})
 
-        product_ratings = list(mongo.db.products.find(
-            {"name": request.form.get('product')}, product_ratings_query()))
+        product_ratings = mongo.db.products.find_one(
+            {"name": request.form.get('product')}, product_ratings_query())
 
         form = request.form.to_dict()
 
@@ -300,14 +300,14 @@ def add_review():
 @login_required
 def edit_review(review_id):
     if request.method == 'POST':
-        user_ratings = list(mongo.db.reviews.find(
-            {'_id': ObjectId(review_id)}, user_ratings_query()))
+        user_ratings = mongo.db.reviews.find_one(
+            {'_id': ObjectId(review_id)}, user_ratings_query())
 
-        product_ratings = list(mongo.db.products.find(
-            {"name": user_ratings[0]['product']}, product_ratings_query()))
+        product_ratings = mongo.db.products.find_one(
+            {"name": user_ratings['product']}, product_ratings_query())
 
         product_count = mongo.db.reviews.count(
-            {"product": user_ratings[0]['product']})
+            {"product": user_ratings['product']})
 
         form = request.form.to_dict()
 
@@ -317,10 +317,9 @@ def edit_review(review_id):
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        if (int(request.form.get('overall_rating')) != user_ratings[0]
-                ['overall_rating']):
+        if (int(request.form.get('overall_rating')) != user_ratings['overall_rating']):
             mongo.db.products.update_one({"_id": review_id}, star_rating(
-                request.form.get('overall_rating'), user_ratings[0]
+                request.form.get('overall_rating'), user_ratings
                 ['overall_review']))
 
         review = request.form.to_dict()
@@ -342,14 +341,14 @@ def edit_review(review_id):
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def delete_review(review_id):
-    user_ratings = list(mongo.db.reviews.find(
-        {'_id': ObjectId(review_id)}, user_ratings_query()))
+    user_ratings = mongo.db.reviews.find_one(
+        {'_id': ObjectId(review_id)}, user_ratings_query())
 
-    product_ratings = list(mongo.db.products.find(
-        {"name": user_ratings[0]['product']}, product_ratings_query()))
+    product_ratings = mongo.db.products.find_one(
+        {"name": user_ratings['product']}, product_ratings_query())
 
     product_count = mongo.db.reviews.count_documents(
-        {"product": user_ratings[0]['product']})
+        {"product": user_ratings['product']})
 
     form = request.form.to_dict()
 
@@ -359,9 +358,9 @@ def delete_review(review_id):
     mongo.db.products.update_one(
         {'name': request.form.get('product')}, {"$set": new_ratings})
 
-    mongo.db.products.update_one({"name": user_ratings[0]['product']},
+    mongo.db.products.update_one({"name": user_ratings['product']},
                                  star_rating(
-        prev_rating=user_ratings[0]['overall_rating']))
+        prev_rating=user_ratings['overall_rating']))
 
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 

@@ -34,9 +34,9 @@ def paginate(products, page, per_page):
 
 def sort_items(sort):
     sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
-                "date-added": [("date_added", -1), ("name", 1)],
-                "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
-                1)], "cat_desc": [("category", -1)]}
+                 "date-added": [("date_added", -1), ("name", 1)],
+                 "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
+                 1)], "cat_desc": [("category", -1)]}
     return sort_file[sort]
 
 
@@ -66,67 +66,69 @@ def calculate_rating(average, total, new_rating, prev_rating, new_total):
 
 def product_ratings_query():
     query = {"overall_rating": 1, "performance_rating": 1,
-        "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
-        "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
-        "five_stars": 1, "_id": 0}
+             "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
+             "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
+             "five_stars": 1, "_id": 0}
     return query
 
 
 def user_ratings_query():
-    query = {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
+    query = {"product": 1, "overall_rating": 1, "performance_rating": 1,
+             "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
     return query
 
+
 def add_ratings(product_ratings, product_count, form):
-    rating = {'overall_rating': calculate_rating(product_ratings[0]
-        ['overall_rating'], product_count, 0, int(form['overall_rating']),
-        product_count + 1), 'performance_rating': calculate_rating
-        (product_ratings[0]['performance_rating'], product_count, 0, int(form
-        ['performance_rating']), product_count + 1), 'usability_rating':
-        calculate_rating(product_ratings[0]['usability_rating'], 
-        product_count, 0, int(form['usability_rating']), product_count + 1), 
-        'price_rating': calculate_rating(product_ratings[0]
-        ['price_rating'], product_count, 0, int(form['price_rating']),
-        product_count + 1), 'quality_rating': calculate_rating
-        (product_ratings[0] ['quality_rating'], product_count, 0, int(form
-        ['quality_rating']), product_count + 1)
-    }
+    rating = {
+        'overall_rating': calculate_rating(product_ratings ['overall_rating'], 
+        product_count, 0, int(form['overall_rating']), product_count + 1), 
+        'performance_rating': calculate_rating(product_ratings['performance_rating'], product_count, 0, int(form['performance_rating']
+        ), product_count + 1), 'usability_rating': calculate_rating
+        (product_ratings['usability_rating'], product_count, 0, int(form
+        ['usability_rating']), product_count + 1), 'price_rating': 
+        calculate_rating(product_ratings['price_rating'], product_count, 0, int
+        (form['price_rating']), product_count + 1), 'quality_rating': 
+        calculate_rating(product_ratings['quality_rating'], product_count, 0, 
+        int(form['quality_rating']), product_count + 1)
+              }
     return rating
+
 
 def edit_ratings(user_ratings, product_ratings, product_count, form):
     rating = {
-        'overall_rating': calculate_rating(product_ratings[0]
-        ['overall_rating'], product_count, user_ratings[0]['overall_rating'],
-        form['overall_rating'], product_count + 1), 'performance_rating': 
-        calculate_rating (product_ratings[0]['performance_rating'], 
-        product_count, user_ratings[0]['performance_rating'], form
-        ['performance_rating'], product_count + 1), 'usability_rating':
-        calculate_rating(product_ratings[0]['usability_rating'], 
-        product_count, user_ratings[0]['usability_rating'], form
-        ['usability_rating'], product_count + 1), 'price_rating':
-        calculate_rating(product_ratings[0]['price_rating'], product_count, 
-        user_ratings[0]['price_rating'], form['price_rating'],
-        product_count + 1), 'quality_rating': calculate_rating
-        (product_ratings[0]['quality_rating'], product_count, user_ratings
-        [0]['quality_rating'], form ['quality_rating'], product_count + 1)
+        'overall_rating': calculate_rating(product_ratings['overall_rating'], 
+        product_count, user_ratings['overall_rating'], form['overall_rating'], 
+        product_count + 1), 'performance_rating': calculate_rating
+        (product_ratings['performance_rating'], product_count, user_ratings
+        ['performance_rating'], form ['performance_rating'], product_count + 1),
+        'usability_rating': calculate_rating(product_ratings['usability_rating']
+        , product_count, user_ratings['usability_rating'], form
+        ['usability_rating'], product_count + 1), 'price_rating': 
+        calculate_rating(product_ratings['price_rating'], product_count, 
+        user_ratings['price_rating'], form['price_rating'], product_count + 1), 
+        'quality_rating': calculate_rating (product_ratings['quality_rating'], 
+        product_count, user_ratings ['quality_rating'], form['quality_rating'], 
+        product_count + 1)
     }
     return rating
 
+
 def delete_ratings(user_ratings, product_ratings, product_count, form):
     rating = {
-        'overall_rating': calculate_rating(product_ratings[0]
-        ['overall_rating'], product_count, user_ratings[0]['overall_rating'], 0,
-        product_count - 1), 'performance_rating': calculate_rating
-        (product_ratings[0]['performance_rating'], product_count, user_ratings
-        [0]['performance_rating'], 0, product_count - 1), 'usability_rating':
-        calculate_rating(product_ratings[0]['usability_rating'], 
-        product_count, user_ratings[0]['usability_rating'], 0, product_count - 
-        1),'price_rating': calculate_rating(product_ratings[0]
-        ['price_rating'], product_count, user_ratings[0]['price_rating'], 0,
-        product_count - 1), 'quality_rating': calculate_rating(product_ratings
-        [0]['quality_rating'], product_count, user_ratings[0]['quality_rating'],
-         0, product_count - 1)
+        'overall_rating': calculate_rating(product_ratings['overall_rating'], 
+        product_count, user_ratings['overall_rating'], 0, product_count - 1), 
+        'performance_rating': calculate_rating(product_ratings
+        ['performance_rating'], product_count, user_ratings
+        ['performance_rating'], 0, product_count - 1), 'usability_rating': 
+        calculate_rating(product_ratings['usability_rating'], product_count, 
+        user_ratings['usability_rating'], 0, product_count - 1), 
+        'price_rating': calculate_rating(product_ratings['price_rating'], 
+        product_count, user_ratings['price_rating'], 0, product_count - 1), 
+        'quality_rating': calculate_rating(product_ratings['quality_rating'], 
+        product_count, user_ratings['quality_rating'], 0, product_count - 1)
     }
     return rating
+
 
 def star_rating(new_rating=None, prev_rating=None):
     add_file = {
@@ -135,7 +137,7 @@ def star_rating(new_rating=None, prev_rating=None):
         3: {"three_stars": 1},
         4: {"four_stars": 1},
         5: {"five_stars": 1}
-        }
+    }
 
     delete_file = {
         1: {"one_star": -1},
@@ -143,7 +145,7 @@ def star_rating(new_rating=None, prev_rating=None):
         3: {"three_stars": -1},
         4: {"four_stars": -1},
         5: {"five_stars": -1}
-        }
+    }
 
     if new_rating and prev_rating:
         return {"$inc": {add_file[new_rating], delete_file[prev_rating]}}
