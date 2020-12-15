@@ -32,12 +32,16 @@ def paginate(products, page, per_page):
     )
 
 
-def sort_items(sort):
+def sort_items(sort=None):
     sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
                  "date-added": [("date_added", -1), ("name", 1)],
                  "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
                  1)], "cat_desc": [("category", -1)]}
-    return sort_file[sort]
+    if sort:
+        return sort_file[sort]
+
+    else:
+        return sort_file['a-to-z']
 
 
 def get_price_range(category, value):

@@ -66,9 +66,7 @@ def reviews(category="all"):
     search = request.args.get("search")
     brands = request.args.get("brands")
     price = request.args.get("price")
-    sortBy = request.args.get("sort")
     query = {}
-    order_by = []
     page_title = "Reviews"
 
     if category != "all":
@@ -83,12 +81,6 @@ def reviews(category="all"):
     elif not search:
         query["category"] = category
 
-    if sortBy:
-        order_by = sort_items(sortBy)
-
-    elif not sortBy:
-        order_by = [("name", 1)]
-
     if brands:
         brands = brands.split(",")
         if len(brands) == 1:
@@ -102,9 +94,7 @@ def reviews(category="all"):
         price_Query = get_price_range(category, price)
         query["price"] = price_Query
 
-    print(query)
-
-    products = list(mongo.db.products.find(query).sort(order_by))
+    products = list(mongo.db.products.find(query).sort(sort_items(request.args.get("sort"))))
 
     total = len(products)
 
