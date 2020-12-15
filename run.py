@@ -78,8 +78,12 @@ def reviews(category="all"):
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
     record_numbers = pagination.info[48:53]
-    pagination_info = "Displaying {} of {} reviews".format(
-        record_numbers, total)
+    if category == "all":
+        pagination_info = 'Displaying {} of {} reviews found for "{}"'.format(
+            record_numbers, total, search_params['search'])
+    else:
+        pagination_info = 'Displaying {} of {} reviews'.format(
+            record_numbers, total)
 
     return render_template(
         "reviews.html",
