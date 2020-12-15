@@ -47,17 +47,16 @@ def add_rating(productRating, newUserRating, totalProductRatings):
     return rating
 
 
-def product_ratings_query(product):
-    query = {"name": product}, {"overall_rating": 1, "performance_rating": 1,
+def product_ratings_query():
+    query = {"overall_rating": 1, "performance_rating": 1,
         "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
         "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
         "five_stars": 1, "_id": 0}
     return query
 
 
-def user_ratings_query(id):
-    query = {{"_id": id},
-        {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}}
+def user_ratings_query():
+    query = {"product": 1, "overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
     return query
 
 
@@ -75,27 +74,28 @@ def delete_rating(productRating, newUserRating, totalProductRatings):
     return rating
 
 
-def add_star_rating(star_rating, prev_ratings, new_ratings):
-    if star_rating == 1:
-        new_ratings['one_star'] = prev_ratings[0]['one_star'] + 1
-    elif star_rating == 2:
-        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] + 1
-    elif star_rating == 3:
-        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] + 1
-    elif star_rating == 4:
-        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] + 1
-    else:
-        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] + 1
+def star_rating(new_rating=None, prev_rating=None):
+    add_file = {
+        1: {"one_star": 1},
+        2: {"two_stars": 1},
+        3: {"three_stars": 1},
+        4: {"four_stars": 1},
+        5: {"five_stars": 1}
+        }
 
+    delete_file = {
+        1: {"one_star": -1},
+        2: {"two_stars": -1},
+        3: {"three_stars": -1},
+        4: {"four_stars": -1},
+        5: {"five_stars": -1}
+        }
 
-def remove_star_rating(star_rating, prev_ratings, new_ratings):
-    if star_rating == 1:
-        new_ratings['one_star'] = prev_ratings[0]['one_star'] - 1
-    elif star_rating == 2:
-        new_ratings['two_stars'] = prev_ratings[0]['two_stars'] - 1
-    elif star_rating == 3:
-        new_ratings['three_stars'] = prev_ratings[0]['three_stars'] - 1
-    elif star_rating == 4:
-        new_ratings['four_stars'] = prev_ratings[0]['four_stars'] - 1
+    if new_rating and prev_rating:
+        return {"$inc": {add_file[new_rating], delete_file[prev_rating]}}
+
+    elif new_rating:
+        return {"$inc": add_file[new_rating]}
+
     else:
-        new_ratings['five_stars'] = prev_ratings[0]['five_stars'] - 1
+        return {"$inc": delete_file[prev_rating]}
