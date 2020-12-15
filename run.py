@@ -153,10 +153,10 @@ def up_vote():
     review_id = review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
-    up_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-                                         {"up_vote": 1, "_id": 0}))
+    up_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
+                                         {"up_vote": 1, "_id": 0})
 
-    return jsonify({"up_vote": up_vote[0]['up_vote'], "success": True})
+    return jsonify({"up_vote": up_vote['up_vote'], "success": True})
 
 
 @app.route("/down_vote", methods=["GET", "POST"])
@@ -166,10 +166,10 @@ def down_vote():
     review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
-    down_vote = list(mongo.db.reviews.find({"_id": ObjectId(review_id)},
-                                           {"down_vote": 1, "_id": 0}))
+    down_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
+                                           {"down_vote": 1, "_id": 0})
 
-    return jsonify({"down_vote": down_vote[0]['down_vote'], "success": True})
+    return jsonify({"down_vote": down_vote['down_vote'], "success": True})
 
 
 @ app.route("/contact", methods=["GET", "POST"])
