@@ -11,7 +11,7 @@ if os.path.exists("env.py"):
     import env
 
 from utils import (paginate_products, paginate, get_price_range, sort_items,
-                   product_ratings_query, create_user_session,
+                   product_ratings_query, create_user_session, calculate_total_reviews,
                    user_ratings_query, add_ratings, edit_ratings,
                    delete_ratings, star_rating)
 
@@ -125,18 +125,16 @@ def reviews(category="all"):
 
 @ app.route("/review_details/<product_id>")
 def review_details(product_id):
-    product = list(mongo.db.products.find({"_id": ObjectId(product_id)}))
-    page_title = product[0]["name"] + " Review"
+    product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    page_title = product["name"] + " Review"
     current_user = None
     if "user" in session:
         current_user = session['user']['first_name'] + \
             " " + session['user']['last_name']
     reviews = list((mongo.db.reviews.find(
-        {"product": product[0]["name"]})))
+        {"product": product["name"]})))
     dates = []
-    total_reviews = product[0]['one_star'] + product[0]['two_stars'] + \
-        product[0]['three_stars'] + \
-        product[0]['four_stars'] + product[0]['five_stars']
+    total_reviews = calculate_total_reviews(product)
     for review in reviews:
         dates.append(review["date_added"].strftime("%d %B %Y"))
     return render_template("review_details.html",

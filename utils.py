@@ -11,6 +11,13 @@ def create_user_session(user):
     return session_file
 
 
+def calculate_total_reviews(product):
+    total = product['one_star'] + product['two_stars'] + \
+        product['three_stars'] + \
+        product['four_stars'] + product['five_stars']
+    return total
+
+
 def paginate_products(products, offset, per_page):
     return products[offset: offset + per_page]
 
