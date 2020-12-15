@@ -231,7 +231,7 @@ def sign_up():
         }
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = create_user_session(existing_user)
+        session["user"] = create_user_session(sign_up)
 
         if request.form.get("newsletter_signup") == "on":
             mongo.db.newsletter.insert_one(
