@@ -1,6 +1,16 @@
 from flask_paginate import Pagination
 
 
+def create_user_session(user):
+    session_file = {
+        "first_name": user["first_name"],
+        "last_name": user["last_name"],
+        "email": user["email"],
+        "user_type": user["user_type"]
+    }
+    return session_file
+
+
 def paginate_products(products, offset, per_page):
     return products[offset: offset + per_page]
 

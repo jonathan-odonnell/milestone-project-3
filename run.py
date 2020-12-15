@@ -10,8 +10,10 @@ import datetime
 if os.path.exists("env.py"):
     import env
 
-from utils import (paginate_products, paginate, get_price_range, sort_items, product_ratings_query,
-                   user_ratings_query, add_ratings, edit_ratings, delete_ratings, star_rating)
+from utils import (paginate_products, paginate, get_price_range, sort_items,
+                   product_ratings_query, create_user_session,
+                   user_ratings_query, add_ratings, edit_ratings,
+                   delete_ratings, star_rating)
 
 app = Flask(__name__)
 
@@ -191,12 +193,7 @@ def sign_in():
         if existing_user:
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
-                session["user"] = {
-                    "first_name": existing_user["first_name"],
-                    "last_name": existing_user["last_name"],
-                    "email": existing_user["email"],
-                    "user_type": existing_user["user_type"]
-                }
+                session["user"] = create_user_session(existing_user)
                 flash("Login Successful", "success")
                 return redirect(request.form.get("next"))
             else:
@@ -229,16 +226,7 @@ def sign_up():
         }
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = {
-            "first_name": request.form.get(
-                "first_name"),
-            "last_name": request.form.get(
-                "first_name"),
-            "email": request.form.get(
-                "email"),
-            "user_type": request.form.get(
-                "user_type")
-        }
+        session["user"] = create_user_session(existing_user)
 
         if request.form.get("newsletter_signup") == "on":
             mongo.db.newsletter.insert_one(
@@ -293,8 +281,8 @@ def add_review():
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        mongo.db.products.update_one({'name': request.form.get('product')}, 
-        star_rating(
+        mongo.db.products.update_one({'name': request.form.get('product')},
+                                     star_rating(
             new_rating=int(request.form.get('overall_rating'))))
 
         review = request.form.to_dict()
@@ -332,7 +320,7 @@ def edit_review(review_id):
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
         if (int(request.form.get('overall_rating')) != user_ratings[0]
-        ['overall_rating']):
+                ['overall_rating']):
             mongo.db.products.update_one({"_id": review_id}, star_rating(
                 request.form.get('overall_rating'), user_ratings[0]
                 ['overall_review']))
@@ -374,7 +362,7 @@ def delete_review(review_id):
         {'name': request.form.get('product')}, {"$set": new_ratings})
 
     mongo.db.products.update_one({"name": user_ratings[0]['product']},
-    star_rating(
+                                 star_rating(
         prev_rating=user_ratings[0]['overall_rating']))
 
     mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
