@@ -214,6 +214,7 @@ def sign_up():
 
 @ app.route("/product_management", methods=["GET", "POST"])
 @login_required
+@admin_required
 def product_management():
     sort_by = request.args.get("sort")
 
