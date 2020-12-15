@@ -33,7 +33,14 @@ def login_required(f):
         if 'user' not in session:
             flash("Please sign in to view this page", "error")
             return redirect(url_for('sign_in'))
-        elif session['user']['user_type'] != "admin":
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session['user']['user_type'] != "admin":
             flash("Sorry, you do not have permission to view this page", "error")
             return redirect(url_for('index'))
         return f(*args, **kwargs)
@@ -369,6 +376,7 @@ def delete_review(review_id):
 
 @ app.route("/add_product", methods=["GET", "POST"])
 @login_required
+@admin_required
 def add_product():
     if request.method == "POST":
         product = request.form.to_dict()
@@ -388,6 +396,7 @@ def add_product():
 
 @ app.route("/edit_product/<product_id>", methods=["GET", "POST"])
 @login_required
+@admin_required
 def edit_product(product_id):
     if request.method == "POST":
         product = request.form.to_dict()
@@ -414,6 +423,7 @@ def edit_product(product_id):
 
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
 @login_required
+@admin_required
 def delete_product(product_id):
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
     return redirect(url_for('product_management'))
