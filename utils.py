@@ -47,6 +47,20 @@ def add_rating(productRating, newUserRating, totalProductRatings):
     return rating
 
 
+def product_ratings_query(product):
+    query = {"name": product}, {"overall_rating": 1, "performance_rating": 1,
+        "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
+        "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
+        "five_stars": 1, "_id": 0}
+    return query
+
+
+def user_ratings_query(id):
+    query = {{"_id": id},
+        {"overall_rating": 1, "performance_rating": 1, "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}}
+    return query
+
+
 def edit_rating(productRating, oldUserRating, newUserRating, totalProductRatings):
     rating = ((productRating * totalProductRatings) -
               oldUserRating + float(newUserRating)) / totalProductRatings
