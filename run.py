@@ -10,10 +10,8 @@ import datetime
 if os.path.exists("env.py"):
     import env
 
-from utils import (paginate_products, paginate, get_price_range, sort_items,
-                   product_ratings_query, create_user_session, calculate_total_reviews,
-                   user_ratings_query, add_ratings, edit_ratings,
-                   delete_ratings, star_rating)
+from utils import (add_ratings, calculate_total_reviews, create_user_session, delete_ratings, edit_ratings, paginate, paginate_products, product_ratings_query, search, sort_items, star_rating, user_ratings_query)
+
 
 app = Flask(__name__)
 
@@ -63,36 +61,13 @@ def newsletter():
 @app.route('/reviews')
 @app.route("/reviews/<category>")
 def reviews(category="all"):
-    search = request.args.get("search")
-    brands = request.args.get("brands")
-    price = request.args.get("price")
-    query = {}
+    search_params = request.args.to_dict()
+    search_params['category'] = category
+    query = search(search_params)
     page_title = "Reviews"
 
     if category != "all":
-        page_title = category.capitalize()
-
-    if search:
-        query["$text"] = {"$search": search}
-
-        if category != "all":
-            query["category"] = category
-
-    elif not search:
-        query["category"] = category
-
-    if brands:
-        brands = brands.split(",")
-        if len(brands) == 1:
-            query["brand"] = brands[0]
-
-        else:
-            query["brand"] = {"$in": brands}
-
-    if price:
-        price = int(price)
-        price_Query = get_price_range(category, price)
-        query["price"] = price_Query
+        page_title = category
 
     products = list(mongo.db.products.find(query).sort(sort_items(request.args.get("sort"))))
 
@@ -109,8 +84,8 @@ def reviews(category="all"):
     return render_template(
         "reviews.html",
         page_title=page_title,
-        selected_brands=brands,
-        selected_price=price,
+        selected_brands=search_params.get('brands'),
+        selected_price=search_params.get('price'),
         products=pagination_products,
         pagination_info=pagination_info,
         total=total,

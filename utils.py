@@ -159,3 +159,22 @@ def star_rating(new_rating=None, prev_rating=None):
 
     else:
         return {"$inc": delete_file[prev_rating]}
+
+
+def search(query):
+    query_file = {}
+
+    if "search" in query:
+        query_file["$text"] = {"$search": query['search']}
+
+    if "category" != "all":
+        query_file['category'] = query['category']
+
+    if "price" in query:
+        query_file["price"] = get_price_range(query['category'], int(query['price']))
+
+    if "brands" in query:
+        brands = query['brands'].split(",")
+        query_file["brand"] = {"$in": brands}
+
+    return query_file
