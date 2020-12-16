@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<section class="container content-container d-flex align-items-center">
+    <div class="row no-gutters w-100">
+        <div class="col-12 text-center">
+            <h1 class="headings-top display-1">403</h1>
+            <h2 class="headings">access denied</h2>
+            <p>Sorry, you do not have permission to access this page.</p>
+            <a class="btn btn-green mt-4" href="{{url_for('index')}}">Back to Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
