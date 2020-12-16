@@ -40,8 +40,7 @@ def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session['user']['user_type'] != "admin":
-            flash("Sorry, you do not have permission to view this page", "error")
-            return redirect(url_for('index'))
+            return abort(403)
         return f(*args, **kwargs)
     return decorated_function
 
@@ -433,10 +432,10 @@ def delete_product(product_id):
 def page_not_found(e):
     """
     Redirects the user back to the home page 
-    if the HTTP request returns a 404 page not found error is returned.
+    if the HTTP request returns a 403 page not found error is returned.
     Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
     """
-    return redirect(url_for('index'))
+    return render_template("403.html", page_title=403)
 
 
 @app.errorhandler(404)
@@ -446,7 +445,7 @@ def page_not_found(e):
     if the HTTP request returns a 404 page not found error is returned.
     Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
     """
-    return redirect(url_for('index'))
+    return render_template("404.html", page_title=404)
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
