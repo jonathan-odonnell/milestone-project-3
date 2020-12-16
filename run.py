@@ -1,7 +1,7 @@
 import os
 from functools import wraps
 from flask import (Flask, flash, jsonify, render_template,
-                   redirect, request, session, url_for)
+                   redirect, request, session, url_for, abort)
 from flask_pymongo import PyMongo
 from flask_paginate import get_page_args
 from bson.objectid import ObjectId
@@ -10,7 +10,8 @@ import datetime
 if os.path.exists("env.py"):
     import env
 
-from utils import (add_ratings, calculate_total_reviews, create_user_session, delete_ratings, edit_ratings, paginate, paginate_products, product_ratings_query, search, sort_items, star_rating, user_ratings_query)
+from utils import (add_ratings, calculate_total_reviews, create_user_session, delete_ratings, edit_ratings,
+                   paginate, paginate_products, product_ratings_query, search, sort_items, star_rating, user_ratings_query)
 
 
 app = Flask(__name__)
@@ -69,7 +70,8 @@ def reviews(category="all"):
     if category != "all":
         page_title = category
 
-    products = list(mongo.db.products.find(query).sort(sort_items(request.args.get("sort"))))
+    products = list(mongo.db.products.find(query).sort(
+        sort_items(request.args.get("sort"))))
 
     total = len(products)
 
@@ -276,7 +278,22 @@ def add_review():
 @ app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def edit_review(review_id):
-    if request.method == 'POST':
+    if request.method == 'GET':
+        user = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
+                                         "created_by": 1, "_id": 0})
+
+        if user is None:
+            return abort(404)
+
+        elif "{} {}".format(session['user']['first_name'], session['user']['last_name']) != user['created_by']:
+            return abort(403)
+
+        else:
+            review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
+            return render_template('edit_review.html', page_title='Edit Review',
+                                   review=review)
+
+    else:
         user_ratings = mongo.db.reviews.find_one(
             {'_id': ObjectId(review_id)}, user_ratings_query())
 
@@ -308,40 +325,48 @@ def edit_review(review_id):
 
         return redirect(request.form.get('next'))
 
-    else:
-        review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
-
-        return render_template('edit_review.html', page_title='Edit Review',
-                               review=review)
-
 
 @ app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def delete_review(review_id):
-    user_ratings = mongo.db.reviews.find_one(
-        {'_id': ObjectId(review_id)}, user_ratings_query())
+    user = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
+                                     "created_by": 1, "_id": 0})
 
-    product_ratings = mongo.db.products.find_one(
-        {"name": user_ratings['product']}, product_ratings_query())
+    if user is None:
 
-    product_count = mongo.db.reviews.count_documents(
-        {"product": user_ratings['product']})
+        return abort(404)
 
-    form = request.form.to_dict()
+    elif "{} {}".format(session['user']['first_name'], session['user']
+    ['last_name']) != user['created_by']:
 
-    new_ratings = delete_ratings(
-        user_ratings, product_ratings, product_count, form)
+        return abort(403)
 
-    mongo.db.products.update_one(
-        {'name': request.form.get('product')}, {"$set": new_ratings})
+    else:
 
-    mongo.db.products.update_one({"name": user_ratings['product']},
-                                 star_rating(
-        prev_rating=user_ratings['overall_rating']))
+        user_ratings = mongo.db.reviews.find_one(
+            {'_id': ObjectId(review_id)}, user_ratings_query())
 
-    mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+        product_ratings = mongo.db.products.find_one(
+            {"name": user_ratings['product']}, product_ratings_query())
 
-    return redirect(request.referrer)
+        product_count = mongo.db.reviews.count_documents(
+            {"product": user_ratings['product']})
+
+        form = request.form.to_dict()
+
+        new_ratings = delete_ratings(
+            user_ratings, product_ratings, product_count, form)
+
+        mongo.db.products.update_one(
+            {'name': request.form.get('product')}, {"$set": new_ratings})
+
+        mongo.db.products.update_one({"name": user_ratings['product']},
+                                     star_rating(
+            prev_rating=user_ratings['overall_rating']))
+
+        mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
+
+        return redirect(request.referrer)
 
 
 @ app.route("/add_product", methods=["GET", "POST"])
@@ -397,6 +422,16 @@ def edit_product(product_id):
 def delete_product(product_id):
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
     return redirect(url_for('product_management'))
+
+
+@app.errorhandler(403)
+def page_not_found(e):
+    """
+    Redirects the user back to the home page 
+    if the HTTP request returns a 404 page not found error is returned.
+    Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    """
+    return redirect(url_for('index'))
 
 
 @app.errorhandler(404)
