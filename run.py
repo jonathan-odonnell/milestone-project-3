@@ -155,8 +155,9 @@ def contact():
         mongo.db.contact.insert_one({'name': request.form.get('name'),
                                      'email': request.form.get('email'),
                                      'message': request.form.get('message')})
-        flash('Thank you for your message. A member of the team will be in touch shortly.', category='info')
-    return render_template("contact.html", page_title="Contact Us")
+        return jsonify({"success": True})
+    else:
+        return render_template("contact.html", page_title="Contact Us")
 
 
 @ app.route("/sign_in", methods=["GET", "POST"])

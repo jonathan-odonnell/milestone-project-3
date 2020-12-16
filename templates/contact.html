@@ -27,10 +27,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-8">
-        {% with messages = get_flashed_messages(category_filter=["info"]) %} {% if messages %} {% for message in messages %}
-        <p class="text-center my-5">{{ message }}</p>
-        {% endfor %} {% else %}
-        <form action="{{ url_for('contact') }}" method="post">
+        <form id="contact-form">
           <div class="form-group text-center mt-lg-3 mb-0">
             {% if session.user %}
             <input
@@ -84,9 +81,12 @@
             <button type="submit" class="btn btn-green">Send Message</button>
           </div>
         </form>
-        {% endif %} {% endwith %}
       </div>
     </div>
   </div>
 </section>
+{% endblock %}
+{% block postloadjs %}
+<script src="{{ url_for('static', filename='js/contact.js') }}">
+</script>
 {% endblock %}
