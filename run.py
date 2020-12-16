@@ -407,13 +407,18 @@ def edit_product(product_id):
 
     else:
         product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
-        categories = mongo.db.categories.find()
-        return render_template(
-            'edit_product.html',
-            page_title='Edit Product',
-            categories=categories,
-            product=product
-        )
+
+        if product is None:
+            abort(404)
+
+        else:
+            categories = mongo.db.categories.find()
+            return render_template(
+                'edit_product.html',
+                page_title='Edit Product',
+                categories=categories,
+                product=product
+            )
 
 
 @ app.route("/delete_product/<product_id>", methods=["GET", "POST"])
