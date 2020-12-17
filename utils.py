@@ -35,7 +35,11 @@ def paginate(products, page, per_page):
 
 
 def get_price_range(category, value):
-    # Generates the price query
+    """
+    Generates the price query. Code is from https://docs.mongodb.com/manual/
+    reference/operator/aggregation/gte/ and https://docs.mongodb.com/manual/
+    reference/operator/aggregation/lte/
+    """
     price_file = {"phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
                 "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
                 }, "tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
@@ -66,13 +70,20 @@ def search(query):
 
     if "brands" in query:
         brands = query['brands'].split(",")
+        """
+        Code is from https://docs.mongodb.com/manual/reference/operator/
+        aggregation/in/
+        """
         query_file["brand"] = {"$in": brands}
 
     return query_file
 
 
 def sort_items(sort=None):
-    # Generates the sort query
+    """
+    Generates the sort query. Code is from https://stackoverflow.com/questions/
+    8109122/how-to-sort-mongodb-with-pymongo
+    """
     sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
                  "date-added": [("date_added", -1), ("name", 1)],
                  "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
@@ -85,7 +96,10 @@ def sort_items(sort=None):
 
 
 def product_ratings_query():
-    # Generates the get product ratings search query
+    """
+    Generates the get product ratings search query. Code is from https://
+    docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
+    """
     query = {"overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
              "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
@@ -94,14 +108,20 @@ def product_ratings_query():
 
 
 def user_ratings_query():
-    # Generates the get user ratings search query
+    """
+    Generates the get user ratings search query. Code is from
+    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
+    """
     query = {"product": 1, "overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
     return query
 
 
 def calculate_rating(average, total, new_rating, prev_rating, new_total):
-    # Calculates the product's new rating
+    """
+    Calculates the product's new rating. Round function is from https://
+    www.programiz.com/python-programming/methods/built-in/round
+    """
     rating = ((average * total) + prev_rating +
               float(new_rating)) / new_total
     rating = round(rating, 1)
@@ -164,7 +184,10 @@ def delete_ratings(user_ratings, product_ratings, product_count):
 
 
 def star_rating(new_rating=None, prev_rating=None):
-    # Generates the query to update the product's star ratings
+    """
+    Generates the query to update the product's star ratings. Code is from
+    https://docs.mongodb.com/manual/reference/operator/update/inc/
+    """
     add_file = {
         1: {"one_star": 1},
         2: {"two_stars": 1},
