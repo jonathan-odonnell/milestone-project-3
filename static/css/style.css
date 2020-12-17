@@ -106,7 +106,6 @@ section {
 /* Cards Start */
 
 .card-img {
-    height: 10rem;
     width: 100%;
     object-fit: cover;
     object-position: center center;
@@ -368,12 +367,6 @@ section {
     background-color: #e6e6e6;
 }
 
-.card-img {
-    width: 100%;
-    object-fit: cover;
-    object-position: center center;
-}
-
 .review-img {
     height: 12rem;
 }
@@ -586,7 +579,10 @@ section {
 
 @media(min-width: 768px) {
     .card-img {
-        height: 16rem !important;
+        height: 16rem;
+    }
+    .product-img {
+        height: 20rem;
     }
     .jumbotron-heading {
         font-size: 3rem;
