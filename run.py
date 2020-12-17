@@ -8,12 +8,13 @@ from bson.objectid import ObjectId
 from bson.decimal128 import Decimal128
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+from utils import (add_ratings, create_user_session, delete_ratings,
+                   edit_ratings, paginate, paginate_products,
+                   product_ratings_query, search, sort_items, star_rating,
+                   user_ratings_query)
+
 if os.path.exists("env.py"):
     import env
-
-from utils import (add_ratings, create_user_session, delete_ratings,
-        edit_ratings, paginate, paginate_products, product_ratings_query,
-        search, sort_items, star_rating, user_ratings_query)
 
 
 app = Flask(__name__)
@@ -48,8 +49,9 @@ def login_required(f):
 def admin_required(f):
     """
     Prevents users who are not admins from accessing the page and
-    redirects them to the 403 page. Code is from
-    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+    redirects them to the 403 page. Code is from https://
+    flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/ and
+    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -99,7 +101,11 @@ def reviews(category="all"):
     if category == "all":
         page_title = "Reviews"
 
-    # Gets a list of all the products that satisfy the search criteria
+    """
+    Gets a list of all the products that satisfy the search criteria.
+    Code for the sort method is from https://docs.mongodb.com/manual/reference/
+    method/cursor.sort/index.html
+    """
     products = list(mongo.db.products.find(query).sort(
         sort_items(request.args.get("sort"))))
 
@@ -156,7 +162,7 @@ def review_details(product_id):
     current_user = None
     if "user" in session:
         current_user = "{} {}".format(session['user']['first_name'],
-        session['user']['last_name'])
+                                      session['user']['last_name'])
 
     # Gets the review from the reviews database
     reviews = list((mongo.db.reviews.find(
@@ -182,8 +188,10 @@ def review_details(product_id):
 def up_vote():
     """
     Increases the up vote, gets the updated value and returns a success
-    status. Code for the success status is from https://stackoverflow.com/
-    questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    status. Code for increment is from https://docs.mongodb.com/manual/
+    reference/operator/update/inc/ and code for the success status is from
+    https://stackoverflow.com/questions/26079754/
+    flask-how-to-return-a-success-status-code-for-ajax-call/
     26080784#26080784
     """
     review_id = review_id = request.form.get('review_id')
@@ -199,8 +207,10 @@ def up_vote():
 def down_vote():
     """
     Increases the down vote, gets the updated value and returns a success
-    status. Code for the success status is from https://stackoverflow.com/
-    questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    status. Code for increment is from https://docs.mongodb.com/manual/
+    reference/operator/update/inc/ and code for the success status is from
+    https://stackoverflow.com/questions/26079754/
+    flask-how-to-return-a-success-status-code-for-ajax-call/
     26080784#26080784
     """
     review_id = request.form.get('review_id')
@@ -344,7 +354,9 @@ def product_management():
     if sort_by:
         """
         If sort_by has a value, get all the products from the database and sort
-        them according to the value of the sort_by variable.
+        them according to the value of the sort_by variable. Code for the sort
+        method is from https://docs.mongodb.com/manual/reference/method/
+        cursor.sort/index.html
         """
         products = list(mongo.db.products.find().sort(sort_items(sort_by)))
 
@@ -396,7 +408,11 @@ def add_review():
         product_ratings = mongo.db.products.find_one(
             {"name": request.form.get('product')}, product_ratings_query())
 
-        # Counts the number of reviews in the reviews database for the product
+        """
+        Counts the number of reviews in the reviews database for the product.
+        Code is from https://docs.mongodb.com/manual/reference/method/
+        db.collection.count/
+        """
         product_count = mongo.db.reviews.count(
             {"product": request.form.get('product')})
 
@@ -409,11 +425,15 @@ def add_review():
         # Calculates the product's new ratings
         new_ratings = add_ratings(product_ratings, product_count, request)
 
-        # Updates the product's feature ratings in the products database
+        """
+        Updates the product's feature ratings in the products database.
+        Code is from https://docs.mongodb.com/manual/reference/method/
+        db.collection.updateOne/
+        """
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
-        # Updates the product's star ratings in the products database
+        # Updates the product's star ratings in the products database.
         mongo.db.products.update_one(
             {'name': request.form.get('product')},
             star_rating(new_rating=int(request.form.get('overall_rating'))))
@@ -449,7 +469,11 @@ def edit_review(review_id):
         product_ratings = mongo.db.products.find_one(
             {"name": user_ratings['product']}, product_ratings_query())
 
-        # Counts the number of reviews in the reviews database for the product
+        """
+        Counts the number of reviews in the reviews database for the product.
+        Code is from https://docs.mongodb.com/manual/reference/method/
+        db.collection.count/
+        """
         product_count = mongo.db.reviews.count(
             {"product": user_ratings['product']})
 
@@ -483,39 +507,44 @@ def edit_review(review_id):
         """
         review['date_added'] = datetime.datetime.now()
 
-        # Updates the review in the reviews database
+        """
+        Updates the review in the reviews database. Code is from https://
+        docs.mongodb.com/manual/reference/method/db.collection.updateOne/
+        """
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
 
         # Returns the user to the previous page
         return redirect(request.form.get('next'))
 
+    # Gets the review author's details from the reviews database
+    user = mongo.db.reviews.find_one(
+        {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
+
+    if user is None:
+        """
+        Returns the user to the 404 page if no user is returned. Code is
+        from https://flask.palletsprojects.com/en/1.1.x/patterns
+        /errorpages/
+        """
+        return abort(404)
+
+    elif "{} {}".format(session['user']['first_name'], session['user']
+                        ['last_name']) != user['created_by']:
+        """
+        Returns the user to the 403 page is the user is not the
+        author of the review. Code is from https://
+        flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+        """
+        return abort(403)
+
     else:
-        # Gets the review author's details from the reviews database
-        user = mongo.db.reviews.find_one(
-            {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
+        # Gets the review from the reviews database
+        review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
 
-        if user is None:
-            """
-            Returns the user to the 404 page if no user is returned.
-            """
-            return abort(404)
-
-        elif "{} {}".format(session['user']['first_name'], session['user']
-                ['last_name']) != user['created_by']:
-            """
-            Returns the user to the 403 page is the user is not the
-            author of the review.
-            """
-            return abort(403)
-
-        else:
-            # Gets the review from the reviews database
-            review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
-
-            # Renders the edit_review.html template
-            return render_template('edit_review.html',
-                page_title='Edit Review', review=review)
+        # Renders the edit_review.html template
+        return render_template('edit_review.html',
+                               page_title='Edit Review', review=review)
 
 
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
@@ -528,6 +557,8 @@ def delete_review(review_id):
     if user is None:
         """
         Returns the user to the 404 page if no user is returned.
+        Code is from https://flask.palletsprojects.com/en/1.1.x/
+        patterns/errorpages/
         """
         return abort(404)
 
@@ -535,7 +566,8 @@ def delete_review(review_id):
                         ['last_name']) != user['created_by']:
         """
         Returns the user to the 403 page is the user is not the
-        author of the review.
+        author of the review. Code is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/errorpages/
         """
         return abort(403)
 
@@ -548,7 +580,11 @@ def delete_review(review_id):
         product_ratings = mongo.db.products.find_one(
             {"name": user_ratings['product']}, product_ratings_query())
 
-        # Counts the number of reviews in the reviews database for the product
+        """
+        Counts the number of reviews in the reviews database for the product.
+        Code is from https://docs.mongodb.com/manual/reference/method/
+        db.collection.count/
+        """
         product_count = mongo.db.reviews.count_documents(
             {"product": user_ratings['product']})
 
@@ -556,7 +592,11 @@ def delete_review(review_id):
         new_ratings = delete_ratings(
             user_ratings, product_ratings, product_count)
 
-        # Updates the product's feature ratings in the products database
+        """
+        Updates the product's feature ratings in the products database.
+        Code is from https://docs.mongodb.com/manual/reference/method/
+        db.collection.updateOne/
+        """
         mongo.db.products.update_one(
             {'name': request.form.get('product')}, {"$set": new_ratings})
 
@@ -568,7 +608,11 @@ def delete_review(review_id):
         # Deletes the review from the reviews database
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
-        # Returns the user to the previous page
+        """
+        Returns the user to the previous page. Code is from https://
+        stackoverflow.com/questions/39777171/
+        how-to-get-the-previous-url-in-flask/39777426
+        """
         return redirect(request.referrer)
 
 
@@ -646,7 +690,11 @@ def edit_product(product_id):
         """
         product['price'] = Decimal128(product['price'])
 
-        #  Add the product details to the products database
+        """
+        Add the product details to the products database
+        Code is from https://docs.mongodb.com/manual/reference/
+        method/db.collection.updateOne/
+        """
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)}, {"$set": product})
 
@@ -657,20 +705,22 @@ def edit_product(product_id):
     product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
 
     if product is None:
-        # If the product does not extis return the user to the 404 page.
+        """
+        If the product does not extis return the user to the 404 page. Code is
+        from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+        """
         abort(404)
 
-    else:
-        # Get a list of categories from the categories database
-        categories = mongo.db.categories.find()
+    # Get a list of categories from the categories database
+    categories = mongo.db.categories.find()
 
-        # Render the edit_product.html template
-        return render_template(
-            'edit_product.html',
-            page_title='Edit Product',
-            categories=categories,
-            product=product
-        )
+    # Render the edit_product.html template
+    return render_template(
+        'edit_product.html',
+        page_title='Edit Product',
+        categories=categories,
+        product=product
+    )
 
 
 @app.route("/delete_product/<product_id>", methods=["GET", "POST"])
