@@ -10,10 +10,9 @@ import datetime
 if os.path.exists("env.py"):
     import env
 
-from utils import (add_ratings, calculate_total_reviews, create_user_session,
-        delete_ratings, edit_ratings, paginate, paginate_products,
-        product_ratings_query, search, sort_items, star_rating,
-        user_ratings_query)
+from utils import (add_ratings, create_user_session, delete_ratings,
+        edit_ratings, paginate, paginate_products, product_ratings_query,
+        search, sort_items, star_rating, user_ratings_query)
 
 
 app = Flask(__name__)
@@ -162,9 +161,6 @@ def review_details(product_id):
     reviews = list((mongo.db.reviews.find(
         {"product": product["name"]})))
 
-    # Calulates the total number of reviews
-    total_reviews = calculate_total_reviews(product)
-
     for review in reviews:
         """
         Updates the date_added value in the review dictionary to be in the
@@ -178,7 +174,6 @@ def review_details(product_id):
                            page_title=page_title,
                            product=product,
                            reviews=reviews,
-                           total_reviews=total_reviews,
                            current_user=current_user)
 
 

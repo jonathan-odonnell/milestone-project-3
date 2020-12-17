@@ -137,8 +137,8 @@
                                 <div class="col-12 col-lg-9">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar"
-                                            style="width: calc({{ product.five_stars / total_reviews }} * 100%)"
-                                            aria-valuenow="calc({{ product.five_stars / total_reviews }} * 100)"
+                                            style="width: calc({{ product.five_stars / reviews|length }} * 100%)"
+                                            aria-valuenow="calc({{ product.five_stars / reviews|length }} * 100)"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -148,8 +148,8 @@
                                 <div class="col-12 col-lg-9">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar"
-                                            style="width: calc({{ product.four_stars  / total_reviews }} * 100%)"
-                                            aria-valuenow="calc({{ product.four_stars  / total_reviews }} * 100)"
+                                            style="width: calc({{ product.four_stars  / reviews|length }} * 100%)"
+                                            aria-valuenow="calc({{ product.four_stars  / reviews|length }} * 100)"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -159,8 +159,8 @@
                                 <div class="col-12 col-lg-9">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar"
-                                            style="width: calc({{ product.three_stars  / total_reviews }} * 100%)"
-                                            aria-valuenow="{{ product.three_stars  / total_reviews }} * 100)"
+                                            style="width: calc({{ product.three_stars  / reviews|length }} * 100%)"
+                                            aria-valuenow="{{ product.three_stars  / reviews|length }} * 100)"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -170,8 +170,8 @@
                                 <div class="col-12 col-lg-9">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar"
-                                            style="width: calc({{ product.two_stars  / total_reviews }} * 100%)"
-                                            aria-valuenow="calc({{ product.two_stars  / total_reviews }} * 100)"
+                                            style="width: calc({{ product.two_stars  / reviews|length }} * 100%)"
+                                            aria-valuenow="calc({{ product.two_stars  / reviews|length }} * 100)"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
@@ -181,8 +181,8 @@
                                 <div class="col-12 col-lg-9">
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar"
-                                            style="width: calc({{ product.one_star  / total_reviews }} * 100%)"
-                                            aria-valuenow="calc({{ product.one_star  / total_reviews }} * 100)"
+                                            style="width: calc({{ product.one_star  / reviews|length }} * 100%)"
+                                            aria-valuenow="calc({{ product.one_star  / reviews|length }} * 100)"
                                             aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
