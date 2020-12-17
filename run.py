@@ -5,6 +5,7 @@ from flask import (Flask, flash, jsonify, render_template,
 from flask_pymongo import PyMongo
 from flask_paginate import get_page_args
 from bson.objectid import ObjectId
+from bson.decimal128 import Decimal128
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 if os.path.exists("env.py"):
@@ -597,6 +598,12 @@ def add_product():
             if product[key] == "":
                 del product[key]
 
+        """
+        Converts the price to the decimal 128 data type. Code is from https://
+        pymongo.readthedocs.io/en/stable/api/bson/decimal128.html
+        """
+        product['price'] = Decimal128(product['price'])
+
         # Add the product details to the products database
         mongo.db.products.insert_one(product)
 
@@ -632,6 +639,12 @@ def edit_product(product_id):
         for key in keys:
             if product[key] == "":
                 del product[key]
+
+        """
+        Converts the price to the decimal 128 data type. Code is from https://
+        pymongo.readthedocs.io/en/stable/api/bson/decimal128.html
+        """
+        product['price'] = Decimal128(product['price'])
 
         #  Add the product details to the products database
         mongo.db.products.update_one(
