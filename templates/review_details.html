@@ -88,8 +88,8 @@
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar"
                                         style="width: calc({{ product.performance_rating  }} * 20%)"
-                                        aria-valuenow="calc({{ product.performance_rating  }} * 20)"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                        aria-valuenow="calc({{ product.performance_rating  }} * 20)" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-3">
@@ -236,8 +236,7 @@
                         </div>
                         {% endif %}
                         <p class="mb-2">{{ review.review }}</p>
-                        <p><small>Reviewed by {{review.created_by}} on {{dates[loop.index
-            -1]}}</small></p>
+                        <p><small>Reviewed by {{review.created_by}} on {{review.date_added}}</small></p>
                         <div id="{{review._id}}" class="row no-gutters">
                             <div class="col-6 text-center mb-0">
                                 <small><button class="btn btn-sm upvote py-0"><i
@@ -287,8 +286,7 @@
                         </div>
                         {% endif %}
                         <p class="mb-2">{{ review.review }}</p>
-                        <p class="mb-3"><small>Reviewed by {{review.created_by}} on {{dates[loop.index
-            -1]}}</small></p>
+                        <p class="mb-3"><small>Reviewed by {{review.created_by}} on {{review.date_added}}</small></p>
                         <div id="{{review._id}}" class="row no-gutters">
                             <div class="col-6 text-center">
                                 <small><button class="btn btn-sm upvote py-0"><i
