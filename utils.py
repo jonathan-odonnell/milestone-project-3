@@ -2,6 +2,7 @@ from flask_paginate import Pagination
 
 
 def create_user_session(user):
+    # Adds the user's details to the session cookie
     session_file = {
         "first_name": user["first_name"],
         "last_name": user["last_name"],
@@ -11,18 +12,19 @@ def create_user_session(user):
     return session_file
 
 
-def calculate_total_reviews(product):
-    total = product['one_star'] + product['two_stars'] + \
-        product['three_stars'] + \
-        product['four_stars'] + product['five_stars']
-    return total
-
-
 def paginate_products(products, offset, per_page):
+    """
+    Sets the pagination perameters. Code is from https://gist.github.com/
+    mozillazg/69fb40067ae6d80386e10e105e6803c9
+    """
     return products[offset: offset + per_page]
 
 
 def paginate(products, page, per_page):
+    """
+    Paginates the products. Code is from https://gist.github.com/
+    mozillazg/69fb40067ae6d80386e10e105e6803c9
+    """
     total = len(products)
     return Pagination(
         page=page,
@@ -32,20 +34,8 @@ def paginate(products, page, per_page):
     )
 
 
-def sort_items(sort=None):
-    sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
-                 "date-added": [("date_added", -1), ("name", 1)],
-                 "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
-                 1)], "cat_desc": [("category", -1)]}
-    if sort:
-        return sort_file[sort]
-
-    else:
-        return sort_file['a-to-z']
-
-
 def get_price_range(category, value):
-    # phone and value
+    # Generates the price query
     price_file = {"phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
                 "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
                 }, "tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
@@ -61,14 +51,41 @@ def get_price_range(category, value):
     return price_file[category][value]
 
 
-def calculate_rating(average, total, new_rating, prev_rating, new_total):
-    rating = ((average * total) + prev_rating +
-              float(new_rating)) / new_total
-    rating = round(rating, 1)
-    return rating
+def search(query):
+    # Genrates the get products search query
+    query_file = {}
+
+    if "search" in query:
+        query_file["$text"] = {"$search": query['search']}
+
+    if query['category'] != "all":
+        query_file['category'] = query['category']
+
+    if "price" in query:
+        query_file["price"] = get_price_range(query['category'], int(query['price']))
+
+    if "brands" in query:
+        brands = query['brands'].split(",")
+        query_file["brand"] = {"$in": brands}
+
+    return query_file
+
+
+def sort_items(sort=None):
+    # Generates the sort query
+    sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
+                 "date-added": [("date_added", -1), ("name", 1)],
+                 "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
+                 1)], "cat_desc": [("category", -1)]}
+    if sort:
+        return sort_file[sort]
+
+    else:
+        return sort_file['a-to-z']
 
 
 def product_ratings_query():
+    # Generates the get product ratings search query
     query = {"overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
              "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
@@ -77,12 +94,22 @@ def product_ratings_query():
 
 
 def user_ratings_query():
+    # Generates the get user ratings search query
     query = {"product": 1, "overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
     return query
 
 
+def calculate_rating(average, total, new_rating, prev_rating, new_total):
+    # Calculates the product's new rating
+    rating = ((average * total) + prev_rating +
+              float(new_rating)) / new_total
+    rating = round(rating, 1)
+    return rating
+
+
 def add_ratings(product_ratings, product_count, form):
+    # Calculates the product's new ratings for when a review is added
     rating = {
         'overall_rating': calculate_rating(product_ratings ['overall_rating'], 
         product_count, 0, int(form['overall_rating']), product_count + 1), 
@@ -99,6 +126,7 @@ def add_ratings(product_ratings, product_count, form):
 
 
 def edit_ratings(user_ratings, product_ratings, product_count, form):
+    # Calculates the product's new ratings for when a review is edited
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'], 
         product_count, user_ratings['overall_rating'], form['overall_rating'], 
@@ -117,7 +145,8 @@ def edit_ratings(user_ratings, product_ratings, product_count, form):
     return rating
 
 
-def delete_ratings(user_ratings, product_ratings, product_count, form):
+def delete_ratings(user_ratings, product_ratings, product_count):
+    # Calculates the product's new ratings for when a review is deleted
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'], 
         product_count, user_ratings['overall_rating'], 0, product_count - 1), 
@@ -135,6 +164,7 @@ def delete_ratings(user_ratings, product_ratings, product_count, form):
 
 
 def star_rating(new_rating=None, prev_rating=None):
+    # Generates the query to update the product's star ratings
     add_file = {
         1: {"one_star": 1},
         2: {"two_stars": 1},
@@ -159,22 +189,3 @@ def star_rating(new_rating=None, prev_rating=None):
 
     else:
         return {"$inc": delete_file[prev_rating]}
-
-
-def search(query):
-    query_file = {}
-
-    if "search" in query:
-        query_file["$text"] = {"$search": query['search']}
-
-    if query['category'] != "all":
-        query_file['category'] = query['category']
-
-    if "price" in query:
-        query_file["price"] = get_price_range(query['category'], int(query['price']))
-
-    if "brands" in query:
-        brands = query['brands'].split(",")
-        query_file["brand"] = {"$in": brands}
-
-    return query_file
