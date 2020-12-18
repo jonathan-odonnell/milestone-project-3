@@ -680,8 +680,12 @@ def add_product():
         # Return the user to the product management page
         return redirect(url_for('product_management'))
 
+    # Get a list of categories from the categories database
+    categories = mongo.db.categories.find()
+
     # Render the add_product.html template
-    return render_template('add_product.html', page_title='Add Product')
+    return render_template('add_product.html', page_title='Add Product',
+                           categories=categories)
 
 
 @app.route("/edit_product/<product_id>", methods=["GET", "POST"])
