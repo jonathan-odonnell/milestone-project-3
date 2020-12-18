@@ -668,6 +668,15 @@ def add_product():
         # Add the product details to the products database
         mongo.db.products.insert_one(product)
 
+        """
+        Adds the brand to the relevant brands list in the categories database.
+        Code is from https://docs.mongodb.com/manual/reference/operator/update/
+        addToSet/
+        """
+        mongo.db.categories.update_one({"name": product['category']}, {
+                                       "$addToSet": {"brands": product['brand']
+                                                     }})
+
         # Return the user to the product management page
         return redirect(url_for('product_management'))
 
@@ -714,6 +723,15 @@ def edit_product(product_id):
         """
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)}, {"$set": product})
+
+        """
+        Adds the brand to the relevant brands list in the categories database.
+        Code is from https://docs.mongodb.com/manual/reference/operator/update/
+        addToSet/
+        """
+        mongo.db.categories.update_one({"name": product['category']}, {
+                                       "$addToSet": {"brands": product['brand']
+                                                     }})
 
         # Return the user to the product management page
         return redirect(url_for('product_management'))
