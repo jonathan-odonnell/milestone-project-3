@@ -1,121 +1,37 @@
 <div class="col-6 col-lg-12">
   <div class="form-group mb-4">
     <h4 class="text-capitalize mb-3">Product Type</h4>
+    {% for category in filters %}
     <div class="custom-control custom-checkbox mb-2">
-      {% if selected_categories %}{% if "phones" in selected_categories %}
+      {% if selected_category %}{% if category.name in selected_category %}
       <input
         type="checkbox"
         class="custom-control-input"
-        id="category1"
-        value="phones"
-        name="categories"
+        id="category{{loop.index}}"
+        value="{{category.name}}"
+        name="category"
         checked
       />
       {% else %}
       <input
         type="checkbox"
         class="custom-control-input"
-        id="category1"
-        value="phones"
-        name="categories"
+        id="category{{loop.index}}"
+        value="{{category.name}}"
+        name="category"
       />
       {% endif %} {% else %}
       <input
         type="checkbox"
         class="custom-control-input"
-        id="category1"
-        value="phones"
-        name="categories"
+        id="category{{loop.index}}"
+        value="{{category.name}}"
+        name="category"
       />
       {% endif %}
-      <label class="custom-control-label" for="category1">Phones</label>
+      <label class="custom-control-label" for="category{{loop.index}}">{{category.name}}</label>
     </div>
-    <div class="custom-control custom-checkbox mb-2">
-      {% if selected_categories %}{% if "tablets" in selected_categories %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category2"
-        value="tablets"
-        name="categories"
-      />
-      {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category2"
-        value="tablets"
-        name="categories"
-      />
-      {% endif %} {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category2"
-        value="tablets"
-        name="categories"
-      />
-      {% endif %}
-      <label class="custom-control-label" for="category2">Tablets</label>
-    </div>
-    <div class="custom-control custom-checkbox mb-2">
-      {% if selected_brands %}{% if "dell" in selected_brands %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category3"
-        value="laptops"
-        name="categories"
-        checked
-      />
-      {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category3"
-        value="laptops"
-        name="categories"
-      />
-      {% endif %} {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category3"
-        value="laptops"
-        name="categories"
-      />
-      {% endif %}
-      <label class="custom-control-label" for="category3">Laptops</label>
-    </div>
-    <div class="custom-control custom-checkbox mb-2">
-      {% if selected_brands %}{% if "google" in selected_brands %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category4"
-        value="accessories"
-        name="categories"
-        checked
-      />
-      {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category4"
-        value="accessories"
-        name="categories"
-      />
-      {% endif %} {% else %}
-      <input
-        type="checkbox"
-        class="custom-control-input"
-        id="category4"
-        value="accessories"
-        name="categories"
-      />
-      {% endif %}
-      <label class="custom-control-label" for="category4">Accessories</label>
-    </div>
+    {% endfor %}
   </div>
 </div>
 <div class="col-6 col-lg-12">
