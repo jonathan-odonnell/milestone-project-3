@@ -85,13 +85,16 @@ def newsletter():
 
 @app.route('/reviews')
 @app.route("/reviews/<category>")
-def reviews(category="all"):
+def reviews(category="All"):
     """
-    Gets the search parameters from the url, converts them to a dictionary and
-    generates the search query.
+    Gets the search parameters from the url, converts them to a dictionary,
+    adds the category if required and generates the search query.
     """
     search_params = request.args.to_dict()
-    search_params['category'] = category
+
+    if category != "All":
+        search_params['category'] = category
+
     query = search(search_params)
 
     # Set the page title
@@ -109,7 +112,19 @@ def reviews(category="all"):
     products = list(mongo.db.products.find(query).sort(
         sort_items(request.args.get("sort"))))
 
-    # Count the number of products in the products list
+    """
+    Gets the relevent filters from the categories database. Code for returning
+    selected fields from https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/
+    """
+    if category == "All":
+        filters = list(mongo.db.categories.find({}, {"name": 1, "_id": 0}))
+
+    else:
+        filters = mongo.db.categories.find_one(
+            {"name": category}, {"brands": 1, "prices": 1, "_id": 0})
+
+    # Count the number of products in the products list.
     total = len(products)
 
     """
@@ -138,6 +153,8 @@ def reviews(category="all"):
     return render_template(
         "reviews.html",
         page_title=page_title,
+        filters=filters,
+        selected_category=search_params.get('category'),
         selected_brands=search_params.get('brands'),
         selected_price=search_params.get('price'),
         products=pagination_products,

@@ -62,7 +62,7 @@ def search(query):
     if "search" in query:
         query_file["$text"] = {"$search": query['search']}
 
-    if query['category'] != "all":
+    if query.get('category'):
         query_file['category'] = query['category']
 
     if "price" in query:
