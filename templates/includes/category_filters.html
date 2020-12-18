@@ -1,0 +1,63 @@
+<div class="col-6 col-lg-12">
+  <div class="form-group mb-4">
+    <h4 class="text-capitalize mb-3">Brands</h4>
+    {% for brand in filters.brands %}
+    <div class="custom-control custom-checkbox mb-2">
+      {% if selected_brands %}{% if brand in selected_brands %}
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="brand{{loop.index}}"
+        value="{{brand}}"
+        name="brands"
+        checked
+      />
+      {% else %}
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="brand{{loop.index}}"
+        value="{{brand}}"
+        name="brands"
+      />
+      {% endif %} {% else %}
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="brand{{loop.index}}"
+        value="{{brand}}"
+        name="brands"
+      />
+      {% endif %}
+      <label class="custom-control-label" for="brand{{loop.index}}">{{brand}}</label>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="col-6 col-lg-12">
+  <div class="form-group mb-4">
+    <h4 class="text-capitalize mb-3">Prices</h4>
+    {% for prices in filters.prices %}
+    <div class="custom-control custom-radio mb-2">
+      {% if selected_price %}{% if selected_price | int == loop.index %}
+      <input
+        type="radio"
+        class="custom-control-input"
+        id="price{{loop.index}}"
+        value="{{loop.index}}"
+        name="price"
+        checked
+      />
+      {% endif %}{% endif %}
+      <input
+        type="radio"
+        class="custom-control-input"
+        id="price{{loop.index}}"
+        value="{{loop.index}}"
+        name="price"
+      />
+      <label class="custom-control-label" for="price{{loop.index}}">{{prices}}</label>
+    </div>
+    {% endfor %}
+  </div>
+</div>
