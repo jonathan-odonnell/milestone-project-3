@@ -132,19 +132,21 @@
           </div>
         </div>
       </div>
+      {% if products %}
       <div class="col-12 d-lg-none">
         <p class="my-4">
-          {{ pagination_info }} {% if search %}<strong>"{{search}}"</strong>{%
-          endif %}
+          {{ pagination_info }}
         </p>
       </div>
+      {% endif %}
       <div class="col-12 col-lg-9">
         <div class="row no-gutters">
           <div class="d-none d-lg-block col-lg-12">
+              {% if products %}
             <p class="w-lg-50 d-inline-block my-2">
-              {{ pagination_info }} {% if search
-              %}<strong>"{{search}}"</strong>{% endif %}
+              {{ pagination_info }}
             </p>
+            {% endif %}
             <ul
               id="sort"
               class="list-group list-group-horizontal float-right mb-4"
@@ -238,6 +240,7 @@
           </div>
         </div>
         <div class="row">
+            {% if products %}
           {% for product in products %}
           <div class="col-6 col-lg-4">
             <div class="card border-0">
@@ -273,6 +276,12 @@
             <hr class="pb-2" />
           </div>
           {% endif %} {% endif%} {% endfor %}
+          {% else %}
+          <div class="col-12 text-center mt-5">
+              <h4 class="text-transform-none">No results found for "{{request.args.get("search")}}"</h4>
+              <p>Check the spelling or try a more general search term.</p>
+          </div>
+          {% endif %}
         </div>
         <div class="row no-gutters mt-3">
           <div class="col-12">{{ pagination.links }}</div>

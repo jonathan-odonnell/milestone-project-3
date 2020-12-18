@@ -38,6 +38,10 @@ a, a:hover {
     color: inherit;
 }
 
+.text-transform-none {
+    text-transform: none;
+}
+
 /* Text Styling End */
 
 /* Section Styling Start */
@@ -106,6 +110,7 @@ section {
 /* Cards Start */
 
 .card-img {
+    height: 10rem;
     width: 100%;
     object-fit: cover;
     object-position: center center;
