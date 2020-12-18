@@ -40,15 +40,15 @@ def get_price_range(category, value):
     reference/operator/aggregation/gte/ and https://docs.mongodb.com/manual/
     reference/operator/aggregation/lte/
     """
-    price_file = {"phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
+    price_file = {"Phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
                 "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
-                }, "tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
+                }, "Tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
                 "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
-                }, "laptops": {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750,
+                }, "Laptops": {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750,
                 "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4: {"$gte":
-                1250, "$lte": 1500}, 5: {"$gte": 1500}}, "accessories": {1:
+                1250, "$lte": 1500}, 5: {"$gte": 1500}}, "Accessories": {1:
                 {"$gte": 0, "$lte": 200}, 2: {"$gte": 200, "$lte": 300}, 3:
-                {"$gte": 300, "$lte": 400}, 4: {"$gte": 400}}, "all": {1:
+                {"$gte": 300, "$lte": 400}, 4: {"$gte": 400}}, "All": {1:
                 {"$gte": 0, "$lte": 250}, 2: {"$gte": 250, "$lte": 500}, 3:
                 {"$gte": 500, "$lte": 750}, 4: {"$gte": 750, "$lte": 1000}, 5:
                 {"$gte": 1000}}}

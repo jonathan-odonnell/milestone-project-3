@@ -98,7 +98,7 @@ def reviews(category="all"):
     page_title = category
 
     # Updates the page title if the category is equal to all
-    if category == "all":
+    if category == "All":
         page_title = "Reviews"
 
     """
@@ -127,7 +127,7 @@ def reviews(category="all"):
     https://pythonhosted.org/Flask-paginate/
     """
     record_numbers = pagination.info[48:53]
-    if category == "all":
+    if category == "All":
         pagination_info = 'Displaying {} of {} reviews found for "{}"'.format(
             record_numbers, total, search_params['search'])
     else:
