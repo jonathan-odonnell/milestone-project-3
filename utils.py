@@ -41,17 +41,19 @@ def get_price_range(category, value):
     reference/operator/aggregation/lte/
     """
     price_file = {"Phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
-                "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
-                }, "Tablets": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
-                "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4: {"$gte": 1000}
-                }, "Laptops": {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750,
-                "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4: {"$gte":
-                1250, "$lte": 1500}, 5: {"$gte": 1500}}, "Accessories": {1:
-                {"$gte": 0, "$lte": 200}, 2: {"$gte": 200, "$lte": 300}, 3:
-                {"$gte": 300, "$lte": 400}, 4: {"$gte": 400}}, "All": {1:
-                {"$gte": 0, "$lte": 250}, 2: {"$gte": 250, "$lte": 500}, 3:
-                {"$gte": 500, "$lte": 750}, 4: {"$gte": 750, "$lte": 1000}, 5:
-                {"$gte": 1000}}}
+                            "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4:
+                            {"$gte": 1000}}, "Tablets": {1: {"$gte": 0, "$lte":
+                            500}, 2: {"$gte": 500, "$lte": 750}, 3:  {"$gte":
+                            750, "$lte": 1000}, 4: {"$gte": 1000}}, "Laptops":
+                            {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750, 
+                            "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4:
+                            {"$gte": 1250, "$lte": 1500}, 5: {"$gte": 1500}},
+                            "Accessories": {1: {"$gte": 0, "$lte": 200}, 2:
+                            {"$gte": 200, "$lte": 300}, 3: {"$gte": 300,
+                            "$lte": 400}, 4: {"$gte": 400}}, "All": {1: 
+                            {"$gte": 0, "$lte": 250}, 2: {"$gte": 250, "$lte":
+                            500}, 3: {"$gte": 500, "$lte": 750}, 4: {"$gte":
+                            750, "$lte": 1000}, 5: {"$gte": 1000}}}
     return price_file[category][value]
 
 
@@ -66,7 +68,8 @@ def search(query):
         query_file['category'] = query['category']
 
     if "price" in query:
-        query_file["price"] = get_price_range(query['category'], int(query['price']))
+        query_file["price"] = get_price_range(
+            query['category'], int(query['price']))
 
     if "brands" in query:
         brands = query['brands'].split(",")
@@ -84,15 +87,16 @@ def sort_items(sort=None):
     Generates the sort query. Code is from https://stackoverflow.com/questions/
     8109122/how-to-sort-mongodb-with-pymongo
     """
-    sort_file = {"a-to-z": [("name", 1)], "z-to-a": [("name", -1)],
-                 "date-added": [("date_added", -1), ("name", 1)],
-                 "price": [("price", -1), ("name", 1)], "cat_asc": [("category",
-                 1)], "cat_desc": [("category", -1)]}
+    sort_file = {"featured": [("_id", 1)], "date-added": [("date_added", -1),
+                ("name", 1)], "price-asc": [("price", 1), ("name", 1)],
+                "price-desc": [("price", -1), ("name", 1)], "rating": [
+                ("overall_rating", -1), ("name", 1)], "cat_asc": [("category",
+                1)], "cat_desc": [("category", -1)]}
     if sort:
         return sort_file[sort]
 
     else:
-        return sort_file['a-to-z']
+        return sort_file['featured']
 
 
 def product_ratings_query():
