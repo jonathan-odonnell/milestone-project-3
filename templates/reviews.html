@@ -1,6 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<section>
-    <div class="container-fluid content-container-top px-0 pb-0">
+<section class="container-fluid content-container-top px-0 pb-0">
         <div class="row no-gutters">
             <div class="col-3 d-none d-lg-block wrapper-grey p-4">
                 <div id="collapseFilters" class="collapse">
@@ -50,10 +49,10 @@
                                 {% if page_title == "Reviews" %} {% include
             'includes/search_filters.html' %} {% else %} {% include
             'includes/category_filters.html' %} {% endif %}
-                                <div class="col-6 px-3 px-md-0 pt-4">
+                                <div class="col-12 col-md-6 px-3 px-md-0 pt-4">
                                     <button id="filter" class="btn btn-sm btn-green filters-btns">Apply</button>
                                 </div>
-                                <div class="col-6 px-3 px-md-0 pt-4">
+                                <div class="col-12 col-md-6 px-3 px-md-0 pt-4">
                                     <button id="clear-filters" class="btn btn-sm btn-green filters-btns" role="button">
                                         Clear filters
                                     </button>
@@ -137,7 +136,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% endblock %} {% block postloadjs %}
 <script src="{{url_for('static', filename='js/sort-by.js')}}"></script>
