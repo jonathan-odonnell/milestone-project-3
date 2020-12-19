@@ -30,7 +30,7 @@ mongo = PyMongo(app)
 def login_required(f):
     """
     Prevents users who are not signed in from accessing the page and redirects
-    them to the sign in page. Code is from https://flask.palletsprojects.com/
+    to the sign in page. Code is from https://flask.palletsprojects.com/
     en/1.1.x/patterns/viewdecorators/
     """
     @wraps(f)
@@ -48,10 +48,9 @@ def login_required(f):
 
 def admin_required(f):
     """
-    Prevents users who are not admins from accessing the page and
-    redirects them to the 403 page. Code is from https://
-    flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/ and
-    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    Prevents users who are not admins from accessing the page and returns a status of 403. Code is from https://flask.palletsprojects.com/en/1.1.x/
+    patterns/viewdecorators/ and https://flask.palletsprojects.com/en/1.1.x/
+    patterns/errorpages/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -65,7 +64,7 @@ def admin_required(f):
 @app.route("/index")
 def index():
     """
-    Retuns the index.html template
+    Renders the index.html template
     """
     return render_template("index.html", page_title="Home")
 
@@ -88,7 +87,8 @@ def newsletter():
 def reviews(category="All"):
     """
     Gets the search parameters from the url, converts them to a dictionary,
-    adds the category if required and generates the search query.
+    adds the category if the category is not equal to all and generates the
+    search query.
     """
     search_params = request.args.to_dict()
 
@@ -97,7 +97,7 @@ def reviews(category="All"):
 
     query = search(search_params)
 
-    # Set the page title
+    # Sets the page title
     page_title = category
 
     # Updates the page title if the category is equal to all
@@ -124,11 +124,11 @@ def reviews(category="All"):
         filters = mongo.db.categories.find_one(
             {"name": category}, {"brands": 1, "prices": 1, "_id": 0})
 
-    # Count the number of products in the products list.
+    # Counts the number of products in the products list.
     total = len(products)
 
     """
-    Paginate products with 6 products to a page.
+    Paginates products with 6 products to a page.
     Code is from https://gist.github.com/mozillazg/
     69fb40067ae6d80386e10e105e6803c9
     """
@@ -138,7 +138,7 @@ def reviews(category="All"):
     pagination = paginate(products, page, per_page)
 
     """
-    Generate pagination info. Code is adapted from
+    Generates pagination info. Code is adapted from
     https://pythonhosted.org/Flask-paginate/
     """
     record_numbers = pagination.info[48:53]
@@ -204,38 +204,50 @@ def review_details(product_id):
 @app.route("/up_vote", methods=["POST"])
 def up_vote():
     """
-    Increases the up vote, gets the updated value and returns a success
-    status. Code for increment is from https://docs.mongodb.com/manual/
-    reference/operator/update/inc/ and code for the success status is from
-    https://stackoverflow.com/questions/26079754/
-    flask-how-to-return-a-success-status-code-for-ajax-call/
-    26080784#26080784
+    Increases the up vote value by one. Code is from https://docs.mongodb.com
+    /manual/reference/operator/update/inc/
     """
     review_id = review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
+
+    """
+    Gets the new up vote value from the reviews database. Code is from
+    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
+    """
     up_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
                                         {"up_vote": 1, "_id": 0})
 
+    """
+    Returns a success status. Code is from https://stackoverflow.com/questions/
+    26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    26080784#26080784
+    """
     return jsonify({"up_vote": up_vote['up_vote'], "success": True})
 
 
 @app.route("/down_vote", methods=["POST"])
 def down_vote():
     """
-    Increases the down vote, gets the updated value and returns a success
-    status. Code for increment is from https://docs.mongodb.com/manual/
-    reference/operator/update/inc/ and code for the success status is from
-    https://stackoverflow.com/questions/26079754/
-    flask-how-to-return-a-success-status-code-for-ajax-call/
-    26080784#26080784
+    Increases the down vote value by one. Code is from https://docs.mongodb.com
+    /manual/reference/operator/update/inc/
     """
     review_id = request.form.get('review_id')
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
+
+    """
+    Gets the new down vote value from the reviews database. Code is from
+    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
+    """
     down_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
                                           {"down_vote": 1, "_id": 0})
 
+    """
+    Returns a success status. Code is from https://stackoverflow.com/questions/
+    26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    26080784#26080784
+    """
     return jsonify({"down_vote": down_vote['down_vote'], "success": True})
 
 
@@ -252,14 +264,14 @@ def contact():
         mongo.db.contact.insert_one(request.form.to_dict())
         return jsonify(success=True)
 
-    # If the request method is not post, return the contact.html template.
+    # Renders the contact.html template.
     return render_template("contact.html", page_title="Contact Us")
 
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
-        # Check if the email entered already exists in the database.
+        # Checks if the email entered already exists in the database.
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
@@ -267,10 +279,10 @@ def sign_in():
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
                 """
-                If the user exists, check the hashed password matches the
+                If the user exists, checks the hashed password matches the
                 password entered by the user and add the user's details to the
-                session cookie. Add a message informing the user that the sign
-                in was successful and return them to the previous page. Code
+                session cookie. Adds a message informing the user that the sign
+                in was successful and redirects to the previous page. Code
                 for message categories is from https://
                 flask.palletsprojects.com/en/1.1.x/patterns/flashing/
                 """
@@ -280,49 +292,49 @@ def sign_in():
 
             else:
                 """
-                If the user does not exist, add a message informing them that
-                their username and/or password is incorrect. Code for message
-                categories is from https://flask.palletsprojects.com/en/1.1.x/
-                patterns/flashing/
+                If the user does not exist, adds a message informing the user
+                that their username and/or password is incorrect and redirects
+                to the sign in page. Code for message categories is from
+                https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
                 """
                 flash("Incorrect Email Address and/or Password", "error")
                 return redirect(url_for("sign_in"))
 
         else:
             """
-            If the passwords do not match, return the user to the sign in page
-            and add a message informing them that their username and/or
-            password is incorrect. Code for message categories is from https://
+            If the passwords do not match, adds a message informing the user
+            that their username and/or password is incorrect and redirects
+            to the sign in page. Code for message categories is from https://
             flask.palletsprojects.com/en/1.1.x/patterns/flashing/
             """
             flash("Incorrect Email Address and/or Password", "error")
             return redirect(url_for("sign_in"))
 
-    # Render the sign in page template.
+    # Renders the sign in page template.
     return render_template("sign_in.html", page_title="Sign In")
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
-        # Check if the email entered already exists in the database.
+        # Checks if the email entered already exists in the database.
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
         if existing_user:
             """
-            If the user exist, return the user to the sign up page
-            and add a message informing them that the email is already
-            registered. Code for message categories is from https://
-            flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+            If the user exist, adds a message informing the user that the email
+            is already registered and redirects to the sign up page. Code
+            for message categories is from https://flask.palletsprojects.com/
+            en/1.1.x/patterns/flashing/
             """
             flash("Email already registered", "error")
             return redirect(url_for("sign_up"))
 
         else:
             """
-            If the user does not already exist, add their details to the users
-            database.
+            Adds the user's details to the users database if they do not
+            already exist.
             """
             sign_up = {
                 "first_name": request.form.get("first_name").lower(),
@@ -334,26 +346,26 @@ def sign_up():
             }
             mongo.db.users.insert_one(sign_up)
 
-            # Put the user's details in the session cookie
+            # Puts the user's details in the session cookie
             session["user"] = create_user_session(sign_up)
 
         if request.form.get("newsletter_signup") == "on":
             """
-            If the user toggled the newsletter sign up switch to on, add the
-            user's email address to the newsletter database.
+            Adds the user's email address to the newsletter database if the
+            user toggled the newsletter sign up switch to on.
             """
             mongo.db.newsletter.insert_one(
                 {"email": request.form.get("email")})
 
         """
-        Add a message informing the user that the sign up was successful and
-        return them to the previous page. Code for message categories is from
+        Adds a message informing the user that the sign up was successful and
+        redirects to the previous page. Code for message categories is from
         https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
         """
         flash("Registration Successful!", "success")
         return redirect(request.form.get("next"))
 
-    # Render the sign_up.html template
+    # Renders the sign_up.html template
     return render_template("sign_up.html", page_title="Sign Up")
 
 
@@ -362,7 +374,7 @@ def sign_up():
 @admin_required
 def product_management():
     """
-    Get the sort_by argument from the query string. Code is from https://
+    Gets the sort_by argument from the query string. Code is from https://
     www.kite.com/python/answers/
     how-to-get-parameters-from-a-url-using-flask-in-python
     """
@@ -370,22 +382,22 @@ def product_management():
 
     if sort_by:
         """
-        If sort_by has a value, get all the products from the database and sort
-        them according to the value of the sort_by variable. Code for the sort
-        method is from https://docs.mongodb.com/manual/reference/method/
+        If sort_by has a value, gets all the products from the database and
+        sorts them according to the value of the sort_by variable. Code for the
+        sort method is from https://docs.mongodb.com/manual/reference/method/
         cursor.sort/index.html
         """
         products = list(mongo.db.products.find().sort(sort_items(sort_by)))
 
     else:
         """
-        Get all the products from the database and sort them by name in
-        asscending order.
+        Otherwise, gets all the products from the database and sort them by
+        name in asscending order.
         """
         products = list(mongo.db.products.find().sort('name', 1))
 
     """
-    Paginate products with 10 to a page.
+    Paginates products with 10 to a page.
     Code is from https://gist.github.com/mozillazg/
     69fb40067ae6d80386e10e105e6803c9
     """
@@ -395,7 +407,7 @@ def product_management():
     pagination_products = paginate_products(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
-    # Render the product_management.html template.
+    # Renders the product_management.html template.
 
     return render_template(
         "product_management.html",
@@ -407,10 +419,10 @@ def product_management():
 @app.route("/logout")
 def logout():
     """
-    Remove the session cookie containing the user's details, add a message
-    informing the user that they have been successfully signed out and return
-    them to the sign in page. Code for message categories is from https://
-    flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+    Removes the session cookie containing the user's details, adds a message
+    informing the user that they have been successfully signed out and
+    redirects to the sign in page. Code for message categories is
+    from https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
     """
     session.pop("user")
     flash("Logout Successful", "success")
@@ -434,7 +446,7 @@ def add_review():
             {"product": request.form.get('product')})
 
         """
-        Get the details entered into the form and convert them into a
+        Gets the details entered into the form and convert them into a
         dictionary.
         """
         review = request.form.to_dict()
@@ -467,7 +479,7 @@ def add_review():
         # Adds the review to the reviews database
         mongo.db.reviews.insert_one(review)
 
-        # Returns the user to the previous page
+        # Redirects to the previous page
         return redirect(request.form.get('next'))
 
     # Renders the add_review.html template
@@ -495,7 +507,7 @@ def edit_review(review_id):
             {"product": user_ratings['product']})
 
         """
-        Get the details entered into the form and convert them into a
+        Gets the details entered into the form and convert them into a
         dictionary.
         """
         review = request.form.to_dict()
@@ -531,16 +543,20 @@ def edit_review(review_id):
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
 
-        # Returns the user to the previous page
+        # Redirects to the previous page
         return redirect(request.form.get('next'))
 
-    # Gets the review author's details from the reviews database
+    """
+    Gets the review author's details from the reviews database. Code for
+    returning selected fields from https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/
+    """
     user = mongo.db.reviews.find_one(
         {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
 
     if user is None:
         """
-        Returns the user to the 404 page if no user is returned. Code is
+        Returns aststus of 404 if no user is returned. Code is
         from https://flask.palletsprojects.com/en/1.1.x/patterns
         /errorpages/
         """
@@ -549,7 +565,7 @@ def edit_review(review_id):
     elif "{} {}".format(session['user']['first_name'], session['user']
                         ['last_name']) != user['created_by']:
         """
-        Returns the user to the 403 page is the user is not the
+        Returns a status of 403 if the user is not the
         author of the review. Code is from https://
         flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
         """
@@ -567,13 +583,17 @@ def edit_review(review_id):
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def delete_review(review_id):
-    # Gets the review author's details from the reviews database
+    """
+    Gets the review author's details from the reviews database. Code for
+    returning selected fields from https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/
+    """
     user = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
                                      "created_by": 1, "_id": 0})
 
     if user is None:
         """
-        Returns the user to the 404 page if no user is returned.
+        Returns a 404 status if no user is returned.
         Code is from https://flask.palletsprojects.com/en/1.1.x/
         patterns/errorpages/
         """
@@ -582,7 +602,7 @@ def delete_review(review_id):
     elif "{} {}".format(session['user']['first_name'], session['user']
                         ['last_name']) != user['created_by']:
         """
-        Returns the user to the 403 page is the user is not the
+        Returns a status of 403 if the user is not the
         author of the review. Code is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/errorpages/
         """
@@ -626,7 +646,7 @@ def delete_review(review_id):
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
         """
-        Returns the user to the previous page. Code is from https://
+        Redirect to the previous page. Code is from https://
         stackoverflow.com/questions/39777171/
         how-to-get-the-previous-url-in-flask/39777426
         """
@@ -639,20 +659,20 @@ def delete_review(review_id):
 def add_product():
     if request.method == "POST":
         """
-        Get the details entered into the form and convert them into a
+        Gets the details entered into the form and convert them into a
         dictionary.
         """
         product = request.form.to_dict()
 
         """
-        Generate a list of all the keys in the products dictionary. Code is
+        Generates a list of all the keys in the products dictionary. Code is
         from https://stackoverflow.com/questions/6307394/
         removing-dictionary-entries-with-no-values-python
         """
         keys = list(product.keys())
 
         """
-        Delete any products from the dictionary which have a value of an empty
+        Deletes any products from the dictionary which have a value of an empty
         string.
         """
         for key in keys:
@@ -677,13 +697,13 @@ def add_product():
                                        "$addToSet": {"brands": product['brand']
                                                      }})
 
-        # Return the user to the product management page
+        # Redirects to the product management page
         return redirect(url_for('product_management'))
 
-    # Get a list of categories from the categories database
+    # Gets a list of categories from the categories database
     categories = mongo.db.categories.find()
 
-    # Render the add_product.html template
+    # Renders the add_product.html template
     return render_template('add_product.html', page_title='Add Product',
                            categories=categories)
 
@@ -694,20 +714,20 @@ def add_product():
 def edit_product(product_id):
     if request.method == "POST":
         """
-        Get the details entered into the form and convert them into a
+        Gets the details entered into the form and convert them into a
         dictionary.
         """
         product = request.form.to_dict()
 
         """
-        Generate a list of all the keys in the products dictionary. Code is
+        Generates a list of all the keys in the products dictionary. Code is
         from https://stackoverflow.com/questions/6307394/
         removing-dictionary-entries-with-no-values-python
         """
         keys = list(product.keys())
 
         """
-        Delete any products from the dictionary which have a value of an empty
+        Deletes any products from the dictionary which have a value of an empty
         string.
         """
         for key in keys:
@@ -721,7 +741,7 @@ def edit_product(product_id):
         product['price'] = Decimal128(product['price'])
 
         """
-        Add the product details to the products database
+        Adds the product details to the products database
         Code is from https://docs.mongodb.com/manual/reference/
         method/db.collection.updateOne/
         """
@@ -737,23 +757,23 @@ def edit_product(product_id):
                                        "$addToSet": {"brands": product['brand']
                                                      }})
 
-        # Return the user to the product management page
+        # Redirects to the product management page
         return redirect(url_for('product_management'))
 
-    # Get the product's details from the products databse
+    # Gets the product's details from the products databse
     product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
 
     if product is None:
         """
-        If the product does not extis return the user to the 404 page. Code is
+        Returns a status of 404 if the product does not exist. Code is
         from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
         """
         abort(404)
 
-    # Get a list of categories from the categories database
+    # Gets a list of categories from the categories database
     categories = mongo.db.categories.find()
 
-    # Render the edit_product.html template
+    # Renders the edit_product.html template
     return render_template(
         'edit_product.html',
         page_title='Edit Product',
@@ -774,9 +794,9 @@ def delete_product(product_id):
 @app.errorhandler(403)
 def page_forbidden(e):
     """
-    Renders the 403.html template if the HTTP request returns a 403
-    page not found error is returned. Code is from
-    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    Renders the 403.html template if the HTTP request returns a status of 403.
+    Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/
+    errorpages/
     """
     return render_template("403.html", page_title=403)
 
@@ -784,9 +804,9 @@ def page_forbidden(e):
 @app.errorhandler(404)
 def page_not_found(e):
     """
-    Renders the 404.html template if the HTTP request returns a 404
-    page not found error is returned. Code is from
-    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    Renders the 404.html template if the HTTP request returns a status of 404.
+    Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/
+    errorpages/
     """
     return render_template("404.html", page_title=404)
 
