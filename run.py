@@ -786,6 +786,33 @@ def edit_product(product_id):
 @login_required
 @admin_required
 def delete_product(product_id):
+    """
+    Gets the product's name and category. Code for returning selected fields
+    is from https://docs.mongodb.com/manual/tutorial
+    project-fields-from-query-results/
+    """
+    product = mongo.db.products.find_one({"_id": ObjectId(product_id)},
+                                         {"brand": 1, "category": 1, "_id": 0})
+
+    """
+    Counts the number of products in the product's category from the product's
+    brand. Code is from https://docs.mongodb.com/manual/reference/method/
+    db.collection.count/ and https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/
+    """
+    brand_count = mongo.db.products.count(
+        {"brand": product['brand'], "category": product['category']})
+
+    """
+    If the brand count is equal to one, deletes the brand from the relevant
+    category's brands array in the categories database. Code is from https://
+    docs.mongodb.com/manual/reference/operator/update/pull/
+    """
+    if brand_count == 1:
+        mongo.db.categories.update_one({"name": product['category']}, {
+                                       "$pull": {"brands": product['brand']
+                                                 }})
+
     # Deletes the product
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
     return redirect(url_for('product_management'))
