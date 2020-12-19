@@ -2,10 +2,12 @@
 
 .headings-top {
     margin: 80px 0 30px;
+    line-height: 1;
 }
 
 .headings {
     margin-bottom: 30px;
+    line-height: 1;
 }
 
 h1 {
@@ -32,6 +34,10 @@ strong {
     color: #1a1a1a;
     font-size: 2rem;
     margin-bottom: 30px;
+}
+
+.reviews-headings {
+    letter-spacing: 2px;
 }
 
 a, a:hover {
@@ -75,6 +81,18 @@ section {
     color: #fff;
     background-color: #548b87;
     border: 2px solid #548b87;
+}
+
+.btn-sm i {
+    font-size: 1rem;
+}
+
+.filters-btns {
+    min-width: 100%;
+}
+
+.filters-btn i {
+    font-size: 10px;
 }
 
 .form-btn {
@@ -163,6 +181,10 @@ section {
     background-color: #64a19d;
 }
 
+.custom-control-label::before{
+    background-color: #c0c0c0;
+}
+
 /* Forms End */
 
 /* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
@@ -225,8 +247,8 @@ section {
     height: 2.5rem;
 }
 
-.no-box-shadow:focus {
-    box-shadow: none;
+.no-box-shadow:focus, .no-box-shadow:active {
+    box-shadow: none !important;
 }
 
 .navbar-nav .nav-link {
@@ -364,14 +386,6 @@ section {
 
 /* Reviews Start */
 
-#collapseFilters .btn {
-    width: 100%;
-}
-
-.sort-active {
-    background-color: #e6e6e6;
-}
-
 .review-img {
     height: 12rem;
 }
@@ -430,10 +444,6 @@ section {
 
 .review-title {
     line-height: 1.5;
-}
-
-.btn-sm i {
-    font-size: 1rem;
 }
 
 /* Review Details End */
@@ -598,14 +608,14 @@ section {
     .featured-text {
         font-size: 1rem;
     }
-    #collapseFilters .btn {
-        width: 150px;
-    }
     .features-table th {
         min-width: 200px;
     }
     .sign-in-container {
         width: 400px;
+    }
+    .filters-btns {
+      min-width: 150px;
     }
     .product-headings {
         font-size: 1.5rem;
@@ -630,6 +640,9 @@ section {
         color: #fff;
         background-color: #1a1a1a;
     }
+    #sort-by {
+        margin-bottom: 30px;
+    }
     .progress-bars {
         margin-bottom: calc(30px - 0.5rem);
     }
@@ -638,9 +651,6 @@ section {
     }
     .collapse:not(.show) {
         display: block;
-    }
-    #collapseFilters .btn {
-        width: 100%;
     }
     .features {
         padding-top: 0;
