@@ -37,7 +37,8 @@ strong {
 }
 
 .reviews-headings {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    min-height: 2.5rem;
 }
 
 a, a:hover {
@@ -616,6 +617,9 @@ section {
     }
     .filters-btns {
       min-width: 150px;
+    }
+    .reviews-headings {
+      min-height: 1.5rem;
     }
     .product-headings {
         font-size: 1.5rem;
