@@ -64,8 +64,9 @@ def search(query):
     if "search" in query:
         query_file["$text"] = {"$search": query['search']}
 
-    if query.get('category'):
-        query_file['category'] = query['category']
+    if query.get('categories'):
+        categories = query['categories'].split(",")
+        query_file['category'] = {"$in": categories}
 
     if "price" in query:
         query_file["price"] = get_price_range(

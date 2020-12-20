@@ -93,7 +93,7 @@ def reviews(category="All"):
     search_params = request.args.to_dict()
 
     if category != "All":
-        search_params['category'] = category
+        search_params['categories'] = category
 
     query = search(search_params)
 
@@ -154,7 +154,7 @@ def reviews(category="All"):
         "reviews.html",
         page_title=page_title,
         filters=filters,
-        selected_category=search_params.get('category'),
+        selected_category=search_params.get('categories'),
         selected_brands=search_params.get('brands'),
         selected_price=search_params.get('price'),
         products=pagination_products,

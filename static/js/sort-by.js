@@ -33,9 +33,9 @@ $(".filter").on("click", function () {
     });
     let categories = selectedCategories.join(",");
     if (categories) {
-        currentUrl.searchParams.set("category", categories);
+        currentUrl.searchParams.set("categories", categories);
     } else {
-        currentUrl.searchParams.delete("category");
+        currentUrl.searchParams.delete("categories");
     }
     $("input[name='brands']:checked").each(function () {
         selectedBrands.push($(this).val());
