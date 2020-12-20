@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<section class="container-fluid content-container-top px-0 pb-0">
+<section class="container-fluid content-container-top d-flex px-0 pb-0">
     <div class="row no-gutters">
         <div class="d-none d-md-block col-md-3 wrapper-grey p-4">
                     {% if page_title == "Reviews" %} {% include
@@ -17,7 +17,7 @@
         <div class="col-12 col-md-9">
             <div class="row no-gutters content-container">
                 <div class="col-12">
-                    <h1 class="text-center text-lg-left headings">{{ page_title }}</h1>
+                    <h1 class="text-center text-md-left headings">{{ page_title }}</h1>
                 </div>
                 <div class="col-12 d-md-none">
                     <button class="btn btn-sm btn-outline filters no-box-shadow" data-toggle="modal" data-target="#exampleModal">
