@@ -1,142 +1,141 @@
 {% extends "base.html" %} {% block content %}
 <section class="container-fluid content-container-top px-0 pb-0">
-        <div class="row no-gutters">
-            <div class="col-3 d-none d-lg-block wrapper-grey p-4">
-                <div id="collapseFilters" class="collapse">
-                    <div class="form-row">
-                        {% if page_title == "Reviews" %} {% include
+    <div class="row no-gutters">
+        <div class="d-none d-md-block col-md-3 wrapper-grey p-4">
+                    {% if page_title == "Reviews" %} {% include
             'includes/search_filters.html' %} {% else %} {% include
             'includes/category_filters.html' %} {% endif %}
-                        <div class="col-12 col-md-6 col-lg-12 px-4 pb-4">
-                            <button id="filter" class="btn btn-sm btn-green w-100">Apply</button>
+                    <div class="col-12 pt-4 px-0">
+                        <button class="btn btn-sm btn-green filter w-100">Apply</button>
+                    </div>
+                    <div class="col-12 pt-4 px-0">
+                        <button class="btn btn-sm btn-green clear-filters w-100" role="button">
+                            Reset
+                        </button>
+                    </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="row no-gutters content-container">
+                <div class="col-12">
+                    <h1 class="text-center text-lg-left headings">{{ page_title }}</h1>
+                </div>
+                <div class="col-12 d-md-none">
+                    <button class="btn btn-sm btn-outline filters no-box-shadow" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fas fa-filter pr-1"></i>Filters
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Filters</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% if page_title == "Reviews" %} 
+                                    {% include 'includes/search_filters_mobile.html' %}
+                                    {% else %} 
+                                    {% include 'includes/category_filters_mobile.html' %} 
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-outline clear-filters">Reset</button>
+                                    <button type="button" class="btn btn-sm btn-green filter">Apply</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-12 px-4">
-                            <button id="clear-filters" class="btn btn-sm btn-green w-100" role="button">
-                                Clear filters
-                            </button>
+                    </div>
+                    <div class="dropdown w-auto float-right">
+                        <button class="btn btn-sm btn-outline sort-by dropdown-toggle no-box-shadow" type="button" id="mobile-sort-by"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort by:
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="mobile-sort-by">
+                            <button class="dropdown-item" type="button" value="featured">Featured </button>
+                            <button class="dropdown-item" type="button" value="date-added">Date Added</button>
+                            <button class="dropdown-item" type="button" value="price-asc">Price (Low - High)</button>
+                            <button class="dropdown-item" type="button" value="price-desc">Price (High - Low)</button>
+                            <button class="dropdown-item" type="button" value="rating">Average Rating</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-9">
-                <div class="row no-gutters content-container">
-                    <div class="col-12">
-                        <h1 class="text-center text-lg-left headings">{{ page_title }}</h1>
-                    </div>
-                    <div class="col-12 d-lg-none">
-                        <button class="d-lg-none btn btn-sm btn-outline filters-btn no-box-shadow" type="button"
-                            id="filters"
-                            data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false"
-                            aria-controls="collapseFilters">
-                            <i class="fas fa-filter pr-1"></i>Filters
-                        </button>
-                        <div class="dropdown w-auto float-right">
-                            <button class="btn btn-sm btn-outline dropdown-toggle no-box-shadow" type="button" id="sort-by"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort by:
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sort-by">
-                                <button class="dropdown-item" type="button" value="featured">Featured </button>
-                                <button class="dropdown-item" type="button" value="date-added">Date Added</button>
-                                <button class="dropdown-item" type="button" value="price-asc">Price (Low - High)</button>
-                                <button class="dropdown-item" type="button" value="price-desc">Price (High - Low)</button>
-                                <button class="dropdown-item" type="button" value="rating">Average Rating</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 d-block d-lg-none">
-                        <div id="collapseFilters" class="collapse pr-lg-5 mt-4 mt-lg-0">
-                            <div class="form-row">
-                                {% if page_title == "Reviews" %} {% include
-            'includes/search_filters.html' %} {% else %} {% include
-            'includes/category_filters.html' %} {% endif %}
-                                <div class="col-12 col-md-6 px-3 px-md-0 pt-4">
-                                    <button id="filter" class="btn btn-sm btn-green filters-btns">Apply</button>
-                                </div>
-                                <div class="col-12 col-md-6 px-3 px-md-0 pt-4">
-                                    <button id="clear-filters" class="btn btn-sm btn-green filters-btns" role="button">
-                                        Clear filters
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {% if products %}
+                <div class="col-12 d-md-none">
+                    <p class="my-4">
+                        {{ pagination_info }}
+                    </p>
+                </div>
+                {% endif %}
+                <div class="col-12 d-none d-md-block">
                     {% if products %}
-                    <div class="col-12 d-lg-none">
-                        <p class="my-4">
-                            {{ pagination_info }}
-                        </p>
-                    </div>
+                    <p class="w-lg-50 d-inline-block my-2">
+                        {{ pagination_info }}
+                    </p>
                     {% endif %}
-                    <div class="col-12 d-none d-lg-block">
-                        {% if products %}
-                        <p class="w-lg-50 d-inline-block my-2">
-                            {{ pagination_info }}
-                        </p>
-                        {% endif %}
-                        <div class="dropdown w-auto float-right">
-                            <button class="btn btn-sm btn-outline dropdown-toggle no-box-shadow" type="button" id="sort-by"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort by:
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sort-by">
-                                <button class="dropdown-item" type="button" value="featured">Featured </button>
-                                <button class="dropdown-item" type="button" value="date-added">Date Added</button>
-                                <button class="dropdown-item" type="button" value="price-asc">Price (Low - High)</button>
-                                <button class="dropdown-item" type="button" value="price-desc">Price (High - Low)</button>
-                                <button class="dropdown-item" type="button" value="rating">Average Rating</button>
-                            </div>
+                    <div class="dropdown w-auto float-right">
+                        <button class="btn btn-sm btn-outline sort-by dropdown-toggle no-box-shadow" type="button" id="sort-by"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort by:
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sort-by">
+                            <button class="dropdown-item" type="button" value="featured">Featured </button>
+                            <button class="dropdown-item" type="button" value="date-added">Date Added</button>
+                            <button class="dropdown-item" type="button" value="price-asc">Price (Low - High)</button>
+                            <button class="dropdown-item" type="button" value="price-desc">Price (High - Low)</button>
+                            <button class="dropdown-item" type="button" value="rating">Average Rating</button>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
-                            {% if products %}
-                            {% for product in products %}
-                            <div class="col-6 col-lg-4">
-                                <div class="card border-0">
-                                    <a href="{{url_for('review_details', product_id=product._id)}}">
-                                        <img class="card-img review-img" src="{{product.image_url}}"
-                                            alt="{{product.image_alt}}" />
-                                    </a>
-                                    <div class="card-body pb-2 px-0">
-                                        <h4 class="card-title reviews-headings mb-2 text-transform-none">
-                                            {{product.name}}
-                                        </h4>
-                                        <p class="card-text mb-2">£{{ product.price }}</p>
-                                        {% if product.overall_rating %}
-                                        <small class="text-muted"><i
-                                                class="fas fa-star mr-1"></i>{{ product.overall_rating }}
-                                            / 5</small>
-                                        {% else %}
-                                        <small class="text-muted">No Rating</small>
-                                        {% endif %}
-                                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        {% if products %}
+                        {% for product in products %}
+                        <div class="col-6 col-lg-4">
+                            <div class="card border-0">
+                                <a href="{{url_for('review_details', product_id=product._id)}}">
+                                    <img class="card-img review-img" src="{{product.image_url}}"
+                                        alt="{{product.image_alt}}" />
+                                </a>
+                                <div class="card-body pb-2 px-0">
+                                    <h4 class="card-title reviews-headings mb-2 text-transform-none">
+                                        {{product.name}}
+                                    </h4>
+                                    <p class="card-text mb-2">£{{ product.price }}</p>
+                                    {% if product.overall_rating %}
+                                    <small class="text-muted"><i
+                                            class="fas fa-star mr-1"></i>{{ product.overall_rating }}
+                                        / 5</small>
+                                    {% else %}
+                                    <small class="text-muted">No Rating</small>
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% if loop.index < products|length%} {% if loop.index %2 == 0 %}
-                            <div class="col-12 d-lg-none">
-                                <hr class="pb-2" />
-                            </div>
-                            {% endif %} {% if loop.index %3 == 0 %}
-                            <div class="col-12 d-none d-lg-block">
-                                <hr class="pb-2" />
-                            </div>
-                            {% endif %} {% endif%} {% endfor %}
-                            {% else %}
-                            <div class="col-12 text-center mt-5">
-                                <h4 class="text-transform-none">No results found for "{{request.args.get("search")}}"
-                                </h4>
-                                <p>Check the spelling or try a more general search term.</p>
-                            </div>
-                            {% endif %}
                         </div>
-                        <div class="row no-gutters mt-3">
-                            <div class="col-12">{{ pagination.links }}</div>
+                        {% if loop.index < products|length%} {% if loop.index %2 == 0 %}
+                        <div class="col-12 d-lg-none">
+                            <hr class="pb-2" />
                         </div>
+                        {% endif %} {% if loop.index %3 == 0 %}
+                        <div class="col-12 d-none d-lg-block">
+                            <hr class="pb-2" />
+                        </div>
+                        {% endif %} {% endif%} {% endfor %}
+                        {% else %}
+                        <div class="col-12 text-center mt-5">
+                            <h4 class="text-transform-none">No results found for "{{request.args.get("search")}}"
+                            </h4>
+                            <p>Check the spelling or try a more general search term.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="row no-gutters mt-3">
+                        <div class="col-12">{{ pagination.links }}</div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 {% endblock %} {% block postloadjs %}
 <script src="{{url_for('static', filename='js/sort-by.js')}}"></script>

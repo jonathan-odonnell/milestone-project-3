@@ -6,11 +6,11 @@
         <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}" name="brands"
             checked />
         {% else %}
-        <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}" name="brands" />
+        <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}" name="brands" />
         {% endif %} {% else %}
-        <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}" name="brands" />
+        <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}" name="brands" />
         {% endif %}
-        <label class="custom-control-label" for="brand{{loop.index}}">{{brand}}</label>
+        <label class="custom-control-label" for="mobile-brand{{loop.index}}">{{brand}}</label>
     </div>
     {% endfor %}
 </div>
@@ -19,11 +19,11 @@
     {% for prices in filters.prices %}
     <div class="custom-control custom-radio mb-2">
         {% if selected_price %}{% if selected_price | int == loop.index %}
-        <input type="radio" class="custom-control-input" id="price{{loop.index}}" value="{{loop.index}}" name="price"
+        <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}" name="price"
             checked />
         {% endif %}{% endif %}
-        <input type="radio" class="custom-control-input" id="price{{loop.index}}" value="{{loop.index}}" name="price" />
-        <label class="custom-control-label" for="price{{loop.index}}">{{prices}}</label>
+        <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}" name="price" />
+        <label class="custom-control-label" for="mobile-price{{loop.index}}">{{prices}}</label>
     </div>
     {% endfor %}
 </div>

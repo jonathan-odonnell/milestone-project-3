@@ -1,0 +1,53 @@
+<div class="form-group form-group-filters-top">
+    <h4 class="text-capitalize mb-3">Product Type</h4>
+    {% for category in filters %}
+    <div class="custom-control custom-checkbox mb-2">
+        {% if selected_category %}{% if category.name in selected_category %}
+        <input type="checkbox" class="custom-control-input" id="mobile-category{{loop.index}}" value="{{category.name}}"
+            name="category" checked />
+        {% else %}
+        <input type="checkbox" class="custom-control-input" id="mobile-category{{loop.index}}" value="{{category.name}}"
+            name="category" />
+        {% endif %} {% else %}
+        <input type="checkbox" class="custom-control-input" id="mobile-category{{loop.index}}" value="{{category.name}}"
+            name="category" />
+        {% endif %}
+        <label class="custom-control-label" for="mobile-category{{loop.index}}">{{category.name}}</label>
+    </div>
+    {% endfor %}
+</div>
+<div class="form-group mt-4">
+    <h4 class="text-capitalize mb-3">Prices</h4>
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == 1 %}
+        <input type="radio" class="custom-control-input" id="mobile-price1" value="1" name="price" checked />
+        {% endif %}{% endif %}
+        <input type="radio" class="custom-control-input" id="mobile-price1" value="1" name="price" />
+        <label class="custom-control-label" for="mobile-price1">Under £250</label>
+    </div>
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == 2 %}
+        <input type="radio" class="custom-control-input" id="mobile-price2" value="2" name="price" checked />
+        {% endif %}{% endif %}<input type="radio" class="custom-control-input" id="mobile-price2" value="1" name="price" />
+        <label class="custom-control-label" for="mobile-price2">£250 - £500</label>
+    </div>
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == 3 %}
+        <input type="radio" class="custom-control-input" id="mobile-price3" value="3" name="price" checked />
+        {% endif %}{% endif %}<input type="radio" class="custom-control-input" id="mobile-price3" value="3" name="price" />
+        <label class="custom-control-label" for="mobile-price3">£500 - £750</label>
+    </div>
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == 4 %}
+        <input type="radio" class="custom-control-input" id="mobile-price4" value="4" name="price" checked />
+        {% endif %}{% endif %}
+        <input type="radio" class="custom-control-input" id="mobile-price4" value="4" name="price" />
+        <label class="custom-control-label" for="mobile-price4">£750 - £1000</label>
+    </div>
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == 5 %}
+        <input type="radio" class="custom-control-input" id="mobile-price5" value="5" name="price" checked />
+        {% endif %}{% endif %}<input type="radio" class="custom-control-input" id="mobile-price5" value="5" name="price" />
+        <label class="custom-control-label" for="mobile-price5">Over £1000</label>
+    </div>
+</div>

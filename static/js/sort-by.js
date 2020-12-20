@@ -16,7 +16,7 @@ $(document).ready(function() {
     }
 })
 
-$("#sort-by").next().children().on("click", function () {
+$(".sort-by").next().children().on("click", function () {
     let currentUrl = new URL(window.location);
     let sort = $(this).val();
     
@@ -24,15 +24,7 @@ $("#sort-by").next().children().on("click", function () {
     window.location.replace(currentUrl);
 });
 
-$('#collapseFilters').on('show.bs.collapse', function() {
-    $('#filters').html('<i class="fas fa-times pr-1"></i>Close')
-})
-
-$('#collapseFilters').on('hide.bs.collapse', function() {
-    $('#filters').html('<i class="fas fa-filter pr-1"></i>Filters')
-})
-
-$("#filter").on("click", function () {
+$(".filter").on("click", function () {
     let currentUrl = new URL(window.location);
     let selectedCategories = [];
     let selectedBrands = [];
@@ -62,7 +54,7 @@ $("#filter").on("click", function () {
     window.location.replace(currentUrl);
 });
 
-$("#clear-filters").on("click", function () {
+$(".clear-filters").on("click", function () {
     let currentUrl = new URL(window.location);
     currentUrl.searchParams.delete("category");
     currentUrl.searchParams.delete("brands");
