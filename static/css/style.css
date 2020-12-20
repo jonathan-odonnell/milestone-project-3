@@ -76,6 +76,17 @@ section {
     border: 2px solid #64a19d;
 }
 
+.btn-outline {
+    color: #64a19d;
+    border: 2px solid #64a19d;
+}
+
+.btn-outline:hover {
+    color: #fff;
+    background-color: #64a19d;
+    border: 2px solid #64a19d;
+}
+
 .btn-green:hover,
 .btn-green:active,
 .btn-green:focus {
@@ -393,6 +404,11 @@ section {
 
 .pagination {
     justify-content: center;
+}
+
+.page-item.active .page-link {
+    background-color: #64a19d;
+    border-color: #64a19d;
 }
 
 /* Reviews End */

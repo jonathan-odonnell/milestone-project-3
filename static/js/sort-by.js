@@ -24,6 +24,14 @@ $("#sort-by").next().children().on("click", function () {
     window.location.replace(currentUrl);
 });
 
+$('#collapseFilters').on('show.bs.collapse', function() {
+    $('#filters').html('<i class="fas fa-times pr-1"></i>Close')
+})
+
+$('#collapseFilters').on('hide.bs.collapse', function() {
+    $('#filters').html('<i class="fas fa-filter pr-1"></i>Filters')
+})
+
 $("#filter").on("click", function () {
     let currentUrl = new URL(window.location);
     let selectedCategories = [];

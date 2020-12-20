@@ -24,13 +24,14 @@
                         <h1 class="text-center text-lg-left headings">{{ page_title }}</h1>
                     </div>
                     <div class="col-12 d-lg-none">
-                        <button class="d-lg-none btn btn-sm btn-outline-primary filters-btn no-box-shadow" type="button"
+                        <button class="d-lg-none btn btn-sm btn-outline filters-btn no-box-shadow" type="button"
+                            id="filters"
                             data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false"
                             aria-controls="collapseFilters">
                             <i class="fas fa-filter pr-1"></i>Filters
                         </button>
                         <div class="dropdown w-auto float-right">
-                            <button class="btn btn-sm btn-outline-primary dropdown-toggle no-box-shadow" type="button" id="sort-by"
+                            <button class="btn btn-sm btn-outline dropdown-toggle no-box-shadow" type="button" id="sort-by"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Sort by:
                             </button>
@@ -74,7 +75,7 @@
                         </p>
                         {% endif %}
                         <div class="dropdown w-auto float-right">
-                            <button class="btn btn-sm btn-outline-primary dropdown-toggle no-box-shadow" type="button" id="sort-by"
+                            <button class="btn btn-sm btn-outline dropdown-toggle no-box-shadow" type="button" id="sort-by"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Sort by:
                             </button>
