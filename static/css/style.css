@@ -400,6 +400,11 @@ section {
 
 .pagination {
     justify-content: center;
+    margin-bottom: 0;
+}
+
+.page-item a:focus {
+    box-shadow: none;
 }
 
 .page-item.active .page-link {
