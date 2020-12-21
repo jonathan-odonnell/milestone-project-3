@@ -15,10 +15,10 @@
             {% include 'includes/category_filters.html' %}
             {% endif %}
             <!--Apply button start-->
-            <button class="btn btn-sm btn-green filter w-100 mt-4" role="button">Apply</button>
+            <button class="btn btn-sm btn-green filter w-100 mt-3" role="button">Apply</button>
             <!--Apply button end-->
             <!--Reset button start-->
-            <button class="btn btn-sm btn-green clear-filters w-100 mt-4" role="button">
+            <button class="btn btn-sm btn-green clear-filters w-100 mt-3" role="button">
                 Reset
             </button>
             <!--Rest button end-->
@@ -38,7 +38,7 @@
                 <!--Filters and results sort start (mobiles)-->
                 <div class="col-12 d-md-none">
                     <!--Filters button start-->
-                    <button class="btn btn-sm btn-outline filters no-box-shadow" data-toggle="modal"
+                    <button class="btn btn-sm btn-green filters no-box-shadow" data-toggle="modal"
                         data-target="#filtersModal">
                         <i class="fas fa-filter pr-1"></i>Filters
                     </button>
@@ -66,10 +66,10 @@
                                 </div>
                                 <div class="modal-footer">
                                     <!--Reset button start-->
-                                    <button type="button" class="btn btn-sm btn-outline clear-filters">Reset</button>
+                                    <button type="button" class="btn btn-sm btn-outline no-box-shadow clear-filters">Reset</button>
                                     <!--Reset button end-->
                                     <!--Apply button start-->
-                                    <button type="button" class="btn btn-sm btn-green filter">Apply</button>
+                                    <button type="button" class="btn btn-sm btn-green no-box-shadow filter">Apply</button>
                                     <!--Apply button end-->
                                 </div>
                             </div>
@@ -142,9 +142,9 @@
                                         alt="{{product.image_alt}}" />
                                 </a>
                                 <div class="card-body pb-0 px-0">
-                                    <h4 class="card-title reviews-headings mb-2 text-transform-none">
+                                    <h3 class="card-title reviews-headings mb-2 text-transform-none">
                                         {{product.name}}
-                                    </h4>
+                                    </h3>
                                     <p class="card-text mb-2">£{{ product.price }}</p>
                                     {% if product.overall_rating %}
                                     <small class="text-muted"><i
@@ -191,7 +191,7 @@
                 <!--Pagination end-->
             </div>
         </div>
-        <!--Main content column start-->
+        <!--Main content column end-->
     </div>
 </section>
 <!--Main container end-->

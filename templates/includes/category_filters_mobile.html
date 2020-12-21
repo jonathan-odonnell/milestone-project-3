@@ -1,6 +1,6 @@
 <form>
     <div class="form-group form-group-filters-top">
-        <h4 class="text-capitalize mb-3">Brands</h4>
+        <h3 class="filter-headings text-capitalize">Brands</h3>
         {% for brand in filters.brands %}
         <div class="custom-control custom-checkbox mb-2">
             {% if selected_brands %}{% if brand in selected_brands %}
@@ -17,8 +17,8 @@
         </div>
         {% endfor %}
     </div>
-    <div class="form-group mt-4">
-        <h4 class="text-capitalize mb-3">Prices</h4>
+    <div class="form-group mb-0">
+        <h3 class="filter-headings text-capitalize">Prices</h3>
         {% for prices in filters.prices %}
         <div class="custom-control custom-radio mb-2">
             {% if selected_price %}{% if selected_price | int == loop.index %}
