@@ -605,6 +605,12 @@ section {
 
 /* Media Queries Start */
 
+@media(min-width: 576px) {
+    .slick-slide {
+        height: 15.5rem;
+    }
+}
+
 @media(min-width: 768px) {
     .card-img {
         height: 16rem;
