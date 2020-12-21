@@ -11,23 +11,15 @@
 }
 
 h1 {
-    font-size: 2.5rem;
-}
-
-h2 {
     font-size: 2rem;
 }
 
-h3 {
+h2 {
     font-size: 1.5rem;
 }
 
-h4 {
+h3 {
     font-size: 1rem;
-}
-
-strong {
-    font-weight: 800;
 }
 
 .headings i {
@@ -140,6 +132,10 @@ section {
     width: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.card-title {
+    letter-spacing: 1px;
 }
 
 /* Cards End */
@@ -349,13 +345,12 @@ section {
 }
 
 .jumbotron-heading {
-    margin-bottom: 3rem;
-    color: #fff;
     line-height: 1.5;
+    color: #fff;
 }
 
 .slick-slide {
-    height: 16rem;
+    height: 16.5rem;
 }
 
 .slick-prev:before,
@@ -618,10 +613,10 @@ section {
         height: 20rem;
     }
     .jumbotron-heading {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .slick-slide {
-        height: 23rem;
+        height: 20.5rem;
     }
     .featured-text {
         font-size: 1rem;
