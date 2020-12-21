@@ -509,7 +509,6 @@ section {
 
 .footer-wrapper {
     background-color: #1a1a1a;
-    padding: 30px 0;
 }
 
 .footer-headings {
@@ -517,11 +516,13 @@ section {
     margin-bottom: 0;
 }
 
-/* Code from https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
-
-.connect {
-    margin-left: calc(25% - 30px);
+.footer-paragraphs {
+    color: #fff;
+    margin-bottom: 0;
+    margin-top: 0.75rem;
 }
+
+/* Code from https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
 
 .footer-links li {
     color: #fff;
@@ -535,6 +536,10 @@ section {
 .footer-links li a:hover {
     color: #64a19d;
     text-decoration: none;
+}
+
+.social-media-heading {
+    padding-left: calc(25% - 25px);
 }
 
 .social-media-icons {
@@ -573,8 +578,7 @@ section {
     transform: scale(1.5);
 }
 
-.accordion .card,
-.accordion .card-header {
+.accordion-card, .accordion-card .card-header  {
     background-color: #1a1a1a;
     border: none;
 }
@@ -583,22 +587,16 @@ section {
     padding: 0;
 }
 
-.accordion .btn-link:hover {
+.accordion .btn:hover {
     text-decoration: none;
 }
 
-.btn-link i {
+.accordion i {
     margin-right: 20px;
 }
 
 .accordion-links {
-    padding: 0.75rem 60px;
-}
-
-.footer-paragraphs {
-    color: #fff;
-    margin-bottom: 0;
-    margin-top: 0.75rem;
+    padding: 0.75rem 38px;
 }
 
 /* Footer end */
@@ -644,9 +642,6 @@ section {
     }
     .product-headings {
         font-size: 1.5rem;
-    }
-    .footer-wrapper {
-        padding: 30px;
     }
 }
 
