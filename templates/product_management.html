@@ -1,82 +1,90 @@
-{% extends "base.html" %} {% block content %}
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
 <div class="container content-container">
-  <!--Heading Start-->
-  <div class="row no-gutters">
-    <div class="col-12">
-      <h1 class="text-center headings-top">{{ page_title }}</h1>
-    </div>
-  </div>
-  <!--Heading End-->
-  <div class="row no-gutters">
-    <div class="col-12 mb-3">
-      <div class="d-inline-block text-left">
-        <div class="dropdown">
-          <button
-            class="btn btn-sm btn-outline no-box-shadow dropdown-toggle"
-            type="button"
-            id="product-sort-by"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Sort By:
-          </button>
-          <div class="dropdown-menu" aria-labelledby="product-sort-by">
-            <button class="dropdown-item" type="button" value="a-to-z">Name (A - Z)</button>
-            <button class="dropdown-item" type="button" value="z-to-a">Name (Z - A)</button>
-            <button class="dropdown-item" type="button" value="cat_asc">Category (A - Z)</button>
-            <button class="dropdown-item" type="button" value="cat_desc">Category (Z - A)</button>
-          </div>
+    <!--Heading Start-->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <h1 class="text-center headings-top">{{ page_title }}</h1>
         </div>
-      </div>
-      <div class="d-inline-block float-right">
-        <a class="btn btn-sm no-box-shadow btn-outline" href="{{url_for('add_product')}}">
-          <i class="fas fa-plus fa-sm pr-1"></i>Add Product
-        </a>
-      </div>
     </div>
-    <div class="col-12">
-      <table class="table">
-        <thead class="table-green">
-          <tr>
-            <th scope="col">Product Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for product in products %}
-          <tr>
-            <td>{{product.name.title()}}</td>
-            <td>{{product.category.capitalize()}}</td>
-            <td>
-              <a
-                class="btn btn-sm"
-                href="{{url_for('edit_product', product_id=product._id)}}"
-              >
-                <i class="fas fa-edit fa-lg"></i>
-              </a>
-            </td>
-            <td>
-              <a
-                class="btn btn-sm"
-                href="{{url_for('delete_product', product_id=product._id)}}"
-              >
-                <i class="fas fa-trash fa-lg"></i>
-              </a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <!--Heading End-->
+    <!--Add product and sort by buttons start-->
+    <div class="row no-gutters">
+        <div class="col-12 mb-3">
+            <div class="d-inline-block text-left">
+                <!--Dropdown code is from https://getbootstrap.com/docs/4.5/components/dropdowns/-->
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline no-box-shadow dropdown-toggle" type="button"
+                        id="product-sort-by" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By:
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="product-sort-by">
+                        <button class="dropdown-item" type="button" value="a-to-z">Name (A - Z)</button>
+                        <button class="dropdown-item" type="button" value="z-to-a">Name (Z - A)</button>
+                        <button class="dropdown-item" type="button" value="cat_asc">Category (A - Z)</button>
+                        <button class="dropdown-item" type="button" value="cat_desc">Category (Z - A)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-inline-block float-right">
+                <a class="btn btn-sm no-box-shadow btn-outline" href="{{url_for('add_product')}}">
+                    <i class="fas fa-plus fa-sm pr-1"></i>Add Product
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row no-gutters mt-3">
-    <div class="col-12">{{ pagination.links }}</div>
-  </div>
+    <!--Add product and sort by buttons end-->
+    <!--Products table start. Code is from https://getbootstrap.com/docs/4.5/content/tables/-->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <table class="table mb-0">
+                <thead class="table-green">
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{product.name.title()}}</td>
+                        <td>{{product.category.capitalize()}}</td>
+                        <!--Edit icon is from https://fontawesome.com/icons/edit?style=solid. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
+                        <td>
+                            <a class="btn btn-sm" href="{{url_for('edit_product', product_id=product._id)}}">
+                                <i class="fas fa-edit fa-lg"></i>
+                            </a>
+                        </td>
+                        <!--Trash icon is from https://fontawesome.com/icons/trash?style=solid. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
+                        <td>
+                            <a class="btn btn-sm" href="{{url_for('delete_product', product_id=product._id)}}">
+                                <i class="fas fa-trash fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Products table end-->
+    <!--Paginantion start. Code is from https://pythonhosted.org/Flask-paginate/-->
+    <div class="row no-gutters">
+        <div class="col-12">{{ pagination.links }}</div>
+    </div>
+    <!--Pagination end-->
 </div>
+<!--Main content container end-->
 {% endblock %}
+<!--Content block end-->
+<!--Postload JS block start-->
 {% block postloadjs %}
+<!--Import product-management.js script-->
 <script src="/static/js/product-management.js"></script>
 {% endblock %}
+<!--Postload JS block end-->
