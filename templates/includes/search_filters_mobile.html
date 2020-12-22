@@ -1,6 +1,6 @@
 <form>
     <div class="form-group form-group-filters-top">
-        <h3 class="filter headings text-capitalize">Product Type</h3>
+        <h4 class="filter headings text-capitalize">Product Type</h4>
         {% for category in filters %}
         <div class="custom-control custom-checkbox mb-2">
             {% if selected_category %}{% if category.name in selected_category %}
@@ -18,7 +18,7 @@
         {% endfor %}
     </div>
     <div class="form-group mb-0">
-        <h3 class="filter headings text-capitalize">Prices</h3>
+        <h4 class="filter headings text-capitalize">Prices</h4>
         <div class="custom-control custom-radio mb-2">
             {% if selected_price %}{% if selected_price | int == 1 %}
             <input type="radio" class="custom-control-input" id="mobile-price1" value="1" name="price" checked />
