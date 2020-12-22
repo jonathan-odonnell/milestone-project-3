@@ -12,7 +12,7 @@
                 <img class="card-img product-img" src="{{product.image_url}}" alt="" />
             </div>
             <div class="col-12 col-lg-6 pr-lg-5 features">
-                <h3 class="headings">{{product.name}}</h3>
+                <h2 class="headings">{{product.name}}</h2>
                 <table class="table table-borderless features-table mb-0">
                     <tbody>
                         {% if product.colours %}
@@ -67,7 +67,7 @@
         <div class="container content-container">
             <div class="row no-gutters">
                 <div class="col-12">
-                    <h3 class="headings product-headings">Ratings & Reviews</h3>
+                    <h2 class="headings product-headings">Ratings & Reviews</h2>
                     <div class="row no-gutters">
                         <div class="col-12 col-md-6 pr-md-4 pr-lg-0">
                             <div class="row no-gutters progress-bars">
@@ -205,45 +205,45 @@
                     {% for review in reviews %} {% if loop.index < reviews|length %}
                     <div class="card review-card border-0">
                         <div class="card-body p-0">
-                            <div class="d-block d-md-inline-block">
-                                <h4 class="review-title mb-2">
-                                    {{review.review_title}}</h4>
-                                <div class="mb-2">
-                                    {% if review.overall_rating == 1 %}
-                                    <i class="fas fa-star yellow-star"></i>
-                                    {% elif review.overall_rating == 2 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% elif review.overall_rating == 3 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% elif review.overall_rating == 4 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% else %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
-                                    {% endif %}
+                            <h3 class="card-title text-transform-none">
+                                {% if current_user|lower == review.created_by|lower %}
+                                <div class="float-right">
+                                    <a class="btn py-0 pl-3 pr-2"
+                                        href="{{url_for('edit_review', review_id=review._id)}}"><i
+                                            class="far fa-edit"></i></a>
+                                    <a class="btn py-0 px-2"
+                                        href="{{url_for('delete_review', review_id=review._id)}}"><i
+                                            class="fas fa-trash"></i></a>
                                 </div>
+                                {% endif %}
+                                {{review.review_title}}</h3>
+                            <div class="mb-3">
+                                {% if review.overall_rating == 1 %}
+                                <i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 2 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 3 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 4 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% else %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
+                                {% endif %}
                             </div>
-                            {% if current_user|lower == review.created_by|lower %}
-                            <div class="float-right">
-                                <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
-                                        class="far fa-edit"></i></a>
-                                <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
-                                        class="fas fa-trash"></i></a>
-                            </div>
-                            {% endif %}
-                            <p class="mb-2">{{ review.review }}</p>
+                            <p>{{ review.review }}</p>
                             <p><small>Reviewed by {{review.created_by}} on {{review.date_added}}</small></p>
                             <div id="{{review._id}}" class="row no-gutters">
-                                <div class="col-6 text-center mb-0">
+                                <div class="col-6 text-center">
                                     <small><button class="btn btn-sm upvote py-0"><i
                                                 class="far fa-thumbs-up"></i></button><span>{% if review.up_vote %}{{review.up_vote}}{% else %}0{% endif %}</span></small>
                                 </div>
-                                <div class="col-6 text-center mb-0">
+                                <div class="col-6 text-center">
                                     <small><button class="btn btn-sm downvote py-0"><i
                                                 class="far fa-thumbs-down"></i></button><span>{% if review.down_vote%}{{review.down_vote}}{% else %}0{% endif %}</span></small>
                                 </div>
@@ -252,45 +252,42 @@
                     </div>
                     <hr class="my-4">
                     {% else %}
-                    <div class="card review-card border-0 mb-4">
+                    <div class="card review-card border-0">
                         <div class="card-body p-0">
-                            <div class="d-block d-md-inline-block">
-                                <h4 class="review-title mb-2">
-                                    {{review.review_title}}
-                                </h4>
-                                <div class="mb-2">
-                                    {% if review.overall_rating == 1 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i>
-                                    {% elif review.overall_rating == 2 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% elif review.overall_rating == 3 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% elif review.overall_rating == 4 %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
-                                    {% else %}
-                                    <i class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i
-                                        class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
-                                    {% endif %}
+                            <h3 class="card-title text-transform-none">
+                                {% if current_user|lower == review.created_by|lower %}
+                                <div class="float-right">
+                                    <a class="btn py-0 pl-3 pr-2"
+                                        href="{{url_for('edit_review', review_id=review._id)}}"><i
+                                            class="far fa-edit"></i></a>
+                                    <a class="btn py-0 px-2"
+                                        href="{{url_for('delete_review', review_id=review._id)}}"><i
+                                            class="fas fa-trash"></i></a>
                                 </div>
+                                {% endif %}
+                                {{review.review_title}}</h3>
+                            <div class="mb-3">
+                                {% if review.overall_rating == 1 %}
+                                <i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 2 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 3 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% elif review.overall_rating == 4 %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas fa-star yellow-star"></i>
+                                {% else %}
+                                <i class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i
+                                    class="fas fa-star yellow-star mr-1"></i><i class="fas yellow-star fa-star"></i>
+                                {% endif %}
                             </div>
-                            {% if current_user == review.created_by %}
-                            <div class="float-right">
-                                <a class="btn btn-review" href="{{url_for('edit_review', review_id=review._id)}}"><i
-                                        class="far fa-edit"></i></a>
-                                <a class="btn btn-review" href="{{url_for('delete_review', review_id=review._id)}}"><i
-                                        class="fas fa-trash"></i></a>
-                            </div>
-                            {% endif %}
-                            <p class="mb-2">{{ review.review }}</p>
-                            <p class="mb-3"><small>Reviewed by {{review.created_by}} on
-                                    {{review.date_added}}</small>
-                            </p>
-                            <div id="{{review._id}}" class="row no-gutters">
+                            <p>{{ review.review }}</p>
+                            <p><small>Reviewed by {{review.created_by}} on {{review.date_added}}</small></p>
+                            <div id="{{review._id}}" class="row no-gutters mb-3">
                                 <div class="col-6 text-center">
                                     <small><button class="btn btn-sm upvote py-0"><i
                                                 class="far fa-thumbs-up"></i></button><span>{% if review.up_vote %}{{review.up_vote}}{% else %}0{% endif %}</span></small>
@@ -298,7 +295,6 @@
                                 <div class="col-6 text-center">
                                     <small><button class="btn btn-sm downvote py-0"><i
                                                 class="far fa-thumbs-down"></i></button><span>{% if review.down_vote%}{{review.down_vote}}{% else %}0{% endif %}</span></small>
-
                                 </div>
                             </div>
                         </div>

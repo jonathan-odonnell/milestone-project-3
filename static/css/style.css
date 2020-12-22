@@ -132,6 +132,7 @@ section {
 
 .card-title {
     letter-spacing: 1px;
+    line-height: 1.5;
 }
 
 /* Cards End */
@@ -453,10 +454,6 @@ section {
 
 .review-card {
     background: #f7fcfc;
-}
-
-.review-title {
-    line-height: 1.5;
 }
 
 /* Review Details End */
