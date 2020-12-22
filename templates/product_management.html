@@ -6,23 +6,22 @@
       <h1 class="text-center headings-top">{{ page_title }}</h1>
     </div>
   </div>
-  <hr class="mt-0" />
   <!--Heading End-->
   <div class="row no-gutters">
     <div class="col-12 mb-3">
       <div class="d-inline-block text-left">
         <div class="dropdown">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            class="btn btn-sm btn-outline no-box-shadow dropdown-toggle"
             type="button"
-            id="product-filter"
+            id="product-sort-by"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Sort By
+            Sort By:
           </button>
-          <div class="dropdown-menu" aria-labelledby="product-filter">
+          <div class="dropdown-menu" aria-labelledby="product-sort-by">
             <button class="dropdown-item" type="button" value="a-to-z">Name (A - Z)</button>
             <button class="dropdown-item" type="button" value="z-to-a">Name (Z - A)</button>
             <button class="dropdown-item" type="button" value="cat_asc">Category (A - Z)</button>
@@ -31,8 +30,8 @@
         </div>
       </div>
       <div class="d-inline-block float-right">
-        <a class="btn btn-secondary" href="{{url_for('add_product')}}">
-          <i class="fas fa-plus pr-1"></i>Add Product
+        <a class="btn btn-sm no-box-shadow btn-outline" href="{{url_for('add_product')}}">
+          <i class="fas fa-plus fa-sm pr-1"></i>Add Product
         </a>
       </div>
     </div>
@@ -56,7 +55,7 @@
                 class="btn btn-sm"
                 href="{{url_for('edit_product', product_id=product._id)}}"
               >
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-edit fa-lg"></i>
               </a>
             </td>
             <td>
@@ -64,7 +63,7 @@
                 class="btn btn-sm"
                 href="{{url_for('delete_product', product_id=product._id)}}"
               >
-                <i class="fas fa-trash"></i>
+                <i class="fas fa-trash fa-lg"></i>
               </a>
             </td>
           </tr>

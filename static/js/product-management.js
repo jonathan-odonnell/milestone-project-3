@@ -20,14 +20,14 @@ $(document).ready(function () {
     }
 })
 
-/* Sets the sort search parameter when a link in the sort by dropdown is
+/* Sets the sort search parameter when a link in the product sort by dropdown is
 clicked and reloads the page. Current url code is from https://
 developer.mozilla.org/en-US/docs/Web/API/Window/location. Search query sort
 parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/URL/
 searchParams url replace code is from https://developer.mozilla.org/en-US/
 docs/Web/API/Location/replace */
 
-$('#product-filter').next().children().on('click', function () {
+$('#product-sort-by').next().children().on('click', function () {
     let currentUrl = new URL(window.location);
     let sort = $(this).val();
     currentUrl.searchParams.set("sort", sort);
