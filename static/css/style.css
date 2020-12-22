@@ -57,19 +57,16 @@ section {
 
 /* Buttons Start */
 
-.btn-primary {
-    border: 2px solid #1a1a1a;
-}
-
-.btn-primary:hover {
-    color: #1a1a1a;
-    background-color: #fff;
-}
-
-.btn-green {
+.btn {
     color: #fff;
     background-color: #64a19d;
     border: 2px solid #64a19d;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #548b87;
+    border: 2px solid #548b87;
 }
 
 .btn-outline {
@@ -81,14 +78,6 @@ section {
     color: #fff;
     background-color: #64a19d;
     border: 2px solid #64a19d;
-}
-
-.btn-green:hover,
-.btn-green:active,
-.btn-green:focus {
-    color: #fff;
-    background-color: #548b87;
-    border: 2px solid #548b87;
 }
 
 .filters i {
@@ -367,8 +356,8 @@ section {
     padding: 0.75rem
 }
 
-.newsletter,
-.newsletter:focus {
+#newsletter-sign-up input,
+#newsletter-sign-up input:focus {
     border: 2px solid #64a19d;
 }
 
