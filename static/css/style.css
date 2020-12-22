@@ -363,6 +363,10 @@ section {
     margin-bottom: 30px;
 }
 
+.featured-card .card-body {
+    padding: 0.75rem
+}
+
 .newsletter,
 .newsletter:focus {
     border: 2px solid #64a19d;
@@ -625,7 +629,7 @@ section {
         height: 20rem;
     }
     .slick-slide {
-        height: 20.5rem;
+        height: 20rem;
     }
     .features-table th {
         min-width: 200px;
