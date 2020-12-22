@@ -19,6 +19,10 @@ h2 {
 }
 
 h3 {
+    font-size: 1.125rem;
+}
+
+h4 {
     font-size: 1rem;
 }
 
@@ -359,10 +363,6 @@ section {
     margin-bottom: 30px;
 }
 
-.featured-text {
-    font-size: 0.875rem;
-}
-
 .newsletter,
 .newsletter:focus {
     border: 2px solid #64a19d;
@@ -607,20 +607,25 @@ section {
 }
 
 @media(min-width: 768px) {
+    h1 {
+    font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
     .card-img {
         height: 16rem;
     }
     .product-img {
         height: 20rem;
     }
-    .jumbotron-heading {
-        font-size: 2.5rem;
-    }
     .slick-slide {
         height: 20.5rem;
-    }
-    .featured-text {
-        font-size: 1rem;
     }
     .features-table th {
         min-width: 200px;
@@ -636,9 +641,6 @@ section {
     }
     .reviews-headings {
       min-height: 1.5rem;
-    }
-    .product-headings {
-        font-size: 1.5rem;
     }
 }
 

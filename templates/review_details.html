@@ -248,7 +248,7 @@
                     {% if loop.index < reviews|length %}
                     <div class="card review-card border-0">
                         <div class="card-body p-0">
-                            <h3 class="card-title text-transform-none">
+                            <h4 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.created_by|lower %}
                                 <div class="float-right">
@@ -266,7 +266,7 @@
                                 <!--Edit and delete review buttons end-->
                                 <!--Review title-->
                                 {{review.review_title}}
-                            </h3>
+                            </h4>
                             <!--Overall rating start. Code for the star icons is from https://fontawesome.com/icons/star?style=solid-->
                             <div class="mb-3">
                                 {% if review.overall_rating == 1 %}
@@ -335,7 +335,7 @@
                     {% else %}
                     <div class="card review-card border-0 mb-4">
                         <div class="card-body p-0">
-                            <h3 class="card-title text-transform-none">
+                            <h4 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.created_by|lower %}
                                 <div class="float-right">
@@ -353,7 +353,7 @@
                                 <!--Edit and delete review buttons end-->
                                 <!--Review title-->
                                 {{review.review_title}}
-                            </h3>
+                            </h4>
                             <!--Overall rating start. Code for the star icons is from https://fontawesome.com/icons/star?style=solid-->
                             <div class="mb-3">
                                 {% if review.overall_rating == 1 %}
