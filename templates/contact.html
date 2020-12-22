@@ -1,41 +1,55 @@
-{% extends "base.html" %} {% block content %}
+<!--Extends base template-->
+{% extends "base.html" %} 
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
 <section class="container-fluid content-container-top px-0">
+    <!--Hero image start-->
     <div class="row no-gutters">
         <div class="col-12 contact-img">
             <div class="overlay"></div>
             <h1 class="contact-heading text-center mb-0">{{page_title}}</h1>
         </div>
     </div>
+    <!--Hero image end-->
+    <!--Contact details and contact form start-->
     <div class="container content-container">
         <div class="row no-gutters">
-            <div class="col-12 col-lg-4 justify-content-center mb-3 mb-lg-0 pr-lg-4">
+            <!--Contact details start-->
+            <div class="col-12 col-lg-4 mb-3 mb-lg-0 pr-lg-4">
                 <div class="info-item-container">
-                    <h4><i class="fas fa-map-marked-alt info-icons"></i>Address</h4>
+                    <!--Code for icon is from https://fontawesome.com/icons/map-marked-alt?style=solid-->
+                    <h3><i class="fas fa-map-marked-alt info-icons"></i>Address</h3>
                     <p class="info-paragraph">
-                        111 Queen St W, Toronto, ON M5H 2G4, Canada.
+                        101 Portland St, Manchester, 
+                        <br class="d-none d-lg-block">M1 6DF, United Kingdom.
                     </p>
                 </div>
                 <div class="info-item-container">
-                    <h4><i class="fas fa-envelope info-icons"></i>Email</h4>
+                    <!--Code for icon is from https://fontawesome.com/icons/envelope?style=solid-->
+                    <h3><i class="fas fa-envelope info-icons"></i>Email</h3>
                     <p class="info-paragraph">info@techreviews.com</p>
                 </div>
                 <div class="info-item-container">
-                    <h4><i class="fas fa-mobile-alt info-icons"></i>Phone</h4>
-                    <p class="info-paragraph">+1 5589 55488</p>
+                    <!--Code for icon is from https://fontawesome.com/icons/mobile-alt?style=solid-->
+                    <h3><i class="fas fa-mobile-alt info-icons"></i>Phone</h3>
+                    <p class="info-paragraph">+44 161 222 8748</p>
                 </div>
             </div>
-            <div class="col-12 col-lg-8">
+            <!--Contact details end-->
+            <!--Contact form start-->
+            <div class="col-12 col-lg-8 my-auto">
                 <form id="contact-form">
                     <div class="form-group text-center mt-lg-3 mb-0">
                         {% if session.user %}
-                        <input type="text" class="form-control mb-4" name="name" placeholder="Name"
+                        <input type="text" class="form-control mb-4" name="name" placeholder="Name" aria-label="Name"
                             value="{{session.user.first_name}} {{session.user.last_name}}" required />
                         {% else %}
                         <input type="text" class="form-control mb-4" name="name" placeholder="Name" aria-label="Name"
                             required />
                         {% endif %}
                         {% if session.user %}
-                        <input type="email" class="form-control mb-4" name="email" placeholder="Email Address"
+                        <input type="email" class="form-control mb-4" name="email" placeholder="Email Address" aria-label="Email Address"
                             value="{{session.user.email}}" required />
                         {% else %}
                         <input type="email" class="form-control mb-4" name="email" placeholder="Email Address"
@@ -49,11 +63,18 @@
                     </div>
                 </form>
             </div>
+            <!--Contact form end-->
         </div>
     </div>
+    <!--Contact details and contact form end-->
 </section>
+<!--Main content container end-->
 {% endblock %}
+<!--Content block end-->
+<!--Postload JS block start-->
 {% block postloadjs %}
+<!--Import contact.js script-->
 <script src="{{ url_for('static', filename='js/contact.js') }}">
 </script>
 {% endblock %}
+<!--Postload JS block end-->
