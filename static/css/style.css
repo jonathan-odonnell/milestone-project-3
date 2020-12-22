@@ -57,13 +57,13 @@ section {
 
 /* Buttons Start */
 
-.btn {
+.btn-green {
     color: #fff;
     background-color: #64a19d;
     border: 2px solid #64a19d;
 }
 
-.btn:hover {
+.btn-green:hover {
     color: #fff;
     background-color: #548b87;
     border: 2px solid #548b87;
@@ -80,23 +80,11 @@ section {
     border: 2px solid #64a19d;
 }
 
-.filters i {
-    font-size: 10px;
-}
-
-.form-btn {
+.btn-wide {
     min-width: 165px;
 }
 
 /* Buttons End */
-
-/* Borders Start */
-
-.border-bottom {
-    border-bottom: 1px solid #64a19d !important;
-}
-
-/* Borders Bottom */
 
 /* Content Containers and Wrappers */
 
@@ -381,6 +369,10 @@ section {
 
 .filter-headings {
     letter-spacing: 1px;
+}
+
+.filters i {
+    font-size: 10px;
 }
 
 .review-img {
