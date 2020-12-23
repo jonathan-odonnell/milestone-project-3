@@ -43,6 +43,7 @@ a, a:hover {
 
 .text-transform-none {
     text-transform: none;
+    letter-spacing: 1px;
 }
 
 /* Text Styling End */
@@ -120,34 +121,8 @@ section {
 
 /* Forms Start */
 
-.form-subheadings {
-    text-transform: none;
-    font-size: 1.2em;
-}
-
-.form-divider {
-    margin: 0 0 20px;
-}
-
-.form-group-overall-ratings {
-    height: 70px;
-    margin-top: 0;
-}
-
-.feature-ratings {
-    margin-bottom: 10px;
-}
-
-.form-group-feature-ratings {
-    height: 40px;
-}
-
-.ratings-label {
-    margin-bottom: 0;
-}
-
-.feature-ratings-text {
-    margin-bottom: 20px;
+.form-group-ratings {
+    height: 48px;
 }
 
 .yellow-star {
@@ -181,12 +156,11 @@ section {
 
 .rating:not(:checked) > label {
     float: right;
-    font-size: 0.875rem;
-    width: 1.5rem;
     overflow: hidden;
     cursor: pointer;
     color: #ccc;
-    margin: 5px 0;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
 }
 .rating > input:checked ~ label {
     color: #ffc700;
