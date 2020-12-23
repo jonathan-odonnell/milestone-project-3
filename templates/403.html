@@ -1,12 +1,20 @@
-{% extends "base.html" %} {% block content %}
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
 <section class="container content-container d-flex align-items-center">
     <div class="row no-gutters w-100">
+        <!--Error message start-->
         <div class="col-12 text-center">
             <h1 class="headings-top display-1">403</h1>
             <h2 class="headings">access denied</h2>
             <p>Sorry, you do not have permission to access this page.</p>
             <a class="btn btn-green mt-4" href="{{url_for('index')}}">Back to Home</a>
         </div>
+        <!--Error message end-->
     </div>
 </section>
+<!--Main content container end-->
 {% endblock %}
+<!--Content block end-->
