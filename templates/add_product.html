@@ -13,103 +13,132 @@
     <!--Page heading end-->
     <!--Add product form start. Code for form styling is from https://bootswatch.com/lux/-->
     <div class="row no-gutters">
-        <div class="col-12 col-md-10 col-lg-8 mx-auto">
-            <form action="{{url_for('add_product')}}" method="POST">
-                <div id="product-details">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name"
-                            aria-describedby="name" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select class="custom-select" id="category" name="category" aria-describedby="category"
-                            required>
-                            <!--Disabled option value is https://stackoverflow.com/questions/42430408/html-option-selected-disabled-cause-select-required-not-working-->
-                            <option selected disabled value="">Select a category</option>
-                            {% for category in categories %}
-                            <option value="{{category.name}}">{{category.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <!--Code to prepend the £ sign on to the start of the form is from https://getbootstrap.com/docs/4.5/components/input-group/ -->
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <!--Code for min, max and step attributes is from https://getbootstrap.com/docs/4.5/components/forms/#range-->
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">£</span>
-                            <input type="number" min="0" max="5000" step="0.01" class="form-control" id="price"
-                                name="price" placeholder="Enter product price" aria-describedby="price" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="brand">Brand</label>
-                        <input type="text" class="form-control" id="brand" name="brand"
-                            placeholder="Enter product brand" aria-describedby="brand" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image URL</label>
-                        <input type="text" class="form-control" id="image" name="image_url"
-                            placeholder="Enter product image URL" aria-describedby="image" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="image-description">Image Description</label>
-                        <input type="text" class="form-control" id="image-description" name="image_alt"
-                            placeholder="Enter image description" aria-describedby="image-description" required />
-                    </div>
-                    <div class="form-group form-group-button text-center">
-                        <button class="btn btn-green" type="button">Next</button>
+        <form class="col-12 col-md-10 col-lg-8 mx-auto" action="{{url_for('add_product')}}" method="POST">
+            <!--Product Details start-->
+            <div id="product-details">
+                <!--Product Name start-->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name"
+                        required />
+                </div>
+                <!--Product Name end-->
+                <!--Category start-->
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="custom-select" id="category" name="category" required>
+                        <!--Disabled option value is https://stackoverflow.com/questions/42430408/html-option-selected-disabled-cause-select-required-not-working-->
+                        <option selected disabled value="">Select a category</option>
+                        {% for category in categories %}
+                        <option value="{{category.name}}">{{category.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!--Category end-->
+                <!--Price start. Code to prepend the £ sign on to the start of the form is from https://getbootstrap.com/docs/4.5/components/input-group/ -->
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <!--Code for min, max and step attributes is from https://getbootstrap.com/docs/4.5/components/forms/#range-->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">£</span>
+                        <input type="number" min="0" max="5000" step="0.01" class="form-control" id="price" name="price"
+                            placeholder="Enter product price" required />
                     </div>
                 </div>
-                <div id="product-features" class="d-none">
-                    <div class="form-group">
-                        <label for="colours">Colours</label>
-                        <input type="text" class="form-control" id="colours" name="colours"
-                            placeholder="Enter feature details" aria-describedby="colours" />
-                    </div>
-                    <div class="form-group">
-                        <label for="capacity">Capacity</label>
-                        <input type="text" class="form-control" id="capacity" name="capacity"
-                            placeholder="Enter feature details" aria-describedby="capacity" />
-                    </div>
-                    <div class="form-group">
-                        <label for="display">Display</label>
-                        <input type="text" class="form-control" id="display" name="display"
-                            placeholder="Enter feature details" aria-describedby="display" />
-                    </div>
-                    <div class="form-group">
-                        <label for="processor-memory-graphics">Processor, Memory and Graphics</label>
-                        <input type="text" class="form-control" id="processor-memory-graphics"
-                            name="processor_memory_graphics" placeholder="Enter feature details"
-                            aria-describedby="process-memory-graphics" />
-                    </div>
-                    <div class="form-group">
-                        <label for="camera-video">Camera and Video</label>
-                        <input type="text" class="form-control" id="camera-video" name="camera_video"
-                            placeholder="Enter feature details" aria-describedby="camera-video" />
-                    </div>
-                    <div class="form-group">
-                        <label for="battery">Battery Life</label>
-                        <input type="text" class="form-control" id="battery" name="battery"
-                            placeholder="Enter feature details" aria-describedby="battery" />
-                    </div>
-                    <div class="form-group">
-                        <label for="connectivity">Connectivity</label>
-                        <input type="text" class="form-control" id="connectivity" name="connectivity"
-                            placeholder="Enter feature details" aria-describedby="connectivity" />
-                    </div>
-                    <div class="form-group">
-                        <label for="additional-features">Additional Features</label>
-                        <input type="text" class="form-control" id="additional-features" name="additional-features"
-                            placeholder="Enter feature details" aria-describedby="additional-features" />
-                    </div>
-                    <div class="form-group form-group-button text-center">
-                        <button class="btn btn-green btn-wide mr-3" type="button">Back</button>
-                        <button class="btn btn-green btn-wide" type="submit">Add Product</button>
-                    </div>
+                <!--Price end-->
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" class="form-control" id="brand" name="brand" placeholder="Enter product brand"
+                        required />
                 </div>
-            </form>
-        </div>
+                <!--Image URL start-->
+                <div class="form-group">
+                    <label for="image">Image URL</label>
+                    <input type="text" class="form-control" id="image" name="image_url"
+                        placeholder="Enter product image URL" required />
+                </div>
+                <!--Image URL end-->
+                <!--Image description start-->
+                <div class="form-group">
+                    <label for="imageDescription">Image Description</label>
+                    <input type="text" class="form-control" id="imageDescription" name="image_alt"
+                        placeholder="Enter image description" required />
+                </div>
+                <!--Image description end-->
+                <!--Next button start-->
+                <div class="form-group form-group-button text-center">
+                    <button class="btn btn-green" type="button">Next</button>
+                </div>
+                <!--Next button end-->
+            </div>
+            <!--Product Details end-->
+            <!--Product Features start-->
+            <div id="product-features" class="d-none">
+                <!--Colours start-->
+                <div class="form-group">
+                    <label for="colours">Colours</label>
+                    <input type="text" class="form-control" id="colours" name="colours"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Colours end-->
+                <!--Capacity start-->
+                <div class="form-group">
+                    <label for="capacity">Capacity</label>
+                    <input type="text" class="form-control" id="capacity" name="capacity"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Capacity end-->
+                <!--Display start-->
+                <div class="form-group">
+                    <label for="display">Display</label>
+                    <input type="text" class="form-control" id="display" name="display"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Display end-->
+                <!--Processor, memory and graphics start-->
+                <div class="form-group">
+                    <label for="processorMemoryGraphics">Processor, Memory and Graphics</label>
+                    <input type="text" class="form-control" id="processorMemoryGraphics"
+                        name="processor_memory_graphics" placeholder="Enter feature details" />
+                </div>
+                <!--Processor, memory and graphics end-->
+                <!--Camera and video start-->
+                <div class="form-group">
+                    <label for="cameraVideo">Camera and Video</label>
+                    <input type="text" class="form-control" id="cameraVideo" name="camera_video"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Camera and video end-->
+                <!--Battery life start-->
+                <div class="form-group">
+                    <label for="battery">Battery Life</label>
+                    <input type="text" class="form-control" id="battery" name="battery"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Battery life end-->
+                <!--Connectivity start-->
+                <div class="form-group">
+                    <label for="connectivity">Connectivity</label>
+                    <input type="text" class="form-control" id="connectivity" name="connectivity"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Connectivity end-->
+                <!--Additional features start-->
+                <div class="form-group">
+                    <label for="additionalFeatures">Additional Features</label>
+                    <input type="text" class="form-control" id="additionalFeatures" name="additional-features"
+                        placeholder="Enter feature details" />
+                </div>
+                <!--Additional features end-->
+                <!--Back and add product buttons start-->
+                <div class="form-group form-group-button text-center">
+                    <button class="btn btn-green btn-wide mr-3" type="button">Back</button>
+                    <button class="btn btn-green btn-wide" type="submit">Add Product</button>
+                </div>
+                <!--Back and add product buttons end-->
+            </div>
+            <!--Product features end-->
+        </form>
     </div>
     <!--Add product form end-->
 </div>
