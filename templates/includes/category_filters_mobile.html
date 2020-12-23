@@ -1,34 +1,36 @@
-<form>
-    <div class="form-group form-group-filters-top">
-        <h4 class="filter-headings text-capitalize">Brands</h4>
-        {% for brand in filters.brands %}
-        <div class="custom-control custom-checkbox mb-2">
-            {% if selected_brands %}{% if brand in selected_brands %}
-            <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}" name="brands"
-                checked />
-            {% else %}
-            <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}"
-                name="brands" />
-            {% endif %} {% else %}
-            <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}"
-                name="brands" />
-            {% endif %}
-            <label class="custom-control-label" for="mobile-brand{{loop.index}}">{{brand}}</label>
-        </div>
-        {% endfor %}
+<!--Brand checkboxes start. CSS classes for checkbox styling is from https://bootswatch.com/lux/-->
+<div class="form-group form-group-filters-top">
+    <h4 class="filter-headings text-capitalize">Brands</h4>
+    {% for brand in filters.brands %}
+    <div class="custom-control custom-checkbox mb-2">
+        {% if selected_brands %}{% if brand in selected_brands %}
+        <input type="checkbox" class="custom-control-input" id="brand{{loop.index}}" value="{{brand}}" name="brands"
+            checked />
+        {% else %}
+        <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}"
+            name="brands" />
+        {% endif %} {% else %}
+        <input type="checkbox" class="custom-control-input" id="mobile-brand{{loop.index}}" value="{{brand}}"
+            name="brands" />
+        {% endif %}
+        <label class="custom-control-label" for="mobile-brand{{loop.index}}">{{brand}}</label>
     </div>
-    <div class="form-group mb-0">
-        <h4 class="filter-headings text-capitalize">Prices</h4>
-        {% for prices in filters.prices %}
-        <div class="custom-control custom-radio mb-2">
-            {% if selected_price %}{% if selected_price | int == loop.index %}
-            <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}"
-                name="price" checked />
-            {% endif %}{% endif %}
-            <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}"
-                name="price" />
-            <label class="custom-control-label" for="mobile-price{{loop.index}}">{{prices}}</label>
-        </div>
-        {% endfor %}
+    {% endfor %}
+</div>
+<!--Brand checkboxes end-->
+<!--Price radio buttons start. CSS classes for radio button styling is from https://bootswatch.com/lux/-->
+<div class="form-group mb-0">
+    <h4 class="filter-headings text-capitalize">Prices</h4>
+    {% for prices in filters.prices %}
+    <div class="custom-control custom-radio mb-2">
+        {% if selected_price %}{% if selected_price | int == loop.index %}
+        <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}"
+            name="price" checked />
+        {% endif %}{% endif %}
+        <input type="radio" class="custom-control-input" id="mobile-price{{loop.index}}" value="{{loop.index}}"
+            name="price" />
+        <label class="custom-control-label" for="mobile-price{{loop.index}}">{{prices}}</label>
     </div>
-</form>
+    {% endfor %}
+</div>
+<!--Price radio buttons end-->

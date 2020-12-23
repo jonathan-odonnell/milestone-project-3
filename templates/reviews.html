@@ -4,7 +4,7 @@
 <section class="container-fluid content-container-top d-flex px-0 pb-0">
     <div class="row no-gutters">
         <!--Filters fidebar start-->
-        <div class="d-none d-md-block col-md-3 wrapper-grey p-4">
+        <form class="d-none d-md-block col-md-3 wrapper-grey p-4">
             <!--Filters form start-->
             <!--Includes the relevant filters form. Code is from
                     https://stackoverflow.com/questions/22860085/
@@ -23,7 +23,7 @@
             </button>
             <!--Rest button end-->
             <!--Filters form end-->
-        </div>
+        </form>
         <!--Filters sidebar end-->
         <!--Main content column start-->
         <div class="col-12 col-md-9">
@@ -56,20 +56,24 @@
                                 </div>
                                 <div class="modal-body">
                                     <!--Filters form start-->
-                                    <!--Includes the relevant filters form. Code is from https://stackoverflow.com/questions/22860085/how-do-i-include-a-html-file-in-a-jinja2-template-->
-                                    {% if page_title == "Reviews" %}
-                                    {% include 'includes/search_filters_mobile.html' %}
-                                    {% else %}
-                                    {% include 'includes/category_filters_mobile.html' %}
-                                    {% endif %}
+                                    <form>
+                                        <!--Includes the relevant filters form. Code is from https://stackoverflow.com/questions/22860085/how-do-i-include-a-html-file-in-a-jinja2-template-->
+                                        {% if page_title == "Reviews" %}
+                                        {% include 'includes/search_filters_mobile.html' %}
+                                        {% else %}
+                                        {% include 'includes/category_filters_mobile.html' %}
+                                        {% endif %}
+                                    </form>
                                     <!--Filters form end-->
                                 </div>
                                 <div class="modal-footer">
                                     <!--Reset button start-->
-                                    <button type="button" class="btn btn-sm btn-outline no-box-shadow clear-filters">Reset</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-outline no-box-shadow clear-filters">Reset</button>
                                     <!--Reset button end-->
                                     <!--Apply button start-->
-                                    <button type="button" class="btn btn-sm btn-green no-box-shadow filter">Apply</button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-green no-box-shadow filter">Apply</button>
                                     <!--Apply button end-->
                                 </div>
                             </div>
