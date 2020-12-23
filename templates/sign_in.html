@@ -1,54 +1,52 @@
-{% extends "base.html" %} {% block content %}
-    <section class="container content-container-top d-flex align-items-center">
-            <!-- Sign in form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
-            <div class="row no-gutters w-100 my-5">
-                <div class="col-12">
-                    <div class="sign-in-container mx-md-auto my-3 p-3 border">
-                        <h3 class="text-center my-3">{{ page_title }}</h3>
-                        <form method="POST" class="needs-validation" action="{{ url_for('sign_in') }}" novalidate>
-                            <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
-                            <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    aria-describedby="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-                            </div>
-                            <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
-                            <div class="form-group mt-4">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
-                            </div>
-                            <div class="form-group my-4 text-center">
-                                <button type="submit" class="btn btn-green">Sign In</button>
-                            </div>
-                            <p class="text-center mt-4">
-                                New customer? <br>You can sign up for an account
-                                <a href="{{url_for('sign_up')}}">here.</a>
-                            </p>
-                            <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-                            <div class="form-group d-none">
-                                <input type="hidden" name="next" value="{{ request.referrer }}" />
-                            </div>
-                        </form>
-                    </div>
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
+<section class="container content-container-top d-flex align-items-center">
+    <div class="row no-gutters w-100 my-5">
+        <!--Sign in form column start-->
+        <div class="col-12 sign-in-col mx-auto py-3 p-3 border">
+            <!--Heading-->
+            <h3 class="text-center my-3">{{ page_title }}</h3>
+            <!--Sign in form start-->
+            <form method="POST" action="{{ url_for('sign_in') }}">
+                <!--Email address start. Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                 </div>
-                <!-- Sign in form end -->
-            </div>
-    </section>
+                <!--Email address end-->
+                <!--Password start. Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
+                <div class="form-group mt-4">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
+                </div>
+                <!--Password end-->
+                <!--Sign in button start-->
+                <div class="form-group my-4 text-center">
+                    <button type="submit" class="btn btn-green no-box-shadow">Sign In</button>
+                </div>
+                <!--Sign in button end-->
+                <!--Register text and link start-->
+                <p class="text-center mt-4">
+                    New customer? <br>You can sign up for an account
+                    <a href="{{url_for('sign_up')}}">here.</a>
+                </p>
+                <!--Register text and link end-->
+                <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+                <div class="form-group d-none">
+                    <input type="hidden" name="next" value="{{ request.referrer }}" />
+                </div>
+                <!--Next hidden field end-->
+            </form>
+            <!--Sign in form end-->
+        </div>
+        <!--Sign in form column start-->
+    </div>
+</section>
+<!--Main content container end-->
 {% endblock %}
-{% block postloadjs %}
-<script>
-    $('input').on('change', function () {
-        if ($(this).is(":valid")) {
-            $(this).removeClass('is-invalid').addClass('is-valid')
-        } else {
-            $(this).removeClass('is-valid').addClass('is-invalid')
-        }
-    })
-    $('.needs-validation').submit(function(e) {
-        if ($(this)[0].checkValidity() === false) {
-            e.preventDefault()
-            $(this).addClass('was-validated').removeClass('needs-validation')
-        }
-    })
-</script>
-{% endblock %}
+<!--Content block end-->
