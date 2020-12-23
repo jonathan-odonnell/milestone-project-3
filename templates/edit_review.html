@@ -1,546 +1,277 @@
-{% extends "base.html" %} {% block content %}
-<section>
-  <div class="container content-container">
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
+<section class="container content-container">
+    <!--Page title start-->
     <div class="row no-gutters">
-      <div class="col">
-        <h1 class="text-center headings-top">{{ page_title }}</h1>
-      </div>
+        <div class="col">
+            <h1 class="text-center headings-top">{{ page_title }}</h1>
+        </div>
     </div>
+    <!--Page title end-->
+    <!--Edit review form start-->
     <div class="row no-gutters">
-      <form
-        action="{{url_for('edit_review', review_id=review._id)}}"
-        method="POST"
-        class="col-12 col-md-8 offset-md-2"
-      >
-        <div class="form-group form-group-overall-ratings mb-0">
-          <label class="ratings-label" for="overall_rating"
-            ><h4 class="form-subheadings">Overall Rating</h4></label
-          >
-          <div id="overall_rating" class="rating">
-            {% if review.overall_rating == 5 %}
-            <input
-              id="overall_rating_5"
-              type="radio"
-              name="overall_rating"
-              value="5"
-              checked
-            />
-            {% else %}
-            <input
-              id="overall_rating_5"
-              type="radio"
-              name="overall_rating"
-              value="5"
-            />
-            {% endif %}
-            <label for="overall_rating_5"><i class="fas fa-star"></i></label>
-            {% if review.overall_rating == 4 %}
-            <input
-              id="overall_rating_4"
-              type="radio"
-              name="overall_rating"
-              value="4"
-              checked
-            />
-            {% else %}
-            <input
-              id="overall_rating_4"
-              type="radio"
-              name="overall_rating"
-              value="4"
-            />
-            {% endif %}
-            <label for="overall_rating_4"><i class="fas fa-star"></i></label>
-            {% if review.overall_rating == 3 %}
-            <input
-              id="overall_rating_3"
-              type="radio"
-              name="overall_rating"
-              value="3"
-              checked
-            />
-            {% else %}
-            <input
-              id="overall_rating_3"
-              type="radio"
-              name="overall_rating"
-              value="3"
-            />
-            {% endif %}
-            <label for="overall_rating_3"><i class="fas fa-star"></i></label>
-            {% if review.overall_rating == 2 %}
-            <input
-              id="overall_rating_2"
-              type="radio"
-              name="overall_rating"
-              value="2"
-              checked
-            />
-            {% else %}
-            <input
-              id="overall_rating_2"
-              type="radio"
-              name="overall_rating"
-              value="2"
-            />
-            {% endif %}
-            <label for="overall_rating_2"><i class="fas fa-star"></i></label>
-            {% if review.overall_rating == 1 %}
-            <input
-              id="overall_rating_1"
-              type="radio"
-              name="overall_rating"
-              value="1"
-              checked
-            />
-            {% else %}
-            <input
-              id="overall_rating_1"
-              type="radio"
-              name="overall_rating"
-              value="1"
-            />
-            {% endif %}
-            <label for="overall_rating_1"><i class="fas fa-star"></i></label>
-          </div>
-        </div>
-        <hr class="form-divider">
-        <h4 class="form-subheadings feature-ratings-text">Feature Ratings</h4>
-        <div class="row no-gutters feature-ratings">
-          <div class="col-6">
-            <div class="form-group form-group-feature-ratings">
-              <label class="ratings-label" for="performance_rating"
-                >Performance</label
-              >
-              <div id="performance_rating" class="rating">
-                {% if review.performance_rating == 5 %}
-                <input
-                  id="performance_rating_5"
-                  type="radio"
-                  name="performance_rating"
-                  value="5"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="performance_rating_5"
-                  type="radio"
-                  name="performance_rating"
-                  value="5"
-                />
-                {% endif %}
-                <label for="performance_rating_5"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.performance_rating == 4 %}
-                <input
-                  id="performance_rating_4"
-                  type="radio"
-                  name="performance_rating"
-                  value="4"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="performance_rating_4"
-                  type="radio"
-                  name="performance_rating"
-                  value="4"
-                />
-                {% endif %}
-                <label for="performance_rating_4"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.performance_rating == 3 %}
-                <input
-                  id="performance_rating_3"
-                  type="radio"
-                  name="performance_rating"
-                  value="3"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="performance_rating_3"
-                  type="radio"
-                  name="performance_rating"
-                  value="3"
-                />
-                {% endif %}
-                <label for="performance_rating_3"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.performance_rating == 2 %}
-                <input
-                  id="performance_rating_2"
-                  type="radio"
-                  name="performance_rating"
-                  value="2"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="performance_rating_2"
-                  type="radio"
-                  name="performance_rating"
-                  value="2"
-                />
-                {% endif %}
-                <label for="performance_rating_2"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.performance_rating == 1 %}
-                <input
-                  id="performance_rating_1"
-                  type="radio"
-                  name="performance_rating"
-                  value="1"
-                />
-                {% else %}
-                <input
-                  id="performance_rating_1"
-                  type="radio"
-                  name="performance_rating"
-                  value="1"
-                />
-                {% endif %}
-                <label for="performance_rating_1"
-                  ><i class="fas fa-star"></i
-                ></label>
-              </div>
+        <form action="{{url_for('edit_review', review_id=review._id)}}" method="POST"
+            class="col-12 col-md-8 offset-md-2">
+            <!--Overall Ratings start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
+            <div class="form-group form-group-ratings">
+                <label for="overallRating">
+                    <h4 class="text-transform-none">Overall Rating</h4>
+                </label>
+                <div id="overallRating" class="rating">
+                    {% if review.overall_rating == 5 %}
+                    <input id="overallRating5" type="radio" name="overallRating" value="5" checked />
+                    {% else %}
+                    <input id="overallRating5" type="radio" name="overall_rating" value="5" />
+                    {% endif %}
+                    <label for="overallRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5
+                            Stars</span></label>
+                    {% if review.overall_rating == 4 %}
+                    <input id="overallRating4" type="radio" name="overall_rating" value="4" checked />
+                    {% else %}
+                    <input id="overallRating4" type="radio" name="overall_rating" value="4" />
+                    {% endif %}
+                    <label for="overallRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4
+                            Stars</span></label>
+                    {% if review.overall_rating == 3 %}
+                    <input id="overallRating3" type="radio" name="overall_rating" value="3" checked />
+                    {% else %}
+                    <input id="overallRating3" type="radio" name="overall_rating" value="3" />
+                    {% endif %}
+                    <label for="overallRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
+                            Stars</span></label>
+                    {% if review.overall_rating == 2 %}
+                    <input id="overallRating2" type="radio" name="overall_rating" value="2" checked />
+                    {% else %}
+                    <input id="overallRating2" type="radio" name="overall_rating" value="2" />
+                    {% endif %}
+                    <label for="overallRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2
+                            Stars</span></label>
+                    {% if review.overall_rating == 1 %}
+                    <input id="overallRating1" type="radio" name="overall_rating" value="1" checked />
+                    {% else %}
+                    <input id="overallRating1" type="radio" name="overall_rating" value="1" />
+                    {% endif %}
+                    <label for="overallRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1
+                            Star</span></label>
+                </div>
             </div>
-            <div class="form-group form-group-feature-ratings">
-              <label class="ratings-label" for="usability_rating"
-                >Ease of Use</label
-              >
-              <div id="usability_rating" class="rating">
-                {% if review.usability_rating == 5 %}
-                <input
-                  id="usability_rating_5"
-                  type="radio"
-                  name="usability_rating"
-                  value="5"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="usability_rating_5"
-                  type="radio"
-                  name="usability_rating"
-                  value="5"
-                />
-                {% endif %}
-                <label for="usability_rating_5"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.usability_rating == 4 %}
-                <input
-                  id="busability_rating_4"
-                  type="radio"
-                  name="usability_rating"
-                  value="4"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="usability_rating_4"
-                  type="radio"
-                  name="usability_rating"
-                  value="4"
-                />
-                {% endif %}
-                <label for="usability_rating_4"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.usability_rating == 3 %}
-                <input
-                  id="usability_rating_3"
-                  type="radio"
-                  name="usability_rating"
-                  value="3"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="usability_rating_3"
-                  type="radio"
-                  name="usability_rating"
-                  value="3"
-                />
-                {% endif %}
-                <label for="usability_rating_3"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.usability_rating == 2 %}
-                <input
-                  id="usability_rating_2"
-                  type="radio"
-                  name="usability_rating"
-                  value="2"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="usability_rating_2"
-                  type="radio"
-                  name="usability_rating"
-                  value="2"
-                />
-                {% endif %}
-                <label for="usability_rating_2"
-                  ><i class="fas fa-star"></i
-                ></label>
-                {% if review.usability_rating == 1 %}
-                <input
-                  id="usability_rating_1"
-                  type="radio"
-                  name="usability_rating"
-                  value="1"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="usability_rating_1"
-                  type="radio"
-                  name="usability_rating"
-                  value="1"
-                />
-                {% endif %}
-                <label for="usability_rating_1"
-                  ><i class="fas fa-star"></i
-                ></label>
-              </div>
+            <!--Overall Ratings end-->
+            <!--Section divider-->
+            <hr class="my-3">
+            <!--Feature ratings heading-->
+            <h4 class="text-transform-none mb-3">Feature Ratings</h4>
+            <div class="row no-gutters feature-ratings">
+                <div class="col-6">
+                    <!--Performance rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
+                    <div class="form-group form-group-ratings">
+                        <label class="text-transform-none" for="performanceRating">Performance</label>
+                        <div id="performanceRating" class="rating">
+                            {% if review.performance_rating == 5 %}
+                            <input id="performanceRating5" type="radio" name="performance_rating" value="5" checked />
+                            {% else %}
+                            <input id="performanceRating5" type="radio" name="performance_rating" value="5" />
+                            {% endif %}
+                            <label for="performanceRating5"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">5 Stars</span></label>
+                            {% if review.performance_rating == 4 %}
+                            <input id="performanceRating4" type="radio" name="performance_rating" value="4" checked />
+                            {% else %}
+                            <input id="performanceRating4" type="radio" name="performance_rating" value="4" />
+                            {% endif %}
+                            <label for="performanceRating4"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">4 Stars</span></label>
+                            {% if review.performance_rating == 3 %}
+                            <input id="performanceRating3" type="radio" name="performance_rating" value="3" checked />
+                            {% else %}
+                            <input id="performanceRating3" type="radio" name="performance_rating" value="3" />
+                            {% endif %}
+                            <label for="performanceRating3"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">3 Stars</span></label>
+                            {% if review.performance_rating == 2 %}
+                            <input id="performanceRating2" type="radio" name="performance_rating" value="2" checked />
+                            {% else %}
+                            <input id="performanceRating2" type="radio" name="performance_rating" value="2" />
+                            {% endif %}
+                            <label for="performanceRating2"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">2 Stars</span></label>
+                            {% if review.performance_rating == 1 %}
+                            <input id="performanceRating1" type="radio" name="performance_rating" value="1" />
+                            {% else %}
+                            <input id="performanceRating1" type="radio" name="performance_rating" value="1" />
+                            {% endif %}
+                            <label for="performanceRating1"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">1 Star</span></label>
+                        </div>
+                    </div>
+                    <!--Performance rating end-->
+                    <!--Ease of use rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
+                    <div class="form-group form-group-ratings mb-0">
+                        <label class="text-transform-none" for="usabilityRating">Ease of Use</label>
+                        <div id="usabilityRating" class="rating">
+                            {% if review.usability_rating == 5 %}
+                            <input id="usabilityRating5" type="radio" name="usability_rating" value="5" checked />
+                            {% else %}
+                            <input id="usabilityRating5" type="radio" name="usability_rating" value="5" />
+                            {% endif %}
+                            <label for="usabilityRating5"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">5 Stars</span></label>
+                            {% if review.usability_rating == 4 %}
+                            <input id="busabilityRating4" type="radio" name="usability_rating" value="4" checked />
+                            {% else %}
+                            <input id="usabilityRating4" type="radio" name="usability_rating" value="4" />
+                            {% endif %}
+                            <label for="usabilityRating4"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">4 Stars</span></label>
+                            {% if review.usability_rating == 3 %}
+                            <input id="usabilityRating3" type="radio" name="usability_rating" value="3" checked />
+                            {% else %}
+                            <input id="usabilityRating3" type="radio" name="usability_rating" value="3" />
+                            {% endif %}
+                            <label for="usabilityRating3"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">3 Stars</span></label>
+                            {% if review.usability_rating == 2 %}
+                            <input id="usabilityRating2" type="radio" name="usability_rating" value="2" checked />
+                            {% else %}
+                            <input id="usabilityRating2" type="radio" name="usability_rating" value="2" />
+                            {% endif %}
+                            <label for="usabilityRating2"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">2 Stars</span></label>
+                            {% if review.usability_rating == 1 %}
+                            <input id="usabilityRating1" type="radio" name="usability_rating" value="1" checked />
+                            {% else %}
+                            <input id="usabilityRating1" type="radio" name="usability_rating" value="1" />
+                            {% endif %}
+                            <label for="usabilityRating1"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">1 Star</span></label>
+                        </div>
+                    </div>
+                    <!--Ease of use rating end-->
+                </div>
+                <div class="col-6">
+                    <!--Quality rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
+                    <div class="form-group form-group-ratings">
+                        <label class="text-transform-none" for="quality_rating">Quality</label>
+                        <div id="qualityRating" class="rating">
+                            {% if review.quality_rating == 5 %}
+                            <input id="qualityRating5" type="radio" name="quality_rating" value="5" checked />
+                            {% else %}
+                            <input id="qualityRating5" type="radio" name="quality_rating" value="5" />
+                            {% endif %}
+                            <label for="qualityRating5"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">5 Stars</span></label>
+                            {% if review.quality_rating == 4 %}
+                            <input id="qualityRating4" type="radio" name="quality_rating" value="4" checked />
+                            {% else %}
+                            <input id="qualityRating4" type="radio" name="quality_rating" value="4" />
+                            {% endif %}
+                            <label for="quality_rating_4"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">4 Stars</span></label>
+                            {% if review.quality_rating == 3 %}
+                            <input id="quality_rating_3" type="radio" name="quality_rating" value="3" checked />
+                            {% else %}
+                            <input id="qualityRating3" type="radio" name="quality_rating" value="3" />
+                            {% endif %}
+                            <label for="qualityRating3"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">3 Stars</span></label>
+                            {% if review.quality_rating == 2 %}
+                            <input id="quality_rating_2" type="radio" name="quality_rating" value="2" checked />
+                            {% else %}
+                            <input id="qualityRating2" type="radio" name="quality_rating" value="2" />
+                            {% endif %}
+                            <label for="qualityRating2"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">2 Stars</span></label>
+                            {% if review.quality_rating == 1 %}
+                            <input id="qualityRating1" type="radio" name="quality_rating" value="1" checked />
+                            {% else %}
+                            <input id="qualityRating1" type="radio" name="quality_rating" value="1" />
+                            {% endif %}
+                            <label for="qualityRating1"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">1 Star</span></label>
+                        </div>
+                    </div>
+                    <!--Quality rating end-->
+                    <!--Value for Money rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
+                    <div class="form-group form-group-ratings mb-0">
+                        <label class="text-transform-none" for="priceRating">Value for Money</label>
+                        <div id="priceRating" class="rating">
+                            {% if review.price_rating == 5 %}
+                            <input id="priceRating5" type="radio" name="price_rating" value="5" checked />
+                            {% else %}
+                            <input id="priceRating5" type="radio" name="price_rating" value="5" />
+                            {% endif %}
+                            <label for="priceRating5"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">5 Stars</span></label>
+                            {% if review.price_rating == 4 %}
+                            <input id="priceRating4" type="radio" name="price_rating" value="4" checked />
+                            {% else %}
+                            <input id="priceRating4" type="radio" name="price_rating" value="4" />
+                            {% endif %}
+                            <label for="priceRating4"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">4 Stars</span></label>
+                            {% if review.price_rating == 3 %}
+                            <input id="priceRating3" type="radio" name="price_rating" value="3" checked />
+                            {% else %}
+                            <input id="priceRating3" type="radio" name="price_rating" value="3" />
+                            {% endif %}
+                            <label for="priceRating3"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">3 Stars</span></label>
+                            {% if review.price_rating == 2 %}
+                            <input id="priceRating2" type="radio" name="rating" value="2" checked />
+                            {% else %}
+                            <input id="priceRating2" type="radio" name="rating" value="2" />
+                            {% endif %}
+                            <label for="priceRating2"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">2 Stars</span></label>
+                            {% if review.price_rating == 1 %}
+                            <input id="priceRating1" type="radio" name="price_rating" value="1" checked />
+                            {% else %}
+                            <input id="priceRating1" type="radio" name="price_rating" value="1" />
+                            {% endif %}
+                            <label for="priceRating1"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">1 Star</span></label>
+                        </div>
+                    </div>
+                    <!--Value for money rating start-->
+                </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group form-group-feature-ratings">
-              <label class="ratings-label" for="quality_rating"
-                >Quality</label
-              >
-              <div id="quality_rating" class="rating">
-                {% if review.quality_rating == 5 %}
-                <input
-                  id="quality_rating_5"
-                  type="radio"
-                  name="quality_rating"
-                  value="5"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="quality_rating_5"
-                  type="radio"
-                  name="quality_rating"
-                  value="5"
-                />
-                {% endif %}
-                <label for="quality_rating_5"><i class="fas fa-star"></i></label>
-                {% if review.quality_rating == 4 %}
-                <input
-                  id="quality_rating_4"
-                  type="radio"
-                  name="quality_rating"
-                  value="4"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="quality_rating_4"
-                  type="radio"
-                  name="quality_rating"
-                  value="4"
-                />
-                {% endif %}
-                <label for="quality_rating_4"><i class="fas fa-star"></i></label>
-                {% if review.quality_rating == 3 %}
-                <input
-                  id="quality_rating_3"
-                  type="radio"
-                  name="quality_rating"
-                  value="3"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="quality_rating_3"
-                  type="radio"
-                  name="quality_rating"
-                  value="3"
-                />
-                {% endif %}
-                <label for="quality_rating_3"><i class="fas fa-star"></i></label>
-                {% if review.quality_rating == 2 %}
-                <input
-                  id="quality_rating_2"
-                  type="radio"
-                  name="quality_rating"
-                  value="2"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="quality_rating_2"
-                  type="radio"
-                  name="quality_rating"
-                  value="2"
-                />
-                {% endif %}
-                <label for="quality_rating_2"><i class="fas fa-star"></i></label>
-                {% if review.quality_rating == 1 %}
-                <input
-                  id="quality_rating_1"
-                  type="radio"
-                  name="quality_rating"
-                  value="1"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="quality_rating_1"
-                  type="radio"
-                  name="quality_rating"
-                  value="1"
-                />
-                {% endif %}
-                <label for="quality_rating_1"><i class="fas fa-star"></i></label>
-              </div>
+            <!--Section divider-->
+            <hr class="my-3">
+            <!--Review title start-->
+            <div class="form-group">
+                <label for="review_title">
+                    <h4 class="form-subheadings">Review Title</h4>
+                </label>
+                <input type="text" class="form-control" id="review_title" name="review_title"
+                    value="{{review.review_title}}" aria-describedby="review_title" required />
             </div>
-            <div class="form-group form-group-feature-ratings">
-              <label class="ratings-label" for="price_rating">Value for Money</label>
-              <div id="price_rating" class="rating">
-                {% if review.price_rating == 5 %}
-                <input
-                  id="price_rating_5"
-                  type="radio"
-                  name="price_rating"
-                  value="5"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="price_rating_5"
-                  type="radio"
-                  name="price_rating"
-                  value="5"
-                />
-                {% endif %}
-                <label for="price_rating_5"><i class="fas fa-star"></i></label>
-                {% if review.price_rating == 4 %}
-                <input
-                  id="price_rating_4"
-                  type="radio"
-                  name="price_rating"
-                  value="4"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="price_rating_4"
-                  type="radio"
-                  name="price_rating"
-                  value="4"
-                />
-                {% endif %}
-                <label for="price_rating_4"><i class="fas fa-star"></i></label>
-                {% if review.price_rating == 3 %}
-                <input
-                  id="price_rating_3"
-                  type="radio"
-                  name="price_rating"
-                  value="3"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="price_rating_3"
-                  type="radio"
-                  name="price_rating"
-                  value="3"
-                />
-                {% endif %}
-                <label for="cprice_rating_3"><i class="fas fa-star"></i></label>
-                {% if review.price_rating == 2 %}
-                <input
-                  id="price_rating_2"
-                  type="radio"
-                  name="rating"
-                  value="2"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="price_rating_2"
-                  type="radio"
-                  name="rating"
-                  value="2"
-                />
-                {% endif %}
-                <label for="price_rating_2"><i class="fas fa-star"></i></label>
-                {% if review.price_rating == 1 %}
-                <input
-                  id="price_rating_1"
-                  type="radio"
-                  name="price_rating"
-                  value="1"
-                  checked
-                />
-                {% else %}
-                <input
-                  id="price_rating_1"
-                  type="radio"
-                  name="price_rating"
-                  value="1"
-                />
-                {% endif %}
-                <label for="price_rating_1"><i class="fas fa-star"></i></label>
-              </div>
+            <!--Review title end-->
+            <!--Review detail start-->
+            <div class="form-group">
+                <label for="review">
+                    <h4 class="form-subheadings">Your Review</h4>
+                </label>
+                <textarea class="form-control" id="review" name="review" rows="5" aria-describedby="review" required>
+                {{review.review}}
+                </textarea>
             </div>
-          </div>
-        </div>
-        <hr class="form-divider">
-        <div class="feature-ratings-border"></div>
-        <div class="form-group">
-          <label for="review_title"
-            ><h4 class="form-subheadings">Review Title</h4></label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="review_title"
-            name="review_title"
-            value="{{review.review_title}}"
-            aria-describedby="review_title"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="review"
-            ><h4 class="form-subheadings">Your Review</h4></label
-          >
-          <textarea
-            class="form-control"
-            id="review"
-            name="review"
-            rows="5"
-            aria-describedby="review"
-            required
-          >
-{{review.review}}</textarea
-          >
-        </div>
-        <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-        <div class="form-group d-none">
-            <input
-                type="hidden"
-                name="next"
-                value="{{ request.referrer }}"
-            />
-        </div>
-        <div class="form-group form-group-button text-center mt-4">
-          <button type="submit" class="btn btn-green">Update Review</button>
-        </div>
-      </form>
+            <!--Review detail end-->
+            <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+            <div class="form-group d-none">
+                <input type="hidden" name="next" value="{{ request.referrer }}" />
+            </div>
+            <!--Next hidden field end-->
+            <!--Submit button start-->
+            <div class="form-group form-group-button text-center mt-4">
+                <button type="submit" class="btn btn-green">Update Review</button>
+            </div>
+            <!--Submit button end-->
+        </form>
     </div>
-  </div>
+    <!--Edit review form end-->
 </section>
+<!--Main content container end-->
 {% endblock %}
+<!--Content block end-->
