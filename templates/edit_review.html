@@ -241,11 +241,10 @@
             <hr class="my-3">
             <!--Review title start-->
             <div class="form-group">
-                <label for="review_title">
+                <label for="reviewTitle">
                     <h4 class="form-subheadings">Review Title</h4>
                 </label>
-                <input type="text" class="form-control" id="review_title" name="review_title"
-                    value="{{review.review_title}}" aria-describedby="review_title" required />
+                <input type="text" class="form-control" id="review_title" name="reviewTitle" value="{{review.review_title}}" required />
             </div>
             <!--Review title end-->
             <!--Review detail start-->
@@ -253,7 +252,7 @@
                 <label for="review">
                     <h4 class="form-subheadings">Your Review</h4>
                 </label>
-                <textarea class="form-control" id="review" name="review" rows="5" aria-describedby="review" required>
+                <textarea class="form-control" id="review" name="review" rows="5" required>
                 {{review.review}}
                 </textarea>
             </div>
