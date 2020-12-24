@@ -222,8 +222,12 @@ section {
     text-transform: uppercase;
 }
 
-.navbar .dropdown-item {
+.navbar .dropdown-item, .navbar-dark .navbar-nav .nav-link.show {
     color: #64a19d;
+}
+ 
+.navbar .dropdown-item.active {
+    color: #fff;
 }
 
 .navbar .dropdown-item:hover {
@@ -617,6 +621,10 @@ section {
         font-size: .765625rem;
         text-transform: none;
         color: #1a1a1a;
+    }
+    .navbar .dropdown-item.active {
+        color: #1a1a1a;
+        background-color: #fff;
     }
     .navbar .dropdown-item:hover {
         color: #fff;

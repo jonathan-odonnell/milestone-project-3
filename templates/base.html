@@ -32,7 +32,7 @@
                     src="{{ url_for('static', filename='images/logo.png') }}" alt="Tech Reviews logo"></a>
             <a class="btn p-2 d-lg-none" data-toggle="collapse" href="#search" role="button" aria-expanded="false"
                 aria-controls="search">
-                <i class="fas fa-search fa-lg"></i>
+                <i class="fas fa-search fa-lg" aria-hidden="true"></i><span class="sr-only">Search</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="search px-5 d-none d-lg-flex flex-fill" action="{{ url_for('reviews') }}" method="GET">
@@ -43,7 +43,7 @@
                             <div class="input-group-text p-0">
                                 <button class="btn btn-green py-0 px-3 w-100 h-100" type="submit">
                                     <!--Search icon code is from https://fontawesome.com/icons/search?style=solid-->
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-search" aria-hidden="true"></i>
                                     <span class="sr-only">Search</span>
                                 </button>
                             </div>
@@ -66,11 +66,27 @@
                     {% if session.user.user_type == "admin" %}
                     {% if page_title == "Product Management" %}
                     <li class="nav-item active d-lg-none">
-                        <a class="nav-link" href="{{ url_for('product_management') }}">Product Management</a>
+                        <a class="nav-link" href="{{ url_for('product_management') }}">Product Management
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                     {% else %}
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('product_management') }}">Product Management
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% else %}
+                    {% if page_title == "Account" %}
+                    <li class="nav-item active d-lg-none">
+                        <a class="nav-link" href="{{ url_for('account') }}">Account
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="{{ url_for('account') }}">Account
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -155,19 +171,23 @@
                             aria-expanded="false">
                             <div class="text-center">
                                 <!--Search icon code is from https://fontawesome.com/icons/search?style=solid-->
-                                <i class="fas fa-user fa-lg"></i>
-                                <span class="sr-only">User</span>
+                                <i class="fas fa-user fa-lg" aria-hidden="true"></i>
+                                <span class="sr-only">User Options</span>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-options">
                             {% if session.user %}
                             {% if session.user.user_type == "admin" %}
-                            <a href="{{ url_for('product_management') }}" class="dropdown-item">Product
+                            <a href="{{ url_for('product_management') }}" class="dropdown-item">Product Management
                                 {% if page_title == "Product Management" %}
                                 Management<span class="sr-only">(current)</span>
                                 {% endif %}
                             </a>
-                            {% endif %}
+                            {% else %}
+                            <a href="url_for('account')" class="dropdown-item">Account</a>
+                            {% if page_title == "Account" %}
+                                Management<span class="sr-only">(current)</span>
+                                {% endif %}{% endif %}
                             <a href="{{ url_for('logout') }}" class="dropdown-item">Sign Out</a>
                             {% else %}
                             <a href="{{ url_for('sign_up') }}" class="dropdown-item">Register
@@ -195,7 +215,7 @@
                             <div class="input-group-text p-0">
                                 <button class="btn btn-green py-0 px-3 w-100 h-100" type="submit">
                                     <!--Search icon code is from https://fontawesome.com/icons/search?style=solid-->
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-search" aria-hidden="true"></i>
                                     <span class="sr-only">Search</span>
                                 </button>
                             </div>
@@ -278,9 +298,11 @@
                                 <li>
                                     <a href="{{ url_for('reviews', category='Accessories') }}">Accessories</a>
                                 </li>
+                                {% if session.user and session.user.user_type == "standard"%}
                                 <li>
-                                    <a href="#">My Account</a>
+                                    <a href="url_for('account')">Account</a>
                                 </li>
+                                {% endif %}
                                 <li>
                                     <a href="{{ url_for('contact') }}">Contact Us</a>
                                 </li>
@@ -333,12 +355,12 @@
                         <div class="card accordion-card">
                             <div class="card-header" id="navLinksHeading">
                                 <div class="mb-0">
-                                    <button class="btn px-0" type="button"
-                                        data-toggle="collapse" data-target="#navLinksCollapse" aria-expanded="false"
+                                    <button class="btn px-0" type="button" data-toggle="collapse"
+                                        data-target="#navLinksCollapse" aria-expanded="false"
                                         aria-controls="navLinksCollapse">
                                         <h4 class="footer-headings">
                                             <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
-                                            <i class="fas fa-plus"></i>Links
+                                            <i class="fas fa-plus" aria-hidden="true"></i>Links
                                             <span class="sr-only">Plus</span>
                                         </h4>
                                     </button>
@@ -366,9 +388,11 @@
                                                 <a
                                                     href="{{ url_for('reviews', category='Accessories') }}">Accessories</a>
                                             </li>
+                                            {% if session.user and session.user.user_type == "standard"%}
                                             <li>
-                                                <a href="#">My Account</a>
+                                                <a href="url_for('account')">Account</a>
                                             </li>
+                                            {% endif %}
                                             <li>
                                                 <a href="{{ url_for('contact') }}">Contact Us</a>
                                             </li>
@@ -382,12 +406,12 @@
                         <div class="card accordion-card">
                             <div class="card-header" id="headingTwo">
                                 <div class="mb-0">
-                                    <button class="btn px-0"
-                                        type="button" data-toggle="collapse" data-target="#socialLinksCollapse"
-                                        aria-expanded="false" aria-controls="socialLinksCollapse">
+                                    <button class="btn px-0" type="button" data-toggle="collapse"
+                                        data-target="#socialLinksCollapse" aria-expanded="false"
+                                        aria-controls="socialLinksCollapse">
                                         <h4 class="footer-headings">
                                             <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
-                                            <i class="fas fa-plus"></i>Connect With Us
+                                            <i class="fas fa-plus" aria-hidden="true"></i>Connect With Us
                                             <span class="sr-only">Plus</span>
                                         </h4>
                                     </button>
