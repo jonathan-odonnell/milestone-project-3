@@ -12,20 +12,20 @@ def create_user_session(user):
     return session_file
 
 
-def paginate_products(products, offset, per_page):
+def paginate_items(items, offset, per_page):
     """
     Sets the pagination perameters. Code is from https://gist.github.com/
     mozillazg/69fb40067ae6d80386e10e105e6803c9
     """
-    return products[offset: offset + per_page]
+    return items[offset: offset + per_page]
 
 
-def paginate(products, page, per_page):
+def paginate(items, page, per_page):
     """
-    Paginates the products. Code is from https://gist.github.com/
+    Paginates the items. Code is from https://gist.github.com/
     mozillazg/69fb40067ae6d80386e10e105e6803c9
     """
-    total = len(products)
+    total = len(items)
     return Pagination(
         page=page,
         per_page=per_page,
@@ -57,7 +57,7 @@ def get_price_range(category, value):
     return price_file[category][value]
 
 
-def search(query):
+def search(query, category):
     # Genrates the get products search query
     query_file = {}
 
@@ -70,7 +70,7 @@ def search(query):
 
     if "price" in query:
         query_file["price"] = get_price_range(
-            query['category'], int(query['price']))
+            category, int(query['price']))
 
     if "brands" in query:
         brands = query['brands'].split(",")
@@ -92,7 +92,8 @@ def sort_items(sort=None):
                 ("name", 1)], "price-asc": [("price", 1), ("name", 1)],
                 "price-desc": [("price", -1), ("name", 1)], "rating": [
                 ("overall_rating", -1), ("name", 1)], "cat_asc": [("category",
-                1)], "cat_desc": [("category", -1)]}
+                1)], "cat_desc": [("category", -1)], "a-to-z": [("name",
+                1)], "z-to-a": [("name", -1)]}
     if sort:
         return sort_file[sort]
 

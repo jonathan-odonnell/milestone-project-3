@@ -9,7 +9,7 @@ from bson.decimal128 import Decimal128
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 from utils import (add_ratings, create_user_session, delete_ratings,
-                   edit_ratings, paginate, paginate_products,
+                   edit_ratings, paginate, paginate_items,
                    product_ratings_query, search, sort_items, star_rating,
                    user_ratings_query)
 
@@ -95,7 +95,7 @@ def reviews(category="All"):
     if category != "All":
         search_params['categories'] = category
 
-    query = search(search_params)
+    query = search(search_params, category)
 
     # Sets the page title
     page_title = category
@@ -134,7 +134,7 @@ def reviews(category="All"):
     """
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=6)
-    pagination_products = paginate_products(products, offset, per_page)
+    pagination_products = paginate_items(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
     """
@@ -386,7 +386,7 @@ def account():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=10)
-    pagination_reviews = paginate_products(reviews, offset, per_page)
+    pagination_reviews = paginate_items(reviews, offset, per_page)
     pagination = paginate(reviews, page, per_page)
 
     # Renders the account.html template.
@@ -433,7 +433,7 @@ def product_management():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page', per_page=10)
-    pagination_products = paginate_products(products, offset, per_page)
+    pagination_products = paginate_items(products, offset, per_page)
     pagination = paginate(products, page, per_page)
 
     # Renders the product_management.html template.
