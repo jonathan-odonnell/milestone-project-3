@@ -25,12 +25,13 @@ $(document).ready(function () {
     });
 });
 
+// Checks the email address entered in the newsletter sign up form is valid, posts it to the /newsletter url and dynamically updates the HTML with a response once a success status has been returned. Code is from https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity, https://stackoverflow.com/questions/25881204/how-to-use-jquery-post-method-to-submit-form-values, https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post and https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224
+
 $('#newsletter-sign-up .btn').on('click', function (e) {
     e.preventDefault()
     if ($('#newsletter-sign-up')[0].reportValidity() == true) {
-        let email = $("input[name='email']").val()
-        $.post("/newsletter", { "email": email }).done(function () {
-            $('.newsletter-heading').html('<p class="lead">Thanks for signing up to our newsletter</h2>')
+        $.post("/newsletter", $("#newsletter-sign-up").serialize()).done(function () {
+            $('.newsletter-heading').html('<p>Thanks for signing up to our newsletter</p>')
             $('.newsletter-heading').siblings('.col-12').remove()
             $('.newsletter-heading').removeClass('subheadings').addClass('my-5')
         });
