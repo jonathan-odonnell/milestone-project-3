@@ -282,13 +282,19 @@ def sign_in():
                 If the user exists, checks the hashed password matches the
                 password entered by the user and add the user's details to the
                 session cookie. Adds a message informing the user that the sign
-                in was successful and redirects to the previous page. Code
+                in was successful and redirects standard users to their account
+                and admins to the product management page. Code
                 for message categories is from https://
                 flask.palletsprojects.com/en/1.1.x/patterns/flashing/
                 """
                 session["user"] = create_user_session(existing_user)
                 flash("Login Successful", "success")
-                return redirect(request.form.get("next"))
+
+                if existing_user['user_type'] == 'admin':
+                    return redirect(url_for('product_management'))
+
+                else:
+                    return redirect(url_for('account'))
 
             else:
                 """
@@ -404,8 +410,8 @@ def account():
 @admin_required
 def product_management():
     """
-    Gets the sort_by argument from the query string. Code is from https://
-    www.kite.com/python/answers/
+    Gets the sort_by search perameter from the query string. Code is from
+    https://www.kite.com/python/answers/
     how-to-get-parameters-from-a-url-using-flask-in-python
     """
     sort_by = request.args.get("sort")
