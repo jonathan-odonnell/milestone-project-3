@@ -377,7 +377,7 @@ def sign_up():
     return render_template("sign_up.html", page_title="Sign Up")
 
 
-@app.route("/account/")
+@app.route("/account")
 @login_required
 def account():
     """
@@ -454,8 +454,8 @@ def product_management():
         pagination=pagination)
 
 
-@app.route("/logout")
-def logout():
+@app.route("/sign_out")
+def sign_out():
     """
     Removes the session cookie containing the user's details, adds a message
     informing the user that they have been successfully signed out and
@@ -467,7 +467,7 @@ def logout():
     return redirect(url_for('sign_in'))
 
 
-@app.route("/reviews/add_review/", methods=["GET", "POST"])
+@app.route("/add_review", methods=["GET", "POST"])
 @login_required
 def add_review():
     if request.method == 'POST':

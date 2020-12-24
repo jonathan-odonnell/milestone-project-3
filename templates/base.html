@@ -105,7 +105,7 @@
                     {% endif %}
                     {% endif %}
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                        <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
                     </li>
                     {% else %}
                     {% if page_title == "Sign Up" %}
@@ -192,15 +192,15 @@
                             {% if session.user.user_type == "admin" %}
                             <a href="{{ url_for('product_management') }}" class="dropdown-item">Product Management
                                 {% if page_title == "Product Management" %}
-                                Management<span class="sr-only">(current)</span>
+                                <span class="sr-only">(current)</span>
                                 {% endif %}
                             </a>
                             {% else %}
                             <a href="url_for('account')" class="dropdown-item">Account</a>
                             {% if page_title == "Account" %}
-                                Management<span class="sr-only">(current)</span>
+                                <span class="sr-only">(current)</span>
                                 {% endif %}{% endif %}
-                            <a href="{{ url_for('logout') }}" class="dropdown-item">Sign Out</a>
+                            <a href="{{ url_for('sign_out') }}" class="dropdown-item">Sign Out</a>
                             {% else %}
                             <a href="{{ url_for('sign_up') }}" class="dropdown-item">Register
                                 {% if page_title == "Sign Up" %}
