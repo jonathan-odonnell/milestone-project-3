@@ -1,6 +1,6 @@
-/* Sets the sort by dropdown button as the value of the sort search parameters
-if the value is not null. Current url code is from https://
-developer.mozilla.org/en-US/docs/Web/API/Window/location and search query sort
+/* Sets the sort by dropdown button HTML as the value of the sort search
+parameters if the value is not null. Current URL code is from https://
+developer.mozilla.org/en-US/docs/Web/API/Window/location and https://developer.mozilla.org/en-US/docs/Web/API/URL, and search query sort
 parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/URL/
 searchParams */
 
@@ -20,11 +20,11 @@ $(document).ready(function () {
     }
 })
 
-/* Sets the sort search parameter when a link in the product sort by dropdown is
-clicked and reloads the page. Current url code is from https://
-developer.mozilla.org/en-US/docs/Web/API/Window/location. Search query sort
-parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/URL/
-searchParams url replace code is from https://developer.mozilla.org/en-US/
+/*  Sets the sort search parameter as the value of the link in the product sort
+by dropdown that has been clicked and reloads the page Current URL code is from
+https:// developer.mozilla.org/en-US/docs/Web/API/Window/location. Search query
+sort parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/
+URL/searchParams URL and https://developer.mozilla.org/en-US/docs/Web/API/URL, and replace code is from https://developer.mozilla.org/en-US/
 docs/Web/API/Location/replace */
 
 $('#product-sort-by').next().children().on('click', function () {
