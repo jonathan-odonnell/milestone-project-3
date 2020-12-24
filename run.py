@@ -86,9 +86,11 @@ def newsletter():
 @app.route("/reviews/<category>")
 def reviews(category="All"):
     """
-    Gets the search parameters from the url, converts them to a dictionary,
+    Gets the search parameters from the URL, converts them to a dictionary,
     adds the category if the category is not equal to all and generates the
-    search query.
+    search query. Code for search perameters is from
+    https://www.kite.com/python/answers/
+    how-to-get-parameters-from-a-url-using-flask-in-python
     """
     search_params = request.args.to_dict()
 
@@ -343,9 +345,9 @@ def sign_up():
             already exist.
             """
             sign_up = {
-                "first_name": request.form.get("first_name").lower(),
-                "last_name": request.form.get("last_name").lower(),
-                "email": request.form.get("email").lower(),
+                "first_name": request.form.get("first_name"),
+                "last_name": request.form.get("last_name"),
+                "email": request.form.get("email"),
                 "password": generate_password_hash(
                     request.form.get("password")),
                 "user_type": "standard"
@@ -410,7 +412,7 @@ def account():
 @admin_required
 def product_management():
     """
-    Gets the sort_by search perameter from the query string. Code is from
+    Gets the sort_by search perameter from the URL. Code is from
     https://www.kite.com/python/answers/
     how-to-get-parameters-from-a-url-using-flask-in-python
     """
@@ -592,7 +594,7 @@ def edit_review(review_id):
 
     if user is None:
         """
-        Returns aststus of 404 if no user is returned. Code is
+        Returns a status of 404 if no user is returned. Code is
         from https://flask.palletsprojects.com/en/1.1.x/patterns
         /errorpages/
         """
