@@ -28,7 +28,7 @@ $(".filter").on("click", function () {
     let currentUrl = new URL(window.location);
     let selectedCategories = [];
     let selectedBrands = [];
-    $("input[name='category']:checked").each(function () {
+    $(this).closest("form").find("input[name='category']:checked").each(function () {
         selectedCategories.push($(this).val());
     });
     let categories = selectedCategories.join(",");
@@ -37,7 +37,7 @@ $(".filter").on("click", function () {
     } else {
         currentUrl.searchParams.delete("categories");
     }
-    $("input[name='brands']:checked").each(function () {
+    $(this).closest("form").find("input[name='brands']:checked").each(function () {
         selectedBrands.push($(this).val());
     });
     let brands = selectedBrands.join(",");
