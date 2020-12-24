@@ -1,10 +1,16 @@
-{% extends "base.html" %} {% block content %}
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
 <section class="container-fluid content-container-top px-0">
-    <!-- Heading start -->
     <div class="row no-gutters">
+        <!--Image start-->
         <div class="d-none d-lg-block col-lg-4">
             <div class="sign-up-image"></div>
         </div>
+        <!--Image end-->
+        <!-- Form column start -->
         <div class="col col-lg-8">
             <div class="container content-container">
                 <!-- Heading start -->
@@ -14,40 +20,43 @@
                     </div>
                 </div>
                 <!-- Heading end -->
-                <!-- Sign up form start. Code from https://getbootstrap.com/docs/4.5/components/forms/ -->
+                <!-- Sign up form start-->
                 <div class="row no-gutters">
-                    <form class="col-12 col-md-10 offset-md-1 needs-validation" method="POST"
-                        action="{{ url_for('sign_up') }}" novalidate>
+                    <form class="col-12 col-md-10 offset-md-1" id="sign-up-form" method="POST"
+                        action="{{ url_for('sign_up') }}">
+                        <!--First name start-->
                         <div class="form-group">
                             <label for="first_name">First Name</label>
                             <input type="text" class="form-control" id="first_name" name="first_name"
-                                aria-describedby="first_name" pattern="[a-zA-Z]{5,15}$" required />
+                                pattern="[a-zA-Z]{5,15}$" required />
                         </div>
+                        <!--First name end-->
+                        <!--Last name start-->
                         <div class="form-group">
                             <label for="last_name">Last Name</label>
                             <input type="text" class="form-control" id="last_name" name="last_name"
-                                aria-describedby="last_name" pattern="[a-zA-Z']{5,15}$" required />
+                                pattern="[a-zA-Z-']{5,15}$" required />
                         </div>
-                        <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
+                        <!--First name end-->
+                        <!--Email address start. Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
+                            <input type="email" class="form-control" id="email" name="email"
                                 pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                         </div>
-                        <!--Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
+                        <!--Email address end-->
+                        <!--Password start. Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
                         <div class="form-group mt-4">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" id="password"
-                                aria-describedby="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
-                            <div class="invalid-feedback mt-3">Password must be between 8 and 30 characters and contain
-                                at least one uppercase, one lowercase letter and one number</div>
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
                         </div>
+                        <!--Password end-->
+                        <!--Confirm password start-->
                         <div class="form-group mt-4">
                             <label for="confirm-password">Confirm Password</label>
                             <input type="password" class="form-control" name="confirm_password" id="confirm-password"
-                                aria-describedby="confirm-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}"
-                                required />
-                            <div class="invalid-feedback mt-3">Passwords do not match</div>
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
                         </div>
                         <div class="form-group mt-4">
                             <div class="custom-control custom-switch">
@@ -57,6 +66,8 @@
                                     newsletter</label>
                             </div>
                         </div>
+                        <!--Confirm password end-->
+                        <!--Newsletter sign up start. Code is from https://bootswatch.com/lux/-->
                         <div class="form-group text-center mt-4 mb-0">
                             <button type="submit" class="btn btn-green">Sign Up</button>
                             <p class="text-center mt-4">
@@ -64,62 +75,42 @@
                                 <a href="{{url_for('sign_in')}}">here</a>
                             </p>
                         </div>
-                        <!--Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+                        <!--Newsletter sign up end-->
+                        <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
                         <div class="form-group d-none">
                             <input type="hidden" name="next" value="{{request.referrer}}" />
                         </div>
+                        <!--Next hidden field end-->
                     </form>
                 </div>
                 <!-- Sign up form end -->
             </div>
         </div>
+        <!-- Form column end -->
     </div>
 </section>
+<!--Main content container end-->
 {% endblock %}
+<!--Content block end-->
+<!--Postload JS start-->
 {% block postloadjs %}
 <script>
-    $('input').on('change', function () {
-        if ($(this).attr('id') === 'confirm-password') {
-            if ($(this).val() === $('#password').val()) {
-                $(this).removeClass('is-invalid').addClass('is-valid')
-                // https://codepen.io/diegoleme/pen/surIK
-                $(this)[0].setCustomValidity("")
-            } else {
-                $(this).removeClass('is-valid').addClass('is-invalid')
-                // https://codepen.io/diegoleme/pen/surIK
-                $(this)[0].setCustomValidity("Passwords Don't Match")
-            }
-        }
-        else if ($(this).is(":valid")) {
-            if ($(this).attr('id') === 'password' && $('#confirm-password').val() === "") {
-                $(this).removeClass('is-invalid').addClass('is-valid')
-            } else if ($(this).attr('id') === 'password' && $('#confirm-password').val() !== "") {
-                $(this).removeClass('is-invalid').addClass('is-valid')
-                if ($(this).val() === $('#confirm-password').val()) {
-                    $('#confirm-password').removeClass('is-invalid').addClass('is-valid')
-                } else {
-                    $('#confirm-password').removeClass('is-valid').addClass('is-invalid')
-                }
-            } else {
-                $(this).removeClass('is-invalid').addClass('is-valid')
-            }
-        } else {
-            if ($(this).attr('id') === 'password' && $('#confirm-password').val() === "") {
-                $(this).removeClass('is-valid').addClass('is-invalid')
-            } else if ($(this).attr('id') === 'password' && $('#confirm-password').val() !== "") {
-                $(this).removeClass('is-valid').addClass('is-invalid')
-                $('#confirm-password').removeClass('is-valid').addClass('is-invalid')
-            } else {
-                $(this).removeClass('is-valid').addClass('is-invalid')
-            }
-        }
-    })
+    // Sets the custom validity message for the confirm-password ID as an empty string when the value of the ID is changed. Code is from https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/setCustomValidity
 
-    $('.needs-validation').submit(function(e) {
-        if ($(this)[0].checkValidity() === false) {
+    $('#confirm-password').on('change', function() {
+        $(this)[0].setCustomValidity("")
+    })
+    
+    // Sets the custom validity message for the confirm-password ID if the password ID doesn't match the value of the confirm-password ID. Code is from https://codepen.io/diegoleme/pen/surIK and https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224
+
+    $('#sign-up-form').submit(function (e) {
+        if ($(this).find('#password').val() !== $(this).find('#confirm-password').val()) {
             e.preventDefault()
-            $(this).addClass('was-validated')
+            $(this).find('#confirm-password')[0].setCustomValidity("Passwords don't match")
+        } else if ($(this)[0].reportValidity() === false) {
+            e.preventDefault()
         }
     })
 </script>
 {% endblock %}
+<!--Postload JS end-->
