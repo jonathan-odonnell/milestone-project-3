@@ -1,0 +1,45 @@
+<!--Extends base template-->
+{% extends "base.html" %}
+<!--Content block start-->
+{% block content %}
+<!--Main content container start-->
+<section class="container content-container">
+    <!--Page heading start-->
+    <div class="row no-gutters">
+        <div class="col-12">
+            <h1 class="text-center headings-top">{{session.user.first_name + "'s " + page_title}}</h1>
+        </div>
+    </div>
+    <!--Page heading end-->
+    <div class="row no-gutters">
+        {% if reviews %}
+        <div class="col-12">
+            {% for review in reviews %}
+            <div class="card mb-4">
+                <div class="card-body">
+                        <div class="float-right">
+                            <a class="btn py-0" href="{{url_for('edit_review', review_id=review._id)}}">
+                                <!--Code for edit icon is from https://fontawesome.com/icons/edit?style=solid-->
+                                <i class="far fa-edit" aria-hidden="true"></i><span class="sr-only">Edit</span>
+                            </a>
+                            <a class="btn py-0" href="{{url_for('delete_review', review_id=review._id)}}">
+                                <!--Code for trash icon is from https://fontawesome.com/icons/trash?style=solid-->
+                                <i class="fas fa-trash" aria-hidden="true"></i><span class="sr-only">Delete</span>
+                            </a>
+                        </div><p class="mb-0"><strong>{{review.product}}</strong> - {{review.review_title}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+            {{pagination.links}}
+        </div>
+        {% else %}
+        <div class="col-12">
+            <p class="text-center">You haven't reviewed any products yet. Please search for a product to write a review.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!--Main content container end-->
+{% endblock %}
+<!--Content block end-->

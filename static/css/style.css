@@ -26,6 +26,10 @@ h4 {
     font-size: 1rem;
 }
 
+strong {
+    font-weight: bold;
+}
+
 .headings i {
     color: #1a1a1a;
     font-size: 2rem;

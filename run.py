@@ -369,6 +369,35 @@ def sign_up():
     return render_template("sign_up.html", page_title="Sign Up")
 
 
+@app.route("/account/")
+def account():
+    """
+    Gets a list of the reviews the user has written from the reviews database.
+    """
+    user = "{} {}".format(
+        session['user']['first_name'], session['user']['last_name'])
+    reviews = list(mongo.db.reviews.find({"created_by": user}))
+
+    """
+    Paginates products with 10 to a page.
+    Code is from https://gist.github.com/mozillazg/
+    69fb40067ae6d80386e10e105e6803c9
+    """
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page', per_page=10)
+    pagination_reviews = paginate_products(reviews, offset, per_page)
+    pagination = paginate(reviews, page, per_page)
+
+    # Renders the account.html template.
+
+    return render_template(
+        "account.html",
+        page_title="Account",
+        reviews=pagination_reviews,
+        pagination=pagination)
+
+
 @app.route("/product_management", methods=["GET", "POST"])
 @login_required
 @admin_required
