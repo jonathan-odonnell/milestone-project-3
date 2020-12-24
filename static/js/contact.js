@@ -1,4 +1,4 @@
-// When the send message button is clicked, checks the form is valid and posts the data entered to the /newsletter url and updates the HTML with a response when a success status is received. Code is from https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity, https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post and https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224
+// When the send message button is clicked, checks the form is valid and posts the data entered to the /newsletter url and updates the HTML with a response when a success status is received. Code is from https://stackoverflow.com/questions/7386817/html5-form-checkvalidity-method-not-found, https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity, https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post and https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224
 
 $('#contact-form').find('.btn').on('click', function (e) {
     e.preventDefault()
