@@ -370,7 +370,7 @@ def sign_up():
         redirects to the previous page. Code for message categories is from
         https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
         """
-        flash("Registration Successful!", "success")
+        flash("Sign Up Successful!", "success")
         return redirect(request.form.get("next"))
 
     # Renders the sign_up.html template
@@ -463,7 +463,7 @@ def logout():
     from https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
     """
     session.pop("user")
-    flash("Logout Successful", "success")
+    flash("Sign Out Successful", "success")
     return redirect(url_for('sign_in'))
 
 
