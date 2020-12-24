@@ -370,6 +370,7 @@ def sign_up():
 
 
 @app.route("/account/")
+@login_required
 def account():
     """
     Gets a list of the reviews the user has written from the reviews database.
