@@ -630,6 +630,14 @@ section {
     .features {
         padding-top: 0;
     }
+    .reviews-col-sidebar {
+        max-width: 20%;
+        flex: 0 0 20%;
+    }
+    .reviews-col-main {
+        max-width: 80%;
+        flex: 0 0 80%;
+    }
     .info-item-container {
         padding: 1.25rem;
     }
