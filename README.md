@@ -1,45 +1,70 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+## Deployment
 
-Welcome jonathan-odonnell,
+### Heroku
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+The project was deployed to Heroku using the following steps:
 
-## Gitpod Reminders
+1.  Log in to Heroku and click on the "New" button.
+    ![Image showing the new button](static/images/deployment/deployment1.png)
+2.  Click on the "Create new app" button in the dropdown list.
+    ![Image showing the create new app button in the dropdown list](static/images/deployment/deployment2.png)
+3.  Enter a name for the app and check that it is available.
+    ![Image showing the create app form](static/images/deployment/deployment3.png)
+4.  Click the "Create app" button.
+    ![Image showing the create app button](static/images/deployment/deployment4.png)
+5.  Scroll down to the connect to GitHub section, enter the project's GitHub repository name in the repo-name field and click the "Search" button.
+    ![Image showing the connect to GitHub section](static/images/deployment/deployment5.png)
+6.  Click the "Connect" button next to the GitHub repository.
+    ![Image showing the connect button](static/images/deployment/deployment6.png)
+7.  Scroll down to the automatic deploys section and click the "Enable Automatic Deploys" button.
+    ![Image showing the enable automatic deploys section](static/images/deployment/deployment7.png)
+8.  Scroll back up to the top of the page and click the "Settings" tab.
+    ![Image showing the settings tab](static/images/deployment/deployment8.png)
+9.  Scroll down to the convig vars section and click the "Reveal Config Vars" button.
+    ![Image showing the reveal config vars button](static/images/deployment/deployment9.png)
+10. Enter the key and value for each config var and click the "add" button.
+    ![Image showing the config vars input form](static/images/deployment/deployment10.png)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+More information about deploying a website to Heroku is available [here](https://devcenter.heroku.com/categories/deployment).
 
-`python3 -m http.server`
+### Forking the GitHub repository
 
-A blue button should appear to click: *Make Public*,
+The GitHub Repository can be forked using the following steps:
 
-Another blue button should appear to click: *Open Browser*.
+1.  Log in to GitHub and locate the project's [GitHub Repository](https://github.com/jonathan-odonnell/milestone-project-3).
+2.  At the top-right of the repository, click the "Fork" Button.
+    ![Image showing the fork button](static/images/fork/fork.png)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+More information about forking a GitHub repository is available [here](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
 
-A blue button should appear to click: *Make Public*,
+### Making a Local Clone
 
-Another blue button should appear to click: *Open Browser*.
+A local clone of the project can be created using the following steps:
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+1.  Log in to GitHub and locate the project's [GitHub Repository](https://github.com/jonathan-odonnell/milestone-project-3).
+2.  Under the repository name, click the "Code" button.
+    ![Image showing the code button](static/images/clone/clone1.png)
+3.  To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard button to copy the repository URL.
+    ![Image showing the clipboard button](static/images/clone/clone2.png)
+    To clone using SSH click "Use SSH" and then click the clipboard button.
+    ![Image showing the use ssh button](static/images/clone/clone3.png)
+    ![Image showing the clipboard button](static/images/clone/clone4.png)
+4.  Open Git Bash
+5.  Change the current working directory to the location where you want to store the cloned repository.
+6.  Type `git clone` and then paste the URL you copied in Step 3.
 
-## Updates Since The Instructional Video
+```
+$ git clone https://github.com/jonathan-odonnell/milestone-project-3.git
+```
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+7.  Press enter to create your clone.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+```
+Cloning into 'milestone-project-3'...
+remote: Enumerating objects: 1900, done.
+remote: Total 1900 (delta 0), reused 0 (delta 0), pack-reused 1900
+Receiving objects: 100% (1900/1900), 74.54 MiB | 4.68 MiB/s, done.
+Resolving deltas: 100% (1290/1290), done.
+```
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+More information about making a local clone of a GitHub repository is available [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
