@@ -21,6 +21,27 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 11. As a customer, I want to be able to contact the organisation to get answers to any questions I may have.
 12. As a customer, I want to be able to find the organisation's social media links.
 
+### Design
+
+#### Colour Scheme
+
+- The three main colours used in the website are black, white, green and grey.
+- These colours were chosen because the black/grey contrasts with the green/white.
+
+#### Typography
+
+- The main font used throughout the website is Nunito Sans.
+- This font was chosen because it makes the content easy to read.
+- Sans Serif is the fallback font which is used in the event that the specified font fails to import into the website correctly.
+
+#### Imagery
+
+- The home page hero image was chosen because it give the user an idea of what kind of products they can find out more about on the site.
+
+- The contact us page hero image was chosen because it adds to the ambiance of the page.
+
+- The product images were chosen because they give the user an idea of what they can expect if they choose to purchase the product.
+
 ## Technologies Used
 
 ### Languages Used
