@@ -42,6 +42,97 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 - The product images were chosen because they give the user an idea of what they can expect if they choose to purchase the product.
 
+## Features
+
+### Existing Features
+
+1. Brand Logo
+
+   - This familiarises users with the organisation's logo and is also a link which the user can access from any page to take them back to the home page.
+
+2. Navigation links
+
+   - These enable users to access the different pages of the website so they can easily find the content they are looking for.
+
+3. Search Bar
+
+    - This enables users to search for products by name or brand.
+
+4. Home Page Hero Image
+
+   - This provides users with an image which gives them an idea of the kind of products they can find out about on the site and a link to the sign up page.
+
+5. Featured Products Carousel
+
+   - This provides users with the product's name, an image and a link to the procuct's page for six of the latest products.
+
+6. Newsletter Sign Up
+
+    - This enables users to sign up to receive updates about the latest products by entering their email address into the form.
+
+7. Reviews Search Results / Product Category Reviews
+
+    - This displays all the products that match the search criteria. For each product, it's name, image, overall rating and price is diaplayed. Each product image is a link to the product's page. 
+    - Users can sort the products returned by the search by using the sort by dropdown or filter the products by using the filters in the sidebar (the filters form can be accessed by clicking on the filters button on mobile devices).
+
+8. Product Details
+
+    - This provides users with details of the product including colours, price, capacity, display, processor, memory, graphics, camera and video capabilities, battery life and connectivity.
+
+9. Product Ratings
+
+    - This displays progress bars displaying the average ratings from the reviews for overall rating, performace, usability, price, quality. 
+    - Progress bars are also displayed for the percentage of users who rated the product each star rating overall.
+
+10. Product Reviews
+
+    - This enables users to read the reviews that other users have written and vote whether each the review is helpful or not.
+    - If the user is signed in, they can write their own review for the product and edit or delete their review if they have already written one by clicking on the relevant links.
+
+11. Add/Edit Review Forms
+
+    - These enable users to add or edit the details of their review.
+
+12. Sign Up Form
+
+    This enables users to sign up for an account by entering their first name, last name, email address and password into the form. It also provides them with an opportunity to sign up to the newsletter.
+
+13. Sign In Form
+
+    - This enables users to sign in to their account by entering their email address and password.
+
+14. Account
+
+    - When a user is signed in, this display's all the reviews the user has written and provides them with links to edit and delete each review.
+
+15. Product Management
+
+    - When an admin user is signed in, this display's all the products currently listed on the site, each product's category and links to edit and delete each product. 
+    - Admin users can also add a new product by clicking on the add product link or sort the products by selecting an option from the sort by dropdown.
+
+16. Add/Edit Product Forms
+
+    - These enable admin users to add or edit the product's details.
+
+17. Contact Us Form
+
+    - This enables users to contact the organisation about any questions they may have by completing the form. If a user is signed in, their name and email address are automatically entered into the relevant form fields.
+
+18. Footer Navigation links
+
+    - These enable users to access key different pages of the website so they can easily find the content they are looking for.
+
+19. Social Media links
+
+    - These provide users with links to the different social media platforms where the organisation has a presence.
+
+20. Responsive Design
+
+    - Bootstrap grids and CSS media queries are used throughout the website to ensure that it is optimised for use on devices with a wide range of screen sizes.
+
+
+### Features Left to Implement
+
 ## Technologies Used
 
 ### Languages Used
