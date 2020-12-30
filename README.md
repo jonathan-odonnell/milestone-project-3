@@ -130,8 +130,31 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
     - Bootstrap grids and CSS media queries are used throughout the website to ensure that it is optimised for use on devices with a wide range of screen sizes.
 
-
 ### Features Left to Implement
+
+1. More Products and Categories
+
+   - Add more products including from additional categories.
+
+2. Add Expert Reviews
+
+    - Add reviews to product details pages written by Subject Matter Experts
+
+3. Add an Offers Page
+
+    - Add an offers page which details the latest offers and provides customers with links to partners' sites where they can purchase the product.
+
+4. One Review Per Product
+
+    - Add functionality to prevent users from being able to write multiple reviews for the same product.
+
+5. Sort Reviews by Ratings or Date Written
+
+    - Add a dropdwon to the product details pages to give users the option to sort the reviews by ratings or date written.
+
+6. 5 More Reviews and Show All Reviews Buttons
+
+    - Add buttons to the product details pages to display 5 more reviews or show all reviews.
 
 ## Technologies Used
 
