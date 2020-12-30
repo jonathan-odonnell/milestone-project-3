@@ -15,11 +15,10 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 5. As a customer, I want to be able to view product information and read reviews for each product.
 6. As a customer, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
 7. As a customer, I want to be able to write reviews of products.
-8. As a customer, I want to be able to easily access my reviews.
-9. As a customer, I want to be able to edit and delete my reviews.
-10. As a site owner, I want to be able to add, edit and delete products.
-11. As a customer, I want to be able to contact the organisation to get answers to any questions I may have.
-12. As a customer, I want to be able to find the organisation's social media links.
+8. As a customer, I want to be able to edit and delete my reviews.
+9. As a site owner, I want to be able to add, edit and delete products.
+10. As a customer, I want to be able to contact the organisation to get answers to any questions I may have.
+11. As a customer, I want to be able to find the organisation's social media links.
 
 ### Design
 
@@ -225,6 +224,79 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 - [403]()
 - [404]()
 - [CSS]()
+
+### Testing User Stories from User Experience (UX) Section
+
+1. As a customer or a site owner, I want to be able to navigate the website easily to find the content I am looking for.
+
+    - The navigation bar can be easily accessed in the header of each page. 
+    - It is clean and easy to read and contains the organisation's logo and the navigation links to the other pages of the website.
+    - Each of the navigation links clearly communicates to the user what page it will take them to.
+    - The Tech Reviews brand logo is also a link which takes the user back to the home page.
+    - The footer also contains key links which take the user to the category reviews pages, contact page and either the account page (standard users) or product management page (admin users) if the user is signed in.
+    - The website is structured in a logical way with the hero image, featured products carousel and newsletter sign up on the home page, and each other item of content on it's own page.
+
+2. As a customer, I want to be able to find out about the latest consumer electronics products.
+
+    - The featured products carousel is clearly highlighted on the home page.
+    - This contains information about the latest products including an image of each product which links to it's page, and it's name. Users can find out more about the product, view it's ratings and read user reviews on the product's page.
+
+3. As a customer, I want to be able to sign up for email updates about the latest consumer electronics products.
+
+    - The newsletter sign up section is clearly highlighted on the home page.
+    - This contains a form where users can enter their email address to sign up to receive email updates about the latest products.
+
+4. As a customer, I want to be able to search for products that meet my needs.
+
+    - The search bar is clearly highlighted in the navigation bar in the header of each page. Here users can enter a product name or brand to search for products.
+    - The reviews dropdown is clearly highlighted in the navigation bar in the header of each page. Here users can select a product category which will search for all of the products in the category.
+    - Users can sort the products by selecting an option from the sort by dropdown.
+    - Users can further refine their search by selecting options from the filters form in the sidebar. On mobile devices, users can access the filters form by clicking on the filters button.
+    - For each product that satisfies the user's search criteria, an image of the product which links to it's page, it's name, it's price and it's average user rating is displayed.
+
+5. As a customer, I want to be able to view product information and read reviews for each product.
+
+    - Users can access a product's page by clicking on a product image on the reviews search results or category reviews pages.
+    - Here the user can find information about the product including it's colours, price, capacity, display, processor, memory, graphics, camera and video capabilities, battery life and connectivity.
+    - They can also view the product's average ratings for performace, usability, price and quality, and the percentage of users who rated the product each star rating overall.
+    - User reviews are also available for the users to read and rate whether they were helpful or not on the product page.
+
+6. As a customer, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
+
+    - Users can access the sign in / register links by clicking on the user dropdown (large screens and above) or by clicking on the relevant links in the navigation bar (small and medium screens). There are also links to the sign in / register pages in the footer.
+    - On the sign in page, users can sign in to their account.
+    - On the register page, users can sign up for an account if they haven't already registered for one.
+
+7. As a customer, I want to be able to write reviews of products.
+
+    - The add review link is clearly highlighted on the product pages when the user is signed in.
+    - If the user clicks on this link, they are taken to the add review form which they can complete to add a review for the product.
+
+8. As a customer, I want to be able to easily access my reviews to edit and delete them.
+
+    - Users can access their reviews by clicking on the user dropdown and selecting the account option (large screens and above) or by clicking on the account link in the navigation bar (small and medium screens). There is also a link to the account page in the footer.
+    - Here, users can find cards for all of the reviews they have written which include links to the edit and delete the review. 
+    - Users can also find links to edit and delete their reviews in the review card on the relevant product page.
+    - When a user clicks on the edit link, they are taken to the edit review form where they can amend the details of their review.
+    - When a user clicks on the edit link, their review is deleted.
+
+9. As a site owner, I want to be able to add, edit and delete products.
+
+    - Site owners can access the product management page by clicking on the user dropdown and selecting the product management (large screens and above) or by clicking on the product management link in the navigation bar (small and medium screens). There is also a link to the product management page in the footer.
+    - Here, site owners can find a table containing all of the products that are currently listed on the site. Each product's row displays the product's name, category, and links to the edit and delete the product. 
+    - When a site owner clicks on the edit link, they are taken to the edit product form where they can amend the relevant product details.
+    - When a site owner clicks on the delete link, the product is deleted.
+    - Site owners can can add a new product by clicking on the add product link which takes them to the add product form.
+
+10. As a customer, I want to be able to contact the organisation to get answers to any questions I may have.
+
+    - A link to the contact us page is clearly highlighted in the navigation bar and in the footer.
+    - Here there is a form which the user can complete to get in touch with the organisation.
+
+11. As a customer, I want to be able to find the organisation's social media links.
+
+    - The social media icons are clearly highlighted in the footer of each page.
+    - Each of these provides a link to the relevant social media platform.
 
 ### Manual Testing
 
