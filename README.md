@@ -308,6 +308,28 @@ Details of the manual testing carried out can be viewed [here]().
 - The Website was also viewed on a number of different devices with a range of screen widths including an iMac, MacBook, iPad and iPhone.
 - Family and friends were asked to review the site and documentation and identify any bugs or other issues that were affecting the user experience.
 
+### Fixed Bugs
+
+1. Signed in users were unable to add, edit or delete reviews
+
+    - Fixed an issue in the code causing only admin users to be able to add, edit or delete reviews.
+
+2. Invalid newsletter signup and contact forms were able to be submitted 
+
+    -  Added jQuery to check the form was valid before submitting.
+
+3. Register form was able to be submitted if password and confirm password did not match as long as they matched the specified pattern.
+
+    - Added jQuery to check the password and confirm password matched before submitting.
+
+4. Add review and edit review forms did not return the user to the product page when the form was successfully submitted.
+
+    - Added the product page URL to the add review and edit review forms as a hidden field and amended the relevant flask views to return to this URL when the form was successfully submitted.
+
+5. Edit and delete review links were not appearing in the correct place when the review title was on 2 lines.
+
+    - Amended the HTML and CSS of the cards to fix the links in the top right of the cards and wrap the text around them.
+
 ## Deployment
 
 ### Heroku
