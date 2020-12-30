@@ -204,6 +204,38 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 16. [Balsamiq](https://balsamiq.com/)
     - Balsamiq was used to create the wireframes during the design phase of the project.
 
+## Testing
+
+### WC3 Validation
+
+The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the website to ensure that the code used was in compliance with the HTML5 and CSS3 standards and that there were no syntax errors.
+
+- [Home]()
+- [Reviews / Category Reviews]()
+- [Product Details]()
+- [Add Review]()
+- [Edit Review]()
+- [Register]()
+- [Sign In]()
+- [Sign Out]()
+- [Account]()
+- [Product Management]()
+- [Add Product]()
+- [Edit Product]()
+- [403]()
+- [404]()
+- [CSS]()
+
+### Manual Testing
+
+Details of the manual testing carried out can be viewed [here]().
+
+### Further Testing
+
+- The Website was tested on a variety of different web browsers including Google Chrome, Microsoft Edge, Safari and Firefox.
+- The Website was also viewed on a number of different devices with a range of screen widths including an iMac, MacBook, iPad and iPhone.
+- Family and friends were asked to review the site and documentation and identify any bugs or other issues that were affecting the user experience.
+
 ## Deployment
 
 ### Heroku
