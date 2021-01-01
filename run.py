@@ -31,7 +31,8 @@ def login_required(f):
     """
     Prevents users who are not signed in from accessing the page and redirects
     to the sign in page. Code is from https://flask.palletsprojects.com/
-    en/1.1.x/patterns/viewdecorators/
+    en/1.1.x/patterns/viewdecorators/ and https://blog.tecladocode.com/
+    handling-the-next-url-when-logging-in-with-flask/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -41,14 +42,15 @@ def login_required(f):
             flask.palletsprojects.com/en/1.1.x/patterns/flashing/
             """
             flash("Please sign in to view this page", "error")
-            return redirect(url_for('sign_in'))
+            return redirect(url_for('sign_in', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
 
 
 def admin_required(f):
     """
-    Prevents users who are not admins from accessing the page and returns a status of 403. Code is from https://flask.palletsprojects.com/en/1.1.x/
+    Prevents users who are not admins from accessing the page and returns a
+    status of 403. Code is from https://flask.palletsprojects.com/en/1.1.x/
     patterns/viewdecorators/ and https://flask.palletsprojects.com/en/1.1.x/
     patterns/errorpages/
     """
@@ -273,6 +275,13 @@ def contact():
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
+        """
+        Gets the next URL from the next field in the form.
+        Code is from https://blog.tecladocode.com/
+        handling-the-next-url-when-logging-in-with-flask/
+        """
+        next_url = request.form.get('next')
+
         # Checks if the email entered already exists in the database.
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -282,31 +291,36 @@ def sign_in():
                                    request.form.get("password")):
                 """
                 If the user exists, checks the hashed password matches the
-                password entered by the user and add the user's details to the
-                session cookie. Adds a message informing the user that the sign
-                in was successful and redirects standard users to their account
-                and admins to the product management page. Code
-                for message categories is from https://
-                flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+                password entered by the user, add the user's details to the
+                session cookie and adds a message informing the user that the
+                sign in was successful. Code for message categories is from
+                https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
                 """
                 session["user"] = create_user_session(existing_user)
                 flash("Login Successful", "success")
 
-                if existing_user['user_type'] == 'admin':
-                    return redirect(url_for('product_management'))
+                """
+                Redirects to the URL in the next_url variable or to the home
+                page if next_url contains no value.
+                """
+                if next_url:
+                    return redirect(next_url)
 
                 else:
-                    return redirect(url_for('account'))
+                    return redirect(url_for('index'))
 
             else:
                 """
                 If the user does not exist, adds a message informing the user
                 that their username and/or password is incorrect and redirects
-                to the sign in page. Code for message categories is from
-                https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+                to the previous page. Code for message categories is from
+                https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/.
+                Code for redirecting to the previous page is from https://
+                stackoverflow.com/questions/39777171/
+                how-to-get-the-previous-url-in-flask/39777426.
                 """
                 flash("Incorrect Email Address and/or Password", "error")
-                return redirect(url_for("sign_in"))
+                return redirect(request.referrer)
 
         else:
             """
@@ -325,6 +339,13 @@ def sign_in():
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
+        """
+        Gets the next URL from the next field in the form.
+        Code is from https://blog.tecladocode.com/
+        handling-the-next-url-when-logging-in-with-flask/
+        """
+        next_url = request.form.get('next')
+
         # Checks if the email entered already exists in the database.
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -332,12 +353,14 @@ def sign_up():
         if existing_user:
             """
             If the user exist, adds a message informing the user that the email
-            is already registered and redirects to the sign up page. Code
+            is already registered and redirects to the previous page. Code
             for message categories is from https://flask.palletsprojects.com/
-            en/1.1.x/patterns/flashing/
+            en/1.1.x/patterns/flashing/. Code for redirecting to the previous
+            page is from https://stackoverflow.com/questions/39777171/
+            how-to-get-the-previous-url-in-flask/39777426.
             """
             flash("Email already registered", "error")
-            return redirect(url_for("sign_up"))
+            return redirect(request.referrer)
 
         else:
             """
@@ -367,11 +390,17 @@ def sign_up():
 
         """
         Adds a message informing the user that the sign up was successful and
-        redirects to the previous page. Code for message categories is from
+        redirects to the URL in the next_url variable or to the home page if
+        next_url contains no value. Code for message categories is from
         https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
         """
         flash("Sign Up Successful!", "success")
-        return redirect(request.form.get("next"))
+
+        if next_url:
+            return redirect(next_url)
+
+        else:
+            return redirect(url_for('index'))
 
     # Renders the sign_up.html template
     return render_template("sign_up.html", page_title="Sign Up")

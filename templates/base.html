@@ -34,7 +34,7 @@
             <!--Logo start-->
             <a class="navbar-brand mr-0 py-0" href="{{url_for('index')}}"><img
                     src="{{ url_for('static', filename='images/logo.png') }}" alt="Tech Reviews logo"></a>
-             <!--Logo end-->
+            <!--Logo end-->
             <!--Mobile collapsable search button start-->
             <a class="btn p-2 d-lg-none" data-toggle="collapse" href="#search" role="button" aria-expanded="false"
                 aria-controls="search">
@@ -104,30 +104,33 @@
                     </li>
                     {% endif %}
                     {% endif %}
+                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
+                        <a class="nav-link" href="{{ url_for('sign_out', next=request.url) }}">Sign Out</a>
                     </li>
                     {% else %}
                     {% if page_title == "Sign Up" %}
+                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                     <li class="nav-item active d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_up') }}">Register
+                        <a class="nav-link" href="{{ url_for('sign_up', next=request.url) }}">Register
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     {% else %}
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_up') }}">Register</a>
+                        <a class="nav-link" href="{{ url_for('sign_up', next=request.url) }}">Register</a>
                     </li>
                     {% endif %}
                     {% if page_title == "Sign In" %}
+                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                     <li class="nav-item active d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_in') }}">Sign In
+                        <a class="nav-link" href="{{ url_for('sign_in', next=request.url) }}">Sign In
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    {% else %}
+                    {% else %}>
                     <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_in') }}">Sign In</a>
+                        <a class="nav-link" href="{{ url_for('sign_in', next=request.url) }}">Sign In</a>
                     </li>
                     {% endif %}
                     {% endif %}
@@ -198,16 +201,19 @@
                             {% else %}
                             <a href="url_for('account')" class="dropdown-item">Account</a>
                             {% if page_title == "Account" %}
-                                <span class="sr-only">(current)</span>
-                                {% endif %}{% endif %}
-                            <a href="{{ url_for('sign_out') }}" class="dropdown-item">Sign Out</a>
+                            <span class="sr-only">(current)</span>
+                            {% endif %}{% endif %}
+                            <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
+                            <a href="{{ url_for('sign_out', next=request.url) }}" class="dropdown-item">Sign Out</a>
                             {% else %}
-                            <a href="{{ url_for('sign_up') }}" class="dropdown-item">Register
+                            <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
+                            <a href="{{ url_for('sign_up', next=request.url) }}" class="dropdown-item">Register
                                 {% if page_title == "Sign Up" %}
                                 <span class="sr-only">(current)</span>
                                 {% endif %}
                             </a>
-                            <a href="{{ url_for('sign_in') }}" class="dropdown-item">Sign In
+                            <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
+                            <a href="{{ url_for('sign_in', next=request.url) }}" class="dropdown-item">Sign In
                                 {% if page_title == "Sign In" %}
                                 <span class="sr-only">(current)</span>
                                 {% endif %}</a>
