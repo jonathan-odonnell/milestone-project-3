@@ -496,13 +496,13 @@ def sign_out():
     return redirect(url_for('sign_in'))
 
 
-@app.route("/add_review", methods=["GET", "POST"])
+@app.route("/add_review/<product_id>", methods=["GET", "POST"])
 @login_required
-def add_review():
+def add_review(product_id):
     if request.method == 'POST':
         # Gets the product's ratings from the product database
         product_ratings = mongo.db.products.find_one(
-            {"name": request.form.get('product')}, product_ratings_query())
+            {"_id": ObjectId(product_id)}, product_ratings_query())
 
         """
         Counts the number of reviews in the reviews database for the product.
@@ -510,7 +510,7 @@ def add_review():
         db.collection.count/
         """
         product_count = mongo.db.reviews.count(
-            {"product": request.form.get('product')})
+            {"product": product_ratings['name']})
 
         """
         Gets the details entered into the form and convert them into a
@@ -519,7 +519,7 @@ def add_review():
         review = request.form.to_dict()
 
         # Calculates the product's new ratings
-        new_ratings = add_ratings(product_ratings, product_count, request)
+        new_ratings = add_ratings(product_ratings, product_count, review)
 
         """
         Updates the product's feature ratings in the products database.
@@ -527,11 +527,11 @@ def add_review():
         db.collection.updateOne/
         """
         mongo.db.products.update_one(
-            {'name': request.form.get('product')}, {"$set": new_ratings})
+            {'_id': ObjectId(product_id)}, {"$set": new_ratings})
 
         # Updates the product's star ratings in the products database.
         mongo.db.products.update_one(
-            {'name': request.form.get('product')},
+            {'_id': ObjectId(product_id)},
             star_rating(new_rating=int(request.form.get('overall_rating'))))
 
         """
@@ -547,10 +547,20 @@ def add_review():
         mongo.db.reviews.insert_one(review)
 
         # Redirects to the previous page
-        return redirect(request.form.get('next'))
+        return redirect(url_for('review_details', product_id=product_id))
+
+    # Gets the product's details from the products databse
+    product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
+
+    if product is None:
+        """
+        Returns a status of 404 if the product does not exist. Code is
+        from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+        """
+        abort(404)
 
     # Renders the add_review.html template
-    return render_template("add_review.html", page_title="Add Review")
+    return render_template("add_review.html", page_title="Add Review", product_id=product_id)
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])

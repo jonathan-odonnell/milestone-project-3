@@ -13,7 +13,7 @@
     <!--Page title end-->
     <!--Add review form start-->
     <div class="row no-gutters">
-        <form action="{{url_for('add_review')}}" method="POST" class="col-12 col-md-8 offset-md-2">
+        <form action="{{url_for('add_review', product_id=product_id)}}" method="POST" class="col-12 col-md-8 offset-md-2">
             <!--Overall Ratings start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
             <div class="form-group form-group-ratings">
                 <label for="overallRating">
@@ -150,12 +150,6 @@
                 <textarea class="form-control" id="review" name="review" rows="5" required></textarea>
             </div>
             <!--Review detail end-->
-            <!--Product and next hidden fields start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
-            <div class="form-group d-none">
-                <input type="hidden" id="product" name="product" />
-                <input type="hidden" name="next" value="{{ request.referrer }}" />
-            </div>
-            <!--Product and next hidden fields end-->
             <!--Add review button start-->
             <div class="form-group form-group-button text-center mt-4">
                 <button type="submit" class="btn btn-green">Add Review</button>

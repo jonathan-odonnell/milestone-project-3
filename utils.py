@@ -106,7 +106,7 @@ def product_ratings_query():
     Generates the get product ratings search query. Code is from https://
     docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
     """
-    query = {"overall_rating": 1, "performance_rating": 1,
+    query = {"name": 1, "overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
              "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
              "five_stars": 1, "_id": 0}
