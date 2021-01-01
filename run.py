@@ -560,7 +560,8 @@ def add_review(product_id):
         abort(404)
 
     # Renders the add_review.html template
-    return render_template("add_review.html", page_title="Add Review", product_id=product_id)
+    return render_template("add_review.html", page_title="Add Review",
+                           product_id=product_id)
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
@@ -595,7 +596,7 @@ def edit_review(review_id):
 
         # Updates the product's feature ratings in the products database
         mongo.db.products.update_one(
-            {'name': request.form.get('product')}, {"$set": new_ratings})
+            {'_id': product_ratings['_id']}, {"$set": new_ratings})
 
         if (int(request.form.get('overall_rating')) != user_ratings
                 ['overall_rating']):
@@ -620,27 +621,28 @@ def edit_review(review_id):
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
 
-        # Redirects to the previous page
-        return redirect(request.form.get('next'))
+        # Redirects to the product's review details page
+        return redirect(url_for('review_details',
+                                product_id=product_ratings['_id']))
 
     """
     Gets the review author's details from the reviews database. Code for
     returning selected fields from https://docs.mongodb.com/manual/tutorial/
     project-fields-from-query-results/
     """
-    user = mongo.db.reviews.find_one(
+    review = mongo.db.reviews.find_one(
         {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
 
-    if user is None:
+    if review is None:
         """
-        Returns a status of 404 if no user is returned. Code is
+        Returns a status of 404 if no review is returned. Code is
         from https://flask.palletsprojects.com/en/1.1.x/patterns
         /errorpages/
         """
         return abort(404)
 
     elif "{} {}".format(session['user']['first_name'], session['user']
-                        ['last_name']) != user['created_by']:
+                        ['last_name']) != review['created_by']:
         """
         Returns a status of 403 if the user is not the
         author of the review. Code is from https://
@@ -665,19 +667,19 @@ def delete_review(review_id):
     returning selected fields from https://docs.mongodb.com/manual/tutorial/
     project-fields-from-query-results/
     """
-    user = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
                                      "created_by": 1, "_id": 0})
 
-    if user is None:
+    if review is None:
         """
-        Returns a 404 status if no user is returned.
+        Returns a 404 status if no review is returned.
         Code is from https://flask.palletsprojects.com/en/1.1.x/
         patterns/errorpages/
         """
         return abort(404)
 
     elif "{} {}".format(session['user']['first_name'], session['user']
-                        ['last_name']) != user['created_by']:
+                        ['last_name']) != review['created_by']:
         """
         Returns a status of 403 if the user is not the
         author of the review. Code is from https://flask.palletsprojects.com/
@@ -712,7 +714,7 @@ def delete_review(review_id):
         db.collection.updateOne/
         """
         mongo.db.products.update_one(
-            {'name': request.form.get('product')}, {"$set": new_ratings})
+            {'_id': product_ratings['_id']}, {"$set": new_ratings})
 
         # Updates the product's star ratings in the products database
         mongo.db.products.update_one({"name": user_ratings['product']},
@@ -722,12 +724,9 @@ def delete_review(review_id):
         # Deletes the review from the reviews database
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
-        """
-        Redirect to the previous page. Code is from https://
-        stackoverflow.com/questions/39777171/
-        how-to-get-the-previous-url-in-flask/39777426
-        """
-        return redirect(request.referrer)
+        # Redirects to the product's review details page
+        return redirect(url_for('review_details',
+                                product_id=product_ratings['_id']))
 
 
 @app.route("/add_product", methods=["GET", "POST"])

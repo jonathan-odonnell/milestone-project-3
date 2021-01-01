@@ -109,7 +109,7 @@ def product_ratings_query():
     query = {"name": 1, "overall_rating": 1, "performance_rating": 1,
              "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
              "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
-             "five_stars": 1, "_id": 0}
+             "five_stars": 1}
     return query
 
 
