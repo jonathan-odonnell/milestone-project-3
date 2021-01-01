@@ -514,9 +514,22 @@ def add_review(product_id):
 
         """
         Gets the details entered into the form and convert them into a
-        dictionary.
+        dictionary. Code for date added is from https://www.w3schools.com/
+        python/python_datetime.asp
         """
-        review = request.form.to_dict()
+        review = {
+            "overall_rating": int(request.form.get('overall_rating')),
+            "performance_rating": int(request.form.get('performance_rating')),
+            "usability_rating": int(request.form.get('usability_rating')),
+            "price_rating": int(request.form.get('price_rating')),
+            "quality_rating": int(request.form.get('quality_rating')),
+            "review_title": request.form.get('review_title'),
+            "review": request.form.get('review'),
+            "product": product_ratings['name'],
+            "date_added": datetime.datetime.now(),
+            "created_by": "{} {}".format(session['user']['first_name'],
+                                         session['user']['last_name'])
+        }
 
         # Calculates the product's new ratings
         new_ratings = add_ratings(product_ratings, product_count, review)
@@ -533,15 +546,6 @@ def add_review(product_id):
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)},
             star_rating(new_rating=int(request.form.get('overall_rating'))))
-
-        """
-        Adds the date_added and created_by to the
-        review dictionary. Date code is from
-        https://www.w3schools.com/python/python_datetime.asp
-        """
-        review['date_added'] = datetime.datetime.now()
-        review['created_by'] = session['user']['first_name'] + \
-            " " + session['user']['last_name']
 
         # Adds the review to the reviews database
         mongo.db.reviews.insert_one(review)
@@ -586,9 +590,19 @@ def edit_review(review_id):
 
         """
         Gets the details entered into the form and convert them into a
-        dictionary.
+        dictionary. Code for date added is from https://www.w3schools.com/
+        python/python_datetime.asp
         """
-        review = request.form.to_dict()
+        review = {
+            "overall_rating": int(request.form.get('overall_rating')),
+            "performance_rating": int(request.form.get('performance_rating')),
+            "usability_rating": int(request.form.get('usability_rating')),
+            "price_rating": int(request.form.get('price_rating')),
+            "quality_rating": int(request.form.get('quality_rating')),
+            "review_title": request.form.get('review_title'),
+            "review": request.form.get('review'),
+            "date_added": datetime.datetime.now(),
+        }
 
         # Calculates the product's new ratings
         new_ratings = edit_ratings(
@@ -607,12 +621,6 @@ def edit_review(review_id):
             mongo.db.products.update_one({"_id": review_id}, star_rating(
                 request.form.get('overall_rating'), user_ratings
                 ['overall_review']))
-
-        """
-        Adds date_added value to the review dictionary.
-        Code is from https://www.w3schools.com/python/python_datetime.asp
-        """
-        review['date_added'] = datetime.datetime.now()
 
         """
         Updates the review in the reviews database. Code is from https://
@@ -668,7 +676,7 @@ def delete_review(review_id):
     project-fields-from-query-results/
     """
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
-                                     "created_by": 1, "_id": 0})
+        "created_by": 1, "_id": 0})
 
     if review is None:
         """

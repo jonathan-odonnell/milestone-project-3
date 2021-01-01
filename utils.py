@@ -40,20 +40,38 @@ def get_price_range(category, value):
     reference/operator/aggregation/gte/ and https://docs.mongodb.com/manual/
     reference/operator/aggregation/lte/
     """
-    price_file = {"Phones": {1: {"$gte": 0, "$lte": 500}, 2: {"$gte": 500,
-                            "$lte": 750}, 3:  {"$gte": 750, "$lte": 1000}, 4:
-                            {"$gte": 1000}}, "Tablets": {1: {"$gte": 0, "$lte":
-                            500}, 2: {"$gte": 500, "$lte": 750}, 3:  {"$gte":
-                            750, "$lte": 1000}, 4: {"$gte": 1000}}, "Laptops":
-                            {1: {"$gte": 0, "$lte": 750}, 2: {"$gte": 750, 
-                            "$lte": 1000}, 3: {"$gte": 1000, "$lte": 1250}, 4:
-                            {"$gte": 1250, "$lte": 1500}, 5: {"$gte": 1500}},
-                            "Accessories": {1: {"$gte": 0, "$lte": 200}, 2:
-                            {"$gte": 200, "$lte": 300}, 3: {"$gte": 300,
-                            "$lte": 400}, 4: {"$gte": 400}}, "All": {1: 
-                            {"$gte": 0, "$lte": 250}, 2: {"$gte": 250, "$lte":
-                            500}, 3: {"$gte": 500, "$lte": 750}, 4: {"$gte":
-                            750, "$lte": 1000}, 5: {"$gte": 1000}}}
+    price_file = {'Phones': {
+        1: {'$gte': 0, '$lte': 500},
+        2: {'$gte': 500, '$lte': 750},
+        3: {'$gte': 750, '$lte': 1000},
+        4: {'$gte': 1000},
+    },
+        'Tablets': {
+        1: {'$gte': 0, '$lte': 500},
+        2: {'$gte': 500, '$lte': 750},
+        3: {'$gte': 750, '$lte': 1000},
+        4: {'$gte': 1000},
+    },
+        'Laptops': {
+        1: {'$gte': 0, '$lte': 750},
+        2: {'$gte': 750, '$lte': 1000},
+        3: {'$gte': 1000, '$lte': 1250},
+        4: {'$gte': 1250, '$lte': 1500},
+        5: {'$gte': 1500},
+    },
+        'Accessories': {
+        1: {'$gte': 0, '$lte': 200},
+        2: {'$gte': 200, '$lte': 300},
+        3: {'$gte': 300, '$lte': 400},
+        4: {'$gte': 400},
+    },
+        'All': {
+        1: {'$gte': 0, '$lte': 250},
+        2: {'$gte': 250, '$lte': 500},
+        3: {'$gte': 500, '$lte': 750},
+        4: {'$gte': 750, '$lte': 1000},
+        5: {'$gte': 1000},
+    }}
     return price_file[category][value]
 
 
@@ -88,12 +106,17 @@ def sort_items(sort=None):
     Generates the sort query. Code is from https://stackoverflow.com/questions/
     8109122/how-to-sort-mongodb-with-pymongo
     """
-    sort_file = {"featured": [("_id", 1)], "date-added": [("date_added", -1),
-                ("name", 1)], "price-asc": [("price", 1), ("name", 1)],
-                "price-desc": [("price", -1), ("name", 1)], "rating": [
-                ("overall_rating", -1), ("name", 1)], "cat_asc": [("category",
-                1)], "cat_desc": [("category", -1)], "a-to-z": [("name",
-                1)], "z-to-a": [("name", -1)]}
+    sort_file = {
+        'featured': [('_id', 1)],
+        'date-added': [('date_added', -1), ('name', 1)],
+        'price-asc': [('price', 1), ('name', 1)],
+        'price-desc': [('price', -1), ('name', 1)],
+        'rating': [('overall_rating', -1), ('name', 1)],
+        'cat_asc': [('category', 1)],
+        'cat_desc': [('category', -1)],
+        'a-to-z': [('name', 1)],
+        'z-to-a': [('name', -1)],
+    }
     if sort:
         return sort_file[sort]
 
@@ -106,10 +129,20 @@ def product_ratings_query():
     Generates the get product ratings search query. Code is from https://
     docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
     """
-    query = {"name": 1, "overall_rating": 1, "performance_rating": 1,
-             "usability_rating": 1, "price_rating": 1, "quality_rating": 1,
-             "one_star": 1, "two_stars": 1, "three_stars": 1, "four_stars": 1,
-             "five_stars": 1}
+    query = {
+        'name': 1,
+        'overall_rating': 1,
+        'performance_rating': 1,
+        'usability_rating': 1,
+        'price_rating': 1,
+        'quality_rating': 1,
+        'one_star': 1,
+        'two_stars': 1,
+        'three_stars': 1,
+        'four_stars': 1,
+        'five_stars': 1,
+    }
+
     return query
 
 
@@ -118,8 +151,16 @@ def user_ratings_query():
     Generates the get user ratings search query. Code is from
     https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
     """
-    query = {"product": 1, "overall_rating": 1, "performance_rating": 1,
-             "usability_rating": 1, "price_rating": 1, "quality_rating": 1, "_id": 0}
+    query = {
+        'product': 1,
+        'overall_rating': 1,
+        'performance_rating': 1,
+        'usability_rating': 1,
+        'price_rating': 1,
+        'quality_rating': 1,
+        '_id': 0,
+    }
+
     return query
 
 
@@ -128,7 +169,7 @@ def calculate_rating(average, total, new_rating, prev_rating, new_total):
     Calculates the product's new rating. Round function is from https://
     www.programiz.com/python-programming/methods/built-in/round
     """
-    rating = ((average * total) + prev_rating +
+    rating = ((average * total) - prev_rating +
               float(new_rating)) / new_total
     rating = round(rating, 1)
     return rating
@@ -137,35 +178,37 @@ def calculate_rating(average, total, new_rating, prev_rating, new_total):
 def add_ratings(product_ratings, product_count, form):
     # Calculates the product's new ratings for when a review is added
     rating = {
-        'overall_rating': calculate_rating(product_ratings ['overall_rating'], 
-        product_count, 0, int(form['overall_rating']), product_count + 1), 
-        'performance_rating': calculate_rating(product_ratings['performance_rating'], product_count, 0, int(form['performance_rating']
-        ), product_count + 1), 'usability_rating': calculate_rating
+        'overall_rating': calculate_rating(product_ratings['overall_rating'],
+        product_count, 0, int(form['overall_rating']), product_count + 1),
+        'performance_rating': calculate_rating(product_ratings
+        ['performance_rating'], product_count, 0, int(form['performance_rating'
+        ]), product_count + 1), 'usability_rating': calculate_rating
         (product_ratings['usability_rating'], product_count, 0, int(form
-        ['usability_rating']), product_count + 1), 'price_rating': 
+        ['usability_rating']), product_count + 1), 'price_rating':
         calculate_rating(product_ratings['price_rating'], product_count, 0, int
-        (form['price_rating']), product_count + 1), 'quality_rating': 
-        calculate_rating(product_ratings['quality_rating'], product_count, 0, 
+        (form['price_rating']), product_count + 1), 'quality_rating':
+        calculate_rating(product_ratings['quality_rating'], product_count, 0,
         int(form['quality_rating']), product_count + 1)
-              }
+    }
+
     return rating
 
 
 def edit_ratings(user_ratings, product_ratings, product_count, form):
     # Calculates the product's new ratings for when a review is edited
     rating = {
-        'overall_rating': calculate_rating(product_ratings['overall_rating'], 
-        product_count, user_ratings['overall_rating'], form['overall_rating'], 
+        'overall_rating': calculate_rating(product_ratings['overall_rating'],
+        product_count, user_ratings['overall_rating'], form['overall_rating'],
         product_count + 1), 'performance_rating': calculate_rating
         (product_ratings['performance_rating'], product_count, user_ratings
-        ['performance_rating'], form ['performance_rating'], product_count + 1),
+        ['performance_rating'], form['performance_rating'], product_count + 1),
         'usability_rating': calculate_rating(product_ratings['usability_rating']
         , product_count, user_ratings['usability_rating'], form
-        ['usability_rating'], product_count + 1), 'price_rating': 
-        calculate_rating(product_ratings['price_rating'], product_count, 
-        user_ratings['price_rating'], form['price_rating'], product_count + 1), 
-        'quality_rating': calculate_rating (product_ratings['quality_rating'], 
-        product_count, user_ratings ['quality_rating'], form['quality_rating'], 
+        ['usability_rating'], product_count + 1), 'price_rating':
+        calculate_rating(product_ratings['price_rating'], product_count,
+        user_ratings['price_rating'], form['price_rating'], product_count + 1),
+        'quality_rating': calculate_rating(product_ratings['quality_rating'],
+        product_count, user_ratings['quality_rating'], form['quality_rating'],
         product_count + 1)
     }
     return rating
@@ -174,16 +217,16 @@ def edit_ratings(user_ratings, product_ratings, product_count, form):
 def delete_ratings(user_ratings, product_ratings, product_count):
     # Calculates the product's new ratings for when a review is deleted
     rating = {
-        'overall_rating': calculate_rating(product_ratings['overall_rating'], 
-        product_count, user_ratings['overall_rating'], 0, product_count - 1), 
+        'overall_rating': calculate_rating(product_ratings['overall_rating'],
+        product_count, user_ratings['overall_rating'], 0, product_count - 1),
         'performance_rating': calculate_rating(product_ratings
         ['performance_rating'], product_count, user_ratings
-        ['performance_rating'], 0, product_count - 1), 'usability_rating': 
-        calculate_rating(product_ratings['usability_rating'], product_count, 
-        user_ratings['usability_rating'], 0, product_count - 1), 
-        'price_rating': calculate_rating(product_ratings['price_rating'], 
-        product_count, user_ratings['price_rating'], 0, product_count - 1), 
-        'quality_rating': calculate_rating(product_ratings['quality_rating'], 
+        ['performance_rating'], 0, product_count - 1), 'usability_rating':
+        calculate_rating(product_ratings['usability_rating'], product_count,
+        user_ratings['usability_rating'], 0, product_count - 1),
+        'price_rating': calculate_rating(product_ratings['price_rating'],
+        product_count, user_ratings['price_rating'], 0, product_count - 1),
+        'quality_rating': calculate_rating(product_ratings['quality_rating'],
         product_count, user_ratings['quality_rating'], 0, product_count - 1)
     }
     return rating
