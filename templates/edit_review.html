@@ -22,7 +22,7 @@
                 </label>
                 <div id="overallRating" class="rating">
                     {% if review.overall_rating == 5 %}
-                    <input id="overallRating5" type="radio" name="overallRating" value="5" checked />
+                    <input id="overallRating5" type="radio" name="overall_rating" value="5" checked />
                     {% else %}
                     <input id="overallRating5" type="radio" name="overall_rating" value="5" />
                     {% endif %}
@@ -244,7 +244,8 @@
                 <label for="reviewTitle">
                     <h4 class="form-subheadings">Review Title</h4>
                 </label>
-                <input type="text" class="form-control" id="reviewTitle" name="review_title" value="{{review.review_title}}" required />
+                <input type="text" class="form-control" id="reviewTitle" name="review_title"
+                    value="{{review.review_title}}" required />
             </div>
             <!--Review title end-->
             <!--Review detail start-->
@@ -252,9 +253,8 @@
                 <label for="review">
                     <h4 class="form-subheadings">Your Review</h4>
                 </label>
-                <textarea class="form-control" id="review" name="review" rows="5" required>
-                {{review.review}}
-                </textarea>
+                <textarea class="form-control" id="review" name="review" rows="5"
+                    required>{{review.review|replace(' ', '')}}</textarea>
             </div>
             <!--Review detail end-->
             <!--Update review button start-->
@@ -262,6 +262,11 @@
                 <button type="submit" class="btn btn-green">Update Review</button>
             </div>
             <!--Update review button end-->
+            <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+            <div class="form-group d-none">
+                <input type="hidden" name="next" value="{{request.referrer}}" />
+            </div>
+            <!--Next hidden field end-->
         </form>
     </div>
     <!--Edit review form end-->

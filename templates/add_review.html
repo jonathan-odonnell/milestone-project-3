@@ -155,6 +155,11 @@
                 <button type="submit" class="btn btn-green">Add Review</button>
             </div>
             <!--Add review button end-->
+            <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
+            <div class="form-group d-none">
+                <input type="hidden" name="next" value="{{request.referrer}}" />
+            </div>
+            <!--Next hidden field end-->
         </form>
     </div>
     <!--Add review form end-->

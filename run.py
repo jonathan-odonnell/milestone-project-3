@@ -500,6 +500,13 @@ def sign_out():
 @login_required
 def add_review(product_id):
     if request.method == 'POST':
+        """
+        Gets the next URL from the next field in the form.
+        Code is from https://blog.tecladocode.com/
+        handling-the-next-url-when-logging-in-with-flask/
+        """
+        next_url = request.form.get('next')
+
         # Gets the product's ratings from the product database
         product_ratings = mongo.db.products.find_one(
             {"_id": ObjectId(product_id)}, product_ratings_query())
@@ -550,28 +557,43 @@ def add_review(product_id):
         # Adds the review to the reviews database
         mongo.db.reviews.insert_one(review)
 
-        # Redirects to the previous page
-        return redirect(url_for('review_details', product_id=product_id))
+        # Redirects to the previous URL.
+        return redirect(next_url)
 
-    # Gets the product's details from the products databse
-    product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
-
-    if product is None:
+    else:
         """
-        Returns a status of 404 if the product does not exist. Code is
-        from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+        Aborts the request and returns a status code of 400 if the URL does not
+        contain a next search perameter.
         """
-        abort(404)
+        if request.args.get('next') is None:
+            abort(400)
 
-    # Renders the add_review.html template
-    return render_template("add_review.html", page_title="Add Review",
-                           product_id=product_id)
+        # Gets the product's details from the products databse
+        product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
+
+        if product is None:
+            """
+            Returns a status of 404 if the product does not exist. Code is
+            from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages
+            """
+            abort(404)
+
+        # Renders the add_review.html template
+        return render_template("add_review.html", page_title="Add Review",
+                            product_id=product_id)
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def edit_review(review_id):
     if request.method == 'POST':
+        """
+        Gets the next URL from the next field in the form.
+        Code is from https://blog.tecladocode.com/
+        handling-the-next-url-when-logging-in-with-flask/
+        """
+        next_url = request.form.get('next')
+
         # Gets the review's ratings from the reviews database
         user_ratings = mongo.db.reviews.find_one(
             {'_id': ObjectId(review_id)}, user_ratings_query())
@@ -629,47 +651,71 @@ def edit_review(review_id):
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
 
-        # Redirects to the product's review details page
-        return redirect(url_for('review_details',
-                                product_id=product_ratings['_id']))
-
-    """
-    Gets the review author's details from the reviews database. Code for
-    returning selected fields from https://docs.mongodb.com/manual/tutorial/
-    project-fields-from-query-results/
-    """
-    review = mongo.db.reviews.find_one(
-        {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
-
-    if review is None:
         """
-        Returns a status of 404 if no review is returned. Code is
-        from https://flask.palletsprojects.com/en/1.1.x/patterns
-        /errorpages/
+        Redirects to the URL in the next_url variable or to the user's account
+        page if next_url contains no value.
         """
-        return abort(404)
-
-    elif "{} {}".format(session['user']['first_name'], session['user']
-                        ['last_name']) != review['created_by']:
-        """
-        Returns a status of 403 if the user is not the
-        author of the review. Code is from https://
-        flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
-        """
-        return abort(403)
+        return redirect(next_url)
 
     else:
-        # Gets the review from the reviews database
-        review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
+        """
+        Aborts the request and returns a status code of 400 if the URL does not
+        contain a next search perameter.
+        """
+        if request.args.get('next') is None:
+            abort(400)
 
-        # Renders the edit_review.html template
-        return render_template('edit_review.html',
-                               page_title='Edit Review', review=review)
+        """
+        Gets the review author's details from the reviews database. Code for
+        returning selected fields from https://docs.mongodb.com/manual/tutorial
+        /project-fields-from-query-results/
+        """
+        review = mongo.db.reviews.find_one(
+            {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
+
+        if review is None:
+            """
+            Returns a status of 404 if no review is returned. Code is
+            from https://flask.palletsprojects.com/en/1.1.x/patterns
+            /errorpages/
+            """
+            return abort(404)
+
+        elif "{} {}".format(session['user']['first_name'], session['user']
+                            ['last_name']) != review['created_by']:
+            """
+            Returns a status of 403 if the user is not the
+            author of the review. Code is from https://
+            flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+            """
+            return abort(403)
+
+        else:
+            # Gets the review from the reviews database
+            review = mongo.db.reviews.find_one({'_id': ObjectId(review_id)})
+
+            # Renders the edit_review.html template
+            return render_template('edit_review.html',
+                                page_title='Edit Review', review=review)
 
 
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
 @login_required
 def delete_review(review_id):
+    """
+    Aborts the request and returns a status code of 400 if the URL does not
+    contain a next search perameter.
+    """
+    if request.args.get('next') is None:
+        abort(400)
+
+    """
+    Gets the next URL from the next field in the form.
+    Code is from https://blog.tecladocode.com/
+    handling-the-next-url-when-logging-in-with-flask/
+    """
+    next_url = request.args.get('next')
+
     """
     Gets the review author's details from the reviews database. Code for
     returning selected fields from https://docs.mongodb.com/manual/tutorial/
@@ -732,9 +778,11 @@ def delete_review(review_id):
         # Deletes the review from the reviews database
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
-        # Redirects to the product's review details page
-        return redirect(url_for('review_details',
-                                product_id=product_ratings['_id']))
+        """
+        Redirects to the URL in the next_url variable or to the user's account
+        page if next_url contains no value.
+        """
+        return redirect(next_url)
 
 
 @app.route("/add_product", methods=["GET", "POST"])
@@ -900,6 +948,15 @@ def delete_product(product_id):
     # Deletes the product
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
     return redirect(url_for('product_management'))
+
+
+@app.errorhandler(400)
+def bad_request(e):
+    """
+    Redirects to the home page. Code is from https://flask.palletsprojects.com/
+    en/1.1.x/patterns/errorpages/
+    """
+    return redirect(url_for('index'))
 
 
 @app.errorhandler(403)
