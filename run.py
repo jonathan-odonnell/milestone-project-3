@@ -786,6 +786,12 @@ def delete_review(review_id):
         # Deletes the review from the reviews database
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
+        """
+        Code for message categories is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/flashing/
+        """
+        flash("Review Successfully Deleted", "Success")
+
         return redirect(next_url)
 
 
@@ -960,6 +966,13 @@ def delete_product(product_id):
 
     # Deletes the product
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
+
+    """
+    Code for message categories is from https://flask.palletsprojects.com/
+    en/1.1.x/patterns/flashing/
+    """
+    flash("Product Successfully Deleted", "Success")
+
     return redirect(url_for('product_management'))
 
 
