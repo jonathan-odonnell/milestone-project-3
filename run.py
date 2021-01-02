@@ -88,6 +88,14 @@ def newsletter():
 @app.route("/reviews/<category>")
 def reviews(category="All"):
     """
+    If the category is All, checks if the URL contains a search perameter named
+    search and aborts the request and returns a status code of 400 if it does
+    not.
+    """
+    if category == "All" and request.args.get('search') is None:
+        abort(400)
+
+    """
     Gets the search parameters from the URL, converts them to a dictionary,
     adds the category if the category is not equal to all and generates the
     search query. Code for search perameters is from
