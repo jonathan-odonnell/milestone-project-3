@@ -195,7 +195,9 @@ def review_details(product_id):
                                       session['user']['last_name'])
 
     """
-    Gets the product's reviews from the database and sorts them. Code for the sort method is from https://docs.mongodb.com/manual/reference/method/cursor.sort/index.html
+    Gets the product's reviews from the database and sorts them. Code for the
+    sort method is from https://docs.mongodb.com/manual/reference/method/
+    cursor.sort/index.html
     """
     reviews = list((mongo.db.reviews.find(
         {"product": product["name"]})).sort("date_added", -1))
@@ -304,8 +306,8 @@ def sign_in():
     """
     if request.method == "POST":
         """
-        Code for next_url is from https://blog.tecladocode.com/
-        handling-the-next-url-when-logging-in-with-flask/
+        Gets the next search perameter from the URL. Code is from https://
+        blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/
         """
         next_url = request.form.get('next')
 
@@ -366,8 +368,8 @@ def sign_up():
     """
     if request.method == "POST":
         """
-        Code for next_url is from https://blog.tecladocode.com/
-        handling-the-next-url-when-logging-in-with-flask/
+        Gets the next search perameter from the URL. Code is from https://
+        blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/
         """
         next_url = request.form.get('next')
 
@@ -491,11 +493,14 @@ def sign_out():
     """
     Signs the user out and returns the user to the previous page or the home
     page. Code for message categories is from https://flask.palletsprojects.com
-    /en/1.1.x/patterns/flashing/
+    /en/1.1.x/patterns/flashing/ and code for next search perameter is from
+    https://blog.tecladocode.com/
+    handling-the-next-url-when-logging-in-with-flask/
     """
+    next_url = request.form.get('next')
     session.pop("user")
     flash("Sign Out Successful", "success")
-    return redirect(url_for('sign_in'))
+    return redirect(next_url or url_for('index'))
 
 
 @app.route("/add_review/<product_id>", methods=["GET", "POST"])
