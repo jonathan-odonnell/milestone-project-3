@@ -167,14 +167,3 @@
 <!--Main content container end-->
 {% endblock %}
 <!--Content block end-->
-<!--Postload JS block start-->
-{% block postloadjs %}
-<!--Sets the value attribute of the hidden product field equal to the value of the product item in local storage. Code is from https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage-->
-<script>
-    $(document).ready(function () {
-        let product = localStorage.getItem("product")
-        $('#product').val(product)
-    })
-</script>
-{% endblock %}
-<!--PostloadJS block end-->

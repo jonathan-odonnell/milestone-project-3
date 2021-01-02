@@ -1,7 +1,6 @@
 // If the value of search item in the browser's local storage is not null, updates the back link HTML. Code for local storage is from https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage and code for left chevron icon is from https://fontawesome.com/icons/chevron-left?style=solid
 
 $(document).ready(function () {
-    localStorage.setItem('product', $('h3').html())
     if (localStorage.getItem('search') !== null) {
         let html = localStorage.getItem('search')
         let url = localStorage.getItem('search_url')
