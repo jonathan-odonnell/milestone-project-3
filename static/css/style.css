@@ -110,7 +110,7 @@ section {
 /* Cards Start */
 
 .card-img {
-    height: 10rem;
+    height: 8rem;
     width: 100%;
     object-fit: cover;
     object-position: center center;
@@ -310,7 +310,7 @@ section {
 }
 
 .slick-slide {
-    height: 16.5rem;
+    height: 15rem;
 }
 
 .slick-prev:before,
@@ -319,11 +319,11 @@ section {
 }
 
 .featured-card {
-    margin-bottom: 30px;
+    margin: 0 15px 30px;
 }
 
 .featured-card .card-body {
-    padding: 0.75rem
+    padding: 0.75rem;
 }
 
 #newsletter-sign-up input,
