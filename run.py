@@ -422,7 +422,7 @@ def account():
     """
     user = "{} {}".format(
         session['user']['first_name'], session['user']['last_name'])
-    reviews = list(mongo.db.reviews.find({"created_by": user}))
+    reviews = list(mongo.db.reviews.find({"reviewed_by": user}))
 
     """
     Paginates products with 10 to a page.
@@ -542,7 +542,7 @@ def add_review(product_id):
             "review": request.form.get('review'),
             "product": product_ratings['name'],
             "date_added": datetime.datetime.now(),
-            "created_by": "{} {}".format(session['user']['first_name'],
+            "reviewed_by": "{} {}".format(session['user']['first_name'],
                                          session['user']['last_name'])
         }
 
@@ -679,7 +679,7 @@ def edit_review(review_id):
         /project-fields-from-query-results/
         """
         review = mongo.db.reviews.find_one(
-            {"_id": ObjectId(review_id)}, {"created_by": 1, "_id": 0})
+            {"_id": ObjectId(review_id)}, {"reviewed_by": 1, "_id": 0})
 
         if review is None:
             """
@@ -690,7 +690,7 @@ def edit_review(review_id):
             return abort(404)
 
         elif "{} {}".format(session['user']['first_name'], session['user']
-                            ['last_name']) != review['created_by']:
+                            ['last_name']) != review['reviewed_by']:
             """
             Returns a status of 403 if the user is not the
             author of the review. Code is from https://
@@ -730,7 +730,7 @@ def delete_review(review_id):
     project-fields-from-query-results/
     """
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
-        "created_by": 1, "_id": 0})
+        "reviewed_by": 1, "_id": 0})
 
     if review is None:
         """
@@ -741,7 +741,7 @@ def delete_review(review_id):
         return abort(404)
 
     elif "{} {}".format(session['user']['first_name'], session['user']
-                        ['last_name']) != review['created_by']:
+                        ['last_name']) != review['reviewed_by']:
         """
         Returns a status of 403 if the user is not the
         author of the review. Code is from https://flask.palletsprojects.com/

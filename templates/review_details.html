@@ -250,7 +250,7 @@
                         <div class="card-body p-0">
                             <h4 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
-                                {% if current_user|lower == review.created_by|lower %}
+                                {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
                                     <a class="btn py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
@@ -293,7 +293,7 @@
                             <!--Review author and review date-->
                             <p>
                                 <small>
-                                    Reviewed by {{review.created_by}} on {{review.date_added}}
+                                    Reviewed by {{review.reviewed_by}} on {{review.date_added}}
                                 </small>
                             </p>
                             <!--Upvote and downvote start-->
@@ -337,7 +337,7 @@
                         <div class="card-body p-0">
                             <h4 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
-                                {% if current_user|lower == review.created_by|lower %}
+                                {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
                                     <a class="btn py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
