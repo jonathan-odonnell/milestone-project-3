@@ -48,7 +48,7 @@
                     <!--Code to add search icon on to the end of the search field is from https://getbootstrap.com/docs/5.0/forms/input-group/-->
                     <div class="input-group">
                         <input type="text" class="form-control no-box-shadow" name="search"
-                            placeholder="Search reviews by product name or brand" />
+                            placeholder="Search reviews by product name or brand"/>
                         <div class="input-group-append">
                             <div class="input-group-text p-0">
                                 <button class="btn btn-green py-0 px-3 w-100 h-100" type="submit">
@@ -128,7 +128,7 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    {% else %}>
+                    {% else %}
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('sign_in', next=request.url) }}">Sign In</a>
                     </li>
