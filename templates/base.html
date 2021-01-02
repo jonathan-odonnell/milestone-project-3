@@ -199,7 +199,7 @@
                                 {% endif %}
                             </a>
                             {% else %}
-                            <a href="url_for('account')" class="dropdown-item">Account</a>
+                            <a href="{{url_for('account')}}" class="dropdown-item">Account</a>
                             {% if page_title == "Account" %}
                             <span class="sr-only">(current)</span>
                             {% endif %}{% endif %}
