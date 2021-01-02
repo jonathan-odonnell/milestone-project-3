@@ -195,7 +195,7 @@ def review_details(product_id):
 
     # Gets the review from the reviews database
     reviews = list((mongo.db.reviews.find(
-        {"product": product["name"]})))
+        {"product": product["name"]})).sort("date_added", -1))
 
     for review in reviews:
         """
