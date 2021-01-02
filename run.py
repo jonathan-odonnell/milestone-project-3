@@ -88,12 +88,14 @@ def newsletter():
 @app.route("/reviews/<category>")
 def reviews(category="All"):
     """
-    If the category is All, checks if the URL contains a search perameter named
-    search and aborts the request and returns a status code of 400 if it does
+    If the category is All and there is no search perameter named
+    search, redirects to the home page and adds an error message informing the
+    user that they didn't enter any search criteria.
     not.
     """
-    if category == "All" and request.args.get('search') is None:
-        abort(400)
+    if category == "All" and not request.args.get('search'):
+        flash("You didn't enter any search criteria!", "error")
+        return redirect(url_for('index'))
 
     """
     Gets the search parameters from the URL, converts them to a dictionary,
