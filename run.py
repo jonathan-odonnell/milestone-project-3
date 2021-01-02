@@ -1,4 +1,5 @@
 import os
+import datetime
 from functools import wraps
 from flask import (Flask, flash, jsonify, render_template,
                    redirect, request, session, url_for, abort)
@@ -7,7 +8,6 @@ from flask_paginate import get_page_args
 from bson.objectid import ObjectId
 from bson.decimal128 import Decimal128
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
 from utils import (add_ratings, create_user_session, delete_ratings,
                    edit_ratings, paginate, paginate_items,
                    product_ratings_query, search, sort_items, star_rating,
@@ -63,7 +63,6 @@ def admin_required(f):
 
 
 @app.route("/")
-@app.route("/index")
 def index():
     """
     Renders the index.html template
@@ -545,7 +544,7 @@ def add_review(product_id):
             "product": product_ratings['name'],
             "date_added": datetime.datetime.now(),
             "reviewed_by": "{} {}".format(session['user']['first_name'],
-                                         session['user']['last_name'])
+                                          session['user']['last_name'])
         }
 
         # Calculates the product's new ratings
@@ -590,7 +589,7 @@ def add_review(product_id):
 
         # Renders the add_review.html template
         return render_template("add_review.html", page_title="Add Review",
-                            product_id=product_id)
+                               product_id=product_id)
 
 
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
@@ -706,7 +705,7 @@ def edit_review(review_id):
 
             # Renders the edit_review.html template
             return render_template('edit_review.html',
-                                page_title='Edit Review', review=review)
+                                   page_title='Edit Review', review=review)
 
 
 @app.route("/delete_review/<review_id>", methods=["GET", "POST"])
