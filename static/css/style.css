@@ -26,6 +26,10 @@ h4 {
     font-size: 1rem;
 }
 
+h5 {
+    font-size: 0.8rem;
+}
+
 strong {
     font-weight: bold;
 }
@@ -491,6 +495,7 @@ section {
 .footer-links li {
     color: #fff;
     list-style: none;
+    margin-bottom: 0.2rem;
 }
 
 .footer-links li a {
@@ -502,14 +507,10 @@ section {
     text-decoration: none;
 }
 
-.social-media-heading {
-    padding-left: calc(25% - 25px);
-}
-
 .social-media-icons {
     padding: 0;
     font-size: 0;
-    margin: 0.75rem 0;
+    margin: 0.5rem 2rem; 
 }
 
 .social-media-icons li {
@@ -522,23 +523,13 @@ section {
     color: #fff;
 }
 
-.social-media-icons li i:hover {
+/* Code for .social-media-icons:hover:before and .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
+
+.hvr-grow:hover:before {
     color: #64a19d;
 }
 
-.list-inline-item:not(:last-child) {
-    margin-right: 0;
-}
-
-/* Code for .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
-
-.social-media-icons li i:hover {
-    transform: scale(1.5);
-}
-
-/* Code for .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
-
-.social-media-icons li i:hover {
+.hvr-grow:hover {
     transform: scale(1.5);
 }
 
@@ -560,7 +551,8 @@ section {
 }
 
 .accordion-links {
-    padding: 0.75rem 38px;
+    padding: 0.5rem 2rem;
+    font-size: 0.8rem;
 }
 
 /* Footer end */
@@ -656,11 +648,11 @@ section {
     .footer-headings {
         margin-bottom: 0.5rem;
     }
-    .social-media-icons {
-        margin: 20px auto 20px 0;
-    }
     .footer-paragraphs {
         margin-top: 20px;
+    }
+    .social-media-icons {
+        margin: 1rem 0;
     }
 }
 

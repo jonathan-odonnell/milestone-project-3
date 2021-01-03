@@ -8,6 +8,8 @@
     <meta name="Description" content="Enter your description here" />
     <!--Import Bootswatch Lux theme stylesheet. Code is from https://bootswatch.com/lux-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <!--Import hover.css stylesheet. Code is from https://cdnjs.com/libraries/hover.css/2.1.0-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css" integrity="sha512-glciccPoOqr5mfDGmlJ3bpbvomZmFK+5dRARpt62nZnlKwaYZSfFpFIgUoD8ujqBw4TmPa/F3TX28OctJzoLfg==" crossorigin="anonymous" />
     <!--Import Sick Carousel stylesheet. Code is from https://kenwheeler.github.io/slick/-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slick/slick.css') }}" />
     <!--Import Slick Carousel Theme stylesheet. Code is from https://kenwheeler.github.io/slick/-->
@@ -299,7 +301,7 @@
         <div class="container content-container">
             <div class="row no-gutters">
                 <!--Links start-->
-                <div class="d-none d-lg-block col-lg-5 offset-lg-1">
+                <div class="d-none d-lg-block col-lg-4 offset-lg-1">
                     <h4 class="text-left footer-headings">Links</h4>
                     <div class="row no-guters">
                         <div class="col-6">
@@ -334,32 +336,32 @@
                 </div>
                 <!--Links end-->
                 <!--Social media icons start-->
-                <div class="d-none d-lg-block col-lg-5">
-                    <h4 class="text-left footer-headings social-media-heading">Connect With Us</h4>
+                <div class="d-none d-lg-block col-lg-4 offset-lg-2">
+                    <h4 class="footer-headings text-right">Connect With Us</h4>
                     <div class="social-media-icons">
                         <ul class="list-inline no-gutters">
-                            <li class="col-3 list-inline-item text-right">
+                            <li class="col-3 text-right list-inline-item mr-0">
                                 <a href="https://www.facebook.com" target="_blank">
                                     <!--Code for Facebook icon from https://fontawesome.com/icons/facebook?style=brands-->
                                     <i class="fab fa-facebook hvr-grow" aria-hidden="true"></i>
                                     <span class="sr-only">Facebook</span>
                                 </a>
                             </li>
-                            <li class="col-3 list-inline-item text-right">
+                            <li class="col-3 text-right list-inline-item mr-0">
                                 <a href="https://www.twitter.com" target="_blank">
                                     <!--Code for Twitter icon from https://fontawesome.com/icons/twitter?style=brands-->
                                     <i class="fab fa-twitter hvr-grow" aria-hidden="true"></i>
                                     <span class="sr-only">Twitter</span>
                                 </a>
                             </li>
-                            <li class="col-3 list-inline-item text-right">
+                            <li class="col-3 text-right list-inline-item mr-0">
                                 <a href="https://www.instagram.com" target="_blank">
                                     <!--Code for Instagram icon from https://fontawesome.com/icons/instagram?style=brands-->
                                     <i class="fab fa-instagram hvr-grow" aria-hidden="true"></i>
                                     <span class="sr-only">Instagram</span>
                                 </a>
                             </li>
-                            <li class="col-3 list-inline-item text-right">
+                            <li class="col-3 text-right list-inline-item mr-0">
                                 <a href="https://www.youtube.com" target="_blank">
                                     <!--Code for YouTube icon from https://fontawesome.com/icons/youtube?style=brands-->
                                     <i class="fab fa-youtube hvr-grow" aria-hidden="true"></i>
@@ -380,17 +382,17 @@
                                     <button class="btn px-0" type="button" data-toggle="collapse"
                                         data-target="#navLinksCollapse" aria-expanded="false"
                                         aria-controls="navLinksCollapse">
-                                        <h4 class="footer-headings">
+                                        <h5 class="footer-headings">
                                             <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
                                             <i class="fas fa-plus" aria-hidden="true"></i>Links
                                             <span class="sr-only">Plus</span>
-                                        </h4>
+                                        </h5>
                                     </button>
                                 </div>
                             </div>
                             <div id="navLinksCollapse" class="collapse" aria-labelledby="navLinksHeading"
                                 data-parent="#footerAccordion">
-                                <div class="row no-guters accordion-links">
+                                <div class="row no-gutters accordion-links">
                                     <div class="col-6">
                                         <ul class="list-group footer-links">
                                             <li>
@@ -431,40 +433,40 @@
                                     <button class="btn px-0" type="button" data-toggle="collapse"
                                         data-target="#socialLinksCollapse" aria-expanded="false"
                                         aria-controls="socialLinksCollapse">
-                                        <h4 class="footer-headings">
+                                        <h5 class="footer-headings">
                                             <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
                                             <i class="fas fa-plus" aria-hidden="true"></i>Connect With Us
                                             <span class="sr-only">Plus</span>
-                                        </h4>
+                                        </h5>
                                     </button>
                                 </div>
                             </div>
                             <div id="socialLinksCollapse" class="collapse" aria-labelledby="socialLinksHeading"
                                 data-parent="#footerAccordion">
                                 <div class="social-media-icons">
-                                    <ul class="list-inline no-gutters">
-                                        <li class="col-3 list-inline-item text-center">
+                                    <ul class="list-inline no-gutters mb-0">
+                                        <li class="col-3 list-inline-item text-center mr-0">
                                             <a href="https://www.facebook.com" target="_blank">
                                                 <!--Code for Facebook icon from https://fontawesome.com/icons/facebook?style=brands-->
                                                 <i class="fab fa-facebook hvr-grow" aria-hidden="true"></i>
                                                 <span class="sr-only">Facebook</span>
                                             </a>
                                         </li>
-                                        <li class="col-3 list-inline-item text-center">
+                                        <li class="col-3 list-inline-item text-center mr-0">
                                             <a href="https://www.twitter.com" target="_blank">
                                                 <!--Code for Twitter icon from https://fontawesome.com/icons/twitter?style=brands-->
                                                 <i class="fab fa-twitter hvr-grow" aria-hidden="true"></i>
                                                 <span class="sr-only">Twitter</span>
                                             </a>
                                         </li>
-                                        <li class="col-3 list-inline-item text-center">
+                                        <li class="col-3 list-inline-item text-center mr-0">
                                             <a href="https://www.instagram.com" target="_blank">
                                                 <!--Code for Instagram icon from https://fontawesome.com/icons/instagram?style=brands-->
                                                 <i class="fab fa-instagram hvr-grow" aria-hidden="true"></i>
                                                 <span class="sr-only">Instagram</span>
                                             </a>
                                         </li>
-                                        <li class="col-3 list-inline-item text-center">
+                                        <li class="col-3 list-inline-item text-center mr-0">
                                             <a href="https://www.youtube.com" target="_blank">
                                                 <!--Code for YouTube icon from https://fontawesome.com/icons/youtube?style=brands-->
                                                 <i class="fab fa-youtube hvr-grow" aria-hidden="true"></i>
