@@ -497,7 +497,7 @@ def sign_out():
     https://blog.tecladocode.com/
     handling-the-next-url-when-logging-in-with-flask/
     """
-    next_url = request.form.get('next')
+    next_url = request.args.get('next')
     session.pop("user")
     flash("Sign Out Successful", "success")
     return redirect(next_url or url_for('index'))
