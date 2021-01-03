@@ -2,7 +2,7 @@ from flask_paginate import Pagination
 
 
 def create_user_session(user):
-    # Adds the user's details to the session cookie
+    """ Adds the user's details to the session cookie """
     session_file = {
         "first_name": user["first_name"],
         "last_name": user["last_name"],
@@ -76,21 +76,21 @@ def get_price_range(category, value):
 
 
 def search(query, category):
-    # Genrates the get products search query
+    """ Genrates the get products search query """
     query_file = {}
 
-    if "search" in query:
+    if query.get('search'):
         query_file["$text"] = {"$search": query['search']}
 
     if query.get('categories'):
         categories = query['categories'].split(",")
         query_file['category'] = {"$in": categories}
 
-    if "price" in query:
+    if query.get('price'):
         query_file["price"] = get_price_range(
             category, int(query['price']))
 
-    if "brands" in query:
+    if query.get('brands'):
         brands = query['brands'].split(",")
         """
         Code is from https://docs.mongodb.com/manual/reference/operator/
@@ -176,7 +176,7 @@ def calculate_rating(average, total, new_rating, prev_rating, new_total):
 
 
 def add_ratings(product_ratings, product_count, form):
-    # Calculates the product's new ratings for when a review is added
+    """ Calculates the product's new ratings for when a review is added """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, 0, int(form['overall_rating']), product_count + 1),
@@ -195,7 +195,7 @@ def add_ratings(product_ratings, product_count, form):
 
 
 def edit_ratings(user_ratings, product_ratings, product_count, form):
-    # Calculates the product's new ratings for when a review is edited
+    """ Calculates the product's new ratings for when a review is edited """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, user_ratings['overall_rating'], form['overall_rating'],
@@ -215,7 +215,7 @@ def edit_ratings(user_ratings, product_ratings, product_count, form):
 
 
 def delete_ratings(user_ratings, product_ratings, product_count):
-    # Calculates the product's new ratings for when a review is deleted
+    """ Calculates the product's new ratings for when a review is deleted """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, user_ratings['overall_rating'], 0, product_count - 1),
