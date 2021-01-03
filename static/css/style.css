@@ -49,6 +49,10 @@ a, a:hover {
     color: inherit;
 }
 
+.yellow-star {
+    color: #ffc700;
+}
+
 .text-transform-none {
     text-transform: none;
     letter-spacing: 1px;
@@ -56,7 +60,7 @@ a, a:hover {
 
 /* Text Styling End */
 
-/* Section Styling Start */
+/* Section Styling Start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
 
 section {
     min-height: calc(100vh - 173px);
@@ -131,10 +135,6 @@ section {
 
 .form-group-ratings {
     height: 48px;
-}
-
-.yellow-star {
-    color: #ffc700;
 }
 
 .form-group-button {
@@ -250,6 +250,8 @@ section {
     z-index: 99999999999;
 }
 
+/* Arrow up code is adapted from https://css-tricks.com/snippets/css/css-triangle/ */
+
 .arrow-up {
     width: 0;
     height: 0;
@@ -342,7 +344,7 @@ section {
 /* Image from https://unsplash.com/photos/c-lUYtNjqxw */
 
 .sign-up-image {
-    background-image: url("/static/images/sign_up.jpg");
+    background-image: url("../images/sign_up.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -395,7 +397,7 @@ section {
     height: 20rem;
 }
 
-.features {
+.product-details {
     padding-top: 30px;
     padding-bottom: calc(30px - 1rem);
 }
@@ -586,7 +588,7 @@ section {
     .slick-slide {
         height: 20rem;
     }
-    .features-table th {
+    .product-details table th {
         min-width: 200px;
     }
     .sign-in-col {
@@ -631,7 +633,7 @@ section {
     .collapse:not(.show) {
         display: block;
     }
-    .features {
+    .product-details {
         padding-top: 0;
     }
     .reviews-col-sidebar {
