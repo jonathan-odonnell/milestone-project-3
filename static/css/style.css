@@ -290,7 +290,7 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url("/static/images/hero-image.jpg");
+    background-image: url("../images/hero-image.jpg");
     background-size: cover;
     background-position: 70% 60%;
     margin-bottom: 0;
@@ -433,7 +433,8 @@ section {
 
 /* Contact Form Start */
 
-/* Image From https://unsplash.com/photos/V4CU3OBsrEk */
+/* Image From https://unsplash.com/photos/V4CU3OBsrEk and code for horizontal alignment is from https://css-tricks.com/centering-css-complete-guide/ */
+
 .contact-heading {
    position: absolute;
    top: 50%;
@@ -443,7 +444,7 @@ section {
 }
 
 .contact-img {
-    background-image: url("/static/images/contact.jpg");
+    background-image: url("../images/contact.jpg");
     height: 60vh;
     max-height: 400px;
     background-size: cover;
@@ -491,8 +492,6 @@ section {
     margin-bottom: 0;
     margin-top: 0.75rem;
 }
-
-/* Code from https://developer.mozilla.org/en-US/docs/Web/CSS/calc */
 
 .footer-links li {
     color: #fff;
