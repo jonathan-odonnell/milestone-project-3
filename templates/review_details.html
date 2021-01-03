@@ -231,6 +231,7 @@
             {% if session.user %}
             <div class="row no-gutters">
                 <div class="col-12 add-review">
+                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                     <a class="btn btn-sm btn-green" href="{{url_for('add_review', product_id=product._id, next=request.url)}}">
                         Add Review
                     </a>
@@ -252,11 +253,13 @@
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
+                                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                                     <a class="btn py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for edit icon is from https://fontawesome.com/icons/edit?style=solid-->
                                         <i class="far fa-edit"></i>
                                     </a>
+                                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                                     <a class="btn py-0 px-2" href="{{url_for('delete_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for trash icon is from https://fontawesome.com/icons/trash?style=solid-->
                                         <i class="fas fa-trash"></i>
@@ -339,11 +342,13 @@
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
+                                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                                     <a class="btn py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for edit icon is from https://fontawesome.com/icons/edit?style=solid-->
                                         <i class="far fa-edit"></i>
                                     </a>
+                                    <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                                     <a class="btn py-0 px-2" href="{{url_for('delete_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for trash icon is from https://fontawesome.com/icons/trash?style=solid-->
                                         <i class="fas fa-trash"></i>
