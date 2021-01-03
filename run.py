@@ -190,7 +190,7 @@ def review_details(product_id):
     page_title = product["name"] + " Review"
 
     # Sets the current user if there is a user logged in
-    if session('user'):
+    if session.get('user'):
         current_user = "{} {}".format(session['user']['first_name'],
                                       session['user']['last_name'])
 
