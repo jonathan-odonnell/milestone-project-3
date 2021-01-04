@@ -20,7 +20,7 @@
 6. Reduce and expand the width of the screen and verify that for all screen widths where the standard menu is visible, the links do not wrap onto the next line. 
     - Outcome: Pass
         
-7. Click on the Tech Reviews logo and verfy that it takes the user back the the home page.
+7. Click on the Tech Reviews logo and verify that it takes the user back the the home page.
     - Outcome: Pass
         
 8. Click on the home link and verify that it takes the user to the home page.
@@ -138,7 +138,7 @@
 3. Reduce and expand the width of the screen and verify that the hero image appears as expected and looks good at all screen widths.
      - Outcome: Pass
 
-4. Scroll down to the featured products carousel and verify that it appears with 3 cards displayed.
+4. Scroll down to the featured products carousel and verify that it appears with 3 cards displayed, with each containing a product's name and image.
     - Outcome: Pass
 
 5. Click the left arrow and verify that the carousel now shows the 2nd, 3rd and 4th cards.
@@ -156,10 +156,13 @@
 9. Scroll down to the newsletter sign up form and verify that it appears as expected and looks good at all screen widths.
     - Outcome: Pass
 
-10. Enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
+10. Verify that each card image links to the relevant product's review details page.
     - Outcome: Pass
 
-11. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the html is dynamically updated to show a message thanking the user for signing up to the newsletter.
+11. Enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
+    - Outcome: Pass
+
+12. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the html is dynamically updated to show a message thanking the user for signing up to the newsletter.
     - Outcome: Pass
 
 ## Sign In page
@@ -357,7 +360,7 @@
 5. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
     - Outcome: Pass
 
-6. Verify that the filters sidebar only appears on screen withs of 768px and above.
+6. Verify that the filters sidebar only appears on screen widths of 768px and above.
     - Outcome: Pass
 
 7. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
