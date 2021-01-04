@@ -332,7 +332,71 @@
         - Outcome: Pass
 
     6. Verify that users who are not logged in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
-        - Pass
+        - Outcome: Pass
 
     7. Verify that standard users cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
-        - Pass
+        - Outcome: Pass
+
+- Reviews, Phones, Tablets, Laptops and Accessories Pages
+
+    1. Verify that the page appears as expected and looks good at all screen widths.
+        - Outcome: Pass
+
+    2. Verify that cards containing the product image, name, price and average overall rating for each product satisfying the search criteria are displayed 6 to a page.
+        - Outcome: Pass
+
+    3. Verify that each product image links to the relevant product's review details page.
+        - Outcome: Pass
+
+    4. Verify that if there no search results that satisfy the search criteria, text appears informing the user that there are no products which match their search criteria.
+        - Outcome: Pass
+
+    5. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
+        - Outcome: Pass
+
+    6. Verify that the filters sidebar only appears on screen withs of 768px and above.
+        - Outcome: Pass
+
+    7. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
+        - Outcome: Pass
+
+    8. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
+        - Outcome: Pass
+
+    9. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
+        - Outcome: Pass
+
+    10. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions on the list are displayed.
+        - Outcome: Pass
+
+- Review Details Page
+
+    1. Verify that the review details page appears as expected and looks good at all screen widths.
+        - Outcome: Pass
+
+    2. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
+        - Outcome: Pass
+
+    3. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
+        - Outcome: Pass
+
+    4. Verify that if a user is signed in the add review is displayed.
+        - Outcome: Pass
+
+    5. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
+        - Outcome: Pass
+
+    6. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+        - Outcome: Pass
+
+    7. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+        - Outcome: Pass
+
+    8. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
+        - Outcome: Pass
+
+
+
+
+
+
