@@ -72,143 +72,185 @@
 - Footer
 
     1. Scroll down to the footer and verify that it appears with the content in two columns and looks good.
-     - Outcome: Pass
+        - Outcome: Pass
 
     2. Reduce and expand the width of the screen and verify that the footer appears as an accordion and looks good at all screen widths below 992px.
-    - Outcome: Pass
+        - Outcome: Pass
 
     3. Verify that when the user clicks on the accordion heading, it opens and the plus icon changes to a minus icon.
-    - Outcome: Pass
+        - Outcome: Pass
 
     4. Click on the phones link  and verify that it takes the user to the phones page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     5. Click on the tablets link and verify that it takes the user to the tablets page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     6. Click on the laptops link and verify that it takes the user to the laptops page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     7. Click on the accessories link and verify that it takes the user to the accessories page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     8. Verify that when a standard user is signed in the account link appears both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     9. Click on the account link and verify that it takes the user to the account page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     10. Verify that when an admin user is signed in the product management link appears both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     11. Click on the product management link and verify that it takes the user to the product management page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     12. Click on the contact us link and verify that it takes the user to the contact us page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     13. Verify that when the user hovers over each link, it appears in green.
-    - Outcome: Pass
+        - Outcome: Pass
 
     14. Click on the Facebook icon and verify that it takes the user to the Facebook home page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     15. Click on the Twitter icon and verify that it takes the user to the Twitter home page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     16. Click on the Instagram icon and verify that it takes the user to the Instagram home page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     17. Click on the Youtube icon and verify that it takes the user to the Youtube home page, both in the accordion links list and in the standard links list.
-    - Outcome: Pass
+        - Outcome: Pass
 
     18. Verify that when the user hovers over icon, it increases in size and appears in green.
-    - Outcome: Pass
+        - Outcome: Pass
 
 - Home page
 
     1. Verify that the hero image appears as expected and looks good.
-    - Outcome: Pass
+        - Outcome: Pass
 
     2. Click on the get started button in the hero image and verify that it takes the user to the sign up page.
-    - Outcome: Pass
+        - Outcome: Pass
 
     3. Reduce and expand the width of the screen and verify that the hero image appears as expected and looks good at all screen widths.
-    - Outcome: Pass
+        - Outcome: Pass
 
     4. Scroll down to the featured products carousel and verify that it appears with 3 cards displayed.
-    - Outcome: Pass
+        - Outcome: Pass
 
     5. Click the left arrow and verify that the carousel now shows the 2nd, 3rd and 4th cards.
-    - Outcome: Pass
+        - Outcome: Pass
 
     6. Click the right arrow and verify that the carousel now shows the 6th, 1st, and 2nd cards.
-    - Outcome: Pass
+        - Outcome: Pass
 
     7. Reduce and expand the width of the screen and verify that the number of cards changes to 2 at screen widths below 768px.
-    - Outcome: Pass
+        - Outcome: Pass
 
     8. Reduce and expand the width of the screen and verify that the carousel and cards look good at all screen widths.
-    - Outcome: Pass
+        - Outcome: Pass
 
     9. Scroll down to the newsletter sign up form and verify that it appears as expected and looks good at all screen widths.
-    - Outcome: Pass
+        - Outcome: Pass
 
     10. Enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
-    - Outcome: Pass
+        - Outcome: Pass
 
     11. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the html is dynamically updated to show a message thanking the user for signing up to the newsletter.
-    - Outcome: Pass
+        - Outcome: Pass
 
 - Sign In page
 
     1. Verify that the sign in form appears as expected and looks good at all screen widths.
-    - Outcome: Pass
+        - Outcome: Pass
 
     2. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     3. In the password field, enter a password that does not contain 8 or more characters including at least one uppercase letter, one lowercase letter, one number. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the password field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     4. Verify that when a user enters an email addess and password which is in the required format, but incorrectly enters their email address and / or password and clicks on the sign in button, they are redirected back to the sign in page and a toast appears informing them that their email address and / or password is incorrect.
-    - Outcome: Pass
+        - Outcome: Pass
 
     5. Verify that when a user correctly enters their email address and password, the form submits, and the user is signed in and redirected to their previous page or home page (if no next search perameter is in the sign in page's URL).
-    - Outcome: Pass
+        - Outcome: Pass
 
     6. Click on the sign in link and verify that it takes the user to the sign in page.
-    - Outcome: Pass
+        - Outcome: Pass
 
 - Sign Up page
 
     1. Verify that the sign up form appears as expected and looks good at all screen widths.
-    - Outcome: Pass
+        - Outcome: Pass
 
     2. Verify that the image to the right of the sign up form only appears on screen widths of 992px or above and looks good.
-    - Outcome: Pass
+        - Outcome: Pass
 
     3. In the first name field, enter a name that is not between 5 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the first name field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     3. In the last name field, enter a name that is not between 5 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the last name field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     5. In the password field, enter a password that does not contain between 8 and 30 characters including at least one uppercase letter, one lowercase letter, one number. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the password field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     6. In the confirm password field, enter a password that does not match the password entered in the password field. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the confirm password field.
-    - Outcome: Pass
+        - Outcome: Pass
 
     7. Enter details in the required format in each field of the form but enter an email address that is already registered. Click on the sign in button and verify that the user is redirected back to the sign up page and a toast appears informing them that their email address is already registered. 
-    - Outcome: Pass
+        - Outcome: Pass
 
     8. Verify that when a user who is not alredy registered correctly enters their details in the required format in each field of the form and clicks the sign in button, the form submits, the user's details are added to the users database, and they are signed in and redirected to their previous page or home page (if no next search perameter is in the sign up page's URL). A toast should also appear informing the user that they have been successfully registered.
-    - Outcome: Pass
+        - Outcome: Pass
 
     9. Click on the sign in link and verify that it takes the user to the sign in page.
-    - Outcome: Pass
+        - Outcome: Pass
+
+- Account Page
+    1. Verify that the account page appears as expected and looks good at all screen widths.
+        - Outcome: Pass
+
+    2. Verify that a card containing the review's title and edit and delete buttons appears for each review the user has written.
+        - Outcome: Pass
+
+    3. Verify that if there are no reviews text appears informing the user that they haven't written any reviews yet.
+        - Outcome: Pass
+
+    4. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+        - Outcome: Pass
+
+    5. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+        - Outcome: Pass
+
+    6. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
+        - Pass
+
+- Product Management Page
+
+    1. Verify that the product management page appears as expected and looks good at all screen widths.
+        - Outcome: Pass
+
+    2. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
+        - Outcome: Pass
+
+    3. Verify that when the user clicks the add product button, they are taken to the add product form.
+        - Outcome: Pass
+
+    4. Verify that if the user clicks on a product's edit button, they are taken to that product's edit product form.
+        - Outcome: Pass
+
+    5. Verify that if the user clicks on a product's delete button, the product is deleted, the category filters lists are updated, the page reloads and a toast appears informing the user that the product has been successfully deleted.
+        - Outcome: Pass
+
+    6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the list are displayed in the table.
+        - Outcome: Pass
+
+    7. Verify that standard users cannot access the product management page by manually typing in it's URL and are returned to the 403 page.
+        - Pass
 
