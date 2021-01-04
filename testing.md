@@ -154,7 +154,7 @@
     9. Scroll down to the newsletter sign up form and verify that it appears as expected and looks good at all screen widths.
         - Outcome: Pass
 
-    10. Enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
+    10. Enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
         - Outcome: Pass
 
     11. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the html is dynamically updated to show a message thanking the user for signing up to the newsletter.
@@ -165,7 +165,7 @@
     1. Verify that the sign in form appears as expected and looks good at all screen widths.
         - Outcome: Pass
 
-    2. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
+    2. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
         - Outcome: Pass
 
     3. In the password field, enter a password that does not contain 8 or more characters including at least one uppercase letter, one lowercase letter, one number. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the password field.
@@ -194,7 +194,7 @@
     3. In the last name field, enter a name that is not between 5 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the last name field.
         - Outcome: Pass
 
-    4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters, and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
+    4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
         - Outcome: Pass
 
     5. In the password field, enter a password that does not contain between 8 and 30 characters including at least one uppercase letter, one lowercase letter, one number. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the password field.
@@ -206,7 +206,7 @@
     7. Enter details in the required format in each field of the form but enter an email address that is already registered. Click on the sign in button and verify that the user is redirected back to the sign up page and a toast appears informing them that their email address is already registered. 
         - Outcome: Pass
 
-    8. Verify that when a user who is not alredy registered correctly enters their details in the required format in each field of the form and clicks the sign in button, the form submits, the user's details are added to the users database, and they are signed in and redirected to their previous page or home page (if no next search perameter is in the sign up page's URL). A toast should also appear informing the user that they have been successfully registered.
+    8. Verify that when a user who is not alredy registered correctly enters their details in the required format in each field of the form and clicks the sign in button, the form submits, the user's details are added to the users database and they are signed in and redirected to their previous page or home page (if no next search perameter is in the sign up page's URL). A toast should also appear informing the user that they have been successfully registered.
         - Outcome: Pass
 
     9. Click on the sign in link and verify that it takes the user to the sign in page.
@@ -290,7 +290,7 @@
     1. Verify that the add product page appears with the product details section displayed and looks good at all screen widths.
         - Outcome: Pass
     
-    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown, and the invalid input error message appears on the relevant field.
+    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown and the invalid input error message appears on the relevant field.
         - Outcome: Pass
 
     3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
@@ -302,7 +302,7 @@
     4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
         - Outcome: Pass
 
-    5. Verify that when the add review button is clicked the form is submitted as the product details section has already been validated and the product features section contains no mandatory fields.
+    5. Verify that when the add review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields.
         - Outcome: Pass
 
     6. Verify that users who are not logged in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
@@ -316,7 +316,7 @@
     1. Verify that the edit product page appears with the product details section displayed and looks good at all screen widths.
         - Outcome: Pass
     
-    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown, and the invalid input error message appears on the relevant field.
+    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown and the invalid input error message appears on the relevant field.
         - Outcome: Pass
 
     3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
@@ -328,7 +328,7 @@
     4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
         - Outcome: Pass
 
-    5. Verify that when the update review button is clicked the form is submitted as the product details section has already been validated and the product features section contains no mandatory fields.
+    5. Verify that when the update review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields.
         - Outcome: Pass
 
     6. Verify that users who are not logged in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
@@ -395,8 +395,20 @@
     8. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
         - Outcome: Pass
 
+- Contact Us Page
 
+    1. Verify that the contact us page appears as expected and looks good at all screen widths.
+        - Outcome: Pass
 
+    2. Verify that the user's name and email address is automatically completed in the contact us form if the user is signed in.
+        - Outcome: Pass
 
+    3. Verify that if the user hasn't entered a value of the correct type in each field, when the send message button is clicked the form does not submit and the invalid input error message appears on the relevant field.
+        - Outcome: Pass
 
+    4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the send message button and verify that the form does not submit and shows the invalid input error message.
+        - Outcome: Pass
 
+    5. Enter a valid value in each field and click the send message button. Verify that the form submits, the data inputted is added to the database and the HTML is dynamically updated to show a message thanking the user for their message.
+        - Outcome: Pass
+    
