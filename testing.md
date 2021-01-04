@@ -279,6 +279,60 @@
     6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the list are displayed in the table.
         - Outcome: Pass
 
-    7. Verify that standard users cannot access the product management page by manually typing in it's URL and are returned to the 403 page.
+    7. Verify that users who are not logged in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
+        - Pass
+    
+    8. Verify that standard users cannot access the product management page by manually typing in it's URL and are returned to the 403 page.
         - Pass
 
+- Add Product page
+
+    1. Verify that the add product page appears with the product details section displayed and looks good at all screen widths.
+        - Outcome: Pass
+    
+    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown, and the invalid input error message appears on the relevant field.
+        - Outcome: Pass
+
+    3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+        - Outcome: Pass
+
+    3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+        - Outcome: Pass
+
+    4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
+        - Outcome: Pass
+
+    5. Verify that when the add review button is clicked the form is submitted as the product details section has already been validated and the product features section contains no mandatory fields.
+        - Outcome: Pass
+
+    6. Verify that users who are not logged in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
+        - Pass
+
+    7. Verify that standard users cannot access the add product page by manually typing in it's URL and are returned to the 403 page.
+        - Pass
+
+- Edit Product page
+
+    1. Verify that the edit product page appears with the product details section displayed and looks good at all screen widths.
+        - Outcome: Pass
+    
+    2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown, and the invalid input error message appears on the relevant field.
+        - Outcome: Pass
+
+    3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+        - Outcome: Pass
+
+    3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+        - Outcome: Pass
+
+    4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
+        - Outcome: Pass
+
+    5. Verify that when the update review button is clicked the form is submitted as the product details section has already been validated and the product features section contains no mandatory fields.
+        - Outcome: Pass
+
+    6. Verify that users who are not logged in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
+        - Pass
+
+    7. Verify that standard users cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
+        - Pass
