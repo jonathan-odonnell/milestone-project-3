@@ -41,6 +41,12 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 - The product images were chosen because they give the user an idea of what they can expect if they choose to purchase the product.
 
+### Wireframes
+
+- [Desktop](static/wireframes/desktop-wireframes.pdf)
+- [Tablet](static/wireframes/tablet-wireframes.pdf)
+- [Mobile](static/wireframes/mobile-wireframes.pdf)
+
 ## Features
 
 ### Existing Features
