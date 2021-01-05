@@ -58,6 +58,8 @@
                             <input type="password" class="form-control" name="confirm_password" id="confirm-password"
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}" required />
                         </div>
+                        <!--Confirm password end-->
+                        <!--Newsletter sign up start. Code is from https://bootswatch.com/lux/-->
                         <div class="form-group mt-4">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" class="custom-control-input custom-switch" id="newsletter-signup"
@@ -66,16 +68,18 @@
                                     newsletter</label>
                             </div>
                         </div>
-                        <!--Confirm password end-->
-                        <!--Newsletter sign up start. Code is from https://bootswatch.com/lux/-->
+                        <!--Newsletter sign up end -->
+                        <!--Sign up button start-->
                         <div class="form-group text-center mt-4 mb-0">
                             <button type="submit" class="btn btn-green">Sign Up</button>
-                            <p class="text-center mt-4">
-                                Already have an account? Sign in
-                                <a href="{{url_for('sign_in')}}">here</a>
-                            </p>
                         </div>
-                        <!--Newsletter sign up end-->
+                        <!--Sign up button end-->
+                        <!--Sign in text and link start. Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://www.kite.com/python/answers/how-to-get-parameters-from-a-url-using-flask-in-python-->
+                        <p class="text-center mt-4">
+                            Already have an account? Sign in
+                            <a href="{{url_for('sign_in', next=request.args.get('next', ''))}}">here</a>
+                        </p>
+                        <!--Sign in text and link end-->
                         <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
                         <div class="form-group d-none">
                             <input type="hidden" name="next" value="{{ request.args.get('next', '') }}" />
