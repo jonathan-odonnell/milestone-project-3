@@ -282,7 +282,7 @@ section {
 
 /* Home Page Start */
 
-/* Image from https://unsplash.com/photos/_XR5rkprHQU */
+/* Image from https://www.pexels.com/photo/photo-of-couple-talking-while-holding-laptop-and-ipad-4065158/ */
 
 .hero-image {
     height: 90vh;
@@ -290,19 +290,23 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url("../images/hero-image.jpg");
+    background-image: url("../images/hero-image-mobile.jpg");
     background-size: cover;
-    background-position: 70% 60%;
+    background-position: 50% 15%;
     margin-bottom: 0;
     margin-top: 80px;
 }
 
 .overlay {
-    background-color: #000;
+    background-color: #000000;
     opacity: 40%;
     height: 100%;
     width: 100%;
     position: absolute;
+}
+
+.hero-img-overlay {
+    opacity: 20%;
 }
 
 .jumbotron {
@@ -341,10 +345,10 @@ section {
 
 /* Sign Up Page Start
 
-/* Image from https://unsplash.com/photos/c-lUYtNjqxw */
+/* Image from https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/ */
 
 .sign-up-image {
-    background-image: url("../images/sign_up.jpg");
+    background-image: url("../images/sign-up.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -443,12 +447,14 @@ section {
    color: #fff;
 }
 
+/* Image is from https://www.pexels.com/photo/concentrated-businesswoman-talking-on-smartphone-on-street-5669626/*/
+
 .contact-img {
     background-image: url("../images/contact.jpg");
     height: 60vh;
     max-height: 400px;
     background-size: cover;
-    background-position: center center;
+    background-position: 50% 15%;
 }
 
 .info-paragraph {
@@ -567,6 +573,7 @@ section {
 }
 
 @media(min-width: 768px) {
+
     h1 {
     font-size: 2.5rem;
     }
@@ -578,27 +585,41 @@ section {
     h3 {
         font-size: 1.25rem;
     }
+
+    /* Image is from https://www.pexels.com/photo/photo-of-two-person-using-their-gadgets-4065144/ */
+
+    .hero-image {
+        background-image: url("../images/hero-image.jpg");
+    }
+
     .card-img {
         height: 16rem;
     }
+
     .product-img {
         height: 20rem;
     }
+
     .slick-slide {
         height: 20rem;
     }
+
     .product-details table th {
         min-width: 200px;
     }
+
     .sign-in-col {
         max-width: 400px;
     }
+
     #sort-by {
         margin-bottom: 30px;
     }
+
     .form-group-filters-top {
         padding: 5.5rem 0 1rem;
     }
+
     .reviews-headings {
       min-height: 1.5rem;
     }
@@ -610,48 +631,61 @@ section {
         background-color: #fff;
         border: 1px solid rgba(0,0,0,.15);
     }
+
     .navbar .dropdown-item {
         font-size: .765625rem;
         text-transform: none;
         color: #1a1a1a;
     }
+
     .navbar .dropdown-item.active {
         color: #1a1a1a;
         background-color: #fff;
     }
+
     .navbar .dropdown-item:hover {
         color: #fff;
         background-color: #1a1a1a;
     }
+
     .progress-bars {
         margin-bottom: calc(30px - 0.5rem);
     }
+
     .progress {
         margin: 0.4375rem 0;
     }
+
     .collapse:not(.show) {
         display: block;
     }
+
     .product-details {
         padding-top: 0;
     }
+
     .reviews-col-sidebar {
         max-width: 20%;
         flex: 0 0 20%;
     }
+
     .reviews-col-main {
         max-width: 80%;
         flex: 0 0 80%;
     }
+
     .info-item-container {
         padding: 1.25rem;
     }
+
     .footer-headings {
         margin-bottom: 0.5rem;
     }
+
     .footer-paragraphs {
         margin-top: 20px;
     }
+
     .social-media-icons {
         margin: 1rem 0;
     }
