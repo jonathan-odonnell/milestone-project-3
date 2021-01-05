@@ -111,10 +111,11 @@ def reviews(category="All"):
 
     # Sets the page title
 
-    page_title = category
-
     if category == "All":
         page_title = "Reviews"
+
+    else:
+        page_title = category
 
     """
     Gets the products which match the search criteria from the database and
@@ -189,10 +190,14 @@ def review_details(product_id):
     # Sets the page title
     page_title = product["name"] + " Review"
 
-    # Sets the current user if there is a user logged in
+    # Sets the current user
+
     if session.get('user'):
         current_user = "{} {}".format(session['user']['first_name'],
                                       session['user']['last_name'])
+
+    else:
+        current_user = None
 
     """
     Gets the product's reviews from the database and sorts them. Code for the
