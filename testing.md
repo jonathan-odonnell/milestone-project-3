@@ -11,64 +11,67 @@
 3. Reduce and expand the width of the screen and verify that the menu colapses and the bars icon appears at screen widths below 992px.
     - Outcome: Pass
         
-4. Verify that when the user clicks on the bars icon the menu expands and the icon changes to the times icon.
+4. Verify that when the user clicks on the bars icon the menu expands, the collapsable search bar collapses if it is expanded, and the bars icon changes to the times icon.
     - Outcome: Pass
         
-5. Verify that when the user clicks on the times icon the menu collapses and the icon changes to the bars icon.
-    - Outcome: Pass
-        
-6. Reduce and expand the width of the screen and verify that for all screen widths where the standard menu is visible, the links do not wrap onto the next line. 
-    - Outcome: Pass
-        
-7. Click on the Tech Reviews logo and verify that it takes the user back the the home page.
-    - Outcome: Pass
-        
-8. Click on the home link and verify that it takes the user to the home page.
-     - Outcome: Pass
-        
-9. Click on the register link and verify that it takes the user to the sign up page.
-    - Outcome: Pass
-        
-10. Click on the sign in link and verify that it takes the user to the sign in page.
-    - Outcome: Pass
-        
-11. Verify that when a standard user is signed in the account and sign out links appear and the register and sign in links disappear.
-    - Outcome: Pass
-        
-12. Click on the account link and verify that it takes the user to the account page.
-    - Outcome: Pass
-        
-13. Click on the sign out link and verify that it signs the user out and takes them back to the previous page. A toast should also appear containing a message that informs the user that they have been signed out.
-    - Outcome: Pass
-        
-14. Verify that when an admin user is signed in the product management and sign out links appear and the register and sign in links disappear.
-    - Outcome: Pass
-        
-15. Click on the product management link and verify that it takes the user to the product management page.
-    - Outcome: Pass
-        
-16. Click on the reviews dropdown and click on the mobiles link and verify that it takes the user to the mobiles page.
-    - Outcome: Pass
-        
-17. Click on the reviews dropdown and click on the tablets link and verify that it takes the user to the tablets page.
-    - Outcome: Pass
-        
-18. Click on the reviews dropdown and click on the laptops link and verify that it takes the user to the laptops page.
-    - Outcome: Pass
-        
-19. Click on the reviews dropdown and click on the accessories link and verify that it takes the user to the accessories page.
-    - Outcome: Pass
-        
-20. Verify that when the user hovers over icon it appears in white.
-    - Outcome: Pass
-        
-21. Click on the contact us link and verify that it takes the user to the contact us page.
-    - Outcome: Pass
-        
-22. Verify that when the user clicks on the search icon the search bar appears and when they click on it a second time the search bar disappears at screen widths below 992px.
+5. Verify that when the user clicks on the times icon the menu collapses and the times icon changes to the bars icon.
     - Outcome: Pass
 
-23. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
+6. Reduce and expand the width of the screen and verify that the user dropdown is hidden at screen widths below 992px, and the register, sign in, sign out, account and product management links appear in the collapsable menu.
+    - Outcome: Pass
+        
+7. Reduce and expand the width of the screen and verify that for all screen widths where the standard menu is visible the links do not wrap onto the next line. 
+    - Outcome: Pass
+        
+8. Click on the Tech Reviews logo and verify that it takes the user back the the home page.
+    - Outcome: Pass
+        
+9. Click on the home link and verify that it takes the user to the home page.
+     - Outcome: Pass
+        
+10. Click on the register link and verify that it takes the user to the sign up page.
+    - Outcome: Pass
+        
+11. Click on the sign in link and verify that it takes the user to the sign in page.
+    - Outcome: Pass
+        
+12. Verify that when a standard user is signed in the account and sign out links appear and the register and sign in links disappear.
+    - Outcome: Pass
+        
+13. Click on the account link and verify that it takes the user to the account page.
+    - Outcome: Pass
+        
+14. Click on the sign out link and verify that it signs the user out and takes them back to the previous page. A toast should also appear containing a message that informs the user that they have been signed out.
+    - Outcome: Pass
+        
+15. Verify that when an admin user is signed in the product management and sign out links appear and the register and sign in links disappear.
+    - Outcome: Pass
+        
+16. Click on the product management link and verify that it takes the user to the product management page.
+    - Outcome: Pass
+        
+17. Click on the reviews dropdown and click on the mobiles link and verify that it takes the user to the mobiles page.
+    - Outcome: Pass
+        
+18. Click on the reviews dropdown and click on the tablets link and verify that it takes the user to the tablets page.
+    - Outcome: Pass
+        
+19. Click on the reviews dropdown and click on the laptops link and verify that it takes the user to the laptops page.
+    - Outcome: Pass
+        
+20. Click on the reviews dropdown and click on the accessories link and verify that it takes the user to the accessories page.
+    - Outcome: Pass
+        
+21. Verify that when the user hovers over icon it appears in white.
+    - Outcome: Pass
+        
+22. Click on the contact us link and verify that it takes the user to the contact us page.
+    - Outcome: Pass
+        
+23. Verify that the search icon appears in the navbar at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
+    - Outcome: Pass
+
+24. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
     - Outcome: Pass
         
 ## Footer
@@ -147,7 +150,7 @@
 6. Click the right arrow and verify that the carousel now shows the 6th, 1st, and 2nd cards.
     - Outcome: Pass
 
-7. Reduce and expand the width of the screen and verify that the number of cards changes to 2 at screen widths below 768px.
+7. Reduce and expand the width of the screen and verify that the number of cards changes to 2 at screen widths below 576px.
     - Outcome: Pass
 
 8. Reduce and expand the width of the screen and verify that the carousel and cards look good at all screen widths.
@@ -179,7 +182,7 @@
 4. Verify that when a user enters an email addess and password which is in the required format, but incorrectly enters their email address and / or password and clicks on the sign in button, they are redirected back to the sign in page and a toast appears informing them that their email address and / or password is incorrect.
     - Outcome: Pass
 
-5. Verify that when a user correctly enters their email address and password, the form submits, and the user is signed in and redirected to their previous page or home page (if no next search perameter is in the sign in page's URL).
+5. Verify that when a user correctly enters their email address and password, the form submits, and the user is signed in and redirected to their previous page or home page (if no next search perameter is in the sign in page's URL). A toast should also appear informing the user that they have been successfully signed in.
     - Outcome: Pass
 
 6. Click on the sign in link and verify that it takes the user to the sign in page.
@@ -245,7 +248,7 @@
 2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the add review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
     - Outcome: Pass
 
-3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. 
+3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
     - Outcome: Pass
 
 4. Verify that users who are not logged in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
@@ -259,10 +262,71 @@
 2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the update review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
     - Outcome: Pass
 
-3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the update review button is clicked, the review is updated in the reviews database, the relevant product's ratings are updated and the user is returned to their previous page.
+3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the update review button is clicked, the review is updated in the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully updated.
     - Outcome: Pass
 
 4. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
+    - Outcome: Pass
+
+## Reviews, Phones, Tablets, Laptops and Accessories Pages
+
+1. Verify that the page appears as expected and looks good at all screen widths.
+    - Outcome: Pass
+
+2. Verify that cards containing the product image, name, price and average overall rating for each product satisfying the search criteria are displayed 6 to a page.
+    - Outcome: Pass
+
+3. Verify that each product image links to the relevant product's review details page.
+    - Outcome: Pass
+
+4. Verify that if there no search results that satisfy the search criteria, text appears informing the user that there are no products which match their search criteria.
+    - Outcome: Pass
+
+5. Verify that if the user hasn't entered any search criteria the user should be redirected to the home page and a toast should appear informing them that they didn't enter any search criteria.
+    - Outcome: Pass
+
+6. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
+    - Outcome: Pass
+
+7. Verify that the filters sidebar only appears on screen widths of 768px and above.
+    - Outcome: Pass
+
+8. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
+    - Outcome: Pass
+
+9. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
+    - Outcome: Pass
+
+10. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
+    - Outcome: Pass
+
+11. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions on the list are displayed.
+    - Outcome: Pass
+
+## Review Details Page
+
+1. Verify that the review details page appears as expected and looks good at all screen widths.
+    - Outcome: Pass
+
+2. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
+    - Outcome: Pass
+
+3. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
+    - Outcome: Pass
+
+4. Verify that if a user is signed in the add review is displayed.
+    - Outcome: Pass
+
+5. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
+    - Outcome: Pass
+
+6. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+    - Outcome: Pass
+
+7. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+    - Outcome: Pass
+
+8. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
     - Outcome: Pass
 
 ## Product Management Page
@@ -308,7 +372,7 @@
 4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
     - Outcome: Pass
 
-5. Verify that when the add review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields.
+5. Verify that when the add review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields. A toast should also appear informing the user that the product has been successfully added.
     - Outcome: Pass
 
 6. Verify that users who are not logged in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
@@ -334,71 +398,13 @@
 4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
     - Outcome: Pass
 
-5. Verify that when the update review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields.
+5. Verify that when the update review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields. A toast should also appear informing the user that the product has been successfully updated.
     - Outcome: Pass
 
 6. Verify that users who are not logged in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 7. Verify that standard users cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
-    - Outcome: Pass
-
-## Reviews, Phones, Tablets, Laptops and Accessories Pages
-
-1. Verify that the page appears as expected and looks good at all screen widths.
-    - Outcome: Pass
-
-2. Verify that cards containing the product image, name, price and average overall rating for each product satisfying the search criteria are displayed 6 to a page.
-    - Outcome: Pass
-
-3. Verify that each product image links to the relevant product's review details page.
-    - Outcome: Pass
-
-4. Verify that if there no search results that satisfy the search criteria, text appears informing the user that there are no products which match their search criteria.
-    - Outcome: Pass
-
-5. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
-    - Outcome: Pass
-
-6. Verify that the filters sidebar only appears on screen widths of 768px and above.
-    - Outcome: Pass
-
-7. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
-    - Outcome: Pass
-
-8. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
-    - Outcome: Pass
-
-9. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
-    - Outcome: Pass
-
-10. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions on the list are displayed.
-    - Outcome: Pass
-
-## Review Details Page
-
-1. Verify that the review details page appears as expected and looks good at all screen widths.
-    - Outcome: Pass
-
-2. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
-    - Outcome: Pass
-
-3. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
-    - Outcome: Pass
-
-4. Verify that if a user is signed in the add review is displayed.
-    - Outcome: Pass
-
-5. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
-    - Outcome: Pass
-
-6. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
-    - Outcome: Pass
-
-7. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
-    - Outcome: Pass
-
-8. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
     - Outcome: Pass
 
 ## Contact Us Page
