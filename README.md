@@ -416,9 +416,10 @@ More information about making a local clone of a GitHub repository is available 
 - Code for the navbar toggler times icon came from [Font Awesome](https://fontawesome.com/icons/times?style=solid).
 - Code for the search icon came from [Font Awesome](https://fontawesome.com/icons/search?style=solid).
 - Code to add search icon on to the end of the search field came from [Bootstrap](https://getbootstrap.com/docs/5.0/forms/input-group).
-- Code for the collapsable search field came from [Bootstrap](https://getbootstrap.com/docs/4.5/components/collapse/).
+- Code for the collapsable search field and collapsable navbar came from [Bootstrap](https://getbootstrap.com/docs/4.5/components/collapse/).
 - Code for the user icon came from [Font Awesome](https://fontawesome.com/icons/user?style=solid).
 - Code for the toasts is from [Bootstrap](https://getbootstrap.com/docs/4.5/components/toasts/).
+- Code for the icon sizing is from [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons).
 - Code for the toast arrow up is adapted from [CSS Tricks](https://css-tricks.com/snippets/css/css-triangle/).
 - Code for the dropdowns came from [Bootstrap](https://getbootstrap.com/docs/4.5/components/dropdowns/).
 - Code for the Facebook icon is from [Font Awesome](https://fontawesome.com/icons/facebook?style=brands).
@@ -438,7 +439,7 @@ More information about making a local clone of a GitHub repository is available 
 - Code for trash icon is from [Font Awesome](https://fontawesome.com/icons/trash?style=solid).
 - Code for the tables is from [Bootstrap](https://getbootstrap.com/docs/4.5/content/tables/).
 - Code for the pagination is from [Flask Paginate](https://pythonhosted.org/Flask-paginate/).
-- Code for form styling is from [Bootswatch](https://bootswatch.com/lux/).
+- Code for form styling and switch element is from [Bootswatch](https://bootswatch.com/lux/).
 - Code for the filters form modal is from [Bootstrap](https://getbootstrap.com/docs/4.5/components/modal/).
 - Code for the product price and average rating styling on the reviews / category reviews page is from [Bootstrap](https://getbootstrap.com/docs/4.5/utilities/colors/#color).
 - Code for the full star icon is from [Font Awesome](https://fontawesome.com/icons/star?style=solid).
