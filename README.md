@@ -406,3 +406,51 @@ Resolving deltas: 100% (1290/1290), done.
 ```
 
 More information about making a local clone of a GitHub repository is available [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+## Credits
+
+### Code
+
+### Content
+
+- The product information was from [Amazon](https://www.amazon.co.uk), [Apple](https://www.apple.com), [Dell](https://www.dell.com), [Hewlett Packard](https://www.hp.com) and [Microsoft](https://www.microsoft.com).
+- The reviews were from [Amazon](https://www.amazon.co.uk) and [BestBuy](https://www.bestbuy.com)
+
+### Media
+
+- The brand logo was designed using [Hatchful](https://hatchful.shopify.com/).
+- The home page hero image was from [Pexels](https://www.pexels.com/photo/group-of-people-standing-beside-body-of-water-2672979/).
+- The sign up page hero image was from [Pexels](https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/).
+- The iPhone 12 Pro image was from [Unsplash](https://unsplash.com/photos/TpXoTb1uR5A).
+- The iPhone 12 image was from [Unsplash](https://unsplash.com/photos/m1YdCuCQDvQ).
+- The Samsung Galaxy S20 image was from [Unsplash](https://unsplash.com/photos/WRYcubOK9tc).
+- The Samsung Galaxy S20 Plus image was from [Unsplash](https://unsplash.com/photos/jcJFOwBTEck).
+- The Samsung Galaxy S20 Ultra image was from [Unsplash](https://unsplash.com/photos/Ggw9TkdrAA0).
+- The Google Pixel 5 image was from [Unsplash](https://unsplash.com/photos/Z9fW8Nn7D24).
+- The OnePlus 8T image was from [Unsplash](https://unsplash.com/photos/lEeflIFJTFI).
+- The OnePlus Nord image was from [Unsplash](https://unsplash.com/photos/K5scVK5uHNA).
+- The iPad Pro (11 inch) image was from [Unsplash](https://unsplash.com/photos/DDEOxavdeIk).
+- The iPad Pro (12.9 inch) image was from [Unsplash](https://unsplash.com/photos/MCzoo60m-Nw).
+- The iPad Air image was from [Unsplash](https://unsplash.com/photos/RgXO6LZbZgg).
+- The Surface Pro X image was from [Unsplash](https://unsplash.com/photos/y5G-f9qnUTc).
+- The Surface Pro 7 image was from [Wikipedia](https://commons.wikimedia.org/wiki/File:2019_02_Microsoft_Surface_Pro_2017_with_signature_type_cover.jpg).
+- The Surface Go 2 image was from [Unsplash](https://unsplash.com/photos/xmVM5GGJPKc).
+- The Samsung Galaxy Tab 7 image was from [Unsplash](https://unsplash.com/photos/Pn9t7RNZYVw).
+- The iPad Mini image was from [Unsplash](https://unsplash.com/photos/pVt9j3iWtPM).
+- The MacBook Pro (13 inch) image was from [Unsplash](https://unsplash.com/photos/paSLTZpHCdo).
+- The MacBook Pro (16 inch) image was from [Unsplash](https://unsplash.com/photos/vUjJztdX4H0).
+- The Microsoft Surface Laptop (13 inch) image was from [Unsplash](https://unsplash.com/photos/hddtUR3hhJE).
+- The Macbook Air image was from [Unsplash](https://unsplash.com/photos/JYoWTJMJNFo).
+- The Microsoft Surface Laptop Go image was from [Unsplash](https://unsplash.com/photos/C6T6vr1sQI0).
+- The Dell XPS 2-in-1 (13 inch) image was from [Unsplash](https://unsplash.com/photos/Gi3iUJ1FwxI).
+- The HP Spectre x360 (13 inch) image was from [Unsplash](https://unsplash.com/photos/tqWIGez5AsI).
+- The Google Pixelbook Go image was from [Unsplash](https://unsplash.com/photos/zwsHjakE_iI).
+- The Apple Watch SE image was from [Unsplash](https://unsplash.com/photos/WLXTOvDKuRQ).
+- The Apple Watch 5 image was from [Unsplash](https://unsplash.com/photos/bFzhdm9zZp0).
+- The Apple Watch 6 image was from [Unsplash](https://unsplash.com/photos/z2GEGmFEhZo).
+- The Apple HomePod Mini image was from [Unsplash](https://unsplash.com/photos/lZCHy8PLyyo).
+- The Google Nest Mini image was from [Unsplash](https://unsplash.com/photos/UK29635SS6E).
+- The Amazon Echo Dot was from [Unsplash](https://unsplash.com/photos/nGzvZe1iWOY).
+- The Samsung Galaxy Watch 3 image was from [Pixabay](https://pixabay.com/photos/samsung-galaxy-watch-wearable-3818707).
+- The Samsung Galaxy Watch Active 2 image was from [Unsplash](https://unsplash.com/s/photos/samsung-galaxy-watch).
+- The contact us page hero image was from [Pexels](https://www.pexels.com/photo/concentrated-businesswoman-talking-on-smartphone-on-street-5669626/).
