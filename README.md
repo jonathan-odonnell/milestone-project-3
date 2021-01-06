@@ -411,6 +411,84 @@ More information about making a local clone of a GitHub repository is available 
 
 ### Code
 
+- Code for the navbar came from [Bootstrap](https://bootswatch.com/lux/).
+- Code for the navbar toggler bars icon came from [Font Awesome](https://fontawesome.com/icons/bars?style=solid).
+- Code for the navbar toggler times icon came from [Font Awesome](https://fontawesome.com/icons/times?style=solid).
+- Code for the search icon came from [Font Awesome](https://fontawesome.com/icons/search?style=solid).
+- Code to add search icon on to the end of the search field came from [Bootstrap](https://getbootstrap.com/docs/5.0/forms/input-group).
+- Code for the collapsable search field came from [Bootstrap](https://getbootstrap.com/docs/4.5/components/collapse/).
+- Code for the user icon came from [Font Awesome](https://fontawesome.com/icons/user?style=solid).
+- Code for the toasts is from [Bootstrap](https://getbootstrap.com/docs/4.5/components/toasts/).
+- Code for the toast arrow up is adapted from [CSS Tricks](https://css-tricks.com/snippets/css/css-triangle/).
+- Code for the dropdowns came from [Bootstrap](https://getbootstrap.com/docs/4.5/components/dropdowns/).
+- Code for the Facebook icon is from [Font Awesome](https://fontawesome.com/icons/facebook?style=brands).
+- Code for the Twitter icon is from [Font Awesome](https://fontawesome.com/icons/twitter?style=brands).
+- Code for the Instagram icon is from [Font Awesome](https://fontawesome.com/icons/instagram?style=brands).
+- Code for the Youtube icon is from [Font Awesome](https://fontawesome.com/icons/youtube?style=brands).
+- Code for the social media icon hover effects is from [Hover.css](https://ianlunn.github.io/Hover/).
+- Code for the plus icon is from [Font Awesome](https://fontawesome.com/icons/plus?style=solid).
+- Code for the minus icon is from [Font Awesome](https://fontawesome.com/icons/plus?style=solid).
+- Code for the featured products carousel is from [Slick Slider](https://kenwheeler.github.io/slick/).
+- Code for the email address and password patterns are from [w3schools](https://www.w3schools.com/tags/att_input_pattern.asp).
+- Code for the next url hidden form field is from [tecladocode](https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask).
+- Code for setting the confirm password field to invalid if it's value doesn't match the value of the password field is from [codepen](https://codepen.io/diegoleme/pen/surIK).
+- Code for preventing the default behaviour of the submit button is from [Stack Overflow](https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224)
+- Code for reporting the validity of form fields is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity).
+- Code for edit icon is from [Font Awesome](https://fontawesome.com/icons/edit?style=solid).
+- Code for trash icon is from [Font Awesome](https://fontawesome.com/icons/trash?style=solid).
+- Code for the tables is from [Bootstrap](https://getbootstrap.com/docs/4.5/content/tables/).
+- Code for the pagination is from [Flask Paginate](https://pythonhosted.org/Flask-paginate/).
+- Code for form styling is from [Bootswatch](https://bootswatch.com/lux/).
+- Code for the filters form modal is from [Bootstrap](https://getbootstrap.com/docs/4.5/components/modal/).
+- Code for the product price and average rating styling on the reviews / category reviews page is from [Bootstrap](https://getbootstrap.com/docs/4.5/utilities/colors/#color).
+- Code for the full star icon is from [Font Awesome](https://fontawesome.com/icons/star?style=solid).
+- Code for the empty star icon is from [Font Awesome](https://fontawesome.com/icons/star?style=regular).
+- Code for the ratings siders is from [Font Awesome](https://fontawesome.com/icons/sliders-h?style=solid).
+- Code for ratings star radio button styling is from [Codepen](https://codepen.io/hesguru/pen/BaybqXv)
+- Code for the includes templating is from [Stack Overflow](https://stackoverflow.com/questions/22860085/how-do-i-include-a-html-file-in-a-jinja2-template).
+- Code for the chevron left icon is from [Font Awesome](https://fontawesome.com/icons/chevron-left?style=solid).
+- Code for the progress bars is from [Bootswatch](https://bootswatch.com/lux/).
+- Code for the thumbs up icon code is from [Font Awesome](https://fontawesome.com/icons/thumbs-up?style=regular).
+- Code for the thumbs up solid icon code is from [Font Awesome](https://fontawesome.com/icons/thumbs-up?style=solid).
+- Code for the thumbs down icon code is from [Font Awesome](https://fontawesome.com/icons/thumbs-down?style=regular).
+- Code for the thumbs down solid icon code is from [Font Awesome](https://fontawesome.com/icons/thumbs-down?style=solid).
+- Code for disabling the thumbs up and thumbs down buttons using jQuery is from [Stack Overflow](https://stackoverflow.com/questions/23597913/disable-button-after-click-in-jquery).
+- Code for getting the ID of an element using jQuery is from [Stack Overflow](https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery).
+- Code for the marked map icon is from [Font Awesome](https://fontawesome.com/icons/map-marked-alt?style=solid).
+- Code for the envelope icon is from [Font Awesome](https://fontawesome.com/icons/envelope?style=solid).
+- Code for the mobile icon is from [Font Awesome](https://fontawesome.com/icons/mobile-alt?style=solid).
+- Code for adding a search perameter to a URL in the templating is from [Stack Overflow](https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp)
+- Code for the current URL is from [Stack Overflow](https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url).
+- Code for the previous URL is from [Stack Overflow](https://stackoverflow.com/questions/39777171/how-to-get-the-previous-url-in-flask/39777426).
+- Code for local storage is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+- Code for current URL is from [Mozilla](https:// developer.mozilla.org/en-US/docs/Web/API/Window/location). 
+- Code for a new url object is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/URL/URL).
+- Code for adding, updating and deleting search perameters is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams).
+- Code for replacing the URL and reloading the page is from [Mozilla](https://developer.mozilla.org/en-US/
+docs/Web/API/Location/replace).
+- Code for calculating dimensions in CSS is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/CSS/calc()).
+- Code for the pagination perameters is from [GitHub](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9).
+- Code for database query greater than or equal to is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/gte/).
+- Code for database query less than or equal to is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/lte/)
+- Code for database search by items in a list is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/in/).
+- Code for sorting a database search results is from [MongoDB](https://stackoverflow.com/questions/8109122/how-to-sort-mongodb-with-pymongo).
+- Code for specifying which fields to return in a database search is from [MongnDB](Code is from https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/).
+- Code for round method is from Round function is from [Programiz](https://www.programiz.com/python-programming/methods/built-in/round).
+- Code for incrementing a database field is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/update/inc/).
+- Code for the login_required and admin_required wrappers is from [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/).
+- Code to return a success status in flask is from [Stack Overflow](https://stackoverflow.com/questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784).
+- Code for getting the search Parameters is from [Kite](https://www.kite.com/python/answers/how-to-get-parameters-from-a-url-using-flask-in-python).
+- Code for the datetime method is from [w3schools](https://www.w3schools.com/python/python_datetime.asp).
+- Code for message categories is from [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/).
+- Code for counting the number of results that match a database query is from [MongoDB](https://docs.mongodb.com/manual/reference/method/db.collection.count/).
+- Code for updating one document in the database is from [MongoDB](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/).
+- Code for aborting a http request and returning a status code in flask is from [MongoDB](Code is from https://flask.palletsprojects.com/en/1.1.x/api/#flask.abort).
+- Code for removing empty dictionary entries is from [Stack Overflow](https://stackoverflow.com/questions/6307394/removing-dictionary-entries-with-no-values-python).
+- Code for adding an item to a list in the database if it is not already in the list is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/update/addToSet/)
+- Code for converting a number to the decimal128 data type is from [PyMongo](https://pymongo.readthedocs.io/en/stable/api/bson/decimal128.html)
+- Code for deleting an item from a list in the database is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/update/pull/)
+- Code for handling error status codes is from [Flask](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages).
+
 ### Content
 
 - The product information was from [Amazon](https://www.amazon.co.uk), [Apple](https://www.apple.com), [Dell](https://www.dell.com), [Hewlett Packard](https://www.hp.com) and [Microsoft](https://www.microsoft.com).
