@@ -282,7 +282,7 @@ section {
 
 /* Home Page Start */
 
-/* Image from https://www.pexels.com/photo/photo-of-couple-talking-while-holding-laptop-and-ipad-4065158/ */
+/* Image from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
 
 .hero-image {
     height: 90vh;
@@ -290,23 +290,19 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url("../images/hero-image-mobile.jpg");
+    background-image: url("../images/hero-image.jpg");
     background-size: cover;
-    background-position: 50% 15%;
+    background-position: 50% 40%;
     margin-bottom: 0;
     margin-top: 80px;
 }
 
 .overlay {
     background-color: #000000;
-    opacity: 40%;
+    opacity: 50%;
     height: 100%;
     width: 100%;
     position: absolute;
-}
-
-.hero-img-overlay {
-    opacity: 20%;
 }
 
 .jumbotron {
@@ -583,12 +579,6 @@ section {
 
     h3 {
         font-size: 1.25rem;
-    }
-
-    /* Image is from https://www.pexels.com/photo/photo-of-two-person-using-their-gadgets-4065144/ */
-
-    .hero-image {
-        background-image: url("../images/hero-image.jpg");
     }
 
     .card-img {
