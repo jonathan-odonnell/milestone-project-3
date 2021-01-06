@@ -94,7 +94,7 @@ def reviews(category="All"):
     """
     if category == "All" and not request.args.get('search'):
         flash("You didn't enter any search criteria!", "error")
-        return redirect(url_for('index'))
+        return redirect(request.referrer or url_for('index'))
 
     # Converts the search perameters to a dictionary
 
