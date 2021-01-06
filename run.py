@@ -571,6 +571,8 @@ def add_review(product_id):
         # Adds the review to the database
         mongo.db.reviews.insert_one(review)
 
+        flash("Review Successfully Added", "Success")
+
         return redirect(next_url)
 
     else:
@@ -671,6 +673,8 @@ def edit_review(review_id):
         """
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
+
+        flash("Review Successfully Updated", "Success")
 
         return redirect(next_url)
 
@@ -849,6 +853,8 @@ def add_product():
                                        "$addToSet": {"brands": product['brand']
                                                      }})
 
+        flash("Product Successfully Added", "Success")
+
         return redirect(url_for('product_management'))
 
     # Get a list of categories from the database
@@ -909,6 +915,8 @@ def edit_product(product_id):
         mongo.db.categories.update_one({"name": product['category']}, {
                                        "$addToSet": {"brands": product['brand']
                                                      }})
+
+        flash("Product Successfully Updated", "Success")
 
         return redirect(url_for('product_management'))
 
