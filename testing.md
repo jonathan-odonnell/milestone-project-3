@@ -73,6 +73,9 @@
 
 24. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
     - Outcome: Pass
+
+25. Verify that if the user doesn't enters a search term into the search bar and clicks the search bar search icon, they are taken back to the previous page or the home page.
+    - Outcome: Pass
         
 ## Footer
 
@@ -251,7 +254,13 @@
 3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
     - Outcome: Pass
 
-4. Verify that users who are not logged in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
+4. Verify that if there is no next search perameter in the add review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+5. Verify that users who are not signed in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+6. Verify that users who are not signed in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 ## Edit Review page
@@ -265,7 +274,18 @@
 3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the update review button is clicked, the review is updated in the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully updated.
     - Outcome: Pass
 
-4. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
+4. Verify that if there is no next search perameter in the edit review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+5. Verify that users who are not signed in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+6. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
+    - Outcome: Pass
+
+## Delete Review page
+
+1. Verify that if there is no next search perameter in the delete review page's URL, the user is returned to the 400 page.
     - Outcome: Pass
 
 ## Reviews, Phones, Tablets, Laptops and Accessories Pages
@@ -308,25 +328,27 @@
 1. Verify that the review details page appears as expected and looks good at all screen widths.
     - Outcome: Pass
 
-2. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
+2. Verify that the back link displays the name of the previous page, and when the user clicks on the link, it takes them back to the previous page.
+
+3. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
     - Outcome: Pass
 
-3. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
+4. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
     - Outcome: Pass
 
-4. Verify that if a user is signed in the add review is displayed.
+5. Verify that if a user is signed in the add review is displayed.
     - Outcome: Pass
 
-5. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
+6. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
     - Outcome: Pass
 
-6. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+7. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
     - Outcome: Pass
 
-7. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+8. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
-8. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
+9. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
     - Outcome: Pass
 
 ## Product Management Page
@@ -349,7 +371,7 @@
 6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the list are displayed in the table.
     - Outcome: Pass
 
-7. Verify that users who are not logged in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
+7. Verify that users who are not signed in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 8. Verify that standard users cannot access the product management page by manually typing in it's URL and are returned to the 403 page.
@@ -375,10 +397,10 @@
 5. Verify that when the add review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields. A toast should also appear informing the user that the product has been successfully added.
     - Outcome: Pass
 
-6. Verify that users who are not logged in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
+6. Verify that users who are not signed in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
-7. Verify that standard users cannot access the add product page by manually typing in it's URL and are returned to the 403 page.
+7. Verify that whan standard users are signed in, they cannot access the add product page by manually typing in it's URL and are returned to the 403 page.
     - Outcome: Pass
 
 ## Edit Product page
@@ -401,10 +423,10 @@
 5. Verify that when the update review button is clicked, the form is submits as the product details section has already been validated and the product features section contains no mandatory fields. A toast should also appear informing the user that the product has been successfully updated.
     - Outcome: Pass
 
-6. Verify that users who are not logged in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
+6. Verify that users who are not signed in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
-7. Verify that standard users cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
+7. Verify that whan standard users are signed in, they cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
     - Outcome: Pass
 
 ## Contact Us Page
