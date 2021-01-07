@@ -63,7 +63,7 @@ a, a:hover {
 /* Section Styling Start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
 
 section {
-    min-height: calc(100vh - 173px);
+    min-height: calc(100vh - 164px);
 }
 
 /* Section Styling End */
@@ -617,6 +617,12 @@ section {
 }
 
 @media(min-width: 992px) {
+    /* Section Styling Start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
+
+    section {
+        min-height: calc(100vh - 196px);
+    }
+
     .navbar .dropdown-menu {
         top: 58px;
         background-color: #fff;
@@ -685,6 +691,12 @@ section {
 
     .social-media-icons {
         margin: 1rem 0;
+    }
+}
+
+@media(max-height: 750px) {
+    section {
+        min-height: 100vh;
     }
 }
 
