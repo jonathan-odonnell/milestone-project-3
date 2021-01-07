@@ -141,6 +141,8 @@ section {
     margin: 30px 0 0;
 }
 
+/* Code for switch styling was obtained by viewing the bootstrap / bootswatch css properties for the switch and adapted them to have the desired effect */
+
 .custom-switch:checked~.custom-control-label::before {
     border-color: #64a19d;
     background-color: #64a19d;
@@ -282,7 +284,7 @@ section {
 
 /* Home Page Start */
 
-/* Image from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
+/* Image is from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
 
 .hero-image {
     height: 90vh;
@@ -341,7 +343,7 @@ section {
 
 /* Sign Up Page Start
 
-/* Image from https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/ */
+/* Image is from https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/ */
 
 .sign-up-image {
     background-image: url("../images/sign-up.jpg");
@@ -429,7 +431,7 @@ section {
 
 /* Contact Form Start */
 
-/* Image From https://unsplash.com/photos/V4CU3OBsrEk and code for horizontal alignment is from https://css-tricks.com/centering-css-complete-guide/ */
+/* Image is from https://unsplash.com/photos/V4CU3OBsrEk and code for horizontal alignment is from https://css-tricks.com/centering-css-complete-guide/ */
 
 .contact-heading {
    position: absolute;
@@ -522,7 +524,7 @@ section {
     color: #fff;
 }
 
-/* Code for .social-media-icons:hover:before and .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted to have the desired effect */
+/* Code for .social-media-icons:hover:before and .social-media-icons:hover was obtained by viewing the hover.css css properties for the grow effect and adapted them to have the desired effect */
 
 .hvr-grow:hover:before {
     color: #64a19d;
