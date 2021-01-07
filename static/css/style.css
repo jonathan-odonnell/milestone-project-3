@@ -262,7 +262,7 @@ section {
     border-bottom: 20px solid #fff;
     position: absolute;
     top: -18px;
-    right: 38px;
+    right: 10px;
 }
 
 .toast {
@@ -637,6 +637,12 @@ section {
     .navbar .dropdown-item:hover {
         color: #fff;
         background-color: #1a1a1a;
+    }
+
+    /* Arrow up code is adapted from https://css-tricks.com/snippets/css/css-triangle/ */
+
+    .arrow-up {
+        right: 15px;
     }
 
     .progress-bars {
