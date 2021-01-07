@@ -1,5 +1,5 @@
 <!--Extends base template-->
-{% extends "base.html" %} 
+{% extends "base.html" %}
 <!--Content block start-->
 {% block content %}
 <!--Main content container start-->
@@ -21,7 +21,7 @@
                     <!--Code for icon is from https://fontawesome.com/icons/map-marked-alt?style=solid-->
                     <h4><i class="fas fa-map-marked-alt info-icons" aria-hidden="true"></i>Address</h4>
                     <p class="info-paragraph">
-                        101 Portland St, Manchester, 
+                        101 Portland St, Manchester,
                         <br class="d-none d-lg-block">M1 6DF, United Kingdom.
                     </p>
                 </div>
@@ -37,30 +37,43 @@
                 </div>
             </div>
             <!--Contact details end-->
-            <!--Contact form start-->
-            <div class="col-12 col-lg-8 my-auto">
+            <!--Contact form start. CSS Classes for form styling is from https://bootswatch.com/lux/--->
+            <div class="col-12 col-lg-8 my-auto mt-lg-3 ">
                 <form id="contact-form">
-                    <div class="form-group text-center mt-lg-3 mb-0">
+                    <!--Name start-->
+                    <div class="form-group mb-4">
                         {% if session.user %}
-                        <input type="text" class="form-control mb-4" name="name" placeholder="Name" aria-label="Name"
+                        <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
                             value="{{session.user.first_name}} {{session.user.last_name}}" required />
                         {% else %}
-                        <input type="text" class="form-control mb-4" name="name" placeholder="Name" aria-label="Name"
+                        <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
                             required />
                         {% endif %}
+                    </div>
+                    <!--Name end-->
+                    <!--Email address start. Code for pattern attribute is from https://www.w3schools.com/tags/att_input_pattern.asp-->
+                    <div class="form-group mb-4">
                         {% if session.user %}
-                        <input type="email" class="form-control mb-4" name="email" placeholder="Email Address" aria-label="Email Address"
-                            value="{{session.user.email}}" required />
+                        <input type="email" class="form-control mb-4" name="email" placeholder="Email Address"
+                            aria-label="Email Address" value="{{session.user.email}}"
+                            pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                         {% else %}
                         <input type="email" class="form-control mb-4" name="email" placeholder="Email Address"
-                            aria-label="Email Address" required />
+                            aria-label="Email Address" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                         {% endif %}
+                    </div>
+                    <!--Email Address end-->
+                    <!--Message start-->
+                    <div class="form-group text-center mb-0">
                         <textarea type="text" class="form-control" name="message" rows="5" placeholder="Message"
                             aria-label="Message" required></textarea>
                     </div>
+                    <!--Message end-->
+                    <!--Send message button start-->
                     <div class="form-group form-group-button text-center">
                         <button type="submit" class="btn btn-green">Send Message</button>
                     </div>
+                    <!--Send message button end-->
                 </form>
             </div>
             <!--Contact form end-->
