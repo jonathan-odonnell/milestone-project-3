@@ -458,6 +458,7 @@ More information about making a local clone of a GitHub repository is available 
 - Code for the marked map icon is from [Font Awesome](https://fontawesome.com/icons/map-marked-alt?style=solid).
 - Code for the envelope icon is from [Font Awesome](https://fontawesome.com/icons/envelope?style=solid).
 - Code for the mobile icon is from [Font Awesome](https://fontawesome.com/icons/mobile-alt?style=solid).
+- Code for the horizontal and vertical center alignment of the contact us page heading is from [CSS Tricks](https://css-tricks.com/centering-css-complete-guide/).
 - Code for adding a search perameter to a URL in the templating is from [Stack Overflow](https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp)
 - Code for the current URL is from [Stack Overflow](https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url).
 - Code for the previous URL is from [Stack Overflow](https://stackoverflow.com/questions/39777171/how-to-get-the-previous-url-in-flask/39777426).
