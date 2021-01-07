@@ -9,7 +9,9 @@
     <!--Import Bootswatch Lux theme stylesheet. Code is from https://bootswatch.com/lux-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <!--Import hover.css stylesheet. Code is from https://cdnjs.com/libraries/hover.css/2.1.0-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css" integrity="sha512-glciccPoOqr5mfDGmlJ3bpbvomZmFK+5dRARpt62nZnlKwaYZSfFpFIgUoD8ujqBw4TmPa/F3TX28OctJzoLfg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css"
+        integrity="sha512-glciccPoOqr5mfDGmlJ3bpbvomZmFK+5dRARpt62nZnlKwaYZSfFpFIgUoD8ujqBw4TmPa/F3TX28OctJzoLfg=="
+        crossorigin="anonymous" />
     <!--Import Sick Carousel stylesheet. Code is from https://kenwheeler.github.io/slick/-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/slick/slick.css') }}" />
     <!--Import Slick Carousel Theme stylesheet. Code is from https://kenwheeler.github.io/slick/-->
@@ -33,14 +35,14 @@
             </button>
             <!--Navbar collapse button end-->
             <!--Navbar collapse button start-->
-            <!--Logo start-->
+            <!--Brand Logo start-->
             <a class="navbar-brand mr-0 py-0 ml-lg-2" href="{{url_for('index')}}"><img
                     src="{{ url_for('static', filename='images/logo.png') }}" alt="Tech Reviews logo"></a>
-            <!--Logo end-->
+            <!--Brand Logo end-->
             <!--Mobile collapsable search button start-->
             <a class="btn p-2 d-lg-none" data-toggle="collapse" href="#search" role="button" aria-expanded="false"
                 aria-controls="search">
-                <!--Search icon code is from https://fontawesome.com/icons/search?style=solid-->
+                <!--Search icon code is from https://fontawesome.com/icons/search?style=solid and CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                 <i class="fas fa-search fa-lg" aria-hidden="true"></i><span class="sr-only">Search</span>
             </a>
             <!--Mobile collapsable search button end-->
@@ -50,11 +52,11 @@
                     <!--Code to add search icon on to the end of the search field is from https://getbootstrap.com/docs/5.0/forms/input-group/-->
                     <div class="input-group">
                         <input type="text" class="form-control no-box-shadow" name="search"
-                            placeholder="Search reviews by product name or brand"/>
+                            placeholder="Search reviews by product name or brand" />
                         <div class="input-group-append">
                             <div class="input-group-text p-0">
                                 <button class="btn btn-green py-0 px-3 w-100 h-100" type="submit">
-                                    <!--Search icon code is from https://fontawesome.com/icons/search?style=solid-->
+                                    <!--Search icon code is from https://fontawesome.com/icons/search?style=solid and CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                     <i class="fas fa-search fa-lg" aria-hidden="true"></i>
                                     <span class="sr-only">Search</span>
                                 </button>
@@ -187,7 +189,7 @@
                         <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <div class="text-center">
-                                <!--Search icon code is from https://fontawesome.com/icons/search?style=solid and https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
+                                <!--Search icon code is from https://fontawesome.com/icons/search?style=solid and https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons and CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                 <i class="fas fa-user fa-lg" aria-hidden="true"></i>
                                 <span class="sr-only">User Options</span>
                             </div>
@@ -306,27 +308,38 @@
                     <div class="row no-guters">
                         <div class="col-6">
                             <ul class="list-group footer-links">
+                                {% if session.user and session.user.user_type == "standard"%}
+                                <li>
+                                    <a href="url_for('account')">Account</a>
+                                </li>
+                                {% elif session.user and session.user.user_type == "admin" %}
+                                <li>
+                                    <a href="url_for('product_management')">Product Management</a>
+                                </li>
+                                {% endif %}
                                 <li>
                                     <a href="{{ url_for('reviews', category='Phones') }}">Phones</a>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('reviews', category='Tablets') }}">Tablets</a>
                                 </li>
+                                {% if not session.user %}
                                 <li>
                                     <a href="{{ url_for('reviews', category='Laptops') }}">Laptops</a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="list-group footer-links">
+                                {% if session.user %}
+                                <li>
+                                    <a href="{{ url_for('reviews', category='Laptops') }}">Laptops</a>
+                                </li>
+                                {% endif %}
                                 <li>
                                     <a href="{{ url_for('reviews', category='Accessories') }}">Accessories</a>
                                 </li>
-                                {% if session.user and session.user.user_type == "standard"%}
-                                <li>
-                                    <a href="url_for('account')">Account</a>
-                                </li>
-                                {% endif %}
                                 <li>
                                     <a href="{{ url_for('contact') }}">Contact Us</a>
                                 </li>
@@ -395,28 +408,39 @@
                                 <div class="row no-gutters accordion-links">
                                     <div class="col-6">
                                         <ul class="list-group footer-links">
+                                            {% if session.user and session.user.user_type == "standard"%}
+                                            <li>
+                                                <a href="url_for('account')">Account</a>
+                                            </li>
+                                            {% elif session.user and session.user.user_type == "admin" %}
+                                            <li>
+                                                <a href="url_for('product_management')">Product Management</a>
+                                            </li>
+                                            {% endif %}
                                             <li>
                                                 <a href="{{ url_for('reviews', category='Phones') }}">Phones</a>
                                             </li>
                                             <li>
                                                 <a href="{{ url_for('reviews', category='Tablets') }}">Tablets</a>
                                             </li>
+                                            {% if not session.user %}
                                             <li>
                                                 <a href="{{ url_for('reviews', category='Laptops') }}">Laptops</a>
                                             </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
                                     <div class="col-6">
                                         <ul class="list-group footer-links">
+                                            {% if session.user %}
+                                            <li>
+                                                <a href="{{ url_for('reviews', category='Laptops') }}">Laptops</a>
+                                            </li>
+                                            {% endif %}
                                             <li>
                                                 <a
                                                     href="{{ url_for('reviews', category='Accessories') }}">Accessories</a>
                                             </li>
-                                            {% if session.user and session.user.user_type == "standard"%}
-                                            <li>
-                                                <a href="url_for('account')">Account</a>
-                                            </li>
-                                            {% endif %}
                                             <li>
                                                 <a href="{{ url_for('contact') }}">Contact Us</a>
                                             </li>
