@@ -751,7 +751,7 @@ def delete_review(review_id):
     Code is from https://flask.palletsprojects.com/en/1.1.x/api/#flask.abort
     """
 
-    if review is None:
+    if review:
         return abort(404)
 
     elif "{} {}".format(session['user']['first_name'], session['user']
@@ -992,10 +992,10 @@ def delete_product(product_id):
 @app.errorhandler(400)
 def bad_request(e):
     """
-    Redirects to the home page if the HTTP request returns a status of 400.
+    Returns the 400 page if the HTTP request returns a status of 400.
     Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages
     """
-    return redirect(url_for('index'))
+    return render_template("400.html", page_title=400)
 
 
 @app.errorhandler(403)
