@@ -31,7 +31,7 @@ def login_required(f):
     """
     A wrapper to prevent users who are not signed in from accessing the page
     and redirects to the sign in page. Code is from https://
-    flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/ and https://
+    flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/, https://
     blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/ and
     https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
     """
@@ -47,9 +47,9 @@ def login_required(f):
 def admin_required(f):
     """
     A wrapper to prevent users who are not admins from accessing the page and
-    returns a status of 403. Code is from https://flask.palletsprojects.com/en/
-    1.1.x/ patterns/viewdecorators/ and https://flask.palletsprojects.com/en/
-    1.1.x/ patterns/errorpages/
+    returns a status code of 403. Code is from https://
+    flask.palletsprojects.com/en/1.1.x/ patterns/viewdecorators/ and https://
+    flask.palletsprojects.com/en/1.1.x/ patterns/errorpages/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -68,7 +68,7 @@ def index():
 @app.route("/newsletter", methods=["POST"])
 def newsletter():
     """
-    A view to add the email to the newsletters database and return a success
+    A view to add the email to the database and return a success
     status. Code is from https://stackoverflow.com/questions/
     26079754/ flask-how-to-return-a-success-status-code-for-ajax-call/
     26080784#26080784
@@ -84,13 +84,12 @@ def reviews(category="All"):
     """
     A view to return all reviews which satisfy the search criteria, including
     sorting, filters and search queries.
-    """
 
-    """
     Redirects to the home page if the search is a search query and the URL
-    does not contain a search query. Search Parameters code is from https://
-    www.kite.com/python/answers/
-    how-to-get-parameters-from-a-url-using-flask-in-python
+    does not contain a search query. Code is from https://www.kite.com/python/
+    answers/how-to-get-parameters-from-a-url-using-flask-in-python and https://
+    stackoverflow.com/questions/39777171/how-to-get-the-previous-url-in-flask/
+    39777426.
     """
     if category == "All" and not request.args.get('search'):
         flash("You didn't enter any search criteria!", "error")
@@ -119,8 +118,8 @@ def reviews(category="All"):
 
     """
     Gets the products which match the search criteria from the database and
-    sorts them. Code for the sort method is from https://docs.mongodb.com/
-    manual/reference/method/cursor.sort/index.html
+    sorts them. Sort method is from https://docs.mongodb.com/manual/reference/
+    method/cursor.sort/index.html
     """
     products = list(mongo.db.products.find(query).sort(
         sort_items(request.args.get("sort"))))
@@ -200,9 +199,9 @@ def review_details(product_id):
         current_user = None
 
     """
-    Gets the product's reviews from the database and sorts them. Code for the
-    sort method is from https://docs.mongodb.com/manual/reference/method/
-    cursor.sort/index.html
+    Gets the product's reviews from the database and sorts them. Sort method is
+    from https://docs.mongodb.com/manual/reference/method/cursor.sort
+    /index.html
     """
     reviews = list((mongo.db.reviews.find(
         {"product": product["name"]})).sort("date_added", -1))
@@ -226,29 +225,20 @@ def review_details(product_id):
 def up_vote():
     """
     A view to increases the up vote value by one and return the updated total
-    and a success status.
+    and a success status. Code is from https://docs.mongodb.com/manual/
+    reference/operator/update/inc/, https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/ and https://stackoverflow.com/questions/
+    26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    26080784#26080784
     """
     review_id = review_id = request.form.get('review_id')
 
-    """
-    Code for incrementing the up_vote value by 1 is from https://
-    docs.mongodb.com/manual/reference/operator/update/inc/
-    """
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"up_vote": 1}})
 
-    """
-    Code for returning only specified fields from the database is from
-    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
-    """
     up_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
                                         {"up_vote": 1, "_id": 0})
 
-    """
-    Code for returning a success status is from https://stackoverflow.com/
-    questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
-    26080784#26080784
-    """
     return jsonify({"up_vote": up_vote['up_vote'], "success": True})
 
 
@@ -256,47 +246,34 @@ def up_vote():
 def down_vote():
     """
     A view to increases the down vote value by one and return the updated total
-    and a success status.
+    and a success status. Code is from https://docs.mongodb.com/manual/
+    reference/operator/update/inc/, https://docs.mongodb.com/manual/tutorial/
+    project-fields-from-query-results/ and https://stackoverflow.com/questions/
+    26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
+    26080784#26080784
     """
     review_id = request.form.get('review_id')
 
-    """
-    Code for incrementing the down_vote value by 1 is from https://
-    docs.mongodb.com/manual/reference/operator/update/inc/
-    """
     mongo.db.reviews.update_one(
         {'_id': ObjectId(review_id)}, {"$inc": {"down_vote": 1}})
 
-    """
-    Code for returning only specified fields from the database is from
-    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
-    """
     down_vote = mongo.db.reviews.find_one({"_id": ObjectId(review_id)},
                                           {"down_vote": 1, "_id": 0})
 
-    """
-    Code for returning a success status is from https://stackoverflow.com/
-    questions/26079754/flask-how-to-return-a-success-status-code-for-ajax-call/
-    26080784#26080784
-    """
     return jsonify({"down_vote": down_vote['down_vote'], "success": True})
 
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """
-    A view to return the contact page and post the data inputted into the
-    contact form to the contact database.
+    A view to return the contact page and add the data inputted into the
+    contact form to the database. Code for returning a success status is from
+    https://stackoverflow.comquestions/26079754/
+    flask-how-to-return-a-success-status-code-for-ajax-call/26080784#26080784
     """
     if request.method == "POST":
         mongo.db.contact.insert_one(request.form.to_dict())
 
-        """
-        Code for returning a success status is from https://stackoverflow.com/
-        questions/26079754/
-        flask-how-to-return-a-success-status-code-for-ajax-call/
-        26080784#26080784
-        """
         return jsonify(success=True)
 
     return render_template("contact.html", page_title="Contact Us")
@@ -342,7 +319,7 @@ def sign_in():
                 Invalid email address inputted by user. Code for message
                 categories is from https://flask.palletsprojects.com/en/1.1.x/
                 patterns/flashing/. Code for redirecting to the previous page
-                is from https:// stackoverflow.com/questions/39777171/
+                is from https://stackoverflow.com/questions/39777171/
                 how-to-get-the-previous-url-in-flask/39777426.
                 """
                 flash("Incorrect Email Address and/or Password", "error")
@@ -351,7 +328,7 @@ def sign_in():
         else:
             """
             Invalid password inputted by user. Code for message categories is
-            from https:// flask.palletsprojects.com/en/1.1.x/patterns/flashing/
+            from https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
             and code for redirecting to the previous page is from https://
             stackoverflow.com/questions/39777171/
             how-to-get-the-previous-url-in-flask/39777426.
@@ -461,14 +438,16 @@ def account():
 @login_required
 @admin_required
 def product_management():
-    """A view to return all the products and sort and paginates them. Code for
-    the sort search perameter is from https://www.kite.com/python/answers/
-    how-to-get-parameters-from-a-url-using-flask-in-python
+    """
+    A view to return all the products and sort and paginates them.
+
+    Gets the sort search perameter. Code is from https://www.kite.com/python/
+    answers/ how-to-get-parameters-from-a-url-using-flask-in-python
     """
     sort_by = request.args.get("sort")
 
     """
-    Code for the sort method is from https://docs.mongodb.com/manual/reference/
+    Sort method is from https://docs.mongodb.com/manual/reference/
     method/cursor.sort/index.html
     """
     if sort_by:
@@ -512,8 +491,8 @@ def sign_out():
 @login_required
 def add_review(product_id):
     """
-    A view to return the add review page, and if the request method is post,
-    adds the data inputted to the database and updates the product's ratings.
+    A view to return the add review page, and add the data inputted to the
+    database and update the product's ratings.
     """
     if request.method == 'POST':
         """
@@ -522,21 +501,20 @@ def add_review(product_id):
         """
         next_url = request.form.get('next')
 
-        # Gets the product's ratings from the database
+        """
+        Gets the product's ratings from the database and counts the number of
+        reviews in the database for the product. Count method is from https://
+        docs.mongodb.com/manual/reference/method/db.collection.count/
+        """
         product_ratings = mongo.db.products.find_one(
             {"_id": ObjectId(product_id)}, product_ratings_query())
 
-        """
-        Counts the number of reviews in the database for the product.
-        Code is from https://docs.mongodb.com/manual/reference/method/
-        db.collection.count/
-        """
         product_count = mongo.db.reviews.count(
             {"product": product_ratings['name']})
 
         """
-        Adds the details entered into the form to a dictionary. Code for date
-        added is from https://www.w3schools.com/python/python_datetime.asp
+        Adds the details entered into the form to a dictionary. Datetime
+        method is from https://www.w3schools.com/python/python_datetime.asp
         """
         review = {
             "overall_rating": int(request.form.get('overall_rating')),
@@ -552,18 +530,16 @@ def add_review(product_id):
                                           session['user']['last_name'])
         }
 
-        # Calculates the product's new ratings
+        """
+        Calculates the product's new ratings and updates them in the database.
+        Update one method is from https://docs.mongodb.com/manual/
+        reference/method/db.collection.updateOne/
+        """
         new_ratings = add_ratings(product_ratings, product_count, review)
 
-        """
-        Updates the product's feature ratings in the products database.
-        Code is from https://docs.mongodb.com/manual/reference/method/
-        db.collection.updateOne/
-        """
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)}, {"$set": new_ratings})
 
-        # Updates the product's star ratings in the database.
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)},
             star_rating(new_rating=int(request.form.get('overall_rating'))))
@@ -571,27 +547,32 @@ def add_review(product_id):
         # Adds the review to the database
         mongo.db.reviews.insert_one(review)
 
+        """
+        Code for message categories is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/flashing/
+        """
         flash("Review Successfully Added", "Success")
 
         return redirect(next_url)
 
     else:
         """
-        Aborts the request and returns a status code of 400 if the URL does not
-        contain a next search perameter. Code is from https://
-        flask.palletsprojects.com/en/1.1.x/api/#flask.abort
+        Aborts the request and returns a 400 status code if the URL does not
+        contain a next search perameter. Code is from https://www.kite.com/
+        python/answers/how-to-get-parameters-from-a-url-using-flask-in-python
+        and https://flask.palletsprojects.com/en/1.1.x/api/#flask.abort
         """
         if request.args.get('next') is None:
             abort(400)
 
-        # Gets the product's details from the products databse
+        """
+        Gets the product's details from the products databse and aborts the
+        request and returns a 404 status code if the product does not exist.
+        Code is from https://flask.palletsprojects.com/en/1.1.x/api
+        /#flask.abort
+        """
         product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
 
-        """
-        Aborts the request and returns a status of 404 if the product does not
-        exist. Code is from https://flask.palletsprojects.com/en/1.1.x/api/
-        #flask.abort
-        """
         if product is None:
             abort(404)
 
@@ -603,8 +584,8 @@ def add_review(product_id):
 @login_required
 def edit_review(review_id):
     """
-    A view to return the edit review page, and if the request method is post,
-    updates the review in the database and updates the product's ratings.
+    A view to return the edit review page and update the review and product's
+    ratings in the database.
     """
     if request.method == 'POST':
         """
@@ -613,25 +594,24 @@ def edit_review(review_id):
         """
         next_url = request.form.get('next')
 
-        # Gets the review's ratings from the database
+        # Gets the review's and product's ratings from the database
         user_ratings = mongo.db.reviews.find_one(
             {'_id': ObjectId(review_id)}, user_ratings_query())
 
-        # Gets the product's ratings from the database
         product_ratings = mongo.db.products.find_one(
             {"name": user_ratings['product']}, product_ratings_query())
 
         """
         Counts the number of reviews in the database for the product.
-        Code is from https://docs.mongodb.com/manual/reference/method/
-        db.collection.count/
+        Count method is from https://docs.mongodb.com/manual/
+        reference/method/db.collection.count/
         """
         product_count = mongo.db.reviews.count(
             {"product": user_ratings['product']})
 
         """
-        Adds the details entered into the form to a dictionary. Code for date
-        added is from https://www.w3schools.com/python/python_datetime.asp
+        Adds the details entered into the form to a dictionary. Datetime method
+        is from https://www.w3schools.com/python/python_datetime.asp
         """
         review = {
             "overall_rating": int(request.form.get('overall_rating')),
@@ -644,22 +624,17 @@ def edit_review(review_id):
             "date_added": datetime.datetime.now(),
         }
 
-        # Calculates the product's new ratings
+        """
+        Calculates the product's new ratings and updates them in the database.
+        Update one method is from https://docs.mongodb.com/manual/reference
+        /method/db.collection.updateOne/
+        """
         new_ratings = edit_ratings(
             user_ratings, product_ratings, product_count, review)
 
-        """
-        Updates the product's feature ratings in the database. Code is
-        from https://docs.mongodb.com/manual/reference/method/
-        db.collection.updateOne/
-        """
         mongo.db.products.update_one(
             {'_id': product_ratings['_id']}, {"$set": new_ratings})
 
-        """
-        Updates the product's feature ratings in the database if the user has
-        changed the overall rating value in the form.
-        """
         if (int(request.form.get('overall_rating')) != user_ratings
                 ['overall_rating']):
 
@@ -667,40 +642,38 @@ def edit_review(review_id):
                 request.form.get('overall_rating'), user_ratings
                 ['overall_review']))
 
-        """
-        Updates the review in the database. Code is from https://
-        docs.mongodb.com/manual/reference/method/db.collection.updateOne/
-        """
         mongo.db.reviews.update_one(
             {'_id': ObjectId(review_id)}, {"$set": review})
 
+        """
+        Code for message categories is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/flashing/
+        """
         flash("Review Successfully Updated", "Success")
 
         return redirect(next_url)
 
     else:
         """
-        Aborts the request and returns a status code of 400 if the URL does not
-        contain a next search perameter. Code is from https://
-        flask.palletsprojects.com/en/1.1.x/api/#flask.abort
+        Aborts the request and returns a 400 status code if the URL does not
+        contain a next search perameter. Code is from https://www.kite.com/
+        python/answers/how-to-get-parameters-from-a-url-using-flask-in-python
+        and https://flask.palletsprojects.com/en/1.1.x/api/#flask.abort
         """
         if request.args.get('next') is None:
             abort(400)
 
         """
-        Gets the review author's details from the database. Code for
-        returning selected fields from https://docs.mongodb.com/manual/tutorial
-        /project-fields-from-query-results/
+        Gets the product's details from the products databse and aborts the
+        request and returns a 404 status code if no review is found or
+        a 403 status if the review author is not the user currently signed in.
+        Code is from https://flask.palletsprojects.com/en/1.1.x/api
+        /#flask.abort and https://docs.mongodb.com/manual/tutorial/
+        project-fields-from-query-results/
         """
         review = mongo.db.reviews.find_one(
             {"_id": ObjectId(review_id)}, {"reviewed_by": 1, "_id": 0})
 
-        """
-        Aborts the request and returns a status of 404 if no review is found or
-        a 403 status if the review author is not the user currently signed in.
-        Code is from https://flask.palletsprojects.com/en/1.1.x/api/
-        #flask.abort
-        """
         if review is None:
             return abort(404)
 
@@ -720,13 +693,11 @@ def edit_review(review_id):
 @login_required
 def delete_review(review_id):
     """
-    A view to delete the review from the database and updates the product's
+    A view to delete the review from the database and update the product's
     ratings.
-    """
 
-    """
     Gets the next URL search perameter and aborts the request and returns a
-    status code of 400 if the URL does not contain a next search perameter.
+    400 status code if the URL does not contain a next search perameter.
     Code is from https://blog.tecladocode.com/
     handling-the-next-url-when-logging-in-with-flask/ and https://
     flask.palletsprojects.com/en/1.1.x/api/#flask.abort
@@ -738,61 +709,51 @@ def delete_review(review_id):
         abort(400)
 
     """
-    Gets the review author's details from the database. Code for
-    returning selected fields from https://docs.mongodb.com/manual/tutorial/
+    Gets the review author's details from the database and aborts the
+    request and returns a 403 status code if the review author is not the
+    user currently signed in. Code is from https://flask.palletsprojects.com/en
+    /1.1.x/api/#flask.abort and https://docs.mongodb.com/manual/tutorial/
     project-fields-from-query-results/
     """
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)}, {
         "reviewed_by": 1, "_id": 0})
 
-    """
-    Aborts the request and returns a 404 status if no review is returned and a
-    403 status if the review author is not the user currently signed in.
-    Code is from https://flask.palletsprojects.com/en/1.1.x/api/#flask.abort
-    """
-
-    if review:
-        return abort(404)
-
-    elif "{} {}".format(session['user']['first_name'], session['user']
-                        ['last_name']) != review['reviewed_by']:
+    if "{} {}".format(session['user']['first_name'], session['user']
+                      ['last_name']) != review.get('reviewed_by'):
         return abort(403)
 
     else:
-        # Gets the review's ratings from the database
+        # Gets the review's and product's ratings from the database
         user_ratings = mongo.db.reviews.find_one(
             {'_id': ObjectId(review_id)}, user_ratings_query())
 
-        # Gets the product's ratings from the database
         product_ratings = mongo.db.products.find_one(
             {"name": user_ratings['product']}, product_ratings_query())
 
         """
         Counts the number of reviews in the database for the product.
-        Code is from https://docs.mongodb.com/manual/reference/method/
-        db.collection.count/
+        Code for the count method from https://docs.mongodb.com/manual/
+        reference/method/db.collection.count/
         """
         product_count = mongo.db.reviews.count_documents(
             {"product": user_ratings['product']})
 
-        # Calculates the product's new ratings
+        """
+        Calculates the product's new ratings and updates them in the database.
+        Code for the update one method is from https://docs.mongodb.com/manual/
+        reference/method/db.collection.updateOne/
+        """
         new_ratings = delete_ratings(
             user_ratings, product_ratings, product_count)
 
-        """
-        Updates the product's feature ratings in the products database.
-        Code is from https://docs.mongodb.com/manual/reference/method/
-        db.collection.updateOne/
-        """
         mongo.db.products.update_one(
             {'_id': product_ratings['_id']}, {"$set": new_ratings})
 
-        # Updates the product's star ratings in the products database
         mongo.db.products.update_one({"name": user_ratings['product']},
                                      star_rating(
             prev_rating=user_ratings['overall_rating']))
 
-        # Deletes the review from the reviews database
+        # Deletes the review from the database
         mongo.db.reviews.delete_one({"_id": ObjectId(review_id)})
 
         """
@@ -808,35 +769,28 @@ def delete_review(review_id):
 @login_required
 @admin_required
 def add_product():
+    """
+    A view to return the add product page, add the product to the database and
+    update the relevant category's brands list in the database.
+    """
     if request.method == "POST":
         """
-        A view to add the product to the database and update the relevant
-        category's brands list.
-        """
-
-        """
         Gets the details entered into the form and convert them into a
-        dictionary.
+        dictionary and converts the price to the decimal 128 data type.
+        Decimal128 method is from https://pymongo.readthedocs.io/en/stable/api/
+        bson/decimal128.html
         """
         product = request.form.to_dict()
 
-        """
-        Converts the price to the decimal 128 data type. Code is from https://
-        pymongo.readthedocs.io/en/stable/api/bson/decimal128.html
-        """
         product['price'] = Decimal128(product['price'])
 
         """
-        Generates a list of all the keys in the products dictionary. Code is
-        from https://stackoverflow.com/questions/6307394/
+        Deletes any products from the dictionary which have a value of an empty
+        string. Code is from https://stackoverflow.com/questions/6307394/
         removing-dictionary-entries-with-no-values-python
         """
         keys = list(product.keys())
 
-        """
-        Deletes any products from the dictionary which have a value of an empty
-        string.
-        """
         for key in keys:
             if product[key] == "":
                 del product[key]
@@ -846,13 +800,18 @@ def add_product():
 
         """
         Adds the brand to the relevant brands list in the database.
-        Code is from https://docs.mongodb.com/manual/reference/operator/update/
+        Add to set method is from https://docs.mongodb.com/manual/reference/
+        operator/update/
         addToSet/
         """
         mongo.db.categories.update_one({"name": product['category']}, {
                                        "$addToSet": {"brands": product['brand']
                                                      }})
 
+        """
+        Code for message categories is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/flashing/
+        """
         flash("Product Successfully Added", "Success")
 
         return redirect(url_for('product_management'))
@@ -869,53 +828,49 @@ def add_product():
 @admin_required
 def edit_product(product_id):
     """
-    A view to update the product in the database and update the relevant
-    category's brands list.
+    A view to return the edit product page, update the product in the database
+    and update the relevant category's brands list in the database.
     """
     if request.method == "POST":
         """
         Gets the details entered into the form and convert them into a
-        dictionary.
+        dictionary and converts the price to the decimal 128 data type.
+        Decimal128 method is from https://pymongo.readthedocs.io/en/stable/api/
+        bson/decimal128.html
         """
         product = request.form.to_dict()
 
-        """
-        Converts the price to the decimal 128 data type. Code is from https://
-        pymongo.readthedocs.io/en/stable/api/bson/decimal128.html
-        """
         product['price'] = Decimal128(product['price'])
 
         """
-        Generates a list of all the keys in the products dictionary. Code is
-        from https://stackoverflow.com/questions/6307394/
+        Deletes any products from the dictionary which have a value of an empty
+        string. Code is from https://stackoverflow.com/questions/6307394/
         removing-dictionary-entries-with-no-values-python
         """
         keys = list(product.keys())
 
-        """
-        Deletes any products from the dictionary which have a value of an empty
-        string.
-        """
         for key in keys:
             if product[key] == "":
                 del product[key]
 
         """
-        Adds the product details to the products database Code is from https://
-        docs.mongodb.com/manual/reference/method/db.collection.updateOne/
+        Adds the product details to the products database and adds the brand to
+        the relevant brands list in the categories database. Code is from
+        https://docs.mongodb.com/manual/reference/method/
+        db.collection.updateOne/ and https://docs.mongodb.com/manual/reference/
+        operator/update/addToSet/
         """
         mongo.db.products.update_one(
             {'_id': ObjectId(product_id)}, {"$set": product})
 
-        """
-        Adds the brand to the relevant brands list in the categories database.
-        Code is from https://docs.mongodb.com/manual/reference/operator/update/
-        addToSet/
-        """
         mongo.db.categories.update_one({"name": product['category']}, {
                                        "$addToSet": {"brands": product['brand']
                                                      }})
 
+        """
+        Code for message categories is from https://flask.palletsprojects.com/
+        en/1.1.x/patterns/flashing/
+        """
         flash("Product Successfully Updated", "Success")
 
         return redirect(url_for('product_management'))
@@ -924,7 +879,7 @@ def edit_product(product_id):
     product = mongo.db.products.find_one({'_id': ObjectId(product_id)})
 
     """
-    Aborts the request and returns a 404 status if the product does not
+    Aborts the request and returns a 404 status code if the product does not
     exist. Code is from https://flask.palletsprojects.com/en/1.1.x/api/
     #flask.abort
     """
@@ -949,9 +904,7 @@ def delete_product(product_id):
     """
     A view to delete the product from the database and update the relevant
     category's brands list.
-    """
 
-    """
     Gets the product's name and category from the database. Code for returning
     selected fields is from https://docs.mongodb.com/manual/tutorial
     project-fields-from-query-results/
@@ -961,23 +914,19 @@ def delete_product(product_id):
 
     """
     Counts the number of products in the database which are from product's
-    category and brand. Code is from https://docs.mongodb.com/manual/reference/
-    method/db.collection.count/ and https://docs.mongodb.com/manual/tutorial/
-    project-fields-from-query-results/
+    category and brand, and deletes the brand if there is only one product in
+    the product's category which is from the product's brand. Code is from
+    https://docs.mongodb.com/manual/reference/method/db.collection.count/ and
+    https://docs.mongodb.com/manual/reference/operator/update/pull/
     """
     brand_count = mongo.db.products.count(
         {"brand": product['brand'], "category": product['category']})
 
-    """
-    Deletes the brand from the relevant category's brands array in the database
-    if the brand count is one. Code is from https://docs.mongodb.com/manual/
-    reference/operator/update/pull/
-    """
     if brand_count == 1:
         mongo.db.categories.update_one({"name": product['category']}, {
                                        "$pull": {"brands": product['brand']}})
 
-    # Deletes the product
+    # Deletes the product from the database
     mongo.db.products.delete_one({"_id": ObjectId(product_id)})
 
     """
