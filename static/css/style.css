@@ -1,4 +1,4 @@
-/* Text Styling Start */
+/* Text styling start */
 
 .headings-top {
     margin: 80px 0 30px;
@@ -58,17 +58,9 @@ a, a:hover {
     letter-spacing: 1px;
 }
 
-/* Text Styling End */
+/* Text styling end */
 
-/* Section Styling Start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
-
-section {
-    min-height: calc(100vh - 164px);
-}
-
-/* Section Styling End */
-
-/* Buttons Start */
+/* Buttons start */
 
 .btn-green {
     color: #fff;
@@ -97,9 +89,17 @@ section {
     min-width: 165px;
 }
 
-/* Buttons End */
+/* Buttons end */
 
-/* Content Containers and Wrappers */
+/* Section styling start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
+
+section {
+    min-height: calc(100vh - 164px);
+}
+
+/* Section styling end */
+
+/* Content containers and wrappers start */
 
 .content-container-top {
     padding: 80px 30px 0;
@@ -113,85 +113,9 @@ section {
     background-color: #f7fcfc;
 }
 
-/* Content Containers and Wrappers */
+/* Content containers and wrappers end */
 
-/* Cards Start */
-
-.card-img {
-    height: 8rem;
-    width: 100%;
-    object-fit: cover;
-    object-position: center center;
-}
-
-.card-title {
-    letter-spacing: 1px;
-    line-height: 1.5;
-}
-
-/* Cards End */
-
-/* Forms Start */
-
-.form-group-ratings {
-    height: 48px;
-}
-
-.form-group-button {
-    margin: 30px 0 0;
-}
-
-/* Code for switch styling was obtained by viewing the bootstrap / bootswatch css properties for the switch and adapted them to have the desired effect */
-
-.custom-switch:checked~.custom-control-label::before {
-    border-color: #64a19d;
-    background-color: #64a19d;
-}
-
-.custom-control-label::before{
-    background-color: #c0c0c0;
-}
-
-/* Forms End */
-
-/* Rating Stars Radio Buttons Start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
-
-.rating {
-    position: absolute;
-}
-
-.rating input {
-    display: none;
-}
-
-.rating:not(:checked) > label {
-    float: right;
-    overflow: hidden;
-    cursor: pointer;
-    color: #ccc;
-    margin-right: 0.5rem;
-    margin-bottom: 0;
-}
-.rating > input:checked ~ label {
-    color: #ffc700;
-}
-
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-    color: #ffc700;
-}
-
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-    color: #ffc700;
-}
-
-/* Rating Stars Radio Buttons End */
-
-/* Navbar Start */
+/* Navbar start */
 
 .navbar {
     padding: 1rem;
@@ -241,9 +165,9 @@ section {
     background-color: inherit;
 }
 
-/* Navbar End */
+/* Navbar end */
 
-/* Toast Start */
+/* Toast start */
 
 .message-container {
     position: fixed;
@@ -280,11 +204,85 @@ section {
 .toast-body {
     background-color: #fff;
 }
-/* Toast End */
+/* Toast end */
 
-/* Home Page Start */
+/* Cards start */
 
-/* Image is from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
+.card-img {
+    height: 8rem;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.card-title {
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+/* Cards end */
+
+/* Forms start */
+
+.form-group-ratings {
+    height: 48px;
+}
+
+.form-group-button {
+    margin: 30px 0 0;
+}
+
+/* Code for switch styling was obtained by viewing the bootstrap / bootswatch css properties for the switch and adapted them to have the desired effect */
+
+.custom-switch:checked~.custom-control-label::before {
+    border-color: #64a19d;
+    background-color: #64a19d;
+}
+
+.custom-control-label::before{
+    background-color: #c0c0c0;
+}
+
+/* Forms end */
+
+/* Rating stars radio buttons start. Code if from https://codepen.io/hesguru/pen/BaybqXv */
+
+.rating {
+    position: absolute;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    overflow: hidden;
+    cursor: pointer;
+    color: #ccc;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+}
+.rating > input:checked ~ label {
+    color: #ffc700;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ffc700;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ffc700;
+}
+
+/* Rating stars radio buttons end */
+
+/* Home page start. Image is from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
 
 .hero-image {
     height: 90vh;
@@ -292,7 +290,7 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url("../images/hero-image.jpg");
+    background-image: url("../images/hero.jpg");
     background-size: cover;
     background-position: 50% 40%;
     margin-bottom: 0;
@@ -339,11 +337,9 @@ section {
     border: 2px solid #64a19d;
 }
 
-/* Home Page End */
+/* Home page end */
 
-/* Sign Up Page Start
-
-/* Image is from https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/ */
+/* Sign up page start. Image is from https://www.pexels.com/photo/woman-in-yellow-sweater-holding-silver-ipad-3979198/ */
 
 .sign-up-image {
     background-image: url("../images/sign-up.jpg");
@@ -353,9 +349,9 @@ section {
     height: 100%;
 }
 
-/* Sign Up Page End */
+/* Sign up page end */
 
-/* Reviews Start */
+/* Reviews start */
 
 .filter-headings {
     letter-spacing: 1px;
@@ -379,9 +375,9 @@ section {
     border-color: #64a19d;
 }
 
-/* Reviews End */
+/* Reviews end */
 
-/* Review Details Start */
+/* Review details start */
 
 .back-link a:hover {
     color: #64a19d;
@@ -427,11 +423,9 @@ section {
     background: #f7fcfc;
 }
 
-/* Review Details End */
+/* Review details end */
 
-/* Contact Form Start */
-
-/* Image is from https://unsplash.com/photos/V4CU3OBsrEk and code for the horizontal and vertical center alignment is from https://css-tricks.com/centering-css-complete-guide/ */
+/* Contact form start. Code for the horizontal and vertical center alignment is from https://css-tricks.com/centering-css-complete-guide/ */
 
 .contact-heading {
    position: absolute;
@@ -465,18 +459,18 @@ section {
     padding: 1rem;
 }
 
-/* Contact Form End */
+/* Contact form end */
 
-/* Product Management Start */
+/* Product management start */
 
 .table-green {
     background-color: #64a19d;
     color: #ffffff;
 }
 
-/* Product Management End */
+/* Product management end */
 
-/* Footer Start */
+/* Footer start */
 
 .footer-wrapper {
     background-color: #1a1a1a;
@@ -558,7 +552,7 @@ section {
 
 /* Footer end */
 
-/* Media Queries Start */
+/* Media queries start */
 
 @media(min-width: 576px) {
     .slick-slide {
@@ -700,4 +694,4 @@ section {
     }
 }
 
-/* Media Queries End */
+/* Media queries end */
