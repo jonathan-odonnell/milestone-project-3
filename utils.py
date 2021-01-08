@@ -181,16 +181,27 @@ def add_ratings(product_ratings, product_count, form):
     """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
-        product_count, 0, int(form['overall_rating']), product_count + 1),
+                                           product_count, 0,
+                                           int(form['overall_rating']),
+                                           product_count + 1),
         'performance_rating': calculate_rating(product_ratings
-        ['performance_rating'], product_count, 0, int(form['performance_rating'
-        ]), product_count + 1), 'usability_rating': calculate_rating
-        (product_ratings['usability_rating'], product_count, 0, int(form
-        ['usability_rating']), product_count + 1), 'price_rating':
-        calculate_rating(product_ratings['price_rating'], product_count, 0, int
-        (form['price_rating']), product_count + 1), 'quality_rating':
-        calculate_rating(product_ratings['quality_rating'], product_count, 0,
-        int(form['quality_rating']), product_count + 1)
+                                               ['performance_rating'],
+                                               product_count, 0,
+                                               int(form['performance_rating']),
+                                               product_count + 1),
+        'usability_rating': calculate_rating(product_ratings
+                                             ['usability_rating'],
+                                             product_count, 0,
+                                             int(form['usability_rating']),
+                                             product_count + 1),
+        'price_rating': calculate_rating(product_ratings['price_rating'],
+                                         product_count, 0,
+                                         int(form['price_rating']),
+                                         product_count + 1),
+        'quality_rating': calculate_rating(product_ratings['quality_rating'],
+                                           product_count, 0,
+                                           int(form['quality_rating']),
+                                           product_count + 1)
     }
 
     return rating
@@ -202,18 +213,32 @@ def edit_ratings(user_ratings, product_ratings, product_count, form):
     """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
-        product_count, user_ratings['overall_rating'], form['overall_rating'],
-        product_count + 1), 'performance_rating': calculate_rating
-        (product_ratings['performance_rating'], product_count, user_ratings
-        ['performance_rating'], form['performance_rating'], product_count + 1),
-        'usability_rating': calculate_rating(product_ratings['usability_rating']
-        , product_count, user_ratings['usability_rating'], form
-        ['usability_rating'], product_count + 1), 'price_rating':
-        calculate_rating(product_ratings['price_rating'], product_count,
-        user_ratings['price_rating'], form['price_rating'], product_count + 1),
+                                           product_count, user_ratings
+                                           ['overall_rating'],
+                                           int(form['overall_rating']),
+                                           product_count + 1),
+        'performance_rating': calculate_rating(product_ratings
+                                               ['performance_rating'],
+                                               product_count, user_ratings
+                                               ['performance_rating'],
+                                               int(form['performance_rating']),
+                                               product_count + 1),
+        'usability_rating': calculate_rating(product_ratings
+                                             ['usability_rating'],
+                                             product_count, user_ratings
+                                             ['usability_rating'],
+                                             int(form['usability_rating']),
+                                             product_count + 1),
+        'price_rating': calculate_rating(product_ratings['price_rating'],
+                                         product_count, user_ratings
+                                         ['price_rating'],
+                                         int(form['price_rating']),
+                                         product_count + 1),
         'quality_rating': calculate_rating(product_ratings['quality_rating'],
-        product_count, user_ratings['quality_rating'], form['quality_rating'],
-        product_count + 1)
+                                           product_count, user_ratings
+                                           ['quality_rating'],
+                                           int(form['quality_rating']),
+                                           product_count + 1)
     }
     return rating
 
@@ -225,16 +250,27 @@ def delete_ratings(user_ratings, product_ratings, product_count):
     """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
-        product_count, user_ratings['overall_rating'], 0, product_count - 1),
+                                           product_count, user_ratings
+                                           ['overall_rating'], 0,
+                                           product_count - 1),
         'performance_rating': calculate_rating(product_ratings
-        ['performance_rating'], product_count, user_ratings
-        ['performance_rating'], 0, product_count - 1), 'usability_rating':
-        calculate_rating(product_ratings['usability_rating'], product_count,
-        user_ratings['usability_rating'], 0, product_count - 1),
+                                               ['performance_rating'],
+                                               product_count, user_ratings
+                                               ['performance_rating'], 0,
+                                               product_count - 1),
+        'usability_rating': calculate_rating(product_ratings
+                                             ['usability_rating'],
+                                             product_count, user_ratings
+                                             ['usability_rating'], 0,
+                                             product_count - 1),
         'price_rating': calculate_rating(product_ratings['price_rating'],
-        product_count, user_ratings['price_rating'], 0, product_count - 1),
+                                         product_count, user_ratings
+                                         ['price_rating'], 0,
+                                         product_count - 1),
         'quality_rating': calculate_rating(product_ratings['quality_rating'],
-        product_count, user_ratings['quality_rating'], 0, product_count - 1)
+                                           product_count, user_ratings
+                                           ['quality_rating'], 0,
+                                           product_count - 1)
     }
     return rating
 
