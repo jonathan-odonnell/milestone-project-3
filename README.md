@@ -472,7 +472,7 @@ More information about making a local clone of a GitHub repository is available 
 - Code for database query greater than or equal to is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/gte/).
 - Code for database query less than or equal to is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/lte/)
 - Code for database search by items in a list is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/aggregation/in/).
-- Code for sorting a database search results is from [MongoDB](https://stackoverflow.com/questions/8109122/how-to-sort-mongodb-with-pymongo).
+- Code for sorting a database search results is from [MongoDB](https://docs.mongodb.com/manual/reference/method/cursor.sort/index.html) and [Stack Overflow](https://stackoverflow.com/questions/8109122/how-to-sort-mongodb-with-pymongo).
 - Code for specifying which fields to return in a database search is from [MongnDB](https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/).
 - Code for round method is from Round function is from [Programiz](https://www.programiz.com/python-programming/methods/built-in/round).
 - Code for incrementing a database field is from [MongoDB](https://docs.mongodb.com/manual/reference/operator/update/inc/).
