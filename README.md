@@ -517,7 +517,7 @@ More information about making a local clone of a GitHub repository is available 
 - The Samsung Galaxy Tab 7 image was from [Unsplash](https://unsplash.com/photos/Pn9t7RNZYVw).
 - The iPad Mini image was from [Unsplash](https://unsplash.com/photos/pVt9j3iWtPM).
 - The MacBook Pro (13 inch) image was from [Unsplash](https://unsplash.com/photos/paSLTZpHCdo).
-- The MacBook Pro (16 inch) image was from [Unsplash](https://unsplash.com/photos/vUjJztdX4H0).
+- The MacBook Pro (16 inch) image was from [Unsplash](https://unsplash.com/photos/1SAnrIxw5OY).
 - The Microsoft Surface Laptop (13 inch) image was from [Unsplash](https://unsplash.com/photos/hddtUR3hhJE).
 - The Macbook Air image was from [Unsplash](https://unsplash.com/photos/JYoWTJMJNFo).
 - The Microsoft Surface Laptop Go image was from [Unsplash](https://unsplash.com/photos/C6T6vr1sQI0).
@@ -526,10 +526,10 @@ More information about making a local clone of a GitHub repository is available 
 - The Google Pixelbook Go image was from [Unsplash](https://unsplash.com/photos/zwsHjakE_iI).
 - The Apple Watch SE image was from [Unsplash](https://unsplash.com/photos/WLXTOvDKuRQ).
 - The Apple Watch 5 image was from [Unsplash](https://unsplash.com/photos/bFzhdm9zZp0).
-- The Apple Watch 6 image was from [Unsplash](https://unsplash.com/photos/z2GEGmFEhZo).
+- The Apple Watch 6 image was from [Unsplash](https://unsplash.com/photos/x0rq0OjB3Z0).
 - The Apple HomePod Mini image was from [Unsplash](https://unsplash.com/photos/lZCHy8PLyyo).
 - The Google Nest Mini image was from [Unsplash](https://unsplash.com/photos/UK29635SS6E).
 - The Amazon Echo Dot was from [Unsplash](https://unsplash.com/photos/nGzvZe1iWOY).
 - The Samsung Galaxy Watch 3 image was from [Pixabay](https://pixabay.com/photos/samsung-galaxy-watch-wearable-3818707).
-- The Samsung Galaxy Watch Active 2 image was from [Unsplash](https://unsplash.com/s/photos/samsung-galaxy-watch).
+- The Samsung Galaxy Watch Active 2 image was from [Unsplash](https://unsplash.com/photos/xWc6BOivavQ).
 - The contact us page hero image was from [Pexels](https://www.pexels.com/photo/concentrated-businesswoman-talking-on-smartphone-on-street-5669626/).
