@@ -26,10 +26,6 @@ h4 {
     font-size: 1rem;
 }
 
-h5 {
-    font-size: 0.8rem;
-}
-
 strong {
     font-weight: bold;
 }
@@ -476,8 +472,11 @@ section {
     background-color: #1a1a1a;
 }
 
-.footer-headings {
+.footer-headings, 
+.footer-headings .btn {
     color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
     margin-bottom: 0;
 }
 
@@ -645,22 +644,6 @@ section {
         right: 15px;
     }
 
-    .progress-bars {
-        margin-bottom: calc(30px - 0.5rem);
-    }
-
-    .progress {
-        margin: 0.4375rem 0;
-    }
-
-    .collapse:not(.show) {
-        display: block;
-    }
-
-    .product-details {
-        padding-top: 0;
-    }
-
     .reviews-col-sidebar {
         max-width: 20%;
         flex: 0 0 20%;
@@ -671,11 +654,24 @@ section {
         flex: 0 0 80%;
     }
 
+    .progress-bars {
+        margin-bottom: calc(30px - 0.5rem);
+    }
+
+    .progress {
+        margin: 0.4375rem 0;
+    }
+
+    .product-details {
+        padding-top: 0;
+    }
+
     .info-item-container {
         padding: 1.25rem;
     }
 
     .footer-headings {
+        font-size: 1rem;
         margin-bottom: 0.5rem;
     }
 
