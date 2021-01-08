@@ -2,7 +2,7 @@ from flask_paginate import Pagination
 
 
 def create_user_session(user):
-    """ Adds the user's details to the session cookie """
+    """ Function to add the user's details to the session cookie """
     session_file = {
         "first_name": user["first_name"],
         "last_name": user["last_name"],
@@ -14,15 +14,15 @@ def create_user_session(user):
 
 def paginate_items(items, offset, per_page):
     """
-    Sets the pagination perameters. Code is from https://gist.github.com/
-    mozillazg/69fb40067ae6d80386e10e105e6803c9
+    Function to set the pagination perameters. Code is from https://
+    gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
     """
     return items[offset: offset + per_page]
 
 
 def paginate(items, page, per_page):
     """
-    Paginates the items. Code is from https://gist.github.com/
+    Function to paginate the items. Code is from https://gist.github.com/
     mozillazg/69fb40067ae6d80386e10e105e6803c9
     """
     total = len(items)
@@ -36,9 +36,9 @@ def paginate(items, page, per_page):
 
 def get_price_range(category, value):
     """
-    Generates the price query. Code is from https://docs.mongodb.com/manual/
-    reference/operator/aggregation/gte/ and https://docs.mongodb.com/manual/
-    reference/operator/aggregation/lte/
+    Function to generate the price query. Code is from https://docs.mongodb.com
+    /manual/reference/operator/aggregation/gte/ and https://docs.mongodb.com/
+    manual/reference/operator/aggregation/lte/
     """
     price_file = {'Phones': {
         1: {'$gte': 0, '$lte': 500},
@@ -76,7 +76,11 @@ def get_price_range(category, value):
 
 
 def search(query, category):
-    """ Genrates the get products search query """
+    """
+    Function to genrate the get products search query. In method is from
+    https://docs.mongodb.com/manual/reference/operator/aggregation/in/
+    """
+
     query_file = {}
 
     if query.get('search'):
@@ -92,10 +96,6 @@ def search(query, category):
 
     if query.get('brands'):
         brands = query['brands'].split(",")
-        """
-        Code is from https://docs.mongodb.com/manual/reference/operator/
-        aggregation/in/
-        """
         query_file["brand"] = {"$in": brands}
 
     return query_file
@@ -103,8 +103,8 @@ def search(query, category):
 
 def sort_items(sort=None):
     """
-    Generates the sort query. Code is from https://stackoverflow.com/questions/
-    8109122/how-to-sort-mongodb-with-pymongo
+    Function to generate the sort query. Code is from https://stackoverflow.com
+    questions/8109122/how-to-sort-mongodb-with-pymongo
     """
     sort_file = {
         'featured': [('_id', 1)],
@@ -126,8 +126,8 @@ def sort_items(sort=None):
 
 def product_ratings_query():
     """
-    Generates the get product ratings search query. Code is from https://
-    docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
+    Function to generate the get product ratings search query. Code is from
+    https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
     """
     query = {
         'name': 1,
@@ -148,7 +148,7 @@ def product_ratings_query():
 
 def user_ratings_query():
     """
-    Generates the get user ratings search query. Code is from
+    Function to generate the get user ratings search query. Code is from
     https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/
     """
     query = {
@@ -166,8 +166,8 @@ def user_ratings_query():
 
 def calculate_rating(average, total, new_rating, prev_rating, new_total):
     """
-    Calculates the product's new rating. Round function is from https://
-    www.programiz.com/python-programming/methods/built-in/round
+    Function to calculate the product's new rating. Round method is from
+    https://www.programiz.com/python-programming/methods/built-in/round
     """
     rating = ((average * total) - prev_rating +
               float(new_rating)) / new_total
@@ -176,7 +176,9 @@ def calculate_rating(average, total, new_rating, prev_rating, new_total):
 
 
 def add_ratings(product_ratings, product_count, form):
-    """ Calculates the product's new ratings for when a review is added """
+    """
+    Function to calculate the product's new ratings for when a review is added
+    """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, 0, int(form['overall_rating']), product_count + 1),
@@ -195,7 +197,9 @@ def add_ratings(product_ratings, product_count, form):
 
 
 def edit_ratings(user_ratings, product_ratings, product_count, form):
-    """ Calculates the product's new ratings for when a review is edited """
+    """
+    Function to calculate the product's new ratings for when a review is edited
+    """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, user_ratings['overall_rating'], form['overall_rating'],
@@ -215,7 +219,10 @@ def edit_ratings(user_ratings, product_ratings, product_count, form):
 
 
 def delete_ratings(user_ratings, product_ratings, product_count):
-    """ Calculates the product's new ratings for when a review is deleted """
+    """
+    Function to calculate the product's new ratings for when a review is
+    deleted
+    """
     rating = {
         'overall_rating': calculate_rating(product_ratings['overall_rating'],
         product_count, user_ratings['overall_rating'], 0, product_count - 1),
@@ -234,8 +241,8 @@ def delete_ratings(user_ratings, product_ratings, product_count):
 
 def star_rating(new_rating=None, prev_rating=None):
     """
-    Generates the query to update the product's star ratings. Code is from
-    https://docs.mongodb.com/manual/reference/operator/update/inc/
+    Generates the query to update the product's star ratings. Inc method is
+    from https://docs.mongodb.com/manual/reference/operator/update/inc/
     """
     add_file = {
         1: {"one_star": 1},
