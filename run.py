@@ -10,8 +10,8 @@ from bson.decimal128 import Decimal128
 from werkzeug.security import generate_password_hash, check_password_hash
 from utils import (add_ratings, create_user_session, delete_ratings,
                    edit_ratings, paginate, paginate_items,
-                   product_ratings_query, search, sort_items, star_rating,
-                   user_ratings_query)
+                   product_ratings_query, ratings_percentages, search,
+                   sort_items, star_rating, user_ratings_query)
 
 if os.path.exists("env.py"):
     import env
@@ -214,9 +214,17 @@ def review_details(product_id):
     for review in reviews:
         review['date_added'] = review['date_added'].strftime("%d %B %Y")
 
+    """
+    Calculates the ratings as percentages and returns a dictionary containing
+    the ratings values
+    """
+
+    ratings = ratings_percentages(product, len(reviews))
+
     return render_template("review_details.html",
                            page_title=page_title,
                            product=product,
+                           ratings=ratings,
                            reviews=reviews,
                            current_user=current_user)
 
