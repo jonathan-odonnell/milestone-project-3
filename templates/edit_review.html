@@ -317,7 +317,7 @@
             <!--Update review button end-->
             <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
             <div class="form-group d-none">
-                <input type="hidden" name="next" value="{{request.referrer}}" />
+                <input type="hidden" name="next" value="{{request.args.get('next', '')}}" />
             </div>
             <!--Next hidden field end-->
         </form>
