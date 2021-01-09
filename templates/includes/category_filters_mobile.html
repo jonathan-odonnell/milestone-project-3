@@ -1,6 +1,6 @@
 <!--Brand checkboxes start. CSS classes for checkbox styling is from https://bootswatch.com/lux/-->
 <div class="form-group form-group-filters-top">
-    <h4 class="filter-headings text-capitalize">Brands</h4>
+    <h2 class="heading-4 filter-headings text-capitalize">Brands</h2>
     {% for brand in filters.brands %}
     <div class="custom-control custom-checkbox mb-2">
         {% if selected_brands %}{% if brand in selected_brands %}
@@ -20,7 +20,7 @@
 <!--Brand checkboxes end-->
 <!--Price radio buttons start. CSS classes for radio button styling is from https://bootswatch.com/lux/-->
 <div class="form-group mb-0">
-    <h4 class="filter-headings text-capitalize">Prices</h4>
+    <h2 class="heading-4 filter-headings text-capitalize">Prices</h2>
     {% for prices in filters.prices %}
     <div class="custom-control custom-radio mb-2">
         {% if selected_price %}{% if selected_price | int == loop.index %}

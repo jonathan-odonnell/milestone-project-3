@@ -10,19 +10,19 @@
     line-height: 1;
 }
 
-h1 {
+.heading-1 {
     font-size: 2rem;
 }
 
-h2 {
+.heading-2 {
     font-size: 1.5rem;
 }
 
-h3 {
+.heading-3 {
     font-size: 1.125rem;
 }
 
-h4 {
+.heading-4 {
     font-size: 1rem;
 }
 
@@ -214,6 +214,7 @@ section {
 .card-title {
     letter-spacing: 1px;
     line-height: 1.5;
+    font-size: 1rem;
 }
 
 /* Cards end */
@@ -564,15 +565,15 @@ section {
 
 @media(min-width: 768px) {
 
-    h1 {
+    .heading-1 {
     font-size: 2.5rem;
     }
 
-    h2 {
+    .heading-2 {
         font-size: 1.75rem;
     }
 
-    h3 {
+    .heading-3 {
         font-size: 1.25rem;
     }
 

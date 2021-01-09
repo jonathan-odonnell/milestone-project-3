@@ -25,7 +25,7 @@
             <!--Product image end-->
             <div class="col-12 col-lg-6 pr-lg-5 product-details">
                 <!--Product name heading-->
-                <h3 class="headings">{{product.name}}</h3>
+                <h1 class="heading-3 headings ">{{product.name}}</h1>
                 <!--Product specs table start. Table styling code is from https://getbootstrap.com/docs/4.5/content/tables/-->
                 <table class="table table-borderless mb-0">
                     <tbody>
@@ -86,7 +86,7 @@
             <!--Ratings and reviews heading start-->
             <div class="row no-gutters">
                 <div class="col-12">
-                    <h3 class="headings">Ratings & Reviews</h3>
+                    <h1 class="heading-3 headings">Ratings & Reviews</h1>
                 </div>
             </div>
             <!--Ratings and reviews heading end-->
@@ -249,7 +249,7 @@
                     {% if loop.index < reviews|length %}
                     <div class="card review-card border-0">
                         <div class="card-body p-0">
-                            <h4 class="card-title text-transform-none">
+                            <h2 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
@@ -269,7 +269,7 @@
                                 <!--Edit and delete review buttons end-->
                                 <!--Review title-->
                                 {{review.review_title}}
-                            </h4>
+                            </h2>
                             <!--Overall rating start. Code for the star icons is from https://fontawesome.com/icons/star?style=solid-->
                             <div class="mb-3">
                                 {% if review.overall_rating == 1 %}
@@ -338,7 +338,7 @@
                     {% else %}
                     <div class="card review-card border-0 mb-4">
                         <div class="card-body p-0">
-                            <h4 class="card-title text-transform-none">
+                            <h2 class="card-title text-transform-none">
                                 <!--Edit and delete review buttons start-->
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
@@ -358,7 +358,7 @@
                                 <!--Edit and delete review buttons end-->
                                 <!--Review title-->
                                 {{review.review_title}}
-                            </h4>
+                            </h2>
                             <!--Overall rating start. Code for the star icons is from https://fontawesome.com/icons/star?style=solid-->
                             <div class="mb-3">
                                 {% if review.overall_rating == 1 %}

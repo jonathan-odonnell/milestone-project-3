@@ -7,79 +7,117 @@
     <!--Page title start-->
     <div class="row no-gutters">
         <div class="col">
-            <h1 class="text-center headings-top">{{ page_title }}</h1>
+            <h1 class="text-center heading-1 headings-top">{{ page_title }}</h1>
         </div>
     </div>
     <!--Page title end-->
     <!--Add review form start. CSS Classes for form styling is from https://bootswatch.com/lux/-->
     <div class="row no-gutters">
-        <form action="{{url_for('add_review', product_id=product_id)}}" method="POST" class="col-12 col-md-8 offset-md-2">
+        <form action="{{url_for('add_review', product_id=product_id)}}" method="POST"
+            class="col-12 col-md-8 offset-md-2">
             <!--Overall Ratings start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
             <div class="form-group form-group-ratings">
-                <label for="overallRating">
-                    <h4 class="text-transform-none">Overall Rating</h4>
-                </label>
-                <div id="overallRating" class="rating">
-                    <input id="overallRating5" type="radio" name="overall_rating" value="5" /><label
-                        for="overallRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5 Stars</span></label>
-                    <input id="overallRating4" type="radio" name="overall_rating" value="4" /><label
-                        for="overallRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4 Stars</span></label>
-                    <input id="overallRating3" type="radio" name="overall_rating" value="3" /><label
-                        for="overallRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
-                            Stars</span></label>
-                    <input id="overallRating2" type="radio" name="overall_rating" value="2" /><label
-                        for="overallRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2 Stars</span></label>
-                    <input id="overallRating1" type="radio" name="overall_rating" value="1" /><label
-                        for="overallRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1 Star</span></label>
+                <h2 class="heading-4 text-transform-none">Overall Rating
+                </h2>
+                <div class="rating">
+                    <input id="overallRating5" type="radio" name="overall_rating" value="5" />
+                    <label for="overallRating5">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span class="sr-only">5 Stars</span>
+                    </label>
+                    <input id="overallRating4" type="radio" name="overall_rating" value="4" />
+                    <label for="overallRating4">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span class="sr-only">4
+                            Stars</span>
+                    </label>
+                    <input id="overallRating3" type="radio" name="overall_rating" value="3" />
+                    <label for="overallRating3">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span class="sr-only">3
+                            Stars</span>
+                    </label>
+                    <input id="overallRating2" type="radio" name="overall_rating" value="2" />
+                    <label for="overallRating2">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span class="sr-only">2
+                            Stars</span>
+                    </label>
+                    <input id="overallRating1" type="radio" name="overall_rating" value="1" />
+                    <label for="overallRating1">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span class="sr-only">1
+                            Star</span>
+                    </label>
                 </div>
             </div>
             <!--Overall Ratings end-->
             <!--Section divider-->
             <hr class="my-3">
             <!--Feature ratings heading-->
-            <h4 class="text-transform-none mb-3">Feature Ratings</h4>
+            <h2 class="heading-4 text-transform-none mb-3">Feature Ratings</h2>
             <div class="row no-gutters">
                 <div class="col-6">
                     <!--Performance rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
                     <div class="form-group form-group-ratings">
-                        <label for="performanceRating" class="text-transform-none">Performance</label>
-                        <div id="performanceRating" class="rating">
-                            <input id="performanceRating5" type="radio" name="performance_rating" value="5" /><label
-                                for="performanceRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5
-                                    Stars</span></label>
-                            <input id="performanceRating4" type="radio" name="performance_rating" value="4" /><label
-                                for="performanceRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4
-                                    Stars</span></label>
-                            <input id="performanceRating3" type="radio" name="performance_rating" value="3" /><label
-                                for="performanceRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
-                                    Stars</span></label>
-                            <input id="performanceRating2" type="radio" name="performance_rating" value="2" /><label
-                                for="performanceRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2
-                                    Stars</span></label>
-                            <input id="performanceRating1" type="radio" name="performance_rating" value="1" /><label
-                                for="performanceRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1
-                                    Star</span></label>
+                        <p class="mb-2">Performance</p>
+                        <div class="rating">
+                            <input id="performanceRating5" type="radio" name="performance_rating" value="5" />
+                            <label for="performanceRating5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">5
+                                    Stars</span>
+                            </label>
+                            <input id="performanceRating4" type="radio" name="performance_rating" value="4" />
+                            <label for="performanceRating4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">4
+                                    Stars</span>
+                            </label>
+                            <input id="performanceRating3" type="radio" name="performance_rating" value="3" />
+                            <label for="performanceRating3">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">3
+                                    Stars</span>
+                            </label>
+                            <input id="performanceRating2" type="radio" name="performance_rating" value="2" />
+                            <label for="performanceRating2">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">2
+                                    Stars</span>
+                            </label>
+                            <input id="performanceRating1" type="radio" name="performance_rating" value="1" />
+                            <label for="performanceRating1">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">1
+                                    Star</span>
+                            </label>
                         </div>
                     </div>
                     <!--Performance rating end-->
                     <!--Ease of use rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
                     <div class="form-group form-group-ratings mb-0">
-                        <label for="usabilityRating" class="text-transform-none">Ease of Use</label>
-                        <div id="usabilityRating" class="rating">
+                        <p class="mb-2">Ease of Use</p>
+                        <div class="rating">
                             <input id="usabilityRating5" type="radio" name="usability_rating" value="5" /><label
-                                for="usabilityRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5
+                                for="usabilityRating5"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">5
                                     Stars</span></label>
                             <input id="usabilityRating4" type="radio" name="usability_rating" value="4" /><label
-                                for="usabilityRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4
+                                for="usabilityRating4"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">4
                                     Stars</span></label>
                             <input id="usabilityRating3" type="radio" name="usability_rating" value="3" /><label
-                                for="usabilityRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
+                                for="usabilityRating3"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">3
                                     Stars</span></label>
                             <input id="usabilityRating2" type="radio" name="usability_rating" value="2" /><label
-                                for="usabilityRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2
+                                for="usabilityRating2"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">2
                                     Stars</span></label>
                             <input id="usabilityRating1" type="radio" name="usability_rating" value="1" /><label
-                                for="usabilityRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1
+                                for="usabilityRating1"><i class="fas fa-star" aria-hidden="true"></i><span
+                                    class="sr-only">1
                                     Star</span></label>
                         </div>
                     </div>
@@ -88,45 +126,75 @@
                 <div class="col-6">
                     <!--Quality rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
                     <div class="form-group form-group-ratings">
-                        <label for="qualityRating" class="text-transform-none">Quality</label>
-                        <div id="qualityRating" class="rating">
-                            <input id="qualityRating5" type="radio" name="quality_rating" value="5" /><label
-                                for="qualityRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5
-                                    Stars</span></label>
-                            <input id="qualityRating4" type="radio" name="quality_rating" value="4" /><label
-                                for="qualityRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4
-                                    Stars</span></label>
-                            <input id="qualityRating3" type="radio" name="quality_rating" value="3" /><label
-                                for="qualityRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
-                                    Stars</span></label>
-                            <input id="qualityRating2" type="radio" name="quality_rating" value="2" /><label
-                                for="qualityRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2
-                                    Stars</span></label>
-                            <input id="qualityRating1" type="radio" name="quality_rating" value="1" /><label
-                                for="qualityRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1
-                                    Star</span></label>
+                        <p class="mb-2">Quality</p>
+                        <div class="rating">
+                            <input id="qualityRating5" type="radio" name="quality_rating" value="5" />
+                            <label for="qualityRating5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">5
+                                    Stars</span>
+                            </label>
+                            <input id="qualityRating4" type="radio" name="quality_rating" value="4" />
+                            <label for="qualityRating4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">4
+                                    Stars</span>
+                            </label>
+                            <input id="qualityRating3" type="radio" name="quality_rating" value="3" />
+                            <label for="qualityRating3">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">3
+                                    Stars</span>
+                            </label>
+                            <input id="qualityRating2" type="radio" name="quality_rating" value="2" />
+                            <label for="qualityRating2">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">2
+                                    Stars</span>
+                            </label>
+                            <input id="qualityRating1" type="radio" name="quality_rating" value="1" />
+                            <label for="qualityRating1">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">1
+                                    Star</span>
+                            </label>
                         </div>
                     </div>
                     <!--Quality rating end-->
                     <!--Value for Money rating start. Code for stars is from https://fontawesome.com/icons/star?style=solid-->
                     <div class="form-group form-group-ratings mb-0">
-                        <label for="priceRating" class="text-transform-none">Value for Money</label>
+                        <p class="mb-2">Value for Money</p>
                         <div id="priceRating" class="rating">
-                            <input id="priceRating5" type="radio" name="price_rating" value="5" /><label
-                                for="priceRating5"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">5
-                                    Stars</span></label>
-                            <input id="priceRating4" type="radio" name="price_rating" value="4" /><label
-                                for="priceRating4"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">4
-                                    Stars</span></label>
-                            <input id="priceRating3" type="radio" name="price_rating" value="3" /><label
-                                for="priceRating3"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">3
-                                    Stars</span></label>
-                            <input id="priceRating2" type="radio" name="price_rating" value="2" /><label
-                                for="priceRating2"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">2
-                                    Stars</span></label>
-                            <input id="priceRating1" type="radio" name="price_rating" value="1" /><label
-                                for="priceRating1"><i class="fas fa-star" aria-hidden="true"></i><span class="sr-only">1
-                                    Star</span></label>
+                            <input id="priceRating5" type="radio" name="price_rating" value="5" />
+                            <label for="priceRating5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">5
+                                    Stars</span>
+                            </label>
+                            <input id="priceRating4" type="radio" name="price_rating" value="4" />
+                            <label for="priceRating4">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">4
+                                    Stars</span>
+                            </label>
+                            <input id="priceRating3" type="radio" name="price_rating" value="3" />
+                            <label for="priceRating3">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">3
+                                    Stars</span>
+                            </label>
+                            <input id="priceRating2" type="radio" name="price_rating" value="2" />
+                            <label for="priceRating2">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">2
+                                    Stars</span>
+                            </label>
+                            <input id="priceRating1" type="radio" name="price_rating" value="1" />
+                            <label for="priceRating1">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <span class="sr-only">1
+                                    Star</span>
+                            </label>
                         </div>
                     </div>
                     <!--Value for money rating start-->
@@ -136,16 +204,14 @@
             <hr class="my-3">
             <!--Review title start-->
             <div class="form-group">
-                <label for="reviewTitle">
-                    <h4 class="text-transform-none">Review Title</h4>
+                <label for="reviewTitle" class="heading-4 text-transform-none">Review Title
                 </label>
                 <input type="text" class="form-control" id="reviewTitle" name="review_title" required />
             </div>
             <!--Review title end-->
             <!--Review detail start-->
             <div class="form-group">
-                <label for="review">
-                    <h4 class="text-transform-none">Your Review</h4>
+                <label for="review" class="heading-4 text-transform-none">Your Review
                 </label>
                 <textarea class="form-control" id="review" name="review" rows="5" required></textarea>
             </div>
