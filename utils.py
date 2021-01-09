@@ -304,3 +304,20 @@ def star_rating(new_rating=None, prev_rating=None):
 
     else:
         return {"$inc": delete_file[prev_rating]}
+
+
+def ratings_percentages(product, length):
+    ratings_file = {
+        "overall_rating": product['overall_rating'] * 20,
+        "performance_rating": product['performance_rating'] * 20,
+        "usability_rating": product['usability_rating'] * 20,
+        "price_rating": product['price_rating'] * 20,
+        "quality_rating": product['quality_rating'] * 20,
+        "five_stars": product['five_stars'] / length * 100,
+        "four_stars": product['four_stars'] / length * 100,
+        "three_stars": product['three_stars'] / length * 100,
+        "two_stars": product['two_stars'] / length * 100,
+        "one_star": product['one_star'] / length * 100
+    }
+
+    return ratings_file
