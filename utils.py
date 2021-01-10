@@ -164,7 +164,7 @@ def user_ratings_query():
     return query
 
 
-def calculate_rating(average, total, new_rating, prev_rating, new_total):
+def calculate_rating(average, total, prev_rating, new_rating, new_total):
     """
     Function to calculate the product's new rating. Round method is from
     https://www.programiz.com/python-programming/methods/built-in/round
