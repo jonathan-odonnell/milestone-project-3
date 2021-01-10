@@ -1,5 +1,7 @@
 # Tech Reviews Website
 
+![Image of the website on different sized devices](static/images/site/responsive.png)
+
 [View the live website here](http://tech-reviews.herokuapp.com/)
 
 Tech Reviews is a fictitious consumer electronics reviews and consumer advice company based in Manchester, United Kingdom. This is the organisation's main marketing website which aims to inform customers about the different consumer electronics products currently available in the marketplace and persuade them to make a purchase. It provides customers with information and reviews for a variety of products including phones, tablets, laptops, speakers and smart watches. The website is designed to be responsive and easy to navigate on a range of devices.
@@ -258,6 +260,8 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
 
 ### Testing User Stories from User Experience (UX) Section
 
+![Image of the navbar](static/images/site/navbar.png)
+
 1. As a user or a site owner, I want to be able to navigate the website easily to find the content I am looking for.
 
     - The navigation bar can be easily accessed in the header of each page. 
@@ -267,17 +271,23 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
     - The footer also contains key links which take the user to the category reviews pages, contact page and either the account page (standard users) or product management page (admin users) if the user is signed in.
     - The website is structured in a logical way with the hero image, featured products carousel and newsletter sign up on the home page, and each other item of content on its own page.
 
+![Image of the featured products carousel](static/images/site/featured_products_carousel.png)
+
 2. As a user, I want to be able to find out about the latest consumer electronics products.
 
     - The featured products carousel is clearly highlighted on the home page.
     - This contains information about the latest products including its name and an image of each product. 
     - If the user clicks on the product image, they are taken to the product's review page where can find out more about the product, view its ratings and read user reviews on the product's page.
 
+![Image of the newsletter sign up form](static/images/site/newsletter.png)
+
 3. As a user, I want to be able to sign up for email updates about the latest consumer electronics products.
 
     - The newsletter sign up section is clearly highlighted on the home page.
     - This contains a form where users can enter their email address to sign up to receive email updates about the latest products.
     - When registering for an account, users can also sign up for the newsletter by setting the newsletter sign up switch to the on position.
+
+![Image of the reviews and category reviews page](static/images/site/reviews_and_category_reviews.png)
 
 4. As a user, I want to be able to search for products that meet my needs.
 
@@ -287,6 +297,8 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
     - If the user would like to sort the products, they can select an option from the sort by dropdown.
     - If the user would like to filter the products, they can select checkboxes or radio buttons in the filters form.
 
+![Image of the review details page](static/images/site/review_details.png)
+
 5. As a user, I want to be able to view product information and read reviews for each product.
 
     - Users can access a product's review details page by clicking on a product image on the reviews search results or category reviews pages.
@@ -294,16 +306,23 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
     - Users can also view the product's average ratings for performace, usability, price and quality, and the percentage of users who rated the product each star rating overall.
     - Additionally, users can read reviews written by other users and rate how useful they are using the thumbs up and thumbs down icons.
 
+
+![Image of the register page](static/images/site/register.png)
+
 6. As a user, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
 
     - Users can access the sign in / register links by clicking on the user dropdown (large screens and above) or by clicking on the relevant links in the navigation bar (small and medium screens). There are also links to the sign in / register pages in the footer.
     - On the sign in page, users can sign in to their account by entering their email address and password into the sign in form.
     - On the register page, users can sign up for an account by entering their details into the sign up form.
 
+![Image of the add review form](static/images/site/add_review.png)
+
 7. As a user, I want to be able to write reviews of products.
 
     - The add review link is clearly highlighted on the product pages when the user is signed in.
     - If the user clicks on this link, they are taken to the add review form which they can complete to add a review for the product.
+
+![Image of the edit review form](static/images/site/edit_review.png)
 
 8. As a user, I want to be able to easily access my reviews to edit and delete them.
 
@@ -313,6 +332,8 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
     - If a user clicks on the edit link, they are taken to the edit review form where they can amend the details of their review.
     - If a user clicks on the edit link, their review is deleted.
 
+![Image of the product management page](static/images/site/product_management.png)
+
 9. As a site owner, I want to be able to add, edit and delete products.
 
     - Site owners can access the product management page by clicking on the user dropdown and selecting the product management (large screens and above) or by clicking on the product management link in the navigation bar (small and medium screens). There is also a link to the product management page in the footer.
@@ -321,10 +342,14 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
     - If the site owner clicks on the delete link, the product is deleted.
     - If the site owner clicks on the add product link, the add product form is displayed which they can complete to add a new product.
 
+![Image of the contact page](static/images/site/contact.png)
+
 10. As a user, I want to be able to contact the organisation to get answers to any questions I may have.
 
     - A link to the contact us page is clearly highlighted in the navigation bar and in the footer.
     - Here there is a form which the user can complete to get in touch with the organisation.
+
+![Image of the page footer](static/images/site/footer.png)
 
 11. As a user, I want to be able to find the organisation's social media links.
 
