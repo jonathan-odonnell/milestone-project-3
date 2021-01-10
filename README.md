@@ -217,8 +217,8 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 The W3C Markup Validator and W3C CSS Validator Services were used to validate the code in all HTML and CSS files used in website to ensure that it was in compliance with the HTML5 and CSS3 standards and that there were no syntax errors. There were no errors except for the syntax for the Jinja templating and multiple IDs with the same name which are contained within an if statment.
 
 - [Base](static/validation/base.pdf)
-- [Home](static/validation/index.pdf)
-- [Register](static/validation/register.pdf)
+- [Home](static/validation/home.pdf)
+- [Sign Up](static/validation/sign_up.pdf)
 - [Sign In](static/validation/sign_in.pdf)
 - [Account](static/validation/account.pdf)
 - [Reviews / Category Reviews](static/validation/reviews.pdf)
@@ -242,7 +242,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
 
 - The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards.
 
-- [Home](static/images/lighthouse/index.png)
+- [Home](static/images/lighthouse/home.png)
 - [Register](static/images/lighthouse/register.png)
 - [Sign In](static/images/lighthouse/sign_in.png)
 - [Account](static/images/lighthouse/account.png)
