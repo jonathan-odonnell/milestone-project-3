@@ -79,6 +79,10 @@ a, a:hover {
     min-width: 165px;
 }
 
+.btn-search i{
+    color: #64a19d;
+}
+
 /* Buttons end */
 
 /* Section styling start. Code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
