@@ -53,23 +53,23 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 1. Brand Logo
 
-   - This familiarises users with the organisation's logo and is also a link which the user can access from any page to take them back to the home page.
+    - This familiarises users with the organisation's logo and is also a link which the user can access from any page to take them back to the home page.
 
 2. Navigation links
 
-   - These enable users to access the different pages of the website so they can easily find the content they are looking for.
+    - These enable users to access the different pages of the website so they can easily find the content they are looking for.
 
 3. Search Bar
 
-    - This enables users to search for products by name or brand.
+    - This allows users to search for products by name or brand by entering a search term.
 
 4. Home Page Hero Image
 
-   - This provides users with an image which gives them an idea of the kind of products they can find out about on the site and a link to the sign up page.
+   - This provides users with an image which gives them an idea of the kind of products they can find out about on the site and a link to the register page.
 
 5. Featured Products Carousel
 
-   - This provides users with the product's name, an image and a link to the procuct's page for six of the latest products.
+   - This provides users with cards for six of the latest products. Each card contains the product's name and an image of the product which is also a link to the product's page. 
 
 6. Newsletter Sign Up
 
@@ -77,8 +77,8 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 7. Reviews Search Results / Product Category Reviews
 
-    - This displays all the products that match the search criteria. For each product, it's name, image, overall rating and price is diaplayed. Each product image is a link to the product's page. 
-    - Users can sort the products returned by the search by using the sort by dropdown or filter the products by using the filters in the sidebar (the filters form can be accessed by clicking on the filters button on mobile devices).
+    - For each product in the category or that satisfied the search term entered in the search bar, this displays the product's name, image, overall rating and price. The product image is a link to the product's page.
+    - This allows users to sort the products selecting an option from the dropdown or filter them by selecting checkboxes or radio buttons in the filters form.
 
 8. Product Details
 
@@ -86,8 +86,7 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 9. Product Ratings
 
-    - This displays progress bars displaying the average ratings from the reviews for overall rating, performace, usability, price, quality. 
-    - Progress bars are also displayed for the percentage of users who rated the product each star rating overall.
+    - This allows users to view progress bars which show the average ratings from the reviews for overall rating, performace, usability, price, quality and the percentage of users who rated the product each star rating overall.
 
 10. Product Reviews
 
@@ -100,7 +99,7 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 12. Sign Up Form
 
-    This enables users to sign up for an account by entering their first name, last name, email address and password into the form. It also provides them with an opportunity to sign up to the newsletter.
+    This allows users to sign up for an account by entering their first name, last name, email address and password into the form. It also provides them with an opportunity to sign up to the newsletter.
 
 13. Sign In Form
 
@@ -108,12 +107,12 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 14. Account
 
-    - When a user is signed in, this display's all the reviews the user has written and provides them with links to edit and delete each review.
+    - When a standard user is signed in, this display's cards for each of their reviews containing the review's title and links to edit and delete each review.
 
-15. Product Management
+15. Product Management Table
 
-    - When an admin user is signed in, this display's all the products currently listed on the site, each product's category and links to edit and delete each product. 
-    - Admin users can also add a new product by clicking on the add product link or sort the products by selecting an option from the sort by dropdown.
+    - When an admin user is signed in, this display's all the products currently listed on the site, the product's category and links to edit and delete each product. 
+    - Admin users can add a new product by clicking on the add product link or sort the products by selecting an option from the sort by dropdown.
 
 16. Add/Edit Product Forms
 
