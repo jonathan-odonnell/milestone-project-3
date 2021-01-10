@@ -110,6 +110,7 @@ section {
 
 .navbar-dark .navbar-toggler {
     border: none;
+    outline: none;
 }
 
 .navbar-dark .navbar-nav .nav-link {

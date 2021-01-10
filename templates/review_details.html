@@ -217,7 +217,7 @@
             <div class="row no-gutters">
                 <div class="col-12 add-review">
                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                    <a class="btn btn-sm btn-green"
+                    <a class="btn btn-sm btn-green no-box-shadow"
                         href="{{url_for('add_review', product_id=product._id, next=request.url)}}">
                         Add Review
                     </a>
@@ -240,14 +240,14 @@
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
                                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                                    <a class="btn py-0 pl-3 pr-2"
+                                    <a class="btn no-box-shadow py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for edit icon is from https://fontawesome.com/icons/edit?style=solid-->
                                         <i class="far fa-edit" aria-hidden="true"></i>
                                         <span class="sr-only">Edit</span>
                                     </a>
                                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                                    <a class="btn py-0 px-2"
+                                    <a class="btn no-box-shadow py-0 px-2"
                                         href="{{url_for('delete_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for trash icon is from https://fontawesome.com/icons/trash?style=solid-->
                                         <i class="fas fa-trash" aria-hidden="true"></i>
@@ -301,7 +301,7 @@
                             <div id="{{review._id}}" class="row no-gutters">
                                 <div class="col-6 text-center mb-0">
                                     <small>
-                                        <button class="btn btn-sm upvote py-0">
+                                        <button class="btn btn-sm upvote no-box-shadow py-0">
                                             <!--Thumbs up icon is from https://fontawesome.com/icons/thumbs-up?style=regular. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                             <i class="far fa-thumbs-up fa-lg" aria-hidden="true"></i>
                                             <span class="sr-only">Up Vote</span>
@@ -315,7 +315,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <small>
-                                        <button class="btn btn-sm downvote py-0">
+                                        <button class="btn btn-sm downvote no-box-shadow py-0">
                                             <!--Thumbs up icon is from https://fontawesome.com/icons/thumbs-down?style=regular. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                             <i class="far fa-thumbs-down fa-lg" aria-hidden="true"></i>
                                             <span class="sr-only">Down Vote</span>
@@ -343,14 +343,14 @@
                                 {% if current_user|lower == review.reviewed_by|lower %}
                                 <div class="float-right">
                                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                                    <a class="btn py-0 pl-3 pr-2"
+                                    <a class="btn no-box-shadow py-0 pl-3 pr-2"
                                         href="{{url_for('edit_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for edit icon is from https://fontawesome.com/icons/edit?style=solid-->
                                         <i class="far fa-edit" aria-hidden="true"></i>
                                         <span class="sr-only">Edit</span>
                                     </a>
                                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                                    <a class="btn py-0 px-2"
+                                    <a class="btn no-box-shadow py-0 px-2"
                                         href="{{url_for('delete_review', review_id=review._id, next=request.url)}}">
                                         <!--Code for trash icon is from https://fontawesome.com/icons/trash?style=solid-->
                                         <i class="fas fa-trash" aria-hidden="true"></i>
@@ -399,7 +399,7 @@
                             <div id="{{review._id}}" class="row no-gutters">
                                 <div class="col-6 text-center mb-0">
                                     <small>
-                                        <button class="btn btn-sm upvote py-0">
+                                        <button class="btn btn-sm no-box-shadow upvote py-0">
                                             <!--Thumbs up icon is from https://fontawesome.com/icons/thumbs-up?style=regular. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                             <i class="far fa-thumbs-up fa-lg" aria-hidden="true"></i>
                                             <span class="sr-only">Up Vote</span>
@@ -413,7 +413,7 @@
                                 </div>
                                 <div class="col-6 text-center">
                                     <small>
-                                        <button class="btn btn-sm downvote py-0">
+                                        <button class="btn btn-sm no-box-shadow downvote py-0">
                                             <!--Thumbs up icon is from https://fontawesome.com/icons/thumbs-down?style=regular. CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                                             <i class="far fa-thumbs-down fa-lg" aria-hidden="true"></i>
                                             <span class="sr-only">Down Vote</span>
