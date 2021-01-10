@@ -6,7 +6,7 @@
 }
 
 .headings {
-    margin-bottom: 30px;
+    margin: 30px;
     line-height: 1;
 }
 
@@ -466,11 +466,11 @@ section {
 }
 
 .products-table th {
-    min-width: 150px;
+    min-width: 120px;
 }
 
 .products-table a {
-    width: 48%;
+    width: 47%;
 }
 
 /* Product management end */
@@ -562,6 +562,12 @@ section {
 
 /* Media queries start */
 
+@media(min-width: 360px) {
+    .products-table th {
+        min-width: 150px;
+    }
+}
+
 @media(min-width: 576px) {
     .slick-slide {
         height: 16.5rem;
@@ -615,6 +621,10 @@ section {
 
     .reviews-headings {
       min-height: 1.5rem;
+    }
+
+    .products-table a {
+        width: 48%;
     }
 }
 
