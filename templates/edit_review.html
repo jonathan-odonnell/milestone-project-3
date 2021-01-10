@@ -249,7 +249,7 @@
                             <label for="priceRating5">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <span class="sr-only">5 Stars</span>
-                            
+
                             </label>
                             {% if review.price_rating == 4 %}
                             <input id="priceRating4" type="radio" name="price_rating" value="4" checked />
@@ -259,7 +259,7 @@
                             <label for="priceRating4">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <span class="sr-only">4 Stars</span>
-                                </label>
+                            </label>
                             {% if review.price_rating == 3 %}
                             <input id="priceRating3" type="radio" name="price_rating" value="3" checked />
                             {% else %}
@@ -268,7 +268,7 @@
                             <label for="priceRating3">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <span class="sr-only">3 Stars</span>
-                                </label>
+                            </label>
                             {% if review.price_rating == 2 %}
                             <input id="priceRating2" type="radio" name="rating" value="2" checked />
                             {% else %}
@@ -277,7 +277,7 @@
                             <label for="priceRating2">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <span class="sr-only">2 Stars</span>
-                                </label>
+                            </label>
                             {% if review.price_rating == 1 %}
                             <input id="priceRating1" type="radio" name="price_rating" value="1" checked />
                             {% else %}
@@ -299,14 +299,14 @@
                 <label for="reviewTitle" class="heading-4 form-subheadings">Review Title
                 </label>
                 <input type="text" class="form-control" id="reviewTitle" name="review_title"
-                    value="{{review.review_title}}" required />
+                    placeholder="Enter review title" value="{{review.review_title}}" required />
             </div>
             <!--Review title end-->
             <!--Review detail start-->
             <div class="form-group">
-                <label for="review" class="heading-4 form-subheadings">Your Review
+                <label for="review" class="heading-4 form-subheadings"> Review
                 </label>
-                <textarea class="form-control" id="review" name="review" rows="5"
+                <textarea class="form-control" id="review" name="review" rows="5" placeholder="Enter review"
                     required>{{- review.review -}}</textarea>
             </div>
             <!--Review detail end-->
