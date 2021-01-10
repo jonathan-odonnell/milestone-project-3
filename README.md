@@ -8,17 +8,17 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 ### User Stories
 
-1. As a customer or a site owner, I want to be able to navigate the website easily to find the content I am looking for.
-2. As a customer, I want to be able to find out about the latest consumer electronics products.
-3. As a customer, I want to be able to sign up for email updates about the latest consumer electronics products.
-4. As a customer, I want to be able to search for products that meet my needs.
-5. As a customer, I want to be able to view product information and read reviews for each product.
-6. As a customer, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
-7. As a customer, I want to be able to write reviews of products.
-8. As a customer, I want to be able to edit and delete my reviews.
+1. As a user or a site owner, I want to be able to navigate the website easily to find the content I am looking for.
+2. As a user, I want to be able to find out about the latest consumer electronics products.
+3. As a user, I want to be able to sign up for email updates about the latest consumer electronics products.
+4. As a user, I want to be able to search for products that meet my needs.
+5. As a user, I want to be able to view product information and read reviews for each product.
+6. As a user, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
+7. As a user, I want to be able to write reviews of products.
+8. As a user, I want to be able to edit and delete my reviews.
 9. As a site owner, I want to be able to add, edit and delete products.
-10. As a customer, I want to be able to contact the organisation to get answers to any questions I may have.
-11. As a customer, I want to be able to find the organisation's social media links.
+10. As a user, I want to be able to contact the organisation to get answers to any questions I may have.
+11. As a user, I want to be able to find the organisation's social media links.
 
 ### Design
 
