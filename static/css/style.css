@@ -89,7 +89,7 @@ a, a:hover {
 
 section {
     min-height: calc(100vh - 164px);
-    padding-top: 80px;
+    margin-top: 80px;
 }
 
 /* Section styling end */
@@ -275,10 +275,10 @@ section {
 
 /* Rating stars radio buttons end */
 
-/* Home page start. Image is from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ */
+/* Home page start. Image is from https://www.pexels.com/photo/people-sitting-on-grass-beside-green-tent-3776861/ and code for calculation is from https://developer.mozilla.org/en-US/docs/Web/CSS/calc() */
 
 .hero-image {
-    height: 90vh;
+    height: calc(100vh - 80px);
     display: flex;
     align-items: center;
     justify-content: center;
