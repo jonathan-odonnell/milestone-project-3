@@ -213,23 +213,49 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 ### WC3 Validation
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the website to ensure that the code used was in compliance with the HTML5 and CSS3 standards and that there were no syntax errors.
+The W3C Markup Validator and W3C CSS Validator Services were used to validate the code in all HTML and CSS files used in website to ensure that it was in compliance with the HTML5 and CSS3 standards and that there were no syntax errors. There were no errors except for the syntax for the Jinja templating and multiple IDs with the same name which are contained within an if statment.
 
-- [Home]()
-- [Reviews / Category Reviews]()
-- [Product Details]()
-- [Add Review]()
-- [Edit Review]()
-- [Register]()
-- [Sign In]()
-- [Sign Out]()
-- [Account]()
-- [Product Management]()
-- [Add Product]()
-- [Edit Product]()
-- [403]()
-- [404]()
-- [CSS]()
+- [Base](static/validation/base.pdf)
+- [Home](static/validation/index.pdf)
+- [Register](static/validation/register.pdf)
+- [Sign In](static/validation/sign_in.pdf)
+- [Account](static/validation/account.pdf)
+- [Reviews / Category Reviews](static/validation/reviews.pdf)
+- [Search Filters](static/validation/search_filters.pdf)
+- [Search Filters (Mobile)](static/validation/search_filters_mobile.pdf)
+- [Category Filters](static/validation/category_filters.pdf)
+- [Category Filters (Mobile)](static/validation/category_filters_mobile.pdf)
+- [Review Details](static/validation/review_details.pdf)
+- [Add Review](static/validation/add_review.pdf)
+- [Edit Review](static/validation/edit_review.pdf)
+- [Product Management](static/validation/product_management.pdf)
+- [Add Product](static/validation/add_product.pdf)
+- [Edit Product](static/validation/edit_product.pdf)
+- [Contact Us](static/validation/contact.pdf)
+- [400](static/validation/400.pdf)
+- [403](static/validation/403.pdf)
+- [404](static/validation/404.pdf)
+- [CSS](static/validation/css.pdf)
+
+# Lighthouse Accessibility Testing
+
+- The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards.
+
+- [Home](static/images/lighthouse/index.png)
+- [Register](static/images/lighthouse/register.png)
+- [Sign In](static/images/lighthouse/sign_in.png)
+- [Account](static/images/lighthouse/account.png)
+- [Reviews / Category Reviews](static/images/lighthouse/reviews.png)
+- [Review Details](static/images/lighthouse/review_details.png)
+- [Add Review](static/images/lighthouse/add_review.png)
+- [Edit Review](static/images/lighthouse/edit_review.png)
+- [Product Management](static/images/lighthouse/product_management.png)
+- [Add Product](static/images/lighthouse/add_product.png)
+- [Edit Product](static/images/lighthouse/edit_product.png)
+- [Contact Us](static/images/lighthouse/contact.png)
+- [400](static/images/lighthouse/400.png)
+- [403](static/images/lighthouse/403.png)
+- [404](static/images/lighthouse/404.png)
 
 ### Testing User Stories from User Experience (UX) Section
 
