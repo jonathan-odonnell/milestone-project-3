@@ -1,13 +1,7 @@
 /* Text styling start */
 
-.headings-top {
-    margin: 80px 0 30px;
-    line-height: 1;
-}
-
 .headings {
-    margin: 30px;
-    line-height: 1;
+    margin-bottom: 30px;
 }
 
 .heading-1 {
@@ -91,15 +85,12 @@ a, a:hover {
 
 section {
     min-height: calc(100vh - 164px);
+    padding-top: 80px;
 }
 
 /* Section styling end */
 
 /* Content containers and wrappers start */
-
-.content-container-top {
-    padding: 80px 30px 0;
-}
 
 .content-container {
     padding: 30px;
@@ -290,8 +281,6 @@ section {
     background-image: url("../images/hero.jpg");
     background-size: cover;
     background-position: 50% 40%;
-    margin-bottom: 0;
-    margin-top: 80px;
 }
 
 .overlay {
