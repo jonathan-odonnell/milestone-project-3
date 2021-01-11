@@ -1,7 +1,7 @@
 import os
 import datetime
 from functools import wraps
-from flask import (Flask, flash, jsonify, render_template,
+from flask import (Flask, flash, get_flashed_messages, jsonify, render_template,
                    redirect, request, session, url_for, abort)
 from flask_pymongo import PyMongo
 from flask_paginate import get_page_args
@@ -30,16 +30,21 @@ mongo = PyMongo(app)
 def login_required(f):
     """
     A wrapper to prevent users who are not signed in from accessing the page
-    and redirects to the sign in page. Code is from https://
-    flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/, https://
-    blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/ and
+    and redirects to the sign in page or home page if the user has just signed
+    out. Code is from https://flask.palletsprojects.com/en/1.1.x/patterns/
+    viewdecorators/, https://blog.tecladocode.com/
+    handling-the-next-url-when-logging-in-with-flask/ and
     https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user' not in session:
-            flash("Please sign in to view this page", "error")
-            return redirect(url_for('sign_in', next=request.url))
+            if len(get_flashed_messages()) == 0:
+                flash("Please sign in to view this page", "error")
+                return redirect(url_for('sign_in', next=request.url))
+            else:
+                flash("Sign Out Successful", "success")
+                return redirect(url_for('index'))
         return f(*args, **kwargs)
     return decorated_function
 
