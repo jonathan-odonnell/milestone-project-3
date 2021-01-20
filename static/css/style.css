@@ -358,6 +358,11 @@ section {
     box-shadow: none;
 }
 
+.pagination .active .page-link {
+    background-color: #64a19d;
+    border-color: #64a19d;
+}
+
 /* Reviews end */
 
 /* Review details start */
