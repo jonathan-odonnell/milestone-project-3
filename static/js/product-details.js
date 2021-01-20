@@ -20,7 +20,7 @@ $('.upvote').on('click', function () {
     })
 });
 
-// When the downvote button is clicked, posts the review id to the /downvote url, changes the downvote icon to the solid one, disables the upvote button and updates the vote count on the relevant review to the new value when a success status and the new vote count has been returned. Code is from https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post, https://stackoverflow.com/questions/23597913/disable-button-after-click-in-jquery, and https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery. Icon CSS classes are from https://fontawesome.com/icons/thumbs-down?style=regular and https://fontawesome.com/icons/thumbs-down?style=solid
+// When the downvote button is clicked, posts the review id to the /downvote url, changes the downvote icon to the solid one, disables the upvote button and updates the vote count on the relevant review to the new value when a success status and the new vote count has been returned. Code is from https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post, https://api.jquery.com/jquery.post/, https://stackoverflow.com/questions/23597913/disable-button-after-click-in-jquery and https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery. Icon CSS classes are from https://fontawesome.com/icons/thumbs-down?style=regular and https://fontawesome.com/icons/thumbs-down?style=solid
 
 $('.downvote').on('click', function () {
     let review_id = $(this).closest('.row').attr('id')

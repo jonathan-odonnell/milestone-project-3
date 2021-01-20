@@ -1,9 +1,4 @@
-/* Sets the sort by dropdown button HTML as the value of the sort search
-parameters if the value is not null. Current URL code is from https://
-developer.mozilla.org/en-US/docs/Web/API/Window/location and https://
-developer.mozilla.org/en-US/docs/Web/API/URL, and search parameters code
-is from https://developer.mozilla.org/en-US/docs/Web/API/URL/
-searchParams */
+/* Sets the sort by dropdown button HTML as the value of the sort search parameters if the value is not null. Current URL code is from https://developer.mozilla.org/en-US/docs/Web/API/Window/location and https://developer.mozilla.org/en-US/docs/Web/API/URL, and search parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams */
 
 $(document).ready(function () {
     let currentUrl = new URL(window.location);
