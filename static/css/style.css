@@ -147,10 +147,6 @@ section {
 .navbar .dropdown-item, .navbar-dark .navbar-nav .nav-link.show {
     color: #64a19d;
 }
- 
-.navbar .dropdown-item.active {
-    color: #fff;
-}
 
 .navbar .dropdown-item:hover {
     color: #fff;
@@ -359,11 +355,6 @@ section {
 
 .page-item a:focus {
     box-shadow: none;
-}
-
-.page-item.active .page-link {
-    background-color: #64a19d;
-    border-color: #64a19d;
 }
 
 /* Reviews end */
@@ -639,11 +630,6 @@ section {
         font-size: .765625rem;
         text-transform: none;
         color: #1a1a1a;
-    }
-
-    .navbar .dropdown-item.active {
-        color: #1a1a1a;
-        background-color: #fff;
     }
 
     .navbar .dropdown-item:hover {

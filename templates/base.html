@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="Description" content="Enter your description here" />
     <!--Import Bootswatch Lux theme stylesheet. Code is from https://www.bootstrapcdn.com/bootswatch/-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css"
+        integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
     <!--Import hover.css stylesheet. Code is from https://cdnjs.com/libraries/hover.css/2.1.0-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.0/css/hover-min.css"
         integrity="sha512-glciccPoOqr5mfDGmlJ3bpbvomZmFK+5dRARpt62nZnlKwaYZSfFpFIgUoD8ujqBw4TmPa/F3TX28OctJzoLfg=="
@@ -40,8 +41,8 @@
                     src="{{ url_for('static', filename='images/logo.png') }}" alt="Tech Reviews logo"></a>
             <!--Brand Logo end-->
             <!--Mobile collapsable search button start-->
-            <a class="btn btn-search p-2 d-lg-none" data-toggle="collapse" href="#search" role="button" aria-expanded="false"
-                aria-controls="search">
+            <a class="btn btn-search p-2 d-lg-none" data-toggle="collapse" href="#search" role="button"
+                aria-expanded="false" aria-controls="search">
                 <!--Search icon code is from https://fontawesome.com/icons/search?style=solid and CSS class for icon size is from https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons-->
                 <i class="fas fa-search fa-lg" aria-hidden="true"></i><span class="sr-only">Search</span>
             </a>
@@ -67,76 +68,52 @@
                 <!--Search form (medium sized screens and above) end-->
                 <!--Navigation links start-->
                 <ul class="navbar-nav ml-auto">
-                    {% if page_title == "Home" %}
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">Home
+                            {% if page_title == "Home" %}
                             <span class="sr-only">(current)</span>
+                            {% endif %}
                         </a>
                     </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    {% endif %}
                     {% if session.user %}
                     {% if session.user.user_type == "admin" %}
-                    {% if page_title == "Product Management" %}
-                    <li class="nav-item active d-lg-none">
-                        <a class="nav-link" href="{{ url_for('product_management') }}">Product Management
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    {% else %}
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('product_management') }}">Product Management
+                            {% if page_title == "Product Management" %}
                             <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% else %}
-                    {% if page_title == "Account" %}
-                    <li class="nav-item active d-lg-none">
-                        <a class="nav-link" href="{{ url_for('account') }}">Account
-                            <span class="sr-only">(current)</span>
+                            {% endif %}
                         </a>
                     </li>
                     {% else %}
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('account') }}">Account
+                            {% if page_title == "Account" %}
                             <span class="sr-only">(current)</span>
+                            {% endif %}
                         </a>
                     </li>
-                    {% endif %}
                     {% endif %}
                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('sign_out', next=request.url) }}">Sign Out</a>
                     </li>
                     {% else %}
-                    {% if page_title == "Sign Up" %}
                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                    <li class="nav-item active d-lg-none">
+                    <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('sign_up', next=request.url) }}">Register
+                            {% if page_title == "Sign Up" %}
                             <span class="sr-only">(current)</span>
+                            {% endif %}
                         </a>
                     </li>
-                    {% else %}
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_up', next=request.url) }}">Register</a>
-                    </li>
-                    {% endif %}
-                    {% if page_title == "Sign In" %}
                     <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
-                    <li class="nav-item active d-lg-none">
+                    <li class="nav-item d-lg-none">
                         <a class="nav-link" href="{{ url_for('sign_in', next=request.url) }}">Sign In
+                            {% if page_title == "Sign In" %}
                             <span class="sr-only">(current)</span>
+                            {% endif %}
                         </a>
                     </li>
-                    {% else %}
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link" href="{{ url_for('sign_in', next=request.url) }}">Sign In</a>
-                    </li>
-                    {% endif %}
                     {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -144,47 +121,35 @@
                             Reviews
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            {% if page_title == "Phones" %}
-                            <a class="dropdown-item active"
-                                href="{{ url_for('reviews', category='Phones') }}">Phones<span
-                                    class="sr-only">(current)</span></a>
-                            {% else %}
-                            <a class="dropdown-item" href="{{ url_for('reviews', category='Phones') }}">Phones</a>
-                            {% endif %}
-                            {% if page_title == "Tablets" %}
-                            <a class="dropdown-item active"
-                                href="{{ url_for('reviews', category='Tablets') }}">Tablets<span
-                                    class="sr-only">(current)</span></a>
-                            {% else %}
-                            <a class="dropdown-item" href="{{ url_for('reviews', category='Tablets') }}">Tablets</a>
-                            {% endif %}
-                            {% if page_title == "Laptops" %}
-                            <a class="dropdown-item active"
-                                href="{{ url_for('reviews', category='Laptops') }}">Laptops<span
-                                    class="sr-only">(current)</span></a>
-                            {% else %}
-                            <a class="dropdown-item" href="{{ url_for('reviews', category='Laptops') }}">Laptops</a>
-                            {% endif %}
-                            {% if page_title == "Accessories" %}
-                            <a class="dropdown-item active"
-                                href="{{ url_for('reviews', category='Accessories') }}">Accessories<span
-                                    class="sr-only">(current)</span></a>
-                            {% else %}
-                            <a class="dropdown-item"
-                                href="{{ url_for('reviews', category='Accessories') }}">Accessories</a>
-                            {% endif %}
+                            <a class="dropdown-item" href="{{ url_for('reviews', category='Phones') }}">Phones
+                                {% if page_title == "Phones" %}
+                                <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('reviews', category='Tablets') }}">Tablets
+                                {% if page_title == "Tablets" %}
+                                <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('reviews', category='Laptops') }}">Laptops
+                                {% if page_title == "Laptops" %}
+                                <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('reviews', category='Accessories') }}">Accessories
+                                {% if page_title == "Accessories" %}
+                                <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </a>
                         </div>
                     </li>
-                    {% if page_title == "Contact Us"%}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us<span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact Us
+                            {% if page_title == "Contact Us"%}
+                            <span class="sr-only">(current)</span>
+                            {% endif %}
+                        </a>
                     </li>
-                    {% endif %}
                     <li class="nav-item dropdown d-none d-lg-block mr-2">
                         <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -203,10 +168,12 @@
                                 {% endif %}
                             </a>
                             {% else %}
-                            <a href="{{url_for('account')}}" class="dropdown-item">Account</a>
-                            {% if page_title == "Account" %}
-                            <span class="sr-only">(current)</span>
-                            {% endif %}{% endif %}
+                            <a href="{{url_for('account')}}" class="dropdown-item">Account
+                                {% if page_title == "Account" %}
+                                <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </a>
+                            {% endif %}
                             <!--Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://stackoverflow.com/questions/15974730/how-do-i-get-the-different-parts-of-a-flask-requests-url-->
                             <a href="{{ url_for('sign_out', next=request.url) }}" class="dropdown-item">Sign Out</a>
                             {% else %}
@@ -395,9 +362,9 @@
                                     <button class="btn px-0" type="button" data-toggle="collapse"
                                         data-target="#navLinksCollapse" aria-expanded="false"
                                         aria-controls="navLinksCollapse">
-                                            <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
-                                            <i class="fas fa-plus" aria-hidden="true"></i>Links
-                                            <span class="sr-only">Plus</span>
+                                        <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
+                                        <i class="fas fa-plus" aria-hidden="true"></i>Links
+                                        <span class="sr-only">Plus</span>
                                     </button>
                                 </h3>
                             </div>
@@ -455,9 +422,9 @@
                                     <button class="btn px-0" type="button" data-toggle="collapse"
                                         data-target="#socialLinksCollapse" aria-expanded="false"
                                         aria-controls="socialLinksCollapse">
-                                            <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
-                                            <i class="fas fa-plus" aria-hidden="true"></i>Connect With Us
-                                            <span class="sr-only">Plus</span>
+                                        <!--Plus icon code is from https://fontawesome.com/icons/plus?style=solid-->
+                                        <i class="fas fa-plus" aria-hidden="true"></i>Connect With Us
+                                        <span class="sr-only">Plus</span>
                                     </button>
                                 </h3>
                             </div>
