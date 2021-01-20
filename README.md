@@ -486,6 +486,7 @@ More information about making a local clone of a GitHub repository is available 
 - Code for the next url hidden form field is from [tecladocode](https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask).
 - Code for setting the confirm password field to invalid if it's value doesn't match the value of the password field is from [codepen](https://codepen.io/diegoleme/pen/surIK).
 - Code for preventing the default behaviour of the submit button is from [Stack Overflow](https://stackoverflow.com/questions/9824808/disable-form-auto-submit-on-button-click/9825224)
+- Code for posting the form data using jQuery and dynamically updating the HTML based on the response is from [Stack Overflow](https://stackoverflow.com/questions/7426085/jquery-getting-form-values-for-ajax-post) and [jQuery](https://api.jquery.com/jquery.post/).
 - Code for reporting the validity of form fields is from [Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity).
 - Code for edit icon is from [Font Awesome](https://fontawesome.com/icons/edit?style=solid).
 - Code for trash icon is from [Font Awesome](https://fontawesome.com/icons/trash?style=solid).
