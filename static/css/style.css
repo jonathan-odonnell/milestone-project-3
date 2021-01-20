@@ -115,6 +115,7 @@ section {
 .navbar-dark .navbar-toggler {
     border: none;
     outline: none;
+    width: 2rem;
 }
 
 .navbar-dark .navbar-nav .nav-link {
