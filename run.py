@@ -789,13 +789,22 @@ def add_product():
     if request.method == "POST":
         """
         Gets the details entered into the form and convert them into a
-        dictionary and converts the price to the decimal 128 data type.
-        Decimal128 method is from https://pymongo.readthedocs.io/en/stable/api/
-        bson/decimal128.html
+        dictionary, converts the price to the decimal 128 data type and adds
+        the default rating values to the dictionary. Decimal128 method is from
+        https://pymongo.readthedocs.io/en/stable/api/bson/decimal128.html
         """
         product = request.form.to_dict()
-
         product['price'] = Decimal128(product['price'])
+        product['overall_rating'] = 0
+        product['performance_rating'] = 0
+        product['usability_rating'] = 0
+        product['price_rating'] = 0
+        product['quality_rating'] = 0
+        product['five_stars'] = 0
+        product['four_stars'] = 0
+        product['three_stars'] = 0
+        product['two-stars'] = 0
+        product['one_star'] = 0
 
         """
         Deletes any products from the dictionary which have a value of an empty
@@ -808,15 +817,13 @@ def add_product():
             if product[key] == "":
                 del product[key]
 
-        # Adds the product details to the database
+        """
+        Adds the product details to the database and Adds the brand to the
+        relevant brands list in the database. Add to set method is from
+        https://docs.mongodb.com/manual/reference/operator/update/addToSet/
+        """
         mongo.db.products.insert_one(product)
 
-        """
-        Adds the brand to the relevant brands list in the database.
-        Add to set method is from https://docs.mongodb.com/manual/reference/
-        operator/update/
-        addToSet/
-        """
         mongo.db.categories.update_one({"name": product['category']}, {
                                        "$addToSet": {"brands": product['brand']
                                                      }})
