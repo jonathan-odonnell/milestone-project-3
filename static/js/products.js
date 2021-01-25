@@ -2,16 +2,16 @@
 
 $(document).ready(function () {
     let currentUrl = new URL(window.location);
-    let search = currentUrl.searchParams.get("sort")
+    let search = currentUrl.searchParams.get("sort");
     if (search !== null) {
         if (search === "a-to-z") {
-            $('#product-filter').html("Name A - Z")
+            $('#product-filter').html("Name A - Z");
         } else if (search === "z-to-a") {
-            $('#product-filter').html("Name Z - A")
+            $('#product-filter').html("Name Z - A");
         } else if (search === "cat_asc") {
-            $('#product-filter').html("Category A - Z")
+            $('#product-filter').html("Category A - Z");
         } else if (search === "cat_desc") {
-            $('#product-filter').html("Category Z - A")
+            $('#product-filter').html("Category Z - A");
         }
     }
 })
@@ -28,7 +28,7 @@ $('#product-sort-by').next().children().on('click', function () {
     let sort = $(this).val();
     currentUrl.searchParams.set("sort", sort);
     window.location.replace(currentUrl);
-})
+});
 
 /* When the next button is clicked on the add product or edit product page,
 checks the form is valid and hides the div containing the product-details ID
@@ -39,18 +39,18 @@ en-US/docs/Web/API/HTMLFormElement/reportValidity */
 
 $('#product-details').find('.btn').on('click', function () {
     if ($('form')[2].reportValidity() == false) {
-        return
+        return;
     } else {
-        $('#product-details').addClass('d-none')
-        $('#product-features').removeClass('d-none')
+        $('#product-details').addClass('d-none');
+        $('#product-features').removeClass('d-none');
     }
-})
+});
 
 /* When the back button is clicked on the add product or edit product page,
 hides the div containing the product-features ID and shows the div containing
 the product-details ID. */
 
 $('#product-features').find('.btn').first().on('click', function () {
-    $('#product-details').removeClass('d-none')
-    $('#product-features').addClass('d-none')
-})
+    $('#product-details').removeClass('d-none');
+    $('#product-features').addClass('d-none');
+});

@@ -2,21 +2,21 @@
 
 $(document).ready(function() {
     let currentUrl = new URL(window.location);
-    let sortBy = currentUrl.searchParams.get("sort")
+    let sortBy = currentUrl.searchParams.get("sort");
     if (sortBy !== null) {
         if (sortBy === "featured") {
-            $('#sort-by').html("Featured")
+            $('#sort-by').html("Featured");
         } else if (sortBy === "date-added") {
-            $('#sort-by').html("Date Added")
+            $('#sort-by').html("Date Added");
         } else if (sortBy === "price-asc") {
-            $('#sort-by').html("Price (Low - High)")
+            $('#sort-by').html("Price (Low - High)");
         } else if (sortBy === "price-desc") {
-            $('#sort-by').html("Price (High - Low)")
+            $('#sort-by').html("Price (High - Low)");
         } else {
-            $('#sort-by').html("Average Rating")
+            $('#sort-by').html("Average Rating");
         }
     }
-})
+});
 
 // Sets the sort search parameter as the value of the link in the sort by dropdown that has been clicked and reloads the page. Current URL code is from https://developer.mozilla.org/en-US/docs/Web/API/Window/location and https://developer.mozilla.org/en-US/docs/Web/API/URL, and search parameters code is from https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams
 
