@@ -200,7 +200,7 @@ The Entity Relationship Diagram show details of each field contained in each col
 9. [Flask Paginate](https://pythonhosted.org/Flask-paginate/)
    - Flask Paginatie was used for the pagination on the reviews, category reviews and product management pages.
 10. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
-   - Jinja was used for the templating.
+    - Jinja was used for the templating.
 11. [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
     - Flask-PyMongo was used to interact with the database. 
 12. [MongoDB](https://owlcarousel2.github.io/OwlCarousel2/)
@@ -455,9 +455,9 @@ A local clone of the project can be created using the following steps:
     To clone using SSH click "Use SSH" and then click the clipboard button.
     ![Image showing the use ssh button](static/images/clone/clone3.png)
     ![Image showing the clipboard button](static/images/clone/clone4.png)
-4.  Open Git Bash
+4.  Open the terminal.
 5.  Change the current working directory to the location where you want to store the cloned repository.
-6.  Type `git clone` into the terminal and then paste the URL you copied in Step 3.
+6.  Type `git clone` and then paste the URL you copied in Step 3.
 
 ```
 $ git clone https://github.com/jonathan-odonnell/milestone-project-3.git
