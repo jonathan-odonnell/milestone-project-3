@@ -168,7 +168,7 @@
 11. Enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign up button and verify that the form does not submit and shows the invalid input error message.
     - Outcome: Pass
 
-12. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the html is dynamically updated to show a message thanking the user for signing up to the newsletter.
+12. Verify that when the user enters an email address which is in the required format and clicks the sign up button, the form submits, the user's email address is added to the newsletters database and the HTML is dynamically updated to show a message thanking the user for signing up to the newsletter.
     - Outcome: Pass
 
 ## Sign In page
@@ -328,7 +328,7 @@
 1. Verify that the review details page appears as expected and looks good at all screen widths.
     - Outcome: Pass
 
-2. Verify that the back link displays the name of the previous page, and when the user clicks on the link, it takes them back to the previous page.
+2. Verify that the back link displays the name of the previous page, and when the user clicks on the link, it takes them back to the previous page. If the user has come from the home page, the link should take the user back to the relevant category reviews page.
 
 3. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
     - Outcome: Pass
