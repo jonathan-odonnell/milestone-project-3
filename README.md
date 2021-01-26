@@ -183,36 +183,40 @@ The Entity Relationship Diagram show details of each field contained in each col
 
 1. [Bootstrap 4.5](https://getbootstrap.com/)
    - Bootstrap was used for the navbar, footer accordion, toasts, forms, buttons, filters modal, sort by dropdown buttons, featured products carousel cards and reviews cards. Bootstrap was also used for the grid which assists with the responsiveness of the website and for the styling.
-2. [Hover.css](https://ianlunn.github.io/Hover/)
+2. [Bootswatch](https://bootswatch.com/lux)
+    - The Bootswatch lux theme was used for the styling of the website.
+3. [Hover.css](https://ianlunn.github.io/Hover/)
    - Hover.css was used for the hover effects on the social media icons.
-3. [Font Awesome](https://fontawesome.com/)
+4. [Font Awesome](https://fontawesome.com/)
    - Font Awesome was used throughout the website to enhance the user experience by adding icons.
-4. [Popper.js](https://popper.js.org/)
+5. [Popper.js](https://popper.js.org/)
    - Bootstrap uses Popper.js to make the navbar responsive.
-5. [jQuery](https://jquery.com/)
+6. [jQuery](https://jquery.com/)
    - JQuery was used throughout the website for the interactive features.
-6. [Slick Slider](https://kenwheeler.github.io/slick/)
+7. [Slick Slider](https://kenwheeler.github.io/slick/)
     - Slick Slider was used for the featured products carousel. License is [here](slick_license.md).
-7. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+8. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
    - Flask was used for the routing of the appliction and for the messages.
-8. [Flask Paginate](https://pythonhosted.org/Flask-paginate/)
+9. [Flask Paginate](https://pythonhosted.org/Flask-paginate/)
    - Flask Paginatie was used for the pagination on the reviews, category reviews and product management pages.
-9. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+10. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
    - Jinja was used for the templating.
-10. [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
+11. [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
     - Flask-PyMongo was used to interact with the database. 
-11. [MongoDB](https://owlcarousel2.github.io/OwlCarousel2/)
+12. [MongoDB](https://owlcarousel2.github.io/OwlCarousel2/)
     - A MongoDB database was used to store the data used in the project.
-12. [Gitpod](https://www.gitpod.io/)
+13. [Gitpod](https://www.gitpod.io/)
     - Gitpod was used to write the code for this project and gitpod terminal was used to commit changes to Git and push them to GitHub.
-13. [Git](https://git-scm.com/)
+14. [Git](https://git-scm.com/)
     - Git was the version control system used for this project.
-14. [GitHub](https://github.com/)
+15. [GitHub](https://github.com/)
     - GitHub is used to store the project's code and any other required files.
-15. [Heroku](https://www.heroku.com/)
+16. [Heroku](https://www.heroku.com/)
     - Heroku is used to host the deployed website.
-16. [Balsamiq](https://balsamiq.com/)
+17. [Balsamiq](https://balsamiq.com/)
     - Balsamiq was used to create the wireframes during the design phase of the project.
+18. [DB Diagram](https://dbdiagram.io/home)
+    - DB Diagram was used to create the Entity Relationship Diagrams of the database.
 
 ## Testing
 
@@ -248,7 +252,7 @@ The PEP8 and JSHint validator services were used to validate the code in all Pyt
 
 ### Lighthouse Accessibility Testing
 
-- The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards.
+The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards.
 
 - [Home](static/images/lighthouse/home.png)
 - [Register](static/images/lighthouse/register.png)
