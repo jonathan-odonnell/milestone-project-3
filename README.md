@@ -204,7 +204,7 @@ The Entity Relationship Diagram show details of each field contained in each col
 11. [MongoDB](https://owlcarousel2.github.io/OwlCarousel2/)
     - A MongoDB database was used to store the data used in the project.
 12. [Gitpod](https://www.gitpod.io/)
-    - Gitpod was used to write the code for this project and gitpod terminal was used to commit changes to Git and Push them to GitHub.
+    - Gitpod was used to write the code for this project and gitpod terminal was used to commit changes to Git and push them to GitHub.
 13. [Git](https://git-scm.com/)
     - Git was the version control system used for this project.
 14. [GitHub](https://github.com/)
@@ -402,25 +402,27 @@ Details of the manual testing carried out can be viewed [here](testing.md).
 
 The project was deployed to Heroku using the following steps:
 
-1.  Log in to Heroku and click on the "New" button.
+1.  Type the command ```pip3 freeze > requirements.txt``` in the terminal and press enter to create the requirements.txt file.
+2.  Type the command ``echo web: python run.py > Procfile`` in the terminal and press enter to create the procfile.
+3.  Log in to Heroku and click on the "New" button.
     ![Image showing the new button](static/images/deployment/deployment1.png)
-2.  Click on the "Create new app" button in the dropdown list.
+4.  Click on the "Create new app" button in the dropdown list.
     ![Image showing the create new app button in the dropdown list](static/images/deployment/deployment2.png)
-3.  Enter a name for the app and check that it is available.
+5.  Enter a name for the app and check that it is available.
     ![Image showing the create app form](static/images/deployment/deployment3.png)
-4.  Click the "Create app" button.
+6.  Click the "Create app" button.
     ![Image showing the create app button](static/images/deployment/deployment4.png)
-5.  Scroll down to the connect to GitHub section, enter the project's GitHub repository name in the repo-name field and click the "Search" button.
+7.  Scroll down to the connect to GitHub section, enter the project's GitHub repository name in the repo-name field and click the "Search" button.
     ![Image showing the connect to GitHub section](static/images/deployment/deployment5.png)
-6.  Click the "Connect" button next to the GitHub repository.
+8.  Click the "Connect" button next to the GitHub repository.
     ![Image showing the connect button](static/images/deployment/deployment6.png)
-7.  Scroll down to the automatic deploys section and click the "Enable Automatic Deploys" button.
+9.  Scroll down to the automatic deploys section and click the "Enable Automatic Deploys" button.
     ![Image showing the enable automatic deploys section](static/images/deployment/deployment7.png)
-8.  Scroll back up to the top of the page and click the "Settings" tab.
+10.  Scroll back up to the top of the page and click the "Settings" tab.
     ![Image showing the settings tab](static/images/deployment/deployment8.png)
-9.  Scroll down to the convig vars section and click the "Reveal Config Vars" button.
+11.  Scroll down to the convig vars section and click the "Reveal Config Vars" button.
     ![Image showing the reveal config vars button](static/images/deployment/deployment9.png)
-10. Enter the key and value for each config var and click the "add" button.
+12. Enter the key and value for each config var and click the "add" button.
     ![Image showing the config vars input form](static/images/deployment/deployment10.png)
 
 More information about deploying a website to Heroku is available [here](https://devcenter.heroku.com/categories/deployment).
@@ -449,7 +451,7 @@ A local clone of the project can be created using the following steps:
     ![Image showing the clipboard button](static/images/clone/clone4.png)
 4.  Open Git Bash
 5.  Change the current working directory to the location where you want to store the cloned repository.
-6.  Type `git clone` and then paste the URL you copied in Step 3.
+6.  Type `git clone` into the terminal and then paste the URL you copied in Step 3.
 
 ```
 $ git clone https://github.com/jonathan-odonnell/milestone-project-3.git
