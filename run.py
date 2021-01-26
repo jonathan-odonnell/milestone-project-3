@@ -985,4 +985,4 @@ def page_not_found(e):
     return render_template("404.html", page_title=404)
 
 
-app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
+app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=False)
