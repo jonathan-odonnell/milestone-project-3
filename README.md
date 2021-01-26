@@ -406,28 +406,29 @@ Details of the manual testing carried out can be viewed [here](testing.md).
 
 The project was deployed to Heroku using the following steps:
 
-1. Set the value of debug on the last line of the run.py file to False and commit to GitHub.
+1. Set the value of debug on the last line of the run.py file to false.
 2.  Type the command ```pip3 freeze > requirements.txt``` in the terminal and press enter to create the requirements.txt file.
 3.  Type the command ``echo web: python run.py > Procfile`` in the terminal and press enter to create the procfile.
-4.  Log in to Heroku and click on the "New" button.
+4.  Commit these changes to GitHub.
+5.  Log in to Heroku and click on the "New" button.
     ![Image showing the new button](static/images/deployment/deployment1.png)
-5.  Click on the "Create new app" button in the dropdown list.
+6.  Click on the "Create new app" button in the dropdown list.
     ![Image showing the create new app button in the dropdown list](static/images/deployment/deployment2.png)
-6.  Enter a name for the app and check that it is available.
+7.  Enter a name for the app and check that it is available.
     ![Image showing the create app form](static/images/deployment/deployment3.png)
-7.  Click the "Create app" button.
+8.  Click the "Create app" button.
     ![Image showing the create app button](static/images/deployment/deployment4.png)
-8.  Scroll down to the connect to GitHub section, enter the project's GitHub repository name in the repo-name field and click the "Search" button.
+9.  Scroll down to the connect to GitHub section, enter the project's GitHub repository name in the repo-name field and click the "Search" button.
     ![Image showing the connect to GitHub section](static/images/deployment/deployment5.png)
-9.  Click the "Connect" button next to the GitHub repository.
+10.  Click the "Connect" button next to the GitHub repository.
     ![Image showing the connect button](static/images/deployment/deployment6.png)
-10.  Scroll down to the automatic deploys section and click the "Enable Automatic Deploys" button.
+11.  Scroll down to the automatic deploys section and click the "Enable Automatic Deploys" button.
     ![Image showing the enable automatic deploys section](static/images/deployment/deployment7.png)
-11.  Scroll back up to the top of the page and click the "Settings" tab.
+12.  Scroll back up to the top of the page and click the "Settings" tab.
     ![Image showing the settings tab](static/images/deployment/deployment8.png)
-12.  Scroll down to the convig vars section and click the "Reveal Config Vars" button.
+13.  Scroll down to the convig vars section and click the "Reveal Config Vars" button.
     ![Image showing the reveal config vars button](static/images/deployment/deployment9.png)
-13. Enter the key and value for each config var and click the "add" button.
+14. For each of the IP, PORT, SECRET_KEY, MONGO_URI and MONGO_DBNAME, enter the key and value and click the "add" button.
     ![Image showing the config vars input form](static/images/deployment/deployment10.png)
 
 More information about deploying a website to Heroku is available [here](https://devcenter.heroku.com/categories/deployment).
