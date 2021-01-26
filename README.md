@@ -45,9 +45,13 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 ### Wireframes
 
-- [Desktop](static/wireframes/desktop-wireframes.pdf)
-- [Tablet](static/wireframes/tablet-wireframes.pdf)
-- [Mobile](static/wireframes/mobile-wireframes.pdf)
+- [Desktop](static/design/desktop_wireframes.pdf)
+- [Tablet](static/design/tablet_wireframes.pdf)
+- [Mobile](static/design/mobile_wireframes.pdf)
+
+### Entity Relationship Diagrams
+
+The Entity Relationship Diagram show details of each field contained in each collection in the database and the relationships between the different collections. They can be accessed [here](static/design/entity_relationship_model.pdf).
 
 ## Features
 
@@ -214,7 +218,7 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 ### WC3 Validation
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate the code in all HTML and CSS files used in website to ensure that it was in compliance with the HTML5 and CSS3 standards and that there were no syntax errors. There were no errors except for the syntax for the Jinja templating and multiple IDs with the same name which are contained within an if statment.
+The W3C Markup Validator and W3C CSS Validator services were used to validate the code in all HTML and CSS files to ensure that they were in compliance with the HTML5 and CSS3 standards and that there were no syntax errors. There were no errors except for the syntax for the Jinja templating syntax and where there are multiple IDs with the same name which are contained within an if statment.
 
 - [Base](static/validation/base.pdf)
 - [Home](static/validation/home.pdf)
@@ -238,7 +242,11 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate th
 - [404](static/validation/404.pdf)
 - [CSS](static/validation/css.pdf)
 
-# Lighthouse Accessibility Testing
+### PEP8 and JSHint Validation
+
+The PEP8 and JSHint validator services were used to validate the code in all Python and JavaScript files to ensure that they were in compliance with the relevant standards and that there were no syntax errors. No errors were identified. 
+
+### Lighthouse Accessibility Testing
 
 - The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards.
 
