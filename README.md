@@ -341,8 +341,8 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
     - Users can access their reviews by clicking on the user dropdown and selecting the account option (large screens and above) or by clicking on the account link in the navigation bar (small and medium screens). There is also a link to the account page in the footer.
     - Here, users can find cards for all of the reviews they have written which include links to the edit and delete the review. 
     - Users can also find links to edit and delete their reviews in the review's card on the relevant product page.
-    - If a user clicks on the edit icon, they are taken to the edit review form where they can amend the details of their review.
-    - If a user clicks on the delete icon, their review is deleted.
+    - If a user clicks on the edit link, they are taken to the edit review form where they can amend the details of their review.
+    - If a user clicks on the delete link, their review is deleted.
 
 ![Image of the product management page](static/images/site/product_management.png)
 
