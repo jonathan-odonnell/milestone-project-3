@@ -76,8 +76,8 @@
                         <!--Sign up button end-->
                         <!--Sign in text and link start. Code for next search perameter is from https://stackoverflow.com/questions/51783658/url-for-creates-a-url-query-string-with-amp and https://www.kite.com/python/answers/how-to-get-parameters-from-a-url-using-flask-in-python-->
                         <p class="text-center mt-4">
-                            Already have an account? Sign in
-                            <a href="{{url_for('sign_in', next=request.args.get('next', ''))}}">here</a>
+                            Already have an account? 
+                            <a href="{{url_for('sign_in', next=request.args.get('next', ''))}}"><strong>Sign in</strong></a>.
                         </p>
                         <!--Sign in text and link end-->
                         <!--Next hidden field start. Code from https://blog.tecladocode.com/handling-the-next-url-when-logging-in-with-flask/-->
