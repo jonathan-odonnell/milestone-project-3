@@ -351,8 +351,8 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
     - Site owners can access the product management page by clicking on the user dropdown and selecting the product management (large screens and above) or by clicking on the product management link in the navigation bar (small and medium screens). There is also a link to the product management page in the footer.
     - Here, site owners can find a table containing all of the products that are currently listed on the site. Each product's row displays the product's name and links to the edit and delete the product. The product's category is also displayed on medium screens and above.
     - If the site owner clicks on the add product link, the add product form is displayed which they can complete to add a new product.
-    - If the site owner clicks on the edit icon, the edit product form is displayed where they can amend the relevant product details and features.
-    - If the site owner clicks on the delete icon, the product is deleted.
+    - If the site owner clicks on the edit link, the edit product form is displayed where they can amend the relevant product details and features.
+    - If the site owner clicks on the delete link, the product is deleted.
 
 ![Image of the contact page](static/images/site/contact.png)
 
