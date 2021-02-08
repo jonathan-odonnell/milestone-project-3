@@ -65,19 +65,16 @@
 21. Click on the contact us link and verify that it takes the user to the contact us page.
     - Outcome: Pass
 
-22. Verify that when the user hovers over a link, it appears in green.
-    - Outcome: Pass
-
-23. Verify that when the user hovers over the user icon, it appears in white.
+22. Verify that when the user hovers over a link, it appears in white.
     - Outcome: Pass   
         
-24. Verify that the search icon appears in the navbar and the search bar disappears at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
+23. Verify that the search icon appears in the navbar and the search bar disappears at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
     - Outcome: Pass
 
-25. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
+24. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
     - Outcome: Pass
 
-26. Verify that if the user hasn't entered any search criteria into the search bar, the user should be redirected to their previous page or the home page (if there is no request.referrer) and a toast should appear informing them that they didn't enter any search criteria.
+25. Verify that if the user hasn't entered any search criteria into the search bar, the user should be redirected to their previous page or the home page (if there is no request.referrer) and a toast should appear informing them that they didn't enter any search criteria.
     - Outcome: Pass
         
 ## Footer
