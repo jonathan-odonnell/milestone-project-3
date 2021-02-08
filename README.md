@@ -81,39 +81,39 @@ The Entity Relationship Diagram show details of each field contained in each col
 
     - This enables users to sign up to receive updates about the latest products by entering their email address into the form.
 
-7. Reviews Search Results / Product Category Reviews
+7. Sign Up Form
+
+    This allows users to sign up for an account by entering their first name, last name, email address and password into the form. It also provides them with an opportunity to sign up to the newsletter.
+
+8. Sign In Form
+
+    - This enables users to sign in to their account by entering their email address and password.
+
+9. Account
+
+    - When a standard user is signed in, this display's cards for each of their reviews containing the review's title and links to edit and delete each review.
+
+10. Reviews Search Results / Product Category Reviews
 
     - For each product in the category or that satisfies the search term entered in the search bar, this displays the product's name, image, overall rating and price. The product image is a link to the product's review details page.
     - Users can sort the products selecting an option from the dropdown or filter them by selecting checkboxes or radio buttons in the filters form.
 
-8. Product Details
+11. Product Details
 
     - This provides users with details of the product including colours, price, capacity, display, processor, memory, graphics, camera and video capabilities, battery life and connectivity.
 
-9. Product Ratings
+12. Product Ratings
 
     - This allows users to view progress bars which show the average ratings from the reviews for overall rating, performace, usability, price, quality and the percentage of users who rated the product each star rating overall.
 
-10. Product Reviews
+13. Product Reviews
 
     - This enables users to read the reviews that other users have written and vote whether each the review is helpful or not.
     - If the user is signed in, they can write their own review for the product and edit or delete their review if they have already written one by clicking on the relevant links.
 
-11. Add/Edit Review Forms
+14. Add/Edit Review Forms
 
     - These enable users to add or edit the details of their review.
-
-12. Sign Up Form
-
-    This allows users to sign up for an account by entering their first name, last name, email address and password into the form. It also provides them with an opportunity to sign up to the newsletter.
-
-13. Sign In Form
-
-    - This enables users to sign in to their account by entering their email address and password.
-
-14. Account
-
-    - When a standard user is signed in, this display's cards for each of their reviews containing the review's title and links to edit and delete each review.
 
 15. Product Management Table
 
