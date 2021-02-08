@@ -51,7 +51,7 @@ Tech Reviews is a fictitious consumer electronics reviews and consumer advice co
 
 ### Entity Relationship Diagrams
 
-The Entity Relationship Diagram show details of each field contained in each collection in the database and the relationships between the different collections. They can be accessed [here](static/design/entity_relationship_model.pdf).
+The Entity Relationship Diagram show details of each field contained in each collection in the database and the relationships between the different collections. They can be accessed [here](static/design/entity_relationship_diagram.pdf).
 
 ## Features
 
