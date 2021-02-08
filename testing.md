@@ -246,54 +246,6 @@
 6. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
-## Add Review page
-
-1. Verify that the add review page appears as expected and looks good at all screen widths.
-    - Outcome: Pass
-
-2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the add review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
-    - Outcome: Pass
-
-3. Verify that when the user has selected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
-    - Outcome: Pass
-
-4. Verify that if there is no next search perameter in the add review page's URL, the user is returned to the 400 page.
-    - Outcome: Pass
-
-5. Verify that users who are not signed in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
-    - Outcome: Pass
-
-## Edit Review page
-
-1. Verify that the edit review page appears as expected and looks good at all screen widths.
-    - Outcome: Pass
-
-2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the update review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
-    - Outcome: Pass
-
-3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the update review button is clicked, the review is updated in the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully updated.
-    - Outcome: Pass
-
-4. Verify that if there is no next search perameter in the edit review page's URL, the user is returned to the 400 page.
-    - Outcome: Pass
-
-5. Verify that users who are not signed in cannot access the edit review page by manually typing in it's URL and are returned to the sign in page.
-    - Outcome: Pass
-
-6. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
-    - Outcome: Pass
-
-## Delete Review page
-
-1. Verify that if there is no next search perameter in the delete review page's URL, the user is returned to the 400 page.
-    - Outcome: Pass
-
-2. Verify that users who are not signed in cannot access the delete review page by manually typing in it's URL and are returned to the sign in page.
-    - Outcome: Pass
-
-3. Verify that any user who is not the review's author cannot access the review's delete review page by manually typing in it's URL and are returned to the 403 page.
-    - Outcome: Pass
-
 ## Reviews, Phones, Tablets, Laptops and Accessories Pages
 
 1. Verify that the page appears as expected and looks good at all screen widths.
@@ -352,6 +304,54 @@
     - Outcome: Pass
 
 9. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
+    - Outcome: Pass
+
+## Add Review page
+
+1. Verify that the add review page appears as expected and looks good at all screen widths.
+    - Outcome: Pass
+
+2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the add review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
+    - Outcome: Pass
+
+3. Verify that when the user has selected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
+    - Outcome: Pass
+
+4. Verify that if there is no next search perameter in the add review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+5. Verify that users who are not signed in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+## Edit Review page
+
+1. Verify that the edit review page appears as expected and looks good at all screen widths.
+    - Outcome: Pass
+
+2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the update review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
+    - Outcome: Pass
+
+3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the update review button is clicked, the review is updated in the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully updated.
+    - Outcome: Pass
+
+4. Verify that if there is no next search perameter in the edit review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+5. Verify that users who are not signed in cannot access the edit review page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+6. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
+    - Outcome: Pass
+
+## Delete Review page
+
+1. Verify that if there is no next search perameter in the delete review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+2. Verify that users who are not signed in cannot access the delete review page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+3. Verify that any user who is not the review's author cannot access the review's delete review page by manually typing in it's URL and are returned to the 403 page.
     - Outcome: Pass
 
 ## Product Management Page
