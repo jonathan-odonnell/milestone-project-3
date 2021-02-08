@@ -243,7 +243,13 @@
 5. Verify that if the user clicks on a review's delete link, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
-6. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
+6. Verify that if there are more than 10 results in the reviews list, pagination links are displayed and when the user clicks on a link, cards for the reviews in the relevant positions in the reviews list are displayed.
+    - Outcome: Pass
+
+7. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+7. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 ## Reviews, Phones, Tablets, Laptops and Accessories Pages
@@ -272,10 +278,10 @@
 8. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
     - Outcome: Pass
 
-9. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
-    - Outcome: Pass
+9. Verify that when the user selects an option from the products dropdown, the page reloads and the products are sorted accordingly.
+products    - Outcome: Pass
 
-10. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions in the reviews list are displayed.
+10. Verify that if there are more than 6 results in the reviews list, pagination links are displayed and when the user clicks on a link, cards for the products in the relevant positions in the reviews list are displayed.
     - Outcome: Pass
 
 ## Review Details Page
@@ -371,7 +377,7 @@
 5. Verify that if the user clicks on a product's delete button, the product is deleted, the category filters lists are updated, the page reloads and a toast appears informing the user that the product has been successfully deleted.
     - Outcome: Pass
 
-6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the products list are displayed in the table.
+6. Verify that if there are more than 10 results in the products list, pagination links are displayed and when the user clicks on a link, cards for the products in the relevant positions in the products list are displayed.
     - Outcome: Pass
 
 7. Verify that users who are not signed in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
