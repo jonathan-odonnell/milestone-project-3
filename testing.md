@@ -62,19 +62,22 @@
 20. Click on the reviews dropdown and click on the accessories link and verify that it takes the user to the accessories page.
     - Outcome: Pass
         
-21. Verify that when the user hovers over icon it appears in white.
-    - Outcome: Pass
-        
-22. Click on the contact us link and verify that it takes the user to the contact us page.
-    - Outcome: Pass
-        
-23. Verify that the search icon appears in the navbar at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
+21. Click on the contact us link and verify that it takes the user to the contact us page.
     - Outcome: Pass
 
-24. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
+22. Verify that when the user hovers over a link, it appears in green.
     - Outcome: Pass
 
-25. Verify that if the user doesn't enters a search term into the search bar and clicks the search bar search icon, they are taken back to the previous page or the home page.
+23. Verify that when the user hovers over the user icon, it appears in white.
+    - Outcome: Pass   
+        
+24. Verify that the search icon appears in the navbar and the search bar disappears at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
+    - Outcome: Pass
+
+25. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
+    - Outcome: Pass
+
+26. Verify that if the user hasn't entered any search criteria into the search bar, the user should be redirected to their previous page or the home page (if there is no request.referrer) and a toast should appear informing them that they didn't enter any search criteria.
     - Outcome: Pass
         
 ## Footer
@@ -85,52 +88,52 @@
 2. Reduce and expand the width of the screen and verify that the footer appears as an accordion and looks good at all screen widths below 992px.
     - Outcome: Pass
 
-3. Verify that when the user clicks on the accordion heading, it opens and the plus icon changes to a minus icon.
+3. Verify that when the accordion is closed and the user clicks on the accordion heading, it opens and the plus icon changes to a minus icon. Click on the accordion heading for a second time and verify that it closes and the minus icon changes to a plus icon.
     - Outcome: Pass
 
-4. Click on the phones link  and verify that it takes the user to the phones page, both in the accordion links list and in the standard links list.
+5. Click on the phones link  and verify that it takes the user to the phones page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-5. Click on the tablets link and verify that it takes the user to the tablets page, both in the accordion links list and in the standard links list.
+6. Click on the tablets link and verify that it takes the user to the tablets page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-6. Click on the laptops link and verify that it takes the user to the laptops page, both in the accordion links list and in the standard links list.
+7. Click on the laptops link and verify that it takes the user to the laptops page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-7. Click on the accessories link and verify that it takes the user to the accessories page, both in the accordion links list and in the standard links list.
+8. Click on the accessories link and verify that it takes the user to the accessories page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-8. Verify that when a standard user is signed in the account link appears both in the accordion links list and in the standard links list.
+9. Verify that when a standard user is signed in the account link appears both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-9. Click on the account link and verify that it takes the user to the account page, both in the accordion links list and in the standard links list.
+10. Click on the account link and verify that it takes the user to the account page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-10. Verify that when an admin user is signed in the product management link appears both in the accordion links list and in the standard links list.
+11. Verify that when an admin user is signed in the product management link appears both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-11. Click on the product management link and verify that it takes the user to the product management page, both in the accordion links list and in the standard links list.
+12. Click on the product management link and verify that it takes the user to the product management page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-12. Click on the contact us link and verify that it takes the user to the contact us page, both in the accordion links list and in the standard links list.
+13. Click on the contact us link and verify that it takes the user to the contact us page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-13. Verify that when the user hovers over each link, it appears in green.
+14. Verify that when the user hovers over each link, it appears in green.
     - Outcome: Pass
 
-14. Click on the Facebook icon and verify that it takes the user to the Facebook home page, both in the accordion links list and in the standard links list.
+15. Click on the Facebook icon and verify that it takes the user to the Facebook home page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-15. Click on the Twitter icon and verify that it takes the user to the Twitter home page, both in the accordion links list and in the standard links list.
+16. Click on the Twitter icon and verify that it takes the user to the Twitter home page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-16. Click on the Instagram icon and verify that it takes the user to the Instagram home page, both in the accordion links list and in the standard links list.
+17. Click on the Instagram icon and verify that it takes the user to the Instagram home page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-17. Click on the Youtube icon and verify that it takes the user to the Youtube home page, both in the accordion links list and in the standard links list.
+18. Click on the Youtube icon and verify that it takes the user to the Youtube home page, both in the accordion links list and in the standard links list.
     - Outcome: Pass
 
-18. Verify that when the user hovers over icon, it increases in size and appears in green.
+19. Verify that when the user hovers over an icon, it increases in size and appears in green.
     - Outcome: Pass
 
 ## Home page
@@ -188,7 +191,7 @@
 5. Verify that when a user correctly enters their email address and password, the form submits, and the user is signed in and redirected to their previous page or home page (if no next search perameter is in the sign in page's URL). A toast should also appear informing the user that they have been successfully signed in.
     - Outcome: Pass
 
-6. Click on the sign in link and verify that it takes the user to the sign in page.
+6. Click on the register link and verify that it takes the user to the sign up page.
     - Outcome: Pass
 
 ## Sign Up page
@@ -228,16 +231,16 @@
 1. Verify that the account page appears as expected and looks good at all screen widths.
     - Outcome: Pass
 
-2. Verify that a card containing the review's title and edit and delete buttons appears for each review the user has written.
+2. Verify that a card containing the review's title and edit and delete links appears for each review the user has written.
     - Outcome: Pass
 
 3. Verify that if there are no reviews text appears informing the user that they haven't written any reviews yet.
     - Outcome: Pass
 
-4. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+4. Verify that if the user clicks on a review's edit link, they are taken to that review's edit review page.
     - Outcome: Pass
 
-5. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+5. Verify that if the user clicks on a review's delete link, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
 6. Verify that users who are not signed in cannot access the account page by manually typing in it's URL and are returned to the sign in page.
@@ -251,16 +254,13 @@
 2. Verify that if the user hasn't selected a rating for each of the ratings and entered a title and review in the relevant fields, when the add review button is clicked the form doesn't submit and the invalid input error message appears on the relevant field.
     - Outcome: Pass
 
-3. Verify that when the user has elected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
+3. Verify that when the user has selected a rating for each of the ratings and entered a title and review in the relevant fields, the form submits when the add review button is clicked, the review is added to the reviews database, the relevant product's ratings are updated and the user is returned to their previous page. A toast should also appear informing the user that the review has been successfully added.
     - Outcome: Pass
 
 4. Verify that if there is no next search perameter in the add review page's URL, the user is returned to the 400 page.
     - Outcome: Pass
 
-5. Verify that users who are not signed in cannot access the add product page by manually typing in it's URL and are returned to the sign in page.
-    - Outcome: Pass
-
-6. Verify that users who are not signed in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
+5. Verify that users who are not signed in cannot access the add review page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 ## Edit Review page
@@ -277,7 +277,7 @@
 4. Verify that if there is no next search perameter in the edit review page's URL, the user is returned to the 400 page.
     - Outcome: Pass
 
-5. Verify that users who are not signed in cannot access the edit product page by manually typing in it's URL and are returned to the sign in page.
+5. Verify that users who are not signed in cannot access the edit review page by manually typing in it's URL and are returned to the sign in page.
     - Outcome: Pass
 
 6. Verify that any user who is not the review's author cannot access the review's edit review page by manually typing in it's URL and are returned to the 403 page.
@@ -286,6 +286,12 @@
 ## Delete Review page
 
 1. Verify that if there is no next search perameter in the delete review page's URL, the user is returned to the 400 page.
+    - Outcome: Pass
+
+2. Verify that users who are not signed in cannot access the delete review page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+3. Verify that any user who is not the review's author cannot access the review's delete review page by manually typing in it's URL and are returned to the 403 page.
     - Outcome: Pass
 
 ## Reviews, Phones, Tablets, Laptops and Accessories Pages
@@ -302,25 +308,22 @@
 4. Verify that if there no search results that satisfy the search criteria, text appears informing the user that there are no products which match their search criteria.
     - Outcome: Pass
 
-5. Verify that if the user hasn't entered any search criteria the user should be redirected to the home page and a toast should appear informing them that they didn't enter any search criteria.
+5. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
     - Outcome: Pass
 
-6. Verify that the filters button only appears on screen widths below 768px and when the user clicks it the filters modal opens.
+6. Verify that the filters sidebar only appears on screen widths of 768px and above.
     - Outcome: Pass
 
-7. Verify that the filters sidebar only appears on screen widths of 768px and above.
+7. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
     - Outcome: Pass
 
-8. Verify that when filters are selected and the apply button is clicked in the filters modal or sidebar, the page reloads and only the products which satisfy the search criteria and selected filters are displayed. The checkboxes and radio buttons for the selected filters should be checked in the filters modal and sidebar.
+8. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
     - Outcome: Pass
 
-9. Verify that when filters are selected and the reset button is clicked in the filters modal or sidebar, the page reloads and all products which satisfy the search criteria are displayed. No checkboxes or radio buttons should be checked in the filters modal and sidebar.
+9. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
     - Outcome: Pass
 
-10. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
-    - Outcome: Pass
-
-11. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions on the list are displayed.
+10. Verify that when the user clicks on the pagination links, cards for the products in the relevant positions in the reviews list are displayed.
     - Outcome: Pass
 
 ## Review Details Page
@@ -333,19 +336,19 @@
 3. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
     - Outcome: Pass
 
-4. Verify that the feature rating and star rating progress bars correctly calculate the feature ratings values as a percentage of the maximum rating and star ratings values as a percentage of the total rating.
+4. Verify that the feature rating and star rating progress bars correctly calculates the product's average overall, performace, usability, price and quality ratings, and percentage of the total ratings for each number of stars.
     - Outcome: Pass
 
-5. Verify that if a user is signed in the add review is displayed.
+5. Verify that if a user is signed in the add review link is displayed, and if the user clicks on the link, they are taken to that review's add review page.
     - Outcome: Pass
 
-6. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete buttons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
+6. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete icons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
     - Outcome: Pass
 
-7. Verify that if the user clicks on a review's edit button, they are taken to that review's edit review form.
+7. Verify that if the user clicks on a review's edit link, they are taken to that review's edit review page.
     - Outcome: Pass
 
-8. Verify that if the user clicks on a review's delete button, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+8. Verify that if the user clicks on a review's delete link, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
 9. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
@@ -359,16 +362,16 @@
 2. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
     - Outcome: Pass
 
-3. Verify that when the user clicks the add product button, they are taken to the add product form.
+3. Verify that when the user clicks the add product button, they are taken to the add product page.
     - Outcome: Pass
 
-4. Verify that if the user clicks on a product's edit button, they are taken to that product's edit product form.
+4. Verify that if the user clicks on a product's edit button, they are taken to that product's edit product page.
     - Outcome: Pass
 
 5. Verify that if the user clicks on a product's delete button, the product is deleted, the category filters lists are updated, the page reloads and a toast appears informing the user that the product has been successfully deleted.
     - Outcome: Pass
 
-6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the list are displayed in the table.
+6. Verify that when the user clicks on the pagination links, the products in the relevant positions in the products list are displayed in the table.
     - Outcome: Pass
 
 7. Verify that users who are not signed in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
@@ -385,10 +388,7 @@
 2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown and the invalid input error message appears on the relevant field.
     - Outcome: Pass
 
-3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
-    - Outcome: Pass
-
-3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+3. Verify that if the user has entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
     - Outcome: Pass
 
 4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
@@ -411,10 +411,7 @@
 2. Verify that if the user hasn't entered a value of the correct type in each field, when the next button is clicked the product details section is not hidden, the product details section is not shown and the invalid input error message appears on the relevant field.
     - Outcome: Pass
 
-3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
-    - Outcome: Pass
-
-3. Verify that if the user hasn entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
+3. Verify that if the user has entered a value of the correct type in each field, when the next button is clicked the product details section is hidden and the product features section is shown.
     - Outcome: Pass
 
 4. Verify that when the back button is clicked the product details section is shown and the product features section is hidden.
@@ -427,6 +424,14 @@
     - Outcome: Pass
 
 7. Verify that whan standard users are signed in, they cannot access the edit product page by manually typing in it's URL and are returned to the 403 page.
+    - Outcome: Pass
+
+## Delete Product page
+
+1. Verify that users who are not signed in cannot access the delete product page by manually typing in it's URL and are returned to the sign in page.
+    - Outcome: Pass
+
+2. Verify that whan standard users are signed in, they cannot access the delete product page by manually typing in it's URL and are returned to the 403 page.
     - Outcome: Pass
 
 ## Contact Us Page
