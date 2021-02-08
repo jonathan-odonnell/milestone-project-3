@@ -564,7 +564,7 @@ def add_review(product_id):
         Code for message categories is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/flashing/
         """
-        flash("Review Successfully Added", "Success")
+        flash("Review Successfully Added", "success")
 
         return redirect(next_url)
 
@@ -662,7 +662,7 @@ def edit_review(review_id):
         Code for message categories is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/flashing/
         """
-        flash("Review Successfully Updated", "Success")
+        flash("Review Successfully Updated", "success")
 
         return redirect(next_url)
 
@@ -773,7 +773,7 @@ def delete_review(review_id):
         Code for message categories is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/flashing/
         """
-        flash("Review Successfully Deleted", "Success")
+        flash("Review Successfully Deleted", "success")
 
         return redirect(next_url)
 
@@ -832,7 +832,7 @@ def add_product():
         Code for message categories is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/flashing/
         """
-        flash("Product Successfully Added", "Success")
+        flash("Product Successfully Added", "success")
 
         return redirect(url_for('product_management'))
 
@@ -891,7 +891,7 @@ def edit_product(product_id):
         Code for message categories is from https://flask.palletsprojects.com/
         en/1.1.x/patterns/flashing/
         """
-        flash("Product Successfully Updated", "Success")
+        flash("Product Successfully Updated", "success")
 
         return redirect(url_for('product_management'))
 
@@ -953,7 +953,7 @@ def delete_product(product_id):
     Code for message categories is from https://flask.palletsprojects.com/
     en/1.1.x/patterns/flashing/
     """
-    flash("Product Successfully Deleted", "Success")
+    flash("Product Successfully Deleted", "success")
 
     return redirect(url_for('product_management'))
 
