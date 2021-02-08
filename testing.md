@@ -448,5 +448,5 @@ products    - Outcome: Pass
 4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the send message button and verify that the form does not submit and shows the invalid input error message.
     - Outcome: Pass
 
-5. Enter a valid value in each field and click the send message button. Verify that the form submits, the data inputted is added to the database and the HTML is dynamically updated to show a message thanking the user for their message.
+5. Enter a valid value in each field and click the send message button. Verify that the form submits, the data inputted is added to the contact database and the HTML is dynamically updated to show a message thanking the user for their message.
     - Outcome: Pass
