@@ -289,7 +289,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
     - The featured products carousel is clearly highlighted on the home page.
     - This contains information about the latest products including its name and an image of each product. 
-    - If the user clicks on the product image, they are taken to the product's review page where can find out more about the product, view its ratings and read user reviews on the product's page.
+    - If the user clicks on the product image, they are taken to the product's review details page where can find out more about the product, view its ratings and read user reviews on the product's page.
 
 ![Image of the newsletter sign up form](static/images/site/newsletter.png)
 
@@ -323,7 +323,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
 6. As a user, I want to be able to sign in to my account or sign up for an account if I don't already have one. 
 
-    - Users can access the sign in / register links by clicking on the user dropdown (large screens and above) or by clicking on the relevant links in the navigation bar (small and medium screens). There are also links to the sign in / register pages in the footer.
+    - Users can access the sign in / register links by clicking on the user dropdown (large screens and above) or by clicking on the relevant links in the navigation bar (small and medium screens).
     - On the sign in page, users can sign in to their account by entering their email address and password into the sign in form.
     - On the register page, users can sign up for an account by entering their details into the sign up form.
 
@@ -340,9 +340,9 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
     - Users can access their reviews by clicking on the user dropdown and selecting the account option (large screens and above) or by clicking on the account link in the navigation bar (small and medium screens). There is also a link to the account page in the footer.
     - Here, users can find cards for all of the reviews they have written which include links to the edit and delete the review. 
-    - Users can also find links to edit and delete their reviews in the review card on the relevant product page.
-    - If a user clicks on the edit link, they are taken to the edit review form where they can amend the details of their review.
-    - If a user clicks on the edit link, their review is deleted.
+    - Users can also find links to edit and delete their reviews in the review's card on the relevant product page.
+    - If a user clicks on the edit icon, they are taken to the edit review form where they can amend the details of their review.
+    - If a user clicks on the delete icon, their review is deleted.
 
 ![Image of the product management page](static/images/site/product_management.png)
 
@@ -350,9 +350,9 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
     - Site owners can access the product management page by clicking on the user dropdown and selecting the product management (large screens and above) or by clicking on the product management link in the navigation bar (small and medium screens). There is also a link to the product management page in the footer.
     - Here, site owners can find a table containing all of the products that are currently listed on the site. Each product's row displays the product's name and links to the edit and delete the product. The product's category is also displayed on medium screens and above.
-    - If the site owner clicks on the edit link, the edit product form is displayed where they can amend the relevant product details and features.
-    - If the site owner clicks on the delete link, the product is deleted.
     - If the site owner clicks on the add product link, the add product form is displayed which they can complete to add a new product.
+    - If the site owner clicks on the edit icon, the edit product form is displayed where they can amend the relevant product details and features.
+    - If the site owner clicks on the delete icon, the product is deleted.
 
 ![Image of the contact page](static/images/site/contact.png)
 
