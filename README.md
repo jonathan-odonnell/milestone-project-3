@@ -315,7 +315,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
     - Users can access a product's review details page by clicking on a product image on the reviews search results or category reviews pages.
     - Here the user is provided with information about the product including it's colours, price, capacity, display, processor, memory, graphics, camera and video capabilities, battery life and connectivity.
-    - Users can also view the product's average ratings for performace, usability, price and quality, and the percentage of users who rated the product each star rating overall.
+    - Users can also view the product's average ratings for overall rating, performace, usability, price and quality, and the percentage of users who rated the product each star rating overall.
     - Additionally, users can read reviews written by other users and rate how useful they are using the thumbs up and thumbs down icons.
 
 
