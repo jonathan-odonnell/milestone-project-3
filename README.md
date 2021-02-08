@@ -162,9 +162,9 @@ The Entity Relationship Diagram show details of each field contained in each col
 
     - Add a dropdwon to the product details pages to give users the option to sort the reviews by ratings or date written.
 
-6. 5 More Reviews and Show All Reviews Buttons
+6. Five More Reviews and Show All Reviews Buttons
 
-    - Add buttons to the product details pages to display 5 more reviews or show all reviews.
+    - Add buttons to the product details pages to display five more reviews or show all reviews.
 
 ## Technologies Used
 
