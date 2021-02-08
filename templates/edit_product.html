@@ -157,6 +157,6 @@
 <!--Postload JS block start-->
 {% block postloadjs %}
 <!--Import product-management.js script -->
-<script src="/static/js/product-management.js"></script>
+<script src="{{ url_for('static', filename='js/products.js') }}"></script>
 {% endblock %}
 <!--Postload JS block end-->
