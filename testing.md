@@ -202,10 +202,10 @@
 2. Verify that the image to the right of the sign up form only appears on screen widths of 992px or above and looks good.
     - Outcome: Pass
 
-3. In the first name field, enter a name that is not between 5 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the first name field.
+3. In the first name field, enter a name that is not between 2 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the first name field.
     - Outcome: Pass
 
-3. In the last name field, enter a name that is not between 5 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the last name field.
+3. In the last name field, enter a name that is not between 2 and 15 charaters long and only contains letters, hyphens and apostrophes. Click on the sign up button and verify that the form does not submit and shows the invalid input error message on the last name field.
     - Outcome: Pass
 
 4. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
