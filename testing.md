@@ -11,70 +11,67 @@
 3. Reduce and expand the width of the screen and verify that the menu colapses and the bars icon appears at screen widths below 992px.
     - Outcome: Pass
         
-4. Verify that when the user clicks on the bars icon the menu expands, the collapsable search bar collapses if it is expanded, and the bars icon changes to the times icon.
-    - Outcome: Pass
-        
-5. Verify that when the user clicks on the times icon the menu collapses and the times icon changes to the bars icon.
+4. Verify that when the user clicks on the bars icon the menu expands, the collapsable search bar collapses if it is expanded, and the bars icon changes to the times icon. Click on the times icon and verify that the menu collapses and the times icon changes to the bars icon.
     - Outcome: Pass
 
-6. Reduce and expand the width of the screen and verify that the user dropdown is hidden at screen widths below 992px, and the register, sign in, sign out, account and product management links appear in the collapsable menu.
+5. Reduce and expand the width of the screen and verify that the user dropdown is hidden at screen widths below 992px, and the register, sign in, sign out, account and product management links appear in the collapsable menu.
     - Outcome: Pass
         
-7. Reduce and expand the width of the screen and verify that for all screen widths where the standard menu is visible the links do not wrap onto the next line. 
+6. Reduce and expand the width of the screen and verify that for all screen widths where the standard menu is visible the links do not wrap onto the next line. 
     - Outcome: Pass
         
-8. Click on the Tech Reviews logo and verify that it takes the user back the the home page.
+7. Click on the Tech Reviews logo and verify that it takes the user back the the home page.
     - Outcome: Pass
         
-9. Click on the home link and verify that it takes the user to the home page.
+8. Click on the home link and verify that it takes the user to the home page.
      - Outcome: Pass
         
-10. Click on the register link and verify that it takes the user to the sign up page.
+9. Click on the register link and verify that it takes the user to the sign up page.
     - Outcome: Pass
         
-11. Click on the sign in link and verify that it takes the user to the sign in page.
+10. Click on the sign in link and verify that it takes the user to the sign in page.
     - Outcome: Pass
         
-12. Verify that when a standard user is signed in the account and sign out links appear and the register and sign in links disappear.
+11. Verify that when a standard user is signed in the account and sign out links appear and the register and sign in links disappear.
     - Outcome: Pass
         
-13. Click on the account link and verify that it takes the user to the account page.
+12. Click on the account link and verify that it takes the user to the account page.
     - Outcome: Pass
         
-14. Click on the sign out link and verify that it signs the user out and takes them back to the previous page. A toast should also appear containing a message that informs the user that they have been signed out.
+13. Click on the sign out link and verify that it signs the user out and takes them back to the previous page. A toast should also appear containing a message that informs the user that they have been signed out.
     - Outcome: Pass
         
-15. Verify that when an admin user is signed in the product management and sign out links appear and the register and sign in links disappear.
+14. Verify that when an admin user is signed in the product management and sign out links appear and the register and sign in links disappear.
     - Outcome: Pass
         
-16. Click on the product management link and verify that it takes the user to the product management page.
+15. Click on the product management link and verify that it takes the user to the product management page.
     - Outcome: Pass
         
-17. Click on the reviews dropdown and click on the mobiles link and verify that it takes the user to the mobiles page.
+16. Click on the reviews dropdown and click on the mobiles link and verify that it takes the user to the mobiles page.
     - Outcome: Pass
         
-18. Click on the reviews dropdown and click on the tablets link and verify that it takes the user to the tablets page.
+17. Click on the reviews dropdown and click on the tablets link and verify that it takes the user to the tablets page.
     - Outcome: Pass
         
-19. Click on the reviews dropdown and click on the laptops link and verify that it takes the user to the laptops page.
+18. Click on the reviews dropdown and click on the laptops link and verify that it takes the user to the laptops page.
     - Outcome: Pass
         
-20. Click on the reviews dropdown and click on the accessories link and verify that it takes the user to the accessories page.
+19. Click on the reviews dropdown and click on the accessories link and verify that it takes the user to the accessories page.
     - Outcome: Pass
         
-21. Click on the contact us link and verify that it takes the user to the contact us page.
+20. Click on the contact us link and verify that it takes the user to the contact us page.
     - Outcome: Pass
 
-22. Verify that when the user hovers over a link, it appears in white.
+21. Verify that when the user hovers over a link, it appears in white.
     - Outcome: Pass   
         
-23. Verify that the search icon appears in the navbar and the search bar disappears at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
+22. Verify that the search icon appears in the navbar and the search bar disappears at screen widths below 992px. Click on the search icon and verify that the collapsable search bar expands and the navbar collapses if it is expanded. Click on the search icon a second time and verify that the search bar collapses.
     - Outcome: Pass
 
-24. Verify that when the user enters a search term into the search bar and clicks the search bar search icon, they are taken to the reviews page.
+23. Verify that when the user enters a search term into the search bar and clicks the search icon, they are taken to the reviews page.
     - Outcome: Pass
 
-25. Verify that if the user hasn't entered any search criteria into the search bar, the user should be redirected to their previous page or the home page (if there is no request.referrer) and a toast should appear informing them that they didn't enter any search criteria.
+24. Verify that if the user hasn't entered any search criteria into the search bar, the user should be redirected to their previous page or the home page (if there is no request.referrer) and a toast should appear informing them that they didn't enter any search criteria.
     - Outcome: Pass
         
 ## Footer
@@ -174,7 +171,7 @@
 ## Sign In page
 
 1. Verify that the sign in form appears as expected and looks good at all screen widths.
-- Outcome: Pass
+    - Outcome: Pass
 
 2. In the email address field, enter an email address that does not contain one character followed by an at sign, followed by two more characters and then a dot. Click on the sign in button and verify that the form does not submit and shows the invalid input error message on the email address field.
     - Outcome: Pass
@@ -234,10 +231,10 @@
 3. Verify that if there are no reviews text appears informing the user that they haven't written any reviews yet.
     - Outcome: Pass
 
-4. Verify that if the user clicks on a review's edit link, they are taken to that review's edit review page.
+4. Verify that if the user clicks on a review's edit icon, they are taken to that review's edit review page.
     - Outcome: Pass
 
-5. Verify that if the user clicks on a review's delete link, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+5. Verify that if the user clicks on a review's delete icon, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
 6. Verify that if there are more than 10 results in the reviews list, pagination links are displayed and when the user clicks on a link, cards for the reviews in the relevant positions in the reviews list are displayed.
@@ -291,22 +288,22 @@ products    - Outcome: Pass
 3. Verify that the product specifications table only displays data for each specification contained in the database for the current product.
     - Outcome: Pass
 
-4. Verify that the feature rating and star rating progress bars correctly calculates the product's average overall, performace, usability, price and quality ratings, and percentage of the total ratings for each number of stars.
+4. Verify that the feature rating and star rating progress bars correctly calculates average ratings for the product's overall rating, performace, usability, price and quality, and percentage of the total ratings for each number of stars.
     - Outcome: Pass
 
 5. Verify that if a user is signed in the add review link is displayed, and if the user clicks on the link, they are taken to that review's add review page.
     - Outcome: Pass
 
-6. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote buttons, and edit and delete icons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
+6. Verify that cards are displayed for each review written for the product containing the review title, stars for the overall rating, review text, author's name, date written, up vote and down vote icons, and edit and delete icons if the review's author is signed in. The reviews should be ordered by date written with the most recent first.
     - Outcome: Pass
 
-7. Verify that if the user clicks on a review's edit link, they are taken to that review's edit review page.
+7. Verify that if the user clicks on a review's edit icon, they are taken to that review's edit review page.
     - Outcome: Pass
 
-8. Verify that if the user clicks on a review's delete link, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
+8. Verify that if the user clicks on a review's delete icon, the review is deleted, the product's ratings are updated, the page reloads and a toast appears informing the user that the review has been successfully deleted.
     - Outcome: Pass
 
-9. Verify that if the user clicks the up vote or down vote button on any review the relevant vote count is updated in the database and on the page and the button is disabled.
+9. Verify that if the user clicks the up vote or down vote icons on any review the relevant vote count is updated in the database and on the page and the button is disabled.
     - Outcome: Pass
 
 ## Add Review page
@@ -365,13 +362,13 @@ products    - Outcome: Pass
 2. Verify that when the user selects an option from the sort by dropdown, the page reloads and the products are sorted accordingly.
     - Outcome: Pass
 
-3. Verify that when the user clicks the add product button, they are taken to the add product page.
+3. Verify that when the user clicks the add product link, they are taken to the add product page.
     - Outcome: Pass
 
-4. Verify that if the user clicks on a product's edit button, they are taken to that product's edit product page.
+4. Verify that if the user clicks on a product's edit icon, they are taken to that product's edit product page.
     - Outcome: Pass
 
-5. Verify that if the user clicks on a product's delete button, the product is deleted, the category filters lists are updated, the page reloads and a toast appears informing the user that the product has been successfully deleted.
+5. Verify that if the user clicks on a product's delete icon, the product is deleted, the category filters lists are updated, the page reloads and a toast appears informing the user that the product has been successfully deleted.
     - Outcome: Pass
 
 6. Verify that if there are more than 10 results in the products list, pagination links are displayed and when the user clicks on a link, cards for the products in the relevant positions in the products list are displayed.
