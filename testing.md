@@ -371,7 +371,7 @@ products    - Outcome: Pass
 5. Verify that if the user clicks on a product's delete icon, the product is deleted from the products database and the category filters lists are updated, in the categories database, the page reloads and a toast appears informing the user that the product has been successfully deleted.
     - Outcome: Pass
 
-6. Verify that if there are more than 10 results in the products list, pagination links are displayed and when the user clicks on a link, cards for the products in the relevant positions in the products list are displayed.
+6. Verify that if there are more than 10 results in the products list, pagination links are displayed and when the user clicks on a link, rows for the products in the relevant positions in the products list are displayed.
     - Outcome: Pass
 
 7. Verify that users who are not signed in cannot access the product management page by manually typing in it's URL and are returned to the sign in page.
