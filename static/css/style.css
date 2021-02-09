@@ -193,6 +193,10 @@ section {
 .toast-body {
     background-color: #fff;
 }
+
+.toast button {
+    outline: none;
+}
 /* Toast end */
 
 /* Cards start */
