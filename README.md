@@ -2,7 +2,7 @@
 
 ![Image of the website on different sized devices](static/images/site/responsive.png)
 
-[View the live website here](http://tech-reviews.herokuapp.com/)
+[View the live website here](https://tech-reviews.herokuapp.com/)
 
 Tech Reviews is a fictitious consumer electronics reviews and consumer advice company based in Manchester, United Kingdom. This is the organisation's main marketing website which aims to inform customers about the different consumer electronics products currently available in the marketplace and persuade them to make a purchase. It provides customers with information and reviews for a variety of products including phones, tablets, laptops, speakers and smart watches. The website is designed to be responsive and easy to navigate on a range of devices.
 
